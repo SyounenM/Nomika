@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="ja">
+  <head>
+    <meta charset="utf-8" />
+    <!-- <link rel="stylesheet" href="style.css"> -->
+    <title>Nomika</title>
+    <style>
+        label {
+            display: block;
+            margin-bottom: 5px;
+        }
+    </style>
+  </head>
+
+  <body style="text-align:center">
+    <form id="transactionForm">
+      <div>
+        <select id="payer"></select>
+        が
+      </div>
+      <div>
+        <input type="text" id="content">
+        を
+      </div>
+      <div>
+        <input type="number" id="amount">
+        円払った
+      </div>
+      <div>
+        <input type="submit" value="submit" onclick="calculate()" />
+      </div>
+    </form>
+    <div id="result"></div>
+    <script src="js/test.js"></script>
+  </body>
+</html>
