@@ -13,8 +13,8 @@
   </head>
 
   <body style="text-align:center">
-    <div id="member">
-    </div>
+    <div id="member"></div>
+    <br>
     <form id="transactionForm">
       <div>
         <select id="payer"></select>
@@ -28,14 +28,20 @@
         <input type="number" id="amount">
         円払った
       </div>
+      <br>
+      <div>
+        <small>丸め単位：</small>
+        <input type="number" id="round" width=px >
+      </div>
       <div>
         <!-- <input type="submit" value="submit" onclick="calculate()" /> -->
-        <button type="button" onclick="calculate()">submit</button>
+        <br>
+        <button type="button" onclick="calculate()">登録</button>
       </div>
     </form>
-
+    <br>
     <div id="result">
-        <table align="center" id="result_table">
+        <table align="center" id="result_table" border="5">
             <caption>結果</caption>
             <col>
             <!-- <col bgcolor="#ffe8ff"> -->
