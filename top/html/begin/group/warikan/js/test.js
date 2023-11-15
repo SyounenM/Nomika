@@ -1,57 +1,83 @@
 const memberList = ["秀島", "川崎", "佐々木", "福田", "松島"];
+const memberDiv = document.getElementById('member');
 
-function addMember() {
-    var resultDiv = document.getElementById('result');
+function viewBuilder() {
+    memberDiv.innerHTML = 'グループメンバー<br>' + memberList;
+    let payerSelect = document.getElementById("payer");
+    for(member of memberList) {
+        let payerOption = document.createElement("option");
+        payerOption.text = member;
+        payerOption.value = member;
+        payerSelect.appendChild(payerOption);
+    }
+
+    let resultTable = document.getElementById('result_table');
     for (member of memberList) {
-        var nameDiv = document.createElement('div');
-        nameDiv.textContent = member;
-        nameDiv.id = 'memberName' + member;
-        resultDiv.appendChild(nameDiv);
+        //空の行要素を先に作成tr
+        let tr = document.createElement("tr");
 
-        var ratioLabel = document.createElement('label');
-        ratioLabel.textContent = '傾斜の比率:';
-        nameDiv.appendChild(ratioLabel);
+        // メンバー名
+        let nameTd = document.createElement("td");      //新しいtd要素を作って変数tdに格納
+        let nameLabel = document.createElement("label");  //tdに何か追加。
+        nameLabel.type = 'text';
+        nameLabel.textContent = member;
+        nameLabel.id = 'memberName' + member;
+        nameTd.appendChild(nameLabel);        //tdにinpを追加
+        tr.appendChild(nameTd);         //trにtdを追加
+        
+        //支払い金額
+        let paymentTd = document.createElement('td');
+        let paymentLabel = document.createElement('label');
+        paymentLabel.type = 'number';
+        paymentLabel.id = 'payment' + member;
+        paymentTd.appendChild(paymentLabel);
+        tr.appendChild(paymentTd)
 
-        var ratioInput = document.createElement('input');
+        // 傾斜
+        let ratioTd = document.createElement('td');
+        let ratioInput = document.createElement('input');        
         ratioInput.type = 'number';
         ratioInput.id = 'memberRatio' + member;
         ratioInput.min = '0';
         ratioInput.max = '100';
         ratioInput.step = '1';
-        nameDiv.appendChild(ratioInput);
+        ratioInput.valueAsNumber = 1
+        ratioTd.appendChild(ratioInput);
+        tr.appendChild(ratioTd)
 
-        var memberResult = document.createElement('div');
-        memberResult.id = 'memberResult' + member;
-        nameDiv.appendChild(memberResult)
+        //完成したtrをtableに追加
+        resultTable.appendChild(tr);
+
+
     }
 }
 
 function calculate() {
-    var memberCount = memberList.length;
-    var totalAmount = parseFloat(document.getElementById('amount').value);
+    let memberCount = memberList.length;
+    let totalAmount = parseFloat(document.getElementById('amount').value);
 
     // 参加者の名前と割合を取得
-    var membersRatio = [];
+    let membersRatio = [];
     for (member of memberList) {
-        var name = document.getElementById('memberName' + member).value;
-        var ratio = parseFloat(document.getElementById('memberRatio' + member).value);
+        let name = document.getElementById('memberName' + member).value;
+        let ratio = parseFloat(document.getElementById('memberRatio' + member).value);
         membersRatio.push({ name: name, ratio: ratio });
     }
 
     // 各参加者ごとの支払い金額を計算
-    var totalRatio = membersRatio.reduce((sum, member) => sum + member.ratio, 0);
+    let totalRatio = membersRatio.reduce((sum, member) => sum + member.ratio, 0);
 
-    for (var i = 0; i < memberCount; i++) {
-        var amountPerPerson = (totalAmount * membersRatio[i].ratio) / totalRatio;
+    for (let i = 0; i < memberCount; i++) {
+        let amountPerPerson = (totalAmount * membersRatio[i].ratio) / totalRatio;
         resultText += "¥" + amountPerPerson.toFixed(2);
-        document.getElementById('memberResult' + memberList[i]).innerHTML = resultText;
-
+        document.getElementById('payment' + memberList[i]).textContent = resultText;
     }
+    viewBuilder();
 
 }
 
 // // 参加者の数が変更されたときに入力フィールドを更新
-// document.getElementById('membersRatio').addEventListener('input', addMember);
+// document.getElementById('submit').addEventListener('click', viewBuilder);
 
 // 初回にも一度呼び出す
-addMember();
+viewBuilder();

@@ -13,6 +13,8 @@
   </head>
 
   <body style="text-align:center">
+    <div id="member">
+    </div>
     <form id="transactionForm">
       <div>
         <select id="payer"></select>
@@ -30,7 +32,34 @@
         <input type="submit" value="submit" onclick="calculate()" />
       </div>
     </form>
-    <div id="result"></div>
+
+    <div id="result">
+        <table align="center" id="result_table">
+            <caption>結果</caption>
+            <col>
+            <!-- <col bgcolor="#ffe8ff"> -->
+            <thead>
+                <tr>
+                    <th>メンバー名</th>
+                    <th>支払い金額</th>
+                    <th>傾斜の比率</th>
+                </tr>
+            </thead>
+            <tfoot>
+                <tr>
+                    <!-- <td>フッタセル１</td>
+                    <td>フッタセル２</td> -->
+                </tr>
+            </tfoot>
+            <tbody>
+                <tr>
+                    <!-- <td>内容1</td>
+                    <td>内容2</td> -->
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
     <script src="js/test.js"></script>
   </body>
 </html>
