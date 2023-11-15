@@ -20,14 +20,37 @@ function addOption() {
         debtorSelect.appendChild(debtorOption);
     }
 }
-function initBalanceList() {
+function initializeBalanceList() {
     for ( const member of memberList ) {
         balanceList.push({"member_name": member, "price_to_get": 0});
     }
 }
-
+function checkFormInputs() {
+    if (document.getElementById('payer').value == '' || document.getElementById('payer').value == null) {
+        alert('支払いした人を入力してください');
+        console.error('PayerNotFoundError');
+        return false;
+    }
+    if (document.getElementById('amount').value == '' || document.getElementById('amount').value == null) {
+        alert('支払い金額を入力してください');
+        console.error('AmountNotFoundError');
+        return false;
+    }
+    else if (document.getElementById('debtor').value == '' || document.getElementById('debtor').value == null) {
+        alert('支払いしてもらった人を入力してください');
+        console.error('DebtorNotFoundError');
+        return false;
+    }
+    else if (document.getElementById('content').value == '' || document.getElementById('content').value == null) {
+        alert('支払い内容を入力してください');
+        console.error('ContentNotFoundError');
+        return false;
+    }
+    else {
+        return true;
+    }
+}
 function addHistory() {
-    console.log(history);
     let payer = document.getElementById("payer").value;
     let amount = document.getElementById("amount").value;
     let involves = [document.getElementById("debtor").value];
@@ -79,7 +102,6 @@ function calculation(payment, liquidation = []) {
         creditor: creditor.member_name,
         amount: amount
     });
-
     return calculation(payment, liquidation);
 }
 
@@ -118,157 +140,6 @@ function main() {
     resultList = result.liquidation
 }
 
-// function calculate(history, result) {
-//     // calculate balance sheet
-//     const init = { balance: 0, consumption: 0 };
-//     Map.prototype.fetch = function (id) {
-//     return (
-//         this.get(id) || this.set(id, Object.assign({ name: id }, init)).get(id)
-//     );
-//     };
-
-//     const data = new Map();
-
-//     for (const { payer, amount, involves } of history) {
-//     const record = data.fetch(payer);
-//     record.balance += amount;
-//     const debt = Math.ceil(amount / involves.length);
-//     // actual payer should not owe extra debt coming from rounded up numbers
-//     const payerDebt = amount - debt * (involves.length - 1);
-//     for (const debtor of involves.map((i) => data.fetch(i))) {
-//         const cost = Math.round(amount / involves.length);
-//         debtor.balance -= cost;
-//         debtor.consumption += cost;
-//     }
-//     }
-
-//     console.log(data);
-
-//     // calculate transaction table
-//     const transaction = [];
-//     let paidTooMuch, paidLess;
-//     while (true) {
-//     for (const [_, tbl] of data) {
-//         if (tbl.balance >= (paidTooMuch?.balance || 0)) {
-//         paidTooMuch = tbl;
-//         }
-//         if (tbl.balance <= (paidLess?.balance || 0)) {
-//         paidLess = tbl;
-//         }
-//     }
-//     console.log(paidLess.balance);
-//     if (paidLess.balance == 0 || paidTooMuch.balance == 0) break;
-
-//     const amount = Math.min(paidTooMuch.balance, Math.abs(paidLess.balance));
-//     console.log("amount");
-//     console.log(amount);
-//     transaction.push({
-//         sender: paidLess.name,
-//         receiver: paidTooMuch.name,
-//         amount,
-//     });
-
-//     paidTooMuch.balance -= amount;
-//     paidLess.balance += amount;
-//     }
-
-//     console.log("Settled");
-
-//     console.log("\n# Transaction table");
-//     for (const ev of transaction) {
-//     console.log(`${ev.sender} owes ${ev.receiver} ¥${ev.amount}`);
-//     }
-
-//     console.log("\n# History");
-//     for (const { payer, amount, involves } of history) {
-//     if (involves.length === 1) {
-//         console.log(`${payer} lent ¥${amount} to ${involves[0]}`);
-//     } else {
-//         console.log(`${payer} paid ¥${amount} for ${involves.join(", ")}`);
-//     }
-//     }
-
-//     console.log("\n# Expenses");
-//     for (const [_, { name, consumption }] of data) {
-//     console.log(`${name} virtually paid ¥${consumption} in total`);
-//     }
-//     result = transaction;
-//     return history, result;
-// }
-// function calculate() {
-//     const init = { balance: 0, consumption: 0 };
-//     Map.prototype.fetch = function (id) {
-//     return (
-//         this.get(id) || this.set(id, Object.assign({ name: id }, init)).get(id)
-//     );
-//     };
-
-//     const data = new Map();
-
-//     for (const { payer, amount, involves, content } of hist) {
-//     const record = data.fetch(payer);
-//     record.balance += amount;
-//     const debt = Math.ceil(amount / involves.length);
-//     // actual payer should not owe extra debt coming from rounded up numbers
-//     const payerDebt = amount - debt * (involves.length - 1);
-//     for (const debtor of involves.map((i) => data.fetch(i))) {
-//         const cost = Math.round(amount / involves.length);
-//         debtor.balance -= cost;
-//         debtor.consumption += cost;
-//     }
-//     }
-
-//     console.log(data);
-
-//     // calculate transaction table
-//     const transaction = [];
-//     let paidTooMuch, paidLess;
-//     while (true) {
-//     for (const [_, tbl] of data) {
-//         if (tbl.balance >= (paidTooMuch?.balance || 0)) {
-//         paidTooMuch = tbl;
-//         }
-//         if (tbl.balance <= (paidLess?.balance || 0)) {
-//         paidLess = tbl;
-//         }
-//     }
-
-//     if (paidLess.balance == 0 || paidTooMuch.balance == 0) break;
-
-//     const amount = Math.min(paidTooMuch.balance, Math.abs(paidLess.balance));
-
-//     transaction.push({
-//         sender: paidLess.name,
-//         receiver: paidTooMuch.name,
-//         amount,
-//     });
-
-//     paidTooMuch.balance -= amount;
-//     paidLess.balance += amount;
-//     }
-
-//     console.log("Settled");
-//     console.log("\n# Transaction table");
-//     for (const ev of transaction) {
-//     console.log(`${ev.sender} owes ${ev.receiver} ¥${ev.amount}`);
-//     }
-
-//     console.log("\n# History");
-//     for (const { payer, amount, involves } of hist) {
-//     if (involves.length === 1) {
-//         console.log(`${payer} lent ¥${amount} to ${involves[0]}`);
-//     } else {
-//         console.log(`${payer} paid ¥${amount} for ${involves.join(", ")}`);
-//     }
-//     }
-
-//     console.log("\n# Expenses");
-//     for (const [_, { name, consumption }] of data) {
-//     console.log(`${name} virtually paid ¥${consumption} in total`);
-//     }
-//     result = transaction
-// }
-
 function showResult() {
     var res = document.getElementById("result");
     res.innerHTML = ""; // 以前の結果をクリア
@@ -279,11 +150,14 @@ function showResult() {
 }
 
 addOption();
-initBalanceList();
+initializeBalanceList();
 document.getElementById("transactionForm").addEventListener("submit", function(event) {
     event.preventDefault();
-    addHistory();
-    calculateBalance();
-    main();
-    showResult();
+    let isFormValid = checkFormInputs();
+    if (isFormValid) {
+        addHistory();
+        calculateBalance();
+        main();
+        showResult();
+    }
   });
