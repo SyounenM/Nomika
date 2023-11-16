@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="ja">
+  <head>
+    <meta charset="utf-8" />
+    <!-- <link rel="stylesheet" href="style.css"> -->
+    <title>Nomika</title>
+    <style>
+        label {
+            display: block;
+            margin-bottom: 5px;
+        }
+    </style>
+  </head>
+
+  <body style="text-align:center">
+    <div id="groupName">グループ名<br>
+        <input type="text" placeholder="飲み会" id="groupNameBox">
+    </div>
+    <br>
+    <div id="groupName">メンバー名<br>
+        <input type="text" placeholder="かずや" id="newMember">
+        <button type="button" id="addButton" onclick="addMember()">
+            追加
+        </button>
+        <div id="member"></div>
+        <table align="center" id="memberTable">
+            <col>
+            <!-- <col bgcolor="#ffe8ff"> -->
+            <!-- <thead>
+                <tr>
+                    <th>メンバー名</th>
+                    <th>支払い金額</th>
+                    <th>傾斜の比率</th>
+                </tr>
+            </thead> -->
+            <tfoot>
+                <tr>
+                    <!-- <td>フッタセル１</td>
+                    <td>フッタセル２</td> -->
+                </tr>
+            </tfoot>
+            <tbody>
+                <tr>
+                    <!-- <td>内容1</td>
+                    <td>内容2</td> -->
+                </tr>
+            </tbody>
+        </table>
+            <!-- <span>あ</span>
+            <svg width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                <path stroke="none" d="M0 0h24v24H0z"></path>
+                <line x1="18" y1="6" x2="6" y2="18"></line>
+                <line x1="6" y1="6" x2="18" y2="18"></line>
+            </svg> -->
+        </div>
+    </div>
+    <br>
+    <button type="button">更新</button><br>
+    <button type="button">キャンセル</button>
+
+    <script src="js/test.js"></script>
+  </body>
+</html>

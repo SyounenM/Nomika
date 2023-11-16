@@ -1,5 +1,6 @@
-const memberList = ["秀島", "川崎", "佐々木", "福田", "松島"];
-const memberDiv = document.getElementById('member');
+let groupName = "ランチ"
+let memberList = ["秀島", "川崎", "佐々木", "福田", "松島"];
+let memberDiv = document.getElementById('member');
 
 function viewBuilder() {
     memberDiv.innerHTML = 'グループメンバー<br>' + memberList;
@@ -71,6 +72,8 @@ function calculate() {
         console.error('AmountNotFoundError');
         return ;
     }
+
+    console.log("1");
 
     let memberCount = memberList.length;
     let totalAmount = parseFloat(document.getElementById('amount').value);
