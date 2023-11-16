@@ -5,8 +5,15 @@ let groupDiv = document.getElementById('group');
 
 function viewBuilder() {
     groupDiv.innerHTML = 'グループ名：' + groupName + "</br>";
-
-    memberDiv.innerHTML = 'メンバー：' + memberList;
+    for (let member of memberList) {
+        let memberSpan = document.createElement('span');
+        memberSpan.textContent = member;
+        memberSpan.id = member + 'Span';
+        memberSpan.style = 'background-color:#BBBB; margin-right:10px; border: solid 1px #BBB; border-width: 2px; border-radius: 10px;';
+        // memberSpan.style.border = 'solid'
+        memberDiv.appendChild(memberSpan);
+    }
+    // memberDiv.innerHTML = 'メンバー：' + memberList;
     //支払い人
     let payerSelect = document.getElementById("payer");
     for(member of memberList) {

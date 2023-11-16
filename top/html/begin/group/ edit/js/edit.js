@@ -26,12 +26,15 @@ function createMember(member) {
     // メンバー名
     let memberSpan = document.createElement("span");  //tdに何か追加。
     memberSpan.type = 'text';
-    memberSpan.textContent =  member;
+    memberSpan.textContent =  ''+ member + '' ;
+    memberSpan.style = 'background-color:#BBBB; margin-right:10px; border: solid 1px #BBB; border-width: 2px; border-radius: 10px;';
     memberSpan.id = member + "Span";
-    
+
     let cancelButton = document.createElement('button');
     cancelButton.textContent = "×";
     cancelButton.id = member + 'Cancel';
+    cancelButton.style = 'background-color:#BBBBB; border: solid 1px #BBBBB; border-width: 2px; border-radius: 10px;';
+
     cancelButton.onclick = function(){
         cancelMember(member);
     };
