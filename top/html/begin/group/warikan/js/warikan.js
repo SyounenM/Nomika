@@ -1,9 +1,12 @@
 let groupName = "ランチ"
 let memberList = ["秀島", "川崎", "佐々木", "福田", "松島"];
 let memberDiv = document.getElementById('member');
+let groupDiv = document.getElementById('group');
 
 function viewBuilder() {
-    memberDiv.innerHTML = 'グループメンバー<br>' + memberList;
+    groupDiv.innerHTML = 'グループ名：' + groupName + "</br>";
+
+    memberDiv.innerHTML = 'メンバー：' + memberList;
     //支払い人
     let payerSelect = document.getElementById("payer");
     for(member of memberList) {
