@@ -43,9 +43,9 @@ body h3{
     font-size: 25px;
     color: black;
     text-decoration: none;
-    position: relative;
-    top: -35px;
-    left: -20px;
+    position: absolute;
+    top: 20px;
+    left: 50px;
     font-weight: 600;
 }
 .navbar a{ /* anchorのみに作用する */
