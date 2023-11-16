@@ -7,28 +7,28 @@ let balanceList = [] ;
 let resultList = [];
 
 function addOption() {
-    let payerSelect = document.getElementById("payer");
+    let creditorSelect = document.getElementById("creditor");
     let debtorSelect = document.getElementById("debtor");
     for(const member of memberList) {
-        let payerOption = document.createElement("option");
+        let creditorOption = document.createElement("option");
         let debtorOption = document.createElement("option");
-        payerOption.text = member;
-        payerOption.value = member;
+        creditorOption.text = member;
+        creditorOption.value = member;
         debtorOption.text = member;
         debtorOption.value = member;
-        payerSelect.appendChild(payerOption);
+        creditorSelect.appendChild(creditorOption);
         debtorSelect.appendChild(debtorOption);
     }
 }
 function initializeBalanceList() {
     for ( const member of memberList ) {
-        balanceList.push({"member_name": member, "price_to_get": 0});
+        balanceList.push({"name": member, "balance": 0});
     }
 }
 function checkFormInputs() {
-    if (document.getElementById('payer').value == '' || document.getElementById('payer').value == null) {
+    if (document.getElementById('creditor').value == '' || document.getElementById('creditor').value == null) {
         alert('支払いした人を入力してください');
-        console.error('PayerNotFoundError');
+        console.error('creditorNotFoundError');
         return false;
     }
     if (document.getElementById('amount').value == '' || document.getElementById('amount').value == null) {
@@ -51,12 +51,12 @@ function checkFormInputs() {
     }
 }
 function addHistory() {
-    let payer = document.getElementById("payer").value;
+    let creditor = document.getElementById("creditor").value;
     let amount = document.getElementById("amount").value;
     let involves = [document.getElementById("debtor").value];
     let content = document.getElementById("content").value;
     let data = {
-        "payer": payer,
+        "creditor": creditor,
         "amount": amount,
         "involves": involves,
         "content": content
@@ -65,59 +65,49 @@ function addHistory() {
 }
 
 function calculateBalance() {
-    for( const { payer, amount, involves } of historyList ) {
-        payerObject = balanceList.find(memberObj => memberObj.member_name === payer);
-        debtorObject = balanceList.find(memberObj => memberObj.member_name === involves[0]);
-        if (payerObject) {
-            payerObject.price_to_get += parseInt(amount);
+    for( const { creditor, amount, involves } of historyList ) {
+        creditorObject = balanceList.find(memberObj => memberObj.name === creditor);
+        debtorObject = balanceList.find(memberObj => memberObj.name === involves[0]);
+        if (creditorObject) {
+            creditorObject.balance += parseInt(amount);
         }
         if (debtorObject) {
-            debtorObject.price_to_get -= parseInt(amount)
+            debtorObject.balance -= parseInt(amount)
         }
     }
 }
 
-function calculation(payment, liquidation = []) {
-    // Sort in descending order based on price_to_get
-    payment.sort((a, b) => b.price_to_get - a.price_to_get);
+function calculation(liquidation = []) {
+    balanceList.sort((a, b) => b.balance - a.balance);
+    let creditor = balanceList[0];
+    let debtor = balanceList[balanceList.length - 1];
 
-    // Get the current max creditor and max debtor
-    let creditor = payment[0];
-    let debtor = payment[payment.length - 1];
+    let amount = Math.min(creditor.balance, Math.abs(debtor.balance));
 
-    // Calculate the liquidation amount
-    let amount = Math.min(creditor.price_to_get, Math.abs(debtor.price_to_get));
-
-    // If the liquidation amount is 0, exit
     if (amount === 0) {
-        return { payment, liquidation };
+        return { balanceList, liquidation };
     }
 
     // Perform the liquidation between creditor and debtor, and make a recursive call
-    creditor.price_to_get -= amount;
-    debtor.price_to_get += amount;
+    creditor.balance -= amount;
+    debtor.balance += amount;
 
     liquidation.push({
-        debtor: debtor.member_name,
-        creditor: creditor.member_name,
+        debtor: debtor.name,
+        creditor: creditor.name,
         amount: amount
     });
-    return calculation(payment, liquidation);
+    return calculation(liquidation);
 }
 
 function main() {
-    // Get the total_balance (sample data)
-    let total_balance = balanceList;
-
-    // Display the initial balances
-    console.log(total_balance)
     console.log('Initial Balances:');
-    total_balance.forEach(payment => {
-        console.log(`${payment.member_name}: ${payment.price_to_get}`);
+    balanceList.forEach(balanceList => {
+        console.log(`${balanceList.name}: ${balanceList.balance}`);
     });
 
     // Perform the liquidation
-    let result = calculation(total_balance);
+    let result = calculation();
 
     // Display the liquidation amounts
     console.log('-----------------');
@@ -129,13 +119,13 @@ function main() {
     // Display the remaining balances after liquidation
     console.log('-----------------');
     console.log('Remaining Balances:');
-    result.payment.forEach(p => {
-        console.log(`${p.member_name}: ${parseInt(p.price_to_get)}`);
+    result.balanceList.forEach(p => {
+        console.log(`${p.name}: ${parseInt(p.balance)}`);
     });
 
     // Display the offset amount
     console.log('-----------------');
-    let total = result.payment.reduce((acc, p) => acc + p.price_to_get, 0);
+    let total = result.balanceList.reduce((acc, p) => acc + p.balance, 0);
     console.log(`Offset Amount: ${parseInt(total)}`);
     resultList = result.liquidation
 }
