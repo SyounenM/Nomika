@@ -1,7 +1,7 @@
 let groupName = "ランチ"
 let memberList = ["秀島", "川崎", "佐々木", "福田", "松島"];
 let memberTable = document.getElementById('memberTable');
-let tr = document.createElement("tr");
+let memberListDiv = document.getElementById('memberList')
 
 function viewBuilder() {
     let groupNameBox = document.getElementById('groupNameBox');
@@ -24,24 +24,20 @@ function addMember() {
 
 function createMember(member) {
     // メンバー名
-    let nameTd = document.createElement("td");      //新しいtd要素を作って変数tdに格納
-    let nameLabel = document.createElement("label");  //tdに何か追加。
-    nameLabel.type = 'text';
-    nameLabel.textContent =  member;
-    nameLabel.id = 'memberName' + member;
+    let memberSpan = document.createElement("span");  //tdに何か追加。
+    memberSpan.type = 'text';
+    memberSpan.textContent =  member;
+    memberSpan.id = member + "Span";
     
     let cancelButton = document.createElement('button');
     cancelButton.textContent = "×";
-    cancelButton.id = 'cancel' + member;
+    cancelButton.id = member + 'Cancel';
     cancelButton.onclick = function(){
         cancelMember(member);
     };
 
-    nameLabel.appendChild(cancelButton)
-    // nameTd.innerHTML = '<button onclick="cancelMember(this)">Delete</button>'
-    nameTd.appendChild(nameLabel);        //tdにinpを追加
-
-    tr.appendChild(nameTd);  
+    memberSpan.appendChild(cancelButton)
+    memberListDiv.appendChild(memberSpan);  
 }
 
 function cancelMember(member) {
@@ -49,11 +45,8 @@ function cancelMember(member) {
     let colIndex = memberList.indexOf(member);
     memberList.splice(colIndex, 1);
     console.log(memberList);
-    // var table = document.getElementById("memberTable");
-    // // Loop through each row and remove the cell in the specified column
-    // for (var i = 0; i < table.rows.length; i++) {
-    tr.deleteCell(colIndex);
-    // }
+    let target = document.getElementById(member + "Span");
+    target.remove();
 }
 
 viewBuilder();
