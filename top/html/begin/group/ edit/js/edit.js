@@ -49,4 +49,12 @@ function cancelMember(member) {
     target.remove();
 }
 
+function update(params) {
+    
+}
+
+function cancel(params) {
+    
+}
+
 viewBuilder();
