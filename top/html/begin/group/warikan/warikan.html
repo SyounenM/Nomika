@@ -4,6 +4,7 @@
     <meta charset="utf-8" />
     <!-- <link rel="stylesheet" href="style.css"> -->
     <title>Nomika</title>
+    <link rel="stylesheet" href="css/warikan.css" />    
     <style>
         label {
             display: block;
@@ -22,40 +23,56 @@
     <br>
     <form id="transactionForm">
       <div>
-        <select id="payer"></select>
+        <select id="payer" name="member"></select>
         が
       </div>
       <div>
-        <input type="text" id="content">
+        <input type="text" id="content" placeholder="飲み代">
         を
       </div>
       <div>
-        <input type="number" id="amount">
+        <input type="number" id="amount" placeholder="1000">
         円払った
       </div>
       <br>
       <div>
         <small>丸め単位：</small>
-        <input type="number" id="round" width=px >
+        <select type="number" id="round"></select>
+        <span>円単位</span>
       </div>
-      <div>
+      <select name="method" id="method">
+        <option value="floor">切り捨て</option>
+        <option value="round">四捨五入</option>
+        <option value="ceil">切り上げ</option>
+      </select>
+      <!-- <div>
+        <small>端数</small>
+        <select id="payer" name="member"></select>
+        が払う
+      </div> -->
+
+      <div id="buttons">
         <!-- <input type="submit" value="submit" onclick="calculate()" /> -->
         <br>
         <button type="button">戻る</button>
-        <button type="button" onclick="calculate()">登録</button>
+        <button type="button" onclick="calculate()">精算</button>
+        <br>
+        <button type="button" onclick="register()">登録</button>
       </div>
     </form>
     <br>
     <div id="result">
-        <table align="center" id="result_table" border="5">
+        <table align="center" id="result_table" border="">
             <caption>結果</caption>
             <col>
             <!-- <col bgcolor="#ffe8ff"> -->
             <thead>
                 <tr>
-                    <th>メンバー名</th>
-                    <th>支払い金額</th>
-                    <th>傾斜の比率</th>
+                    <th>名前</th>
+                    <th>割り勘金額</th>
+                    <th>傾斜の<br>比率</th>
+                    <th>金額<br>固定</th>
+                    <th>端数<br>支払</th>
                 </tr>
             </thead>
             <tfoot>
@@ -71,6 +88,7 @@
                 </tr>
             </tbody>
         </table>
+        
     </div>
 
     <script src="js/warikan.js"></script>

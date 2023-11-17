@@ -34,6 +34,9 @@ function createMember(member) {
     cancelButton.textContent = "×";
     cancelButton.id = member + 'Cancel';
     cancelButton.style = 'background-color:#BBBBB; border: solid 1px #BBBBB; border-width: 2px; border-radius: 10px;';
+    // cancelButton.style.height = '15px';
+    // cancelButton.style.width = '15px';
+    // cancelButton.style.offset
 
     cancelButton.onclick = function(){
         cancelMember(member);
