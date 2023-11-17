@@ -10,7 +10,6 @@
     overscroll-behavior: none;
 }
 .bubble{
-    height: 200vh;
     opacity: 0.4;
     background-image: url(../image/pngwing.com.png);
     background-size: 620px;
@@ -69,8 +68,9 @@ body h3{
 .home{
     padding: 20px 10%;
     position: relative;
+    top: -350px;
     width: 100%;
-    height: 100vh;
+    height: 200vh;
     display: flex;
     justify-content: space-between;
     align-items: center;
