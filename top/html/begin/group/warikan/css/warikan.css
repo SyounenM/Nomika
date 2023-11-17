@@ -3,7 +3,7 @@
     align-items: center;
 }
 
-input[type='checkbox'] {
+input[class = 'toggle'] {
     position: absolute;
     width: 0;
     height: 0;
@@ -16,12 +16,6 @@ input[type='checkbox'] {
     background-color: #aeadad;
 }
 
-.title {
-    margin-left: 4px;
-}
-input:checked ~ .base {
-    background-color: rgb(219, 234, 254);
-}
 .switch {
     position: relative;
 }
