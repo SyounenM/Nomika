@@ -200,7 +200,9 @@ function calculate() {
     for (let i = 0; i < unfixedCount; i++) {
         let amountPerPerson = (totalAmount * membersRatio[i].ratio) / totalRatio;
         // let resultText = "¥" + amountPerPerson.toFixed(2);
-        let result = roundPayment(amountPerPerson, roundUnit);
+        let dutchOption = document.getElementById('option');
+
+        let result = roundPayment(amountPerPerson, roundUnit, dutchOption.value);
         resultList.push(result)
     }
     console.log(resultList);
@@ -256,11 +258,22 @@ function roundPayment(payment, roundUnit, option) {
         roundUnit = 1;
     }
     remain = payment % roundUnit;
-    if (option) { //切り上げる
-        payment -= remain;
-        payment += roundUnit;
-    }else{ //切り下げる
-        payment -= remain;
+    switch (option) {
+        case 'ceil': //切り上げる
+            payment -= remain;
+            payment += roundUnit;            
+            break;
+        case 'round': //四捨五入
+            if (remain/roundUnit < 0.5) { //四捨
+                payment -= remain;
+            }else{ //五入
+                payment -= remain;
+                payment += roundUnit;            
+            }
+            break
+        case 'floor': //切り下げる 
+            payment -= remain;
+            break;
     }
     return payment;
 }
