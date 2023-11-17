@@ -161,6 +161,19 @@ function calculate() {
         // throw new Error('AmountNotFoundError');
         document.getElementById('amount').value = 22222;
     }
+    let fracCount = 0;
+    for(member of memberList){
+        if (document.getElementById(member + 'FracToggle').checked) {
+            fracCount ++
+        }
+    }
+    if (fracCount == 0) {
+        alert('一名以上端数を支払う人を設定してください');
+        console.error('FractionNotFoundError');
+        let payer = document.getElementById('payer').value;
+        document.getElementById(payer + 'FracToggle').checked = true;
+        throw new Error('FractionNotFoundError');
+    }
 
     //支払い者をハイライト
     let memberCount = memberList.length;
@@ -365,5 +378,4 @@ function syncRatio() {
 
 
 //note//
-//端数調整スイッチが最低一個は存在するようにする
 //金額固定と端数調整が共存しないようにする
