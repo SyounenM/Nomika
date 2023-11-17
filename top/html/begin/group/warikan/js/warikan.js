@@ -336,7 +336,6 @@ function syncPayment() {
     }
     }, this);
 }
-
 function syncRatio() {
     checkboxes.forEach(function(checkbox) {
     var ratioId = checkbox.id.replace('CheckBox', 'Ratio');
