@@ -1,3 +1,15 @@
+label {
+    display: block;
+    margin-bottom: 5px;
+}
+td {
+    cursor: pointer;
+}
+td.selected {
+    background-color: lightblue;
+}
+
+
 .content {
     margin-left: auto;
     margin-right: auto;
