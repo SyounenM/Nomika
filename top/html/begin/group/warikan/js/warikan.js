@@ -391,9 +391,15 @@ function toggleCheckboxInSameRow(cell) {
     // checkboxCell.checked = !checkboxCell.checked;
     checkboxCell.checked = (cell.className == 'selected') ? true : false ;
     addSyncEvent(checkboxCell);
+    let allButton = document.getElementById('allButton');
+    allButton.innerHTML = (allButton.className=='allClear') ? '<small>全選択</small>' : '<small>全解除</small>';
+    allButton.classList.toggle('allClear');
 }
 //一括選択・解除
 function allCheck() {
+    let allButton = document.getElementById('allButton');
+    allButton.innerHTML = (allButton.className=='allClear') ? '<small>全選択</small>' : '<small>全解除</small>';
+    allButton.classList.toggle('allClear');
     var checkboxes = document.querySelectorAll('input[class="checkbox"]');
     let checkExist = false;
     checkboxes.forEach(function (checkbox) {
@@ -449,6 +455,9 @@ checkboxes.forEach(function(checkbox) {
         }
         // チェックボックスが変更されたら、対応する入力欄にイベントリスナーを追加または削除
         addSyncEvent(checkbox);
+        let allButton = document.getElementById('allButton');
+        allButton.innerHTML = (allButton.className=='allClear') ? '<small>全選択</small>' : '<small>全解除</small>';
+        allButton.classList.toggle('allClear');
     });
 });
 
