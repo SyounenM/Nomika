@@ -1,7 +1,15 @@
-let groupName = "ランチ"
-let memberList = ["秀島", "川崎", "佐々木", "福田", "松島"];
+let groupName = "飲み会"
+// let memberList = ["秀島", "川崎", "佐々木", "福田", "松島"];
+let memberList = ['OB1','OB2',
+ '3男総務', '3男1', '3男2', '3男3',
+'3女1','3女2','3女3',
+'2男1','2男2','2男3','2男4',
+'2女1','2女2',
+'1男1','1男2','1男3','1男4','1男5',
+'1女1','1女2','1女3','1女4','1女5',];
 let memberDiv = document.getElementById('member');
 let groupDiv = document.getElementById('group');
+// let isSelecting = false;
 
 function viewBuilder() {
     //グループ名表示
@@ -41,17 +49,40 @@ function viewBuilder() {
     // roundSelect.valueAsNumber = 0;
     //結果
     let resultTable = document.getElementById('result_table');
+    
     for (member of memberList) {
         //空の行要素を先に作成tr
         let tr = document.createElement("tr");
         tr.id = member + 'Row';
+
+        //チェックボックス
+        let checkTd = document.createElement('td');
+        let checkInput = document.createElement('input');
+        checkInput.type = 'checkbox';
+        checkInput.id = member + 'CheckBox';
+        checkInput.className = 'checkbox'
+        checkInput.onclick = function(){
+            toggleCheckbox(this);
+        }
+        checkTd.appendChild(checkInput);
+        tr.appendChild(checkTd);
+        
         // メンバー名
         let nameTd = document.createElement("td");      //新しいtd要素を作って変数tdに格納
-        let nameLabel = document.createElement("label");  //tdに何か追加。
-        nameLabel.type = 'text';
-        nameLabel.textContent = member;
-        nameLabel.id = member + 'Name';
-        nameTd.appendChild(nameLabel);        //tdにinpを追加
+        nameTd.onmousedown = function(){
+            startSelection(this);
+        };
+        nameTd.onmouseover = function(){
+            selectCell(this);
+        };
+        nameTd.onmouseup = function(){
+            endSelection();
+        };
+        // let nameLabel = document.createElement("label");  //tdに何か追加。
+        // nameLabel.type = 'text';
+        nameTd.textContent = member;
+        nameTd.id = member + 'Name';
+        // nameTd.appendChild(nameTd);        //tdにinpを追加
         tr.appendChild(nameTd);         //trにtdを追加
         //支払い金額
         let paymentTd = document.createElement('td');
@@ -125,13 +156,7 @@ function viewBuilder() {
         switchTd2.appendChild(switchLabel2);
         tr.appendChild(switchTd2);
         
-        let checkTd = document.createElement('td');
-        let checkInput = document.createElement('input');
-        checkInput.type = 'checkbox';
-        checkInput.id = member + 'CheckBox';
-        checkInput.className = 'checkbox'
-        checkTd.appendChild(checkInput);
-        tr.appendChild(checkTd);
+
 
         //完成したtrをtableに追加
         resultTable.appendChild(tr);
@@ -159,7 +184,7 @@ function calculate() {
         alert('支払い金額を入力してください');
         console.error('AmountNotFoundError');
         // throw new Error('AmountNotFoundError');
-        document.getElementById('amount').value = 22222;
+        document.getElementById('amount').value = 33333;
     }
     let fracCount = 0;
     for(member of memberList){
@@ -334,22 +359,38 @@ var checkboxes = document.querySelectorAll('input[class="checkbox"]');
 // 各チェックボックスに対してイベントリスナーを追加
 checkboxes.forEach(function(checkbox) {
     checkbox.addEventListener('change', function() {
-    // チェックボックスが変更されたら、対応する入力欄にイベントリスナーを追加または削除
-    var paymentId = checkbox.id.replace('CheckBox', 'Payment');
-    var paymentInput = document.getElementById(paymentId);
-    
-    var ratioId = checkbox.id.replace('CheckBox', 'Ratio');
-    var ratioInput = document.getElementById(ratioId);
+        let nameId = checkbox.id.replace('CheckBox', 'Name');
+        let nameTd = document.getElementById(nameId);
+        if (checkbox.checked) {
+            nameTd.className = 'selected';
+        }else if (nameId.className != 'selected'){
+            nameTd.className = '';
+        }
+        // チェックボックスが変更されたら、対応する入力欄にイベントリスナーを追加または削除
+        addSyncEvent(checkbox);
+    });
+});
 
-    if (checkbox.checked) {
+function addSyncEvent(cell) {
+    var paymentId = cell.id.replace('CheckBox', 'Payment');
+    var paymentInput = document.getElementById(paymentId);
+    var ratioId = cell.id.replace('CheckBox', 'Ratio');
+    var ratioInput = document.getElementById(ratioId);
+    var fixId = cell.id.replace('CheckBox', 'FixToggle');
+    var fixInput = document.getElementById(fixId);
+
+    if (cell.checked) {
         paymentInput.addEventListener('input', syncPayment);
         ratioInput.addEventListener('input', syncRatio);
+        fixInput.addEventListener('input', syncFix);
     } else {
         paymentInput.removeEventListener('input', syncPayment);
         ratioInput.removeEventListener('input', syncRatio);
+        fixInput.removeEventListener('input', syncFix);
     }
-    });
-});
+}
+
+
 // 入力内容を同期する関数
 function syncPayment() {
     checkboxes.forEach(function(checkbox) {
@@ -359,23 +400,83 @@ function syncPayment() {
     if (checkbox.checked && paymentInput !== this) {
         // チェックされていて、かつ同じ入力欄でない場合、入力内容を同期する
         paymentInput.value = this.value;
-    }
+        }
     }, this);
 }
 function syncRatio() {
     checkboxes.forEach(function(checkbox) {
-    var ratioId = checkbox.id.replace('CheckBox', 'Ratio');
-    var ratioInput = document.getElementById(ratioId);
+        var ratioId = checkbox.id.replace('CheckBox', 'Ratio');
+        var ratioInput = document.getElementById(ratioId);
 
-    if (checkbox.checked && ratioInput !== this) {
-        // チェックされていて、かつ同じ入力欄でない場合、入力内容を同期する
-        ratioInput.value = this.value;
-    }
+        if (checkbox.checked && ratioInput !== this) {
+            // チェックされていて、かつ同じ入力欄でない場合、入力内容を同期する
+            ratioInput.value = this.value;
+        }
+    }, this);
+}
+function syncFix() {
+    checkboxes.forEach(function(checkbox){
+        var fixId = checkbox.id.replace('CheckBox', 'FixToggle');
+        console.log(fixId);
+        var fixInput = document.getElementById(fixId);
+        if (checkbox.checked && fixInput != this) {
+            fixInput.checked = this.checked;
+        }
     }, this);
 }
 
 
+let isSelecting = false;
+function startSelection(cell) {
+    isSelecting = true;
+    toggleCellSelection(cell);
+}
 
+function selectCell(cell) {
+    if (isSelecting) {
+        toggleCellSelection(cell);
+    }
+}
 
+function endSelection() {
+    isSelecting = false;
+    isHighlighting != isHighlighting;
+}
+
+function toggleCellSelection(cell) {
+    cell.classList.toggle("selected");
+    toggleCheckboxInSameRow(cell);
+}
+
+function toggleCheckboxInSameRow(cell) {
+    const row = cell.parentNode;
+    const checkboxCell = row.querySelector('td:nth-child(1) input[class="checkbox"]');
+    // checkboxCell.checked = !checkboxCell.checked;
+    checkboxCell.checked = (cell.className == 'selected') ? true : false ;
+    addSyncEvent(checkboxCell);
+}
+
+function allCheck() {
+
+    var checkboxes = document.querySelectorAll('input[class="checkbox"]');
+    let checkExist = false;
+    checkboxes.forEach(function (checkbox) {
+        if (checkbox.checked) {
+            checkExist = true;
+        }
+    })
+
+    checkboxes.forEach(function (checkbox) {
+        checkbox.checked = !checkExist;
+        let nameId = checkbox.id.replace('CheckBox', 'Name');
+        let nameTd = document.getElementById(nameId);
+        if (checkbox.checked) {
+            nameTd.className = 'selected';
+        }else if (nameId.className != 'selected'){
+            nameTd.className = '';
+        }
+    })    
+    
+}
 //note//
 //金額固定と端数調整が共存しないようにする

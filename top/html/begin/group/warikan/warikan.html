@@ -2,6 +2,7 @@
 <html lang="ja">
   <head>
     <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!-- <link rel="stylesheet" href="style.css"> -->
     <title>Nomika</title>
     <link rel="stylesheet" href="css/warikan.css" />    
@@ -10,7 +11,14 @@
             display: block;
             margin-bottom: 5px;
         }
-    </style>
+        td {
+            cursor: pointer;
+        }
+        td.selected {
+            background-color: lightblue;
+        }
+      </style>
+</head>
   </head>
 
   <body style="text-align:center">
@@ -41,9 +49,9 @@
         <span>円単位</span>
       </div>
       <select name="option" id="option">
-        <option value="floor">切り捨て</option>
-        <option value="round">四捨五入</option>
         <option value="ceil">切り上げ</option>
+        <option value="round">四捨五入</option>
+        <option value="floor">切り捨て</option>
       </select>
       <!-- <div>
         <small>端数</small>
@@ -62,18 +70,30 @@
     </form>
     <br>
     <div id="result">
-        <table align="center" id="result_table" border="">
-            <caption>結果</caption>
+        <table align="center" id="result_table" border="">  
+          <caption>
+            <!-- 結果 -->
+            <div align="left">
+              <button onclick="allCheck()">
+                <small>全選択/解除</small>
+              </button>
+            </div>
+          </caption>
             <col>
             <!-- <col bgcolor="#ffe8ff"> -->
             <thead>
                 <tr>
+                    <th id="selectHead">選択
+                      <!-- <br>
+                      <button onclick="allCheck()">
+                        ×<br>
+                      </button> -->
+                    </th>
                     <th>名前</th>
                     <th>割り勘金額</th>
-                    <th>傾斜の<br>比率</th>
+                    <th>傾斜<br>比率</th>
                     <th>金額<br>固定</th>
                     <th>端数<br>支払</th>
-                    <th>選択</th>
                 </tr>
             </thead>
             <tfoot>
