@@ -368,6 +368,18 @@ function syncFix() {
 
 // メンバーを複数選択するための関数
 function startSelection(cell) {
+    var checkboxes = document.querySelectorAll('input[class="checkbox"]');
+    let checkExist = false;
+    checkboxes.forEach(function (checkbox) {
+        if (checkbox.checked) {
+            checkExist = true;
+        }
+    })
+    if (!checkExist) {
+        let allButton = document.getElementById('allButton');
+        allButton.innerHTML = (allButton.className=='allClear') ? '<small>全選択</small>' : '<small>全解除</small>';
+        allButton.classList.toggle('allClear');    
+    }
     isSelecting = true;
     toggleCellSelection(cell);
 }
@@ -378,7 +390,6 @@ function selectCell(cell) {
 }
 function endSelection() {
     isSelecting = false;
-    isHighlighting != isHighlighting;
 }
 // 選択されたメンバーの背景色とチェックボックスを管理
 function toggleCellSelection(cell) {
@@ -391,9 +402,6 @@ function toggleCheckboxInSameRow(cell) {
     // checkboxCell.checked = !checkboxCell.checked;
     checkboxCell.checked = (cell.className == 'selected') ? true : false ;
     addSyncEvent(checkboxCell);
-    let allButton = document.getElementById('allButton');
-    allButton.innerHTML = (allButton.className=='allClear') ? '<small>全選択</small>' : '<small>全解除</small>';
-    allButton.classList.toggle('allClear');
 }
 //一括選択・解除
 function allCheck() {
