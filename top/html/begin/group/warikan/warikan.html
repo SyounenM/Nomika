@@ -27,7 +27,9 @@
     </div>
     <br>
     <div id="group"></div>
-    <div id="member"></div>
+    <div class="groupInfo">
+      <div id="member" class="content"></div>
+    </div>
     <br>
     <form id="transactionForm">
       <div>
@@ -69,19 +71,24 @@
       </div>
     </form>
     <br>
-    <div id="result">
+
+    <div id="result" class="container">
         <table align="center" id="result_table" border="">  
           <caption>
             <!-- 結果 -->
-            <div align="left">
-              <button onclick="allCheck()">
-                <small>全選択/解除</small>
-              </button>
-            </div>
           </caption>
             <col>
             <!-- <col bgcolor="#ffe8ff"> -->
             <thead>
+              <tr>
+                <th colspan="6">
+                  <div align="left">
+                    <button onclick="allCheck()">
+                      <small>全選択/解除</small>
+                    </button>
+                  </div>
+                </th>
+              </tr>
                 <tr>
                     <th id="selectHead">選択
                       <!-- <br>
@@ -107,6 +114,7 @@
                     <!-- <td>内容1</td>
                     <td>内容2</td> -->
                 </tr>
+                
             </tbody>
         </table>
         
