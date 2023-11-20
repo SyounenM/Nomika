@@ -8,8 +8,6 @@
 }
 .html {
     overscroll-behavior: none;
-    min-width: 600px;
-    min-height: 800px;
 }
 .foam{
     position: relative;
@@ -32,7 +30,7 @@ body h3{
     top: 0px;
     left: 0px;
     width: 100%;
-    height: 300px;
+    height: 250px;
     padding: 20px 10%;
     display: flex; /* 並べ方のテンプレート */
     justify-content: space-between; /* headerの意の要素間のスペース */
@@ -40,6 +38,8 @@ body h3{
     z-index: 100;
     background-image: url(../image/foam_index.png);
     object-fit: cover;
+    min-width: 600px;
+    min-height: 180px;
 }
 .logo a{
     font-size: 50px;
@@ -65,6 +65,8 @@ body h3{
 .home{
     position: relative;
     top: 300px;
+    min-width: 600px;
+    min-height: 800px;
 }
 footer {
     width: 100%;
@@ -72,6 +74,8 @@ footer {
     text-align: center;
     padding: 50px 0;
     background-color: #cab64a;
+    min-width: 600px;
+    min-height: 100px;
 }
 .background-index {
     background-image: url('../image/bubble.png');
