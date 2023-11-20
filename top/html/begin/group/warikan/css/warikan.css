@@ -38,6 +38,8 @@ td.selected {
     width: 100%;
 }
 .container table{
+    margin-left: auto;
+    margin-right: auto;
     border-spacing: 0;
 
 }
