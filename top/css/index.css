@@ -8,6 +8,8 @@
 }
 .html {
     overscroll-behavior: none;
+    min-width: 600px;
+    min-height: 800px;
 }
 .foam{
     position: relative;
