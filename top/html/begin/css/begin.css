@@ -3,7 +3,7 @@
     top: 320px;
 }
 .background-begin {
-    background-image: url('../image/bubble.png');
+    background-image: url('../../../image/bubble.png');
     background-size: 500px;
     background-position: center;
     padding: 20px 10%;

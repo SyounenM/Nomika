@@ -9,7 +9,7 @@ td.selected {
     background-color: lightblue;
 }
 .background-warikan {
-    background-image: url('../image/bubble.png');
+    background-image: url('../../../../../image/bubble.png');
     background-size: 500px;
     background-position: center;
     padding: 20px 10%;
