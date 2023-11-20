@@ -9,11 +9,6 @@
 .html {
     overscroll-behavior: none;
 }
-.bubble{
-    opacity: 0.4;
-    background-image: url(../image/pngwing.com.png);
-    background-size: 620px;
-}
 .foam{
     position: relative;
     top: 0px;
@@ -66,19 +61,131 @@ body h3{
     color: rgb(255, 140, 0);
 }
 .home{
-    padding: 20px 10%;
     position: relative;
-    top: -350px;
-    width: 100%;
-    height: 200vh;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+    top: 300px;
 }
 footer {
     width: 100%;
-    height: 120px; 
+    height: 150px; 
     text-align: center;
     padding: 50px 0;
     background-color: #cab64a;
+}
+.background {
+    background-image: url('../image/bubble.png');
+    background-size: 500px;
+    background-position: center;
+    padding: 20px 10%;
+    position: relative;
+    top: 0px;
+    width: 100%;
+    height: 140vh;
+    text-align: center;
+}
+
+*,
+*:before,
+*:after {
+    box-sizing: inherit;
+    -webkit-box-sizing: inherit;
+}
+
+html {
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    font-size: 100%;
+}
+/* button */
+.btn,
+a.btn,
+button.btn {
+    font-size: 1.5rem;
+    font-weight: 700;
+    line-height: 1.6;
+    position: relative;
+    top: 320px;
+    display: inline-block;
+    padding: 100rem 4rem;
+    text-align: center;
+    cursor: pointer;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    -webkit-transition: all 0.3s;
+    transition: all 0.3s;
+    text-align: center;
+    vertical-align: middle;
+    text-decoration: none;
+    letter-spacing: 0.1em;
+    color: #212529;
+    border-radius: 0.5rem;
+}
+
+a.btn-border {
+    margin-bottom: 12px;
+    padding: 0;
+    -webkit-transition: all 0.3s;
+    transition: all 0.3s;
+    border-radius: 0;
+}
+
+a.btn-border span {
+    position: relative;
+    display: block;
+    padding: 1.28rem 4rem;
+    color: #000;
+    border: 2px solid #000;
+    border-radius: 0.5rem;
+    background: #fff;
+}
+
+a.btn-border:before {
+    position: absolute;
+    bottom: -8px;
+    left: 0;
+    display: block;
+    width: 100%;
+    height: 14px;
+    content: "";
+    -webkit-transition: all 0.3s;
+    transition: all 0.3s;
+    border: 2px solid #000;
+    border-top: 1px solid #000;
+    border-radius: 0 0 0.5rem 0.5rem;
+    background-image: -webkit-repeating-linear-gradient(
+        135deg,
+        #000,
+        #000 1px,
+        transparent 2px,
+        transparent 5px
+    );
+    background-image: repeating-linear-gradient(
+        -45deg,
+        #000,
+        #000 1px,
+        transparent 2px,
+        transparent 5px
+    );
+    background-size: 7px 7px;
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+}
+
+a.btn-border:hover {
+    -webkit-transform: translate(0, 3px);
+    transform: translate(0, 3px);
+}
+
+a.btn-border:hover:before {
+    bottom: -5px;
+}
+
+a.btn-border:active {
+    -webkit-transform: translate(0, 7px);
+    transform: translate(0, 7px);
+}
+
+a.btn-border:active:before {
+    bottom: -1px;
 }
