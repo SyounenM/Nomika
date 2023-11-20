@@ -1,8 +1,4 @@
-.btn-group{
-    position: relative;
-    top: 320px;
-}
-.background-begin {
+.background-tatekae {
     background-image: url('../image/bubble.png');
     background-size: 500px;
     background-position: center;
