@@ -1,16 +1,17 @@
-// 定数・変数
+// 定数・変数 データベースで共有したい情報
 let groupName = "飲み会"
-// let memberList = ["秀島", "川崎", "佐々木", "福田", "松島"];
-let memberList = ['OB1','OB2',
- '3男総務', '3男1', '3男2', '3男3',
-'3女1','3女2','3女3',
-'2男1','2男2','2男3','2男4',
-'2女1','2女2',
-'1男1','1男2','1男3','1男4','1男5',
-'1女1','1女2','1女3','1女4','1女5',];
+let memberList = ["秀島", "川崎", "佐々木", "福田", "松島"];
+// let memberList = ['OB1','OB2',
+//  '3男総務', '3男1', '3男2', '3男3',
+// '3女1','3女2','3女3',
+// '2男1','2男2','2男3','2男4',
+// '2女1','2女2',
+// '1男1','1男2','1男3','1男4','1男5',
+// '1女1','1女2','1女3','1女4','1女5',];
+let resultDict = {};
+
 let memberDiv = document.getElementById('member');
 let groupDiv = document.getElementById('group');
-
 
 //関数
 //画面生成
@@ -272,6 +273,11 @@ function calculate() {
         document.getElementById(unfixedList[i] + 'Payment').value = resultList[i];   
     }
     console.log('--- calculate finish ---');
+    resultDict = {};
+    for (let i=0; i< memberList.length; i++) {
+        resultDict[String(memberList[i])]= resultList[i];
+    }
+    console.log(resultDict);
 }
 
 // 丸めこみの関数
@@ -300,15 +306,15 @@ function roundPayment(payment, roundUnit, option) {
     return payment;
 }
 
-//登録
-function register() {
+//保存
+function save() {
     try {
         calculate();
     } catch (error) {
         console.error('[' + error + ']' + ' not calculated');
         return;
     }
-    console.log('登録されました');
+    console.log('保存されました');
 }
 
 // 選択された行の入力内容をリアルタイム同期する
@@ -358,7 +364,7 @@ function syncRatio() {
 function syncFix() {
     checkboxes.forEach(function(checkbox){
         var fixId = checkbox.id.replace('CheckBox', 'FixToggle');
-        console.log(fixId);
+        // console.log(fixId);
         var fixInput = document.getElementById(fixId);
         if (checkbox.checked && fixInput != this) {
             fixInput.checked = this.checked;

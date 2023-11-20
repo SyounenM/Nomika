@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="ja">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- <link rel="stylesheet" href="style.css"> -->
+    <title>Nomika</title>
+    <link rel="stylesheet" href="css/confirm.css" />    
+</head>
+  </head>
+
+  <body style="text-align:center">
+    <div>
+      <header>Nomika</header>
+    </div>
+    <br>
+    <div id="group"></div>
+    <div class="groupInfo">
+      <div id="member" class="content"></div>
+    </div>
+    <br>
+    <form id="transactionForm">
+        以下の内容で登録しますか?
+      <div id="buttons">
+        <!-- <input type="submit" value="submit" onclick="calculate()" /> -->
+        <br>
+        <button type="button" onclick="back()">戻る</button>
+        <button type="button" onclick="register()">登録</button>
+      </div>
+    </form>
+    <br>
+
+    <div id="result" class="container">
+        <table align="center" id="result_table" border="">  
+          <caption>
+            <!-- 結果 -->
+          </caption>
+            <col>
+            <!-- <col bgcolor="#ffe8ff"> -->
+            <thead>
+                <tr>
+                      <!-- <br>
+                      <button onclick="allCheck()">
+                        ×<br>
+                      </button> -->
+                    </th>
+                    <th>名前</th>
+                    <th>負担金額</th>
+                </tr>
+            </thead>
+            <tfoot>
+                <tr>
+                    <!-- <td>フッタセル１</td>
+                    <td>フッタセル２</td> -->
+                </tr>
+            </tfoot>
+            <tbody>
+                <tr>
+                    <!-- <td>内容1</td>
+                    <td>内容2</td> -->
+                </tr>
+                
+            </tbody>
+        </table>
+        
+    </div>
+
+    <script src="js/confirm.js"></script>
+  </body>
+</html>
