@@ -368,18 +368,6 @@ function syncFix() {
 
 // メンバーを複数選択するための関数
 function startSelection(cell) {
-    var checkboxes = document.querySelectorAll('input[class="checkbox"]');
-    let checkExist = false;
-    checkboxes.forEach(function (checkbox) {
-        if (checkbox.checked) {
-            checkExist = true;
-        }
-    })
-    if (!checkExist) {
-        let allButton = document.getElementById('allButton');
-        allButton.innerHTML = (allButton.className=='allClear') ? '<small>全選択</small>' : '<small>全解除</small>';
-        allButton.classList.toggle('allClear');    
-    }
     isSelecting = true;
     toggleCellSelection(cell);
 }
@@ -390,6 +378,17 @@ function selectCell(cell) {
 }
 function endSelection() {
     isSelecting = false;
+    var checkboxes = document.querySelectorAll('input[class="checkbox"]');
+    let checkExist = false;
+    checkboxes.forEach(function (checkbox) {
+        if (checkbox.checked) {
+            checkExist = true;
+        }
+    })
+    let allButton = document.getElementById('allButton');
+    allButton.innerHTML = (!checkExist) ? '<small>全選択</small>' : '<small>全解除</small>';
+    allButton.className = (!checkExist) ? '' : 'allClear';
+    // console.log(allButton.className); 
 }
 // 選択されたメンバーの背景色とチェックボックスを管理
 function toggleCellSelection(cell) {
