@@ -15,9 +15,6 @@
     min-width: 600px;
     min-height: 1000px; 
 }
-.sheet{
-    background-color: red;
-}
 .input{
     z-index: -1;
 }
