@@ -22,7 +22,7 @@ body{
     height: 100%;
     min-width: 600px;
     position: relative;
-    background:linear-gradient(-20deg,rgb(255, 235, 9) ,rgb(255, 150, 0));
+    background:linear-gradient(0deg,rgb(255, 235, 9) ,rgb(255, 150, 0));
 }
 body h3{
     color: #FFFFFF;
