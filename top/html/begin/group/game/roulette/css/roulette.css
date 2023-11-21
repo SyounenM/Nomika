@@ -1,4 +1,4 @@
-.background-game {
+.background-roulette {
     background-image: url('../../../../../../image/bubble.png');
     background-size: 500px;
     background-position: center;
@@ -6,10 +6,10 @@
     position: relative;
     top: 0px;
     width: 100%;
-    height: 1000px;
+    height: 1300px;
     text-align: center;
     min-width: 600px;
-    min-height: 1000px; 
+    min-height: 1300px; 
 }
 
 #table{
