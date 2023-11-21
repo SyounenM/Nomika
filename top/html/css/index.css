@@ -1,5 +1,5 @@
 .background-index {
-    background-image: url('../image/bubble.png');
+    background-image: url('../../image/bubble.png');
     background-size: 500px;
     background-position: center;
     padding: 20px 10%;
@@ -9,25 +9,10 @@
     height: 200vh;
     text-align: center;
     min-width: 600px;
+    min-height: 1000px;
 }
-.boxes-wrapper{
-    display: flex;
-    justify-content: center;
-    gap: 30px;
-    margin-top: 300px;
-}
-.box{
-    width: 30px;
-    height: 30px;
-    background-color: #fff;
-}
-.box-02{
-    margin-top: 100px;
-}
-.displayed{
-    animation: fadeUp 1s forwards;
-}
-@keyframes fadeUp{
-    0%{opacity:0; transform: translateY(0);}
-    100%{opacity:1; transform: translateY(-100px);}
+
+.btn-begin{
+    position: relative;
+    top: 690px;
 }

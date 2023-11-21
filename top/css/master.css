@@ -13,7 +13,7 @@
     margin: 0px;
     width: 100%;
     max-width: 100%;
-    z-index: 101;
+    z-index: 20;
     background-repeat: no-repeat;
     background-attachment: fixed;
     background-image: url("../image/foam_index.png");
@@ -116,11 +116,6 @@ button.btn {
     letter-spacing: 0.1em;
     color: #212529;
     border-radius: 0.5rem;
-}
-
-.btn-begin{
-    position: relative;
-    top: 320px;
 }
 
 a.btn-border {
