@@ -1,0 +1,11 @@
+.background-game {
+    background-image: url('../../../../../image/bubble.png');
+    background-size: 500px;
+    background-position: center;
+    padding: 20px 10%;
+    position: relative;
+    top: 0px;
+    width: 100%;
+    height: 140vh;
+    text-align: center;
+}

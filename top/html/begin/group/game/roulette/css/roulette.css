@@ -1,0 +1,31 @@
+#roulette-container {
+    width: 300px;
+    height: 300px;
+    border: 1px solid #000;
+    position: relative;
+    overflow: hidden;
+    margin: 0 auto;
+  }
+  
+  #roulette-items {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    position: absolute;
+    top: 0;
+    left: 0;
+  }
+  
+  #roulette-items li {
+    width: 300px;
+    height: 100%;
+    line-height: 300px;
+    font-size: 24px;
+    /* text-align: center; */
+    /* margin: 0 auto; */
+  }
+  
+  #start-button {
+    display: block;
+    margin: 20px auto;
+  }
