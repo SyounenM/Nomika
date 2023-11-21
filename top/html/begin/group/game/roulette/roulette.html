@@ -12,6 +12,7 @@
         <title>Nomika</title>
     </head>
     <body>
+        <img class="foam" src="../../../../../image/foam_index.png">
         <header class="header">
             <div class="logo">
                 <a href="../../group.html">Nomika.</a>
@@ -23,8 +24,8 @@
                 <a href="#">Contact</a>
             </nav>
         </header>
-        <body style="text-align:center">
-        <div class="background-game">
+        <!-- ルーレット1 -->
+        <!-- <div class="background-game">
             <div class="home">
                 <h3>Welcome to Nomika.<br></h3>
                 <div id="roulette-container">
@@ -32,13 +33,107 @@
                       <li>アイテム1</li>
                       <li>アイテム2</li>
                       <li>アイテム3</li>
-                      <!-- 以下、アイテムを追加 -->
                     </ul>
-                  </div>
-                  <button id="start-button">スタート</button>
-  <script src="js/roulette.js"></script>
-                
+                </div>
+                <button id="start-button">スタート</button>
+                <script src="js/roulette.js"></script>
             </div>
+        </div> -->
+
+        
+        <!-- ルーレット2 -->
+        <div class="background-game">
+            <div class="home">
+        <div>
+            <h1>ルーレット</h1>
+            
+            <script
+            src="https://code.jquery.com/jquery-3.4.1.min.js"
+            integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
+            crossorigin="anonymous"></script>
+            <script src="./js/p5.min.js"></script>
+            <script src="./js/roulette.js"></script>
+            <style>
+            .p5Canvas{
+                max-width: 600px;
+                width: 100% !important;
+                height: auto !important;
+            }
+            </style>
+            <div id="canvas"></div>
+            <button type="button" id="reset" onclick="reset()">リセット</button>
+            <button type="button" id="start" onclick="start()">スタート</button>
+            <button type="button" id="stop" onclick="stop()" style="display:none;">ストップ</button>
+        
+            <h2>結果</h2>
+            <p id="result"></p>
+        
+            <div>
+                <h2>設定</h2>
+                <button type="button" class="add">追加</button>
+                <div>
+                    <table id="table">
+                        <tr><th>色</th><th>項目名</th><th>割合</th></tr>
+                        <!-- <tr class="item"><td><div class="color-indicator" style="background-color:#000000;"></div></td><td><input type="text" class="name" value="項目"></td><td><input type="number" class="ratio" value="1"></td><td class="probability"></td><td><button type="button" onclick="rmItem(this)">削除</button></td></tr> -->
+                        <tr class="item"><td><div class="color-indicator" style="background-color:#000000;"></div></td><td><input type="text" class="name" value="A"></td><td><input type="number" class="ratio" value="1" min="1"></td><td><button type="button" onclick="rmItem(this)">削除</button></td></tr>
+                        <tr class="item"><td><div class="color-indicator" style="background-color:#000000;"></div></td><td><input type="text" class="name" value="B"></td><td><input type="number" class="ratio" value="1" min="1"></td><td><button type="button" onclick="rmItem(this)">削除</button></td></tr>
+                        <tr class="item"><td><div class="color-indicator" style="background-color:#000000;"></div></td><td><input type="text" class="name" value="C"></td><td><input type="number" class="ratio" value="1" min="1"></td><td><button type="button" onclick="rmItem(this)">削除</button></td></tr>
+                        <tr class="item"><td><div class="color-indicator" style="background-color:#000000;"></div></td><td><input type="text" class="name" value="D"></td><td><input type="number" class="ratio" value="1" min="1"></td><td><button type="button" onclick="rmItem(this)">削除</button></td></tr>
+                        <tr class="item"><td><div class="color-indicator" style="background-color:#000000;"></div></td><td><input type="text" class="name" value="E"></td><td><input type="number" class="ratio" value="1" min="1"></td><td><button type="button" onclick="rmItem(this)">削除</button></td></tr>
+                        <tr class="item"><td><div class="color-indicator" style="background-color:#000000;"></div></td><td><input type="text" class="name" value="F"></td><td><input type="number" class="ratio" value="1" min="1"></td><td><button type="button" onclick="rmItem(this)">削除</button></td></tr>
+                    </table>
+                    <!-- <button type="button" class="add">追加</button> -->
+                </div>
+            </div>
+        
+            <style>
+            .color-indicator{
+                width: 10px;
+                height: 10px;
+            }
+            #result{
+                font-size: 40px;
+                font-weight: bold;
+            }
+            </style>
+        
+            <script>
+                function recalculate(){
+                    var ratioSumJs = 0;
+                    $('.ratio').each(function(){
+                        ratioSumJs += $(this).val()-0;
+                    });
+                    $(".item").each(function(){
+                        var probability = ($(this).find(".ratio").first().val()-0) / ratioSumJs;
+                        probability*=100;
+                        probability = probability.toFixed(3);
+                        $(this).children(".probability").first().html(probability+"%");
+                    });
+                }
+                $('.add').click(function(){
+                    var add = '<tr class="item"><td><div class="color-indicator" style="background-color:#000000;"></div></td><td><input type="text" class="name" value="項目"></td><td><input type="number" class="ratio" value="1" min="1"></td><td><button type="button" onclick="rmItem(this)">削除</button></td></tr>';
+                    $('#table').append(add);
+                    recalculate();
+                    if(mode==Mode.waiting){
+                        dataFetch();
+                    }
+                });
+                function rmItem(e){
+                    if($('.ratio').length>2){
+                        $(e).parent().parent().remove();
+                        recalculate();
+                    }
+                    if(mode==Mode.waiting){
+                        dataFetch();
+                    }
+                }
+                $('#table').on('change', '.ratio', function(){
+                    recalculate();
+                    if(mode==Mode.waiting){
+                        dataFetch();
+                    }
+                });
+            </script>
         </div>
     </body>
     <footer>
