@@ -1,0 +1,16 @@
+.box{
+    width: 30px;
+    height: 30px;
+    background-color: #333;
+    opacity: 0;
+}
+.box-02.displayed{
+    animation-delay: 0.3s;
+}
+.displayed{
+    animation: fadeUp 1s forwards;
+}
+@keyframes fadeUp{
+    0%{opacity:0; transform: translateY(0);}
+100%{opacity:1; transform: translateY(-100px);}
+}
