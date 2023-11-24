@@ -12,9 +12,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Klee+One:wght@600&display=swap" rel="stylesheet">
     <title>Nomika</title>
     <link rel="stylesheet" href="css/warikan.css" />    
-</head>
   </head>
-
   <body>
     <img class="foam" src="../../../../image/foam_index.png">
     <header class="header">
@@ -30,58 +28,56 @@
     </header>
     <div class="background-warikan">
       <div class="home">
-    <br>
-    <div id="group"></div>
-    <div class="groupInfo">
-      <div id="member" class="content"></div>
-    </div>
-    <br>
-    <form id="transactionForm">
-      <div>
-        <select id="payer" name="member"></select>
-        が
-      </div>
-      <div>
-        <input type="text" id="content" placeholder="飲み代">
-        を
-      </div>
-      <div>
-        <input type="number" id="amount" placeholder="1000">
-        円払った
-      </div>
-      <br>
-      <div>
-        <small>丸め単位：</small>
-        <select type="number" id="round"></select>
-        <span>円単位</span>
-      </div>
-      <select name="option" id="option">
-        <option value="ceil">切り上げ</option>
-        <option value="round">四捨五入</option>
-        <option value="floor">切り捨て</option>
-      </select>
-      <!-- <div>
-        <small>端数</small>
-        <select id="payer" name="member"></select>
-        が払う
-      </div> -->
-
-      <div id="buttons">
-        <!-- <input type="submit" value="submit" onclick="calculate()" /> -->
         <br>
-        <button type="button">戻る</button>
-        <button type="button" onclick="calculate()">精算</button>
+        <div id="group"></div>
+        <div class="groupInfo">
+          <div id="member" class="content"></div>
+        </div>
         <br>
-        <button type="button" onclick="save()">保存</button>
-      </div>
-    </form>
-    <br>
-
-    <div id="result" class="container">
-        <table align="center" id="result_table" border="">  
-          <caption>
-            <!-- 結果 -->
-          </caption>
+        <form id="transactionForm">
+          <div>
+            <select id="payer" name="member"></select>
+            が
+          </div>
+          <div>
+            <input type="text" id="content" placeholder="飲み代">
+            を
+          </div>
+          <div>
+            <input type="number" id="amount" placeholder="1000">
+            円払った
+          </div>
+          <br>
+          <div>
+            <small>丸め単位：</small>
+            <select type="number" id="round"></select>
+            <span>円単位</span>
+          </div>
+          <select name="option" id="option">
+            <option value="ceil">切り上げ</option>
+            <option value="round">四捨五入</option>
+            <option value="floor">切り捨て</option>
+          </select>
+          <!-- <div>
+            <small>端数</small>
+            <select id="payer" name="member"></select>
+            が払う
+          </div> -->
+          <div id="buttons">
+            <!-- <input type="submit" value="submit" onclick="calculate()" /> -->
+            <br>
+            <button type="button">戻る</button>
+            <button type="button" onclick="calculate()">精算</button>
+            <br>
+            <button type="button" onclick="save()">保存</button>
+          </div>
+        </form>
+        <br>
+        <div id="result" class="container">
+          <table align="center" id="result_table" border="">  
+            <caption>
+              <!-- 結果 -->
+            </caption>
             <col>
             <!-- <col bgcolor="#ffe8ff"> -->
             <thead>
@@ -94,42 +90,39 @@
                   </div>
                 </th>
               </tr>
-                <tr>
-                    <th id="selectHead">選択
-                      <!-- <br>
-                      <button onclick="allCheck()">
-                        ×<br>
-                      </button> -->
-                    </th>
-                    <th>名前</th>
-                    <th>割り勘金額</th>
-                    <th>傾斜<br>比率</th>
-                    <th>金額<br>固定</th>
-                    <th>端数<br>支払</th>
-                </tr>
+              <tr>
+                <th id="selectHead">選択
+                  <!-- <br>
+                  <button onclick="allCheck()">
+                    ×<br>
+                  </button> -->
+                </th>
+                <th>名前</th>
+                <th>割り勘金額</th>
+                <th>傾斜<br>比率</th>
+                <th>金額<br>固定</th>
+                <th>端数<br>支払</th>
+              </tr>
             </thead>
             <tfoot>
-                <tr>
-                    <!-- <td>フッタセル１</td>
-                    <td>フッタセル２</td> -->
-                </tr>
+              <tr>
+                  <!-- <td>フッタセル１</td>
+                  <td>フッタセル２</td> -->
+              </tr>
             </tfoot>
             <tbody>
-                <tr>
-                    <!-- <td>内容1</td>
-                    <td>内容2</td> -->
-                </tr>
-                
+              <tr>
+                  <!-- <td>内容1</td>
+                  <td>内容2</td> -->
+              </tr>  
             </tbody>
-        </table>
-        
+          </table>
+        </div>
+        <script src="js/warikan.js"></script>
+      </div>
     </div>
-
-    <script src="js/warikan.js"></script>
-  </div>
-</div>
   </body>
   <footer>
     <p>© All rights reserved by dmmwebcampmedia.</p>
-</footer>
+  </footer>
 </html>

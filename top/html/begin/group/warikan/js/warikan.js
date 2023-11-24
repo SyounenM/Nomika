@@ -478,3 +478,4 @@ checkboxes.forEach(function(checkbox) {
 // note//
 // todo
 // //金額固定と端数調整が共存しないようにする
+// チェックが入らないと編集できないようにする
