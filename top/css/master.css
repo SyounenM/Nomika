@@ -85,8 +85,6 @@ body h4{
 footer {
     box-sizing : border-box;
     width: 110%;
-    /* margin: -500 0%;
-    padding: 500 0%; */
     height: 150px; 
     text-align: center;
     padding: 50px 0;
