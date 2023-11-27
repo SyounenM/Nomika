@@ -101,7 +101,7 @@
                 function recalculate(){
                     var ratioSumJs = 0;
                     $('.ratio').each(function(){
-                        ratioSumJs += $(this).val()-0;
+                        ratioSumJs += $(this).val()-0; //文字から数字の変換
                     });
                     $(".item").each(function(){
                         var probability = ($(this).find(".ratio").first().val()-0) / ratioSumJs;
