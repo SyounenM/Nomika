@@ -83,14 +83,16 @@ body h4{
     height: 110%;
 }
 footer {
-    width: 100%;
+    box-sizing : border-box;
+    /* /* position: relative; */
+    /* left: 50%;
+    transform: translateX(-50%); */
     height: 150px; 
     text-align: center;
     padding: 50px 0;
     background-color: #cab64a;
-    position: relative;
     z-index: 100;
-    min-width: 750px;
+    min-width: 500px;
     min-height: 100px;
 }
 
