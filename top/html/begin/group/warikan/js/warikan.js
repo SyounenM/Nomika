@@ -49,7 +49,7 @@ function viewBuilder() {
         roundSelect.appendChild(roundOption);
     }
     //結果
-    let resultTable = document.getElementById('result_table');
+    let resultTableBody = document.getElementById('tableBody');
     for (member of memberList) {
         //各メンバーの行要素
         let tr = document.createElement("tr");
@@ -150,7 +150,7 @@ function viewBuilder() {
         tr.appendChild(switchTd2);
         
         //完成したtrをtableに追加
-        resultTable.appendChild(tr);
+        resultTableBody.appendChild(tr);
     }
     // 支払い者の表示を変える
     let payer = document.getElementById('payer').value;
