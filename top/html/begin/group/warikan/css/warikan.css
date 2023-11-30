@@ -51,7 +51,10 @@ td.selected {
     /* border-right: 1px solid #999;
     border-bottom: 1px solid #999; */
     /* background: #FFF; */
-    padding: 5px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    padding-left: 20px;
+    padding-right: 20px;
 }
 .container th{
     border-right: none;
@@ -144,5 +147,5 @@ input:checked ~ .base {
 }
 
 #ab{
-    padding-left: 4px;
+    padding-left: 12px;
 }
