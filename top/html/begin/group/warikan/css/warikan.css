@@ -40,6 +40,7 @@ td.selected {
     width: 100%;
 }
 .container table{
+    width: 600px;
     border-radius: 10px;
     margin-left: auto;
     margin-right: auto;
@@ -147,5 +148,18 @@ input:checked ~ .base {
 }
 
 #ab{
-    padding-left: 12px;
+    padding-left: 2.5%;
+}
+
+#buttons1{
+    padding-top:5%;
+}
+
+#buttons2{
+    padding-top: 2%;
+}
+
+#buttons1 button,#buttons2 button{
+    height: 70px;
+    width: 100px;
 }
