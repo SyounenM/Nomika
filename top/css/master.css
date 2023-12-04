@@ -32,6 +32,9 @@ body h4{
     color: black;
     font-size: 24px;
 }
+body h5{
+    font-size: 21px;
+}
 .header{
     position: fixed;
     top: 0px;
@@ -198,4 +201,83 @@ a.btn-border:active {
 
 a.btn-border:active:before {
     bottom: -1px;
+}
+
+
+/* input */
+.cp_iptxt {
+	position: relative;
+	width: 50%;
+	margin: 20px 3%;
+}
+.cp_iptxt input[type='text'] {
+	font: 30px/40px sans-serif;
+	box-sizing: border-box;
+	width: 100%;
+	letter-spacing: 1px;
+	padding-left: 2em;
+}
+.cp_iptxt input[type='text']:focus {
+	outline: none;
+}
+.ef {
+	position: relative;
+	padding: 7px 15px;
+	border: 0;
+	border: 2px solid #1b2538;
+	background: transparent;
+}
+.ef ~ .focus_bg:before,
+.ef ~ .focus_bg:after {
+	position: absolute;
+	z-index: -1;
+	top: 50%;
+	left: 50%;
+	width: 0;
+	height: 0;
+	content: '';
+	transition: 0.3s;
+	background-color: rgba(218,60,65,.3);
+}
+.ef:focus {
+	border: 2px solid #da3c41;
+}
+.ef:focus ~ .focus_bg:before,
+.cp_iptxt.ef ~ .focus_bg:before {
+	top: 0;
+	left: 0;
+	width: 50%;
+	height: 100%;
+	transition: 0.3s;
+}
+.ef ~ .focus_bg:after {
+	top: auto;
+	right: 50%;
+	bottom: 50%;
+	left: auto;
+}
+.ef:focus ~ .focus_bg:after,
+.cp_iptxt.ef ~ .focus_bg:after {
+	right: 0;
+	bottom: 0;
+	width: 50%;
+	height: 100%;
+	transition: 0.3s;
+}
+.ef ~ label {
+	position: absolute;
+	z-index: -1;
+	top: 10px;
+	left: 14px;
+	/* width: 100%; */
+	transition: 0.3s;
+	letter-spacing: 0.5px;
+	color: #808080;
+}
+.ef:focus ~ label, .cp_iptxt.ef ~ label {
+	font-size: 20px;
+	top: -40px;
+	left: 0;
+	transition: 0.3s;
+	color: #da3c41;
 }
