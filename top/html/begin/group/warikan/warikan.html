@@ -35,25 +35,27 @@
         </div>
         <br>
         <form id="transactionForm">
+          <div class="select-wrapper">
+            <div>
+              <select id="payer" name="member" class="select" id="creditor select"></select>
+            </div>
+          </div>
+          <a class="big">が</a>
           <div>
-            <select id="payer" name="member"></select>
-            が
+            <input type="text" id="content" placeholder="飲み代" class="input">
+            <a class="big text-amount">を</a>
           </div>
           <div>
-            <input type="text" id="content" placeholder="飲み代">
-            を
-          </div>
-          <div>
-            <input type="number" id="amount" placeholder="1000">
-            円払った
+            <input type="number" id="amount" placeholder="1000" class="input">
+            <a class="big text-amount">円払った</a>
           </div>
           <br>
           <div>
-            <small>丸め単位：</small>
-            <select type="number" id="round"></select>
-            <span>円単位</span>
+            <a class="big text-amount">丸め単位</a>
+            <select type="number" id="round" class="select"></select>
+            <a class="big text-amount">円単位</a>
           </div>
-          <select name="option" id="option">
+          <select name="option" id="option" class="select marume">
             <option value="ceil">切り上げ</option>
             <option value="round">四捨五入</option>
             <option value="floor">切り捨て</option>
@@ -66,7 +68,6 @@
           <div id="buttons">
             <!-- <input type="submit" value="submit" onclick="calculate()" /> -->
             <br>
-            <button type="button">戻る</button>
             <button type="button" onclick="calculate()">精算</button>
             <br>
             <button type="button" onclick="save()">保存</button>
@@ -74,7 +75,7 @@
         </form>
         <br>
         <div id="result" class="container">
-          <table align="center" id="result_table" border="">  
+          <table align="center" id="result_table" border="" class="table">  
             <caption>
               <!-- 結果 -->
             </caption>
@@ -119,9 +120,9 @@
           </table>
         </div>
         <script src="js/warikan.js"></script>
+        <a href="../group.html" class="btn btn-border btn-warikan"><span>戻る</span></a>
       </div>
     </div>
-    <a href="./tatekae/tatekae.html" class="btn btn-border btn-tatekae"><span>たてかえ</span></a>
   </body>
   <footer>
     <p>© All rights reserved by dmmwebcampmedia.</p>

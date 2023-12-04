@@ -96,6 +96,9 @@ footer {
     min-width: 500px;
     min-height: 100px;
 }
+.big{
+    font-size: 22px;
+}
 
 *,
 *:before,
@@ -205,6 +208,15 @@ a.btn-border:active:before {
 
 
 /* input */
+.input{
+    width: 232px;
+    margin: 10px;
+    padding: 10px 15px;
+    font-size: 1.6rem;
+    border-radius: 10px;
+    border: 2px solid black;
+    box-sizing: border-box;
+}
 .cp_iptxt {
 	position: relative;
 	width: 50%;
@@ -302,6 +314,7 @@ a.btn-border:active:before {
     margin: 10px, 0px;
     font-size: 1.6rem;
     cursor: pointer;
+    color: #000;
     background-color: white;
 }
 

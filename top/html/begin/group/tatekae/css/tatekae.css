@@ -16,31 +16,19 @@
     top: 100px;
     left: -12px;
 }
-.font-tatekae{
-    font-size: 22px;
-}
 
 /* input */
-.input-tatekae{
-    width: 232px;
-    margin: 10px;
-    padding: 10px 15px;
-    font-size: 1.6rem;
-    border-radius: 10px;
-    border: 2px solid black;
-    box-sizing: border-box;
-}
 .content{
     position: relative;
     left: 0px;
 }
 .amount{
     position: relative;
-    left: 44px;
+    left: 34px;
 }
 .text-amount{
     position: relative;
-    left: 44px;
+    left: 34px;
 }
 .submit{
     position: relative;
