@@ -292,31 +292,32 @@ a.btn-border:active:before {
 
 /* select */
 .select {
-    appearance: none; /* ① */
+    appearance: none;
     -webkit-appearance: none;
     -moz-appearance: none;
-    border: 1px solid #aaa; /* ② ここから */
-    border-radius: 4px;
+    width: 100px;
+    border: 2px solid black;
+    border-radius: 10px;
     padding: 5px 25px 5px 10px;
-    font-size: 1.2rem;
-    cursor: pointer; /* ② ここまで */
-  }
-  
-  .select:disabled {
+    margin: 10px, 0px;
+    font-size: 1.6rem;
+    cursor: pointer;
+    background-color: white;
+}
+
+.select:disabled {
     pointer-events: none;
     background-color: #f1f1f1;
     color: #aaa;
-  }
-  
-  .select-wrapper {
+}
+.select-wrapper {
     position: relative;
     display: inline-block;
-  }
-  
-  .select-wrapper::after {  /* ③ */
+}
+  .select-wrapper::after {
     content: '';
     position: absolute;
-    border: 4px solid #333;
+    border: 6px solid orange;
     border-bottom: 0;
     border-left-color: transparent;
     border-right-color: transparent;
@@ -324,8 +325,7 @@ a.btn-border:active:before {
     right: 10px;
     width: 0;
     height: 0;
-  }
-  
-  .select-wrapper--disabled::after {
+}
+.select-wrapper--disabled::after {
     border-top-color: #aaa;
-  }
+}

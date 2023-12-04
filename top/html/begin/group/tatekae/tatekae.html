@@ -29,30 +29,27 @@
     <div class="home">
     <form id="transactionForm">
       <div class="select-wrapper">
-        <select class="creditor select">
-          <option value="" hidden>選択してください</option>
-          <option value="1">あ</option>
-        </select>
+        <div>
+          <select class="select" id="creditor select"></select>
+        </div>
       </div>
-      が
-      <div>
-        <select id="creditor"></select>
-        が
+      <a class="h3">が</a>
+      <div class="select-wrapper">
+        <div>
+          <select class="select" id="debtor select"></select>
+        </div>
       </div>
+      に
       <div>
-        <select id="debtor"></select>
-        に
-      </div>
-      <div>
-        <input type="text" id="content">
+        <input class="input-tatekae content" type="text" id="content">
         を
       </div>
       <div>
-        <input type="number" id="amount">
-        円払った
+        <input class="input-tatekae amount" type="number" id="amount">
+        <a class="text-amount">円払った</a>
       </div>
       <div>
-        <input type="submit" value="submit" />
+        <input class="input-tatekae submit"  type="submit" value="submit" id="submit">
       </div>
     </form>
     <div id="result"></div>
