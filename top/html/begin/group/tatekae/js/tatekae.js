@@ -150,4 +150,5 @@ document.getElementById("transactionForm").addEventListener("submit", function(e
         main();
         showResult();
     }
-  });
+});
+
