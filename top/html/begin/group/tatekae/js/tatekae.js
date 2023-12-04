@@ -7,7 +7,7 @@ let balanceList = [] ;
 let resultList = [];
 
 function addOption() {
-    let creditorSelect = document.getElementById("creditor");
+    let creditorSelect = document.getElementById("creditor select");
     let debtorSelect = document.getElementById("debtor");
     for(const member of memberList) {
         let creditorOption = document.createElement("option");
@@ -26,7 +26,7 @@ function initializeBalanceList() {
     }
 }
 function checkFormInputs() {
-    if (document.getElementById('creditor').value == '' || document.getElementById('creditor').value == null) {
+    if (document.getElementById('creditor select').value == '' || document.getElementById('creditor').value == null) {
         alert('支払いした人を入力してください');
         console.error('creditorNotFoundError');
         return false;
@@ -51,7 +51,7 @@ function checkFormInputs() {
     }
 }
 function addHistory() {
-    let creditor = document.getElementById("creditor").value;
+    let creditor = document.getElementById("creditor select").value;
     let amount = document.getElementById("amount").value;
     let involves = [document.getElementById("debtor").value];
     let content = document.getElementById("content").value;
