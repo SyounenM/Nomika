@@ -1,3 +1,39 @@
+import { app, database, ref_, get_, update_ } from "../../../../../js/master";
+
+const messageRef = ref_(database, "message");
+
+get_(messageRef)
+    .then((snapshot) => {
+    const data = snapshot.val();
+    console.log(data);
+})
+.catch((error) => {
+console.error("データの読み取りに失敗しました", error);
+});
+
+const dataRef2 = ref_(database, "name");
+// データを書き込む
+update_(dataRef2, {
+    key1: "value1",
+    key2: "value2",
+    // 他のデータ
+})
+    .then(() => {
+    console.log("データが正常に書き込まれました");
+    })
+    .catch((error) => {
+    console.error("データの書き込みに失敗しました", error);
+    });
+
+
+
+
+
+
+
+
+
+
 // 定数・変数 データベースで共有したい情報
 let groupName = "飲み会"
 let memberList = ["秀島", "川崎", "佐々木", "福田", "松島"];
