@@ -32,7 +32,6 @@ export const app = initializeApp(firebaseConfig);
 export const analytics = getAnalytics(app);
 // Realtime Databaseへの参照取得
 export const database = getDatabase(app);
-const dataRef = ref(database, "message");
 export function ref_(database, path) {
     return ref(database, path);
 }
@@ -45,29 +44,30 @@ export function set_(ref, json) {
 export function update_(ref, json) {
     return update(ref, json);
 }
+//使用例
+// console.log(1);
 
-console.log(1);
+// const dataRef = ref(database, "message");
+// get_(dataRef)
+//     .then((snapshot) => {
+//     const data = snapshot.val();
+//     console.log(data);
+// })
+// .catch((error) => {
+// console.error("データの読み取りに失敗しました", error);
+// });
 
-get(dataRef)
-    .then((snapshot) => {
-    const data = snapshot.val();
-    console.log(data);
-})
-.catch((error) => {
-console.error("データの読み取りに失敗しました", error);
-});
-
-const dataRef2 = ref(database, "name");
-// データを書き込む
-update(dataRef2, {
-    key1: "value1",
-    key2: "value2",
-    // 他のデータ
-})
-    .then(() => {
-    console.log("データが正常に書き込まれました");
-    })
-    .catch((error) => {
-    console.error("データの書き込みに失敗しました", error);
-    });
+// const dataRef2 = ref(database, "name");
+// // データを書き込む
+// update_(dataRef2, {
+//     key1: "value1",
+//     key2: "value2",
+//     // 他のデータ
+// })
+//     .then(() => {
+//     console.log("データが正常に書き込まれました");
+//     })
+//     .catch((error) => {
+//     console.error("データの書き込みに失敗しました", error);
+//     });
 
