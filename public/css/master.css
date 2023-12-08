@@ -32,6 +32,9 @@ body h4{
     color: black;
     font-size: 24px;
 }
+body h5{
+    font-size: 21px;
+}
 .header{
     position: fixed;
     top: 0px;
@@ -92,6 +95,9 @@ footer {
     z-index: 100;
     min-width: 500px;
     min-height: 100px;
+}
+.big{
+    font-size: 22px;
 }
 
 *,
@@ -198,4 +204,141 @@ a.btn-border:active {
 
 a.btn-border:active:before {
     bottom: -1px;
+}
+
+
+/* input */
+.input{
+    width: 232px;
+    margin: 10px;
+    padding: 10px 15px;
+    font-size: 1.6rem;
+    border-radius: 10px;
+    border: 2px solid black;
+    box-sizing: border-box;
+}
+.cp_iptxt {
+	position: relative;
+	width: 50%;
+	margin: 30px 3%;
+}
+.cp_iptxt input[type='text'] {
+	font: 20px/40px sans-serif;
+	box-sizing: border-box;
+	width: 100%;
+	letter-spacing: 1px;
+	padding-left: 2em;
+}
+.cp_iptxt input[type='text']:focus {
+	outline: none;
+}
+.ef {
+    font-weight: 700;
+	position: relative;
+	padding: 7px 15px;
+	border: 0;
+	border: 2.5px solid #1b2538;
+	background: transparent;
+}
+.ef ~ .focus_bg:before,
+.ef ~ .focus_bg:after {
+	position: absolute;
+	z-index: -1;
+	top: 50%;
+	left: 50%;
+	width: 0;
+	height: 0;
+	content: '';
+	transition: 0.3s;
+	background-color: rgba(218,60,65,.3);
+}
+.ef:focus {
+	border: 2.5px solid #da3c41;
+}
+.ef:focus ~ .focus_bg:before,
+.cp_iptxt.ef ~ .focus_bg:before {
+	top: 0;
+	left: 0;
+	width: 50%;
+	height: 100%;
+	transition: 0.3s;
+}
+.ef ~ .focus_bg:after {
+	top: auto;
+	right: 50%;
+	bottom: 50%;
+	left: auto;
+}
+.ef:focus ~ .focus_bg:after,
+.cp_iptxt.ef ~ .focus_bg:after {
+	right: 0;
+	bottom: 0;
+	width: 50%;
+	height: 100%;
+	transition: 0.3s;
+}
+.ef ~ label {
+	position: absolute;
+	z-index: -1;
+	top: 10px;
+	left: 14px;
+	/* width: 100%; */
+	transition: 0.3s;
+	letter-spacing: 0.5px;
+	color: #808080;
+}
+.ef:focus ~ label, .cp_iptxt.ef ~ label {
+	font-size: 20px;
+	top: -40px;
+	left: 0;
+	transition: 0.3s;
+	color: #da3c41;
+}
+.radius{
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+}
+
+
+/* select */
+.select {
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    width: 100px;
+    border: 2px solid black;
+    border-radius: 10px;
+    padding: 5px 25px 5px 10px;
+    margin: 10px, 0px;
+    font-size: 1.6rem;
+    cursor: pointer;
+    color: #000;
+    background-color: white;
+}
+
+.select:disabled {
+    pointer-events: none;
+    background-color: #f1f1f1;
+    color: #aaa;
+}
+.select-wrapper {
+    position: relative;
+    display: inline-block;
+}
+  .select-wrapper::after {
+    content: '';
+    position: absolute;
+    border: 6px solid orange;
+    border-bottom: 0;
+    border-left-color: transparent;
+    border-right-color: transparent;
+    top: calc(50% - 3px);
+    right: 10px;
+    width: 0;
+    height: 0;
+}
+.select-wrapper--disabled::after {
+    border-top-color: #aaa;
 }

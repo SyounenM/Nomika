@@ -28,28 +28,33 @@
   <div class="background-tatekae">
     <div class="home">
     <form id="transactionForm">
+      <div class="select-wrapper">
+        <div>
+          <select class="select" id="creditor select"></select>
+        </div>
+      </div>
+      <a class="big">が</a>
+      <div class="select-wrapper">
+        <div>
+          <select class="select" id="debtor select"></select>
+        </div>
+      </div>
+      <a class="big">に</a>
       <div>
-        <select id="creditor"></select>
-        が
+        <input class="input content" type="text" id="content">
+      <a class="big">を</a>
       </div>
       <div>
-        <select id="debtor"></select>
-        に
+        <input class="input amount" type="number" id="amount">
+        <a class="big text-amount">円払った</a>
       </div>
       <div>
-        <input type="text" id="content">
-        を
-      </div>
-      <div>
-        <input type="number" id="amount">
-        円払った
-      </div>
-      <div>
-        <input type="submit" value="submit" />
+        <input class="input submit"  type="submit" value="submit" id="submit">
       </div>
     </form>
     <div id="result"></div>
-    <script src="js/test.js"></script>
+    <script src="js/tatekae.js"></script>
+    <a href="../group.html" class="btn btn-border btn-tatekae"><span>戻る</span></a>
     </div>
     </div>
   </body>

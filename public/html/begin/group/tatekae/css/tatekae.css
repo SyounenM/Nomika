@@ -11,3 +11,28 @@
     min-width: 600px;
     min-height: 1000px; 
 }
+.btn-tatekae{
+    position: relative;
+    top: 100px;
+    left: -12px;
+}
+
+/* input */
+.content{
+    position: relative;
+    left: 0px;
+}
+.amount{
+    position: relative;
+    left: 34px;
+}
+.text-amount{
+    position: relative;
+    left: 34px;
+}
+.submit{
+    position: relative;
+    left: -13px;
+    color: black;
+    background-color: white;
+}
