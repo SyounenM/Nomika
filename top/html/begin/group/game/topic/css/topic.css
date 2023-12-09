@@ -1,4 +1,4 @@
-.background-game {
+.background-topic {
     background-image: url('../../../../../../image/bubble.png');
     background-size: 500px;
     background-position: center;
@@ -70,3 +70,8 @@
     font-size: 24px;
     transform: rotateY(180deg);
   }
+
+.btn-topic{
+  position: relative;
+  top: 80px;
+}

@@ -58,3 +58,8 @@
   } */
 
   /* ルーレット2 */
+
+.btn-roulette{
+  position: relative;
+  top: 50px;
+}
