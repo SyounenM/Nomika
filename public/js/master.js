@@ -29,9 +29,30 @@ const firebaseConfig = {
 
 // Initialize Firebase
 export const app = initializeApp(firebaseConfig);
+    // .then(()=>{
+    //     console.log("appが正常に初期化されました");
+    // })
+    // .catch((error)=>{
+    //     console.error("app初期化の際にエラーが起きました",error);   
+    // })
+
 export const analytics = getAnalytics(app);
+    // .then(()=>{
+    //     console.log("analyticsが正常に取得されました");
+    // })
+    // .catch((error)=>{
+    //     console.error("analytics取得の際にエラーが起きました",error);
+    // })
+
 // Realtime Databaseへの参照取得
 export const database = getDatabase(app);
+    // .then(()=>{
+    //     console.log("databaseに正常に接続されました");
+    // })
+    // .catch((error)=>{
+    //     console.error("database接続の際にエラーが起きました",error);
+    // })
+
 export function ref_(database, path) {
     return ref(database, path);
 }
@@ -60,17 +81,17 @@ export function push_(ref) {
 // console.error("データの読み取りに失敗しました", error);
 // });
 
-const dataRef2 = ref(database, "name2");
-// データを書き込む
-update_(dataRef2, {
-    key1: "value1",
-    key2: "value2",
-    // 他のデータ
-})
-    .then(() => {
-    console.log("データが正常に書き込まれました");
-    })
-    .catch((error) => {
-    console.error("データの書き込みに失敗しました", error);
-    });
+// const dataRef2 = ref(database, "name2");
+// // データを書き込む
+// update_(dataRef2, {
+//     key1: "value1",
+//     key2: "value2",
+//     // 他のデータ
+// })
+//     .then(() => {
+//     console.log("データが正常に書き込まれました");
+//     })
+//     .catch((error) => {
+//     console.error("データの書き込みに失敗しました", error);
+//     });
 
