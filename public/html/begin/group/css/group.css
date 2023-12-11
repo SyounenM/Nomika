@@ -1,12 +1,12 @@
-.btn-tatekae{
+.btn-group{
     position: relative;
     top: 200px;
     left: 0px;
 }
-.btn-warikan{
+.btn-edit{
     position: relative;
     top: 200px;
-    left: 0px;
+    left: 15px;
 }
 .background-group {
     background-image: url('../../../../image/bubble.png');

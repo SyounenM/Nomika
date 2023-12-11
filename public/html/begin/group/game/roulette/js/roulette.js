@@ -4,7 +4,7 @@ const home = document.getElementById("home");
 const back = document.getElementById("back");
 logo.href = `../../group.html?id=${groupId}`;
 home.href = `../../group.html?id=${groupId}`;
-back.href = `../../group.html?id=${groupId}`;
+back.href = `../game.html?id=${groupId}`;
 
 
 
