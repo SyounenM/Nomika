@@ -1,9 +1,11 @@
 const groupId = new URLSearchParams(window.location.search).get('id');
 const logo = document.getElementById("logo");
 const home = document.getElementById("home");
+const back = document.getElementById("back");
 
 logo.href = `../../group.html?id=${groupId}`;
 home.href = `../../group.html?id=${groupId}`;
+back.href = `../../group.html?id=${groupId}`;
 
 // const topicButton = document.getElementById("topic-button");
 // const topic_list = ["貧乳？巨乳？","topic2","topic3"];
