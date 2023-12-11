@@ -523,6 +523,16 @@ checkboxes.forEach(function(checkbox) {
     });
 });
 
+// トグルによる表示・非表示の切り替え
+document.getElementById('toggleButton').addEventListener('click', function() {
+    var content = document.getElementById('toggleContent');
+    if (content.style.display === 'none') {
+        content.style.display = 'block';
+    } else {
+        content.style.display = 'none';
+    }
+});
+
 
 // note//
 // TODO: 金額固定と端数調整が共存しないようにする

@@ -50,16 +50,16 @@
             <a class="big text-amount">円払った</a>
           </div>
           <br>
-          <div>
-            <a class="big">端数の分け方</a><br>
-            <select type="number" id="round" class="select number"></select>
-            <a class="big">円単位</a>
-          <select name="option" id="option" class="select marume">
-            <option value="ceil">切り上げ</option>
-            <option value="round">四捨五入</option>
-            <option value="floor">切り捨て</option>
-          </select>
-        </div>
+          <button id="toggleButton" type="button"><a class="big">端数を分ける</a></button>
+          <div id="toggleContent">
+              <select type="number" id="round" class="select number"></select>
+              <a class="big">円単位</a>
+              <select name="option" id="option" class="select marume">
+                <option value="ceil">切り上げ</option>
+                <option value="round">四捨五入</option>
+                <option value="floor">切り捨て</option>
+              </select>
+          </div>
           <!-- <div>
             <small>端数</small>
             <select id="payer" name="member"></select>
