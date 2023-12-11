@@ -200,14 +200,14 @@ input:checked ~ .base {
     border: 2.5px solid black;
     padding: 15px;
     margin-top: 10px;
-    border-radius: 5px;
+    border-radius: 12px;
 }
 #toggleButton {
     background-color: white;
     color: black;
     padding: 10px 20px;
     border: 2px solid black;
-    border-radius: 5px;
+    border-radius: 10px;
     cursor: pointer;
 }
 
