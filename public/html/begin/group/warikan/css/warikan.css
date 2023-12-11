@@ -27,7 +27,7 @@ td.selected {
     left: 0px;
 }
 
-.content {
+.member {
     margin-left: auto;
     margin-right: auto;
     max-width: 400px;
@@ -35,7 +35,7 @@ td.selected {
     padding-right: 24px;
     width: 100%;
 }
-.content span{
+.member span{
     display: inline-block;
 }
 .container {
@@ -192,4 +192,33 @@ input:checked ~ .base {
 
 .marume{
     width: 140px;
+    margin: 10px;
+}
+.number{
+    width: 140px;
+    margin: 10px;
+}
+.payer{
+    position: relative;
+    left: -50px;
+}
+.content{
+    position: relative;
+    left: -50px;
+}
+.amount{
+    position: relative;
+    left: -17px;
+}
+.text-payer{
+    position: relative;
+    left: -5px;
+}
+.text-content{
+    position: relative;
+    left: -5px;
+}
+.text-amount{
+    position: relative;
+    left: -2px;
 }

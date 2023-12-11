@@ -31,35 +31,35 @@
         <br>
         <div id="group"></div>
         <div class="groupInfo">
-          <div id="member" class="content"></div>
+          <div id="member" class="member"></div>
         </div>
         <br>
         <form id="transactionForm">
-          <div class="select-wrapper">
+          <div class="select-wrapper payer">
             <div>
               <select id="payer" name="member" class="select" id="creditor select"></select>
             </div>
           </div>
-          <a class="big">が</a>
+          <a class="big text-payer">が</a>
           <div>
-            <input type="text" id="content" placeholder="飲み代" class="input">
-            <a class="big text-amount">を</a>
+            <input type="text" id="content" placeholder="飲み代" class="input content">
+            <a class="big text-content">を</a>
           </div>
           <div>
-            <input type="number" id="amount" placeholder="1000" class="input">
+            <input type="number" id="amount" placeholder="1000" class="input amount">
             <a class="big text-amount">円払った</a>
           </div>
           <br>
           <div>
-            <a class="big text-amount">丸め単位</a>
-            <select type="number" id="round" class="select"></select>
-            <a class="big text-amount">円単位</a>
-          </div>
+            <a class="big">端数の分け方</a><br>
+            <select type="number" id="round" class="select number"></select>
+            <a class="big">円単位</a>
           <select name="option" id="option" class="select marume">
             <option value="ceil">切り上げ</option>
             <option value="round">四捨五入</option>
             <option value="floor">切り捨て</option>
           </select>
+        </div>
           <!-- <div>
             <small>端数</small>
             <select id="payer" name="member"></select>

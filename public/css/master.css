@@ -307,11 +307,10 @@ a.btn-border:active:before {
     appearance: none;
     -webkit-appearance: none;
     -moz-appearance: none;
-    width: 100px;
+    width: 230px;
     border: 2px solid black;
     border-radius: 10px;
     padding: 5px 25px 5px 10px;
-    margin: 10px, 0px;
     font-size: 1.6rem;
     cursor: pointer;
     color: #000;
@@ -326,6 +325,7 @@ a.btn-border:active:before {
 .select-wrapper {
     position: relative;
     display: inline-block;
+    margin: 10px;
 }
   .select-wrapper::after {
     content: '';
