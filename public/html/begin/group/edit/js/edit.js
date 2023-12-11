@@ -1,13 +1,13 @@
-// const groupId = new URLSearchParams(window.location.search).get('id');
-// const logo = document.getElementById("logo");
-// const home = document.getElementById("home");
-// const cancelButton = document.getElementById("cancel");
-// const updateButton = document.getElementById("update");
+const groupId = new URLSearchParams(window.location.search).get('id');
+const logo = document.getElementById("logo");
+const home = document.getElementById("home");
+const cancelButton = document.getElementById("cancel");
+const updateButton = document.getElementById("update");
 
-// logo.href = `../group.html?id=${groupId}`;
-// home.href = `../group.html?id=${groupId}`;
-// cancelButton.href = `../group.html?id=${groupId}`;
-// updateButton.href = `../group.html?id=${groupId}`;
+logo.href = `../group.html?id=${groupId}`;
+home.href = `../group.html?id=${groupId}`;
+cancelButton.href = `../group.html?id=${groupId}`;
+updateButton.href = `../group.html?id=${groupId}`;
 
 
 
