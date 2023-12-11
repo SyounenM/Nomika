@@ -1,3 +1,11 @@
+// const groupId = new URLSearchParams(window.location.search).get('id');
+// const logo = document.getElementById("logo");
+// const home = document.getElementById("home");
+// logo.href = `../group.html?id=${groupId}`;
+// home.href = `../group.html?id=${groupId}`;
+
+
+
 import { app, database, ref_, get_, update_ } from "../../../../../js/master.js";
 
 const messageRef = ref_(database, "message");
@@ -49,6 +57,8 @@ let resultDict = {};
 
 let memberDiv = document.getElementById('member');
 let groupDiv = document.getElementById('group');
+
+
 
 //関数
 //画面生成

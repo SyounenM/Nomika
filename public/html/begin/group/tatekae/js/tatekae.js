@@ -1,3 +1,13 @@
+// const groupId = new URLSearchParams(window.location.search).get('id');
+// const logo = document.getElementById("logo");
+// const home = document.getElementById("home");
+// logo.href = `../group.html?id=${groupId}`;
+// home.href = `../group.html?id=${groupId}`;
+
+
+
+
+
 const memberList = ["秀島", "川崎", "佐々木", "福田", "松島"];
 
 let historyList = [];

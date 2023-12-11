@@ -4,6 +4,8 @@ const tatekaeButton = document.getElementById("tatekaeButton");
 const warikanButton = document.getElementById("warikanButton");
 const gameButton = document.getElementById("gameButton");
 const editButton = document.getElementById("editButton");
+const logo = document.getElementById("logo");
+const home = document.getElementById("home");
 
 const groupId = new URLSearchParams(window.location.search).get('id');
 console.log("groupId:" + groupId);
@@ -24,3 +26,5 @@ tatekaeButton.href = `./tatekae/tatekae.html?id=${groupId}`;
 warikanButton.href = `./warikan/warikan.html?id=${groupId}`;
 gameButton.href = `./game/game.html?id=${groupId}`;
 editButton.href = `./edit/edit.html?id=${groupId}`;
+logo.href = `./group.html?id=${groupId}`;
+home.href = `./group.html?id=${groupId}`;

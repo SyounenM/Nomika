@@ -1,3 +1,13 @@
+// const groupId = new URLSearchParams(window.location.search).get('id');
+// const logo = document.getElementById("logo");
+// const home = document.getElementById("home");
+// logo.href = `../../group.html?id=${groupId}`;
+// home.href = `../../group.html?id=${groupId}`;
+
+
+
+
+
 // ルーレット1
 // const startButton = document.getElementById('start-button');
 // const rouletteItems = document.getElementById('roulette-items');
