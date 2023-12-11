@@ -1,3 +1,40 @@
+import { app, database, ref_, get_, update_ } from "../../../../../js/master.js";
+
+const messageRef = ref_(database, "message");
+
+get_(messageRef)
+    .then((snapshot) => {
+    const data = snapshot.val();
+    console.log(data);
+})
+.catch((error) => {
+console.error("データの読み取りに失敗しました", error);
+});
+
+const dataRef2 = ref_(database, "name");
+// データを書き込む
+update_(dataRef2, {
+    key1: "value1",
+    key2: "value2",
+    key5: "value4"
+    // 他のデータ
+})
+    .then(() => {
+    console.log("データが正常に書き込まれました");
+    })
+    .catch((error) => {
+    console.error("データの書き込みに失敗しました", error);
+    });
+
+
+
+
+
+
+
+
+
+
 // 定数・変数 データベースで共有したい情報
 let groupName = "飲み会"
 let memberList = ["秀島", "川崎", "佐々木", "福田", "松島"];
@@ -29,7 +66,7 @@ function viewBuilder() {
     }
     //支払い人
     let payerSelect = document.getElementById("payer");
-    for(member of memberList) {
+    for(let member of memberList) {
         let payerOption = document.createElement("option");
         payerOption.text = member;
         payerOption.value = member;
@@ -42,7 +79,7 @@ function viewBuilder() {
     //丸め単位
     let roundSelect = document.getElementById('round');
     const roundList = [1, 5, 10, 50, 100, 500, 1000];
-    for(val of roundList){
+    for(let val of roundList){
         let roundOption = document.createElement('option');
         roundOption.text = val;
         roundOption.id = val + 'Option';
@@ -50,7 +87,7 @@ function viewBuilder() {
     }
     //結果
     let resultTableBody = document.getElementById('tableBody');
-    for (member of memberList) {
+    for (let member of memberList) {
         //各メンバーの行要素
         let tr = document.createElement("tr");
         tr.id = member + 'Row';
@@ -179,7 +216,7 @@ function calculate() {
         document.getElementById('amount').value = 33333;
     }
     let fracCount = 0;
-    for(member of memberList){
+    for(let member of memberList){
         if (document.getElementById(member + 'FracToggle').checked) {
             fracCount ++
         }
@@ -199,7 +236,7 @@ function calculate() {
 
     //金額固定を除外
     let unfixedList = [];
-    for (member of memberList) {
+    for (let member of memberList) {
         let fixToggle = document.getElementById(member + 'FixToggle');
         if (fixToggle.checked) {
             console.log( member + ' fixed');
@@ -213,7 +250,7 @@ function calculate() {
     }
     // 参加者の名前と割合を取得
     let membersRatio = [];
-    for (member of unfixedList) {
+    for (let member of unfixedList) {
         let name = document.getElementById(member + 'Name').textContent;
         let ratio = parseFloat(document.getElementById(member + 'Ratio').valueAsNumber);
         membersRatio.push({ name: name, ratio: ratio });
@@ -440,7 +477,7 @@ viewBuilder();
 let select = document.querySelector('[name="member"]')
 select.onchange = event => {
     let payer = document.getElementById('payer').value;
-    for(member of memberList){
+    for(let member of memberList){
         let memberRow = document.getElementById(member + 'Row');
         memberRow.style = 'background-color: transparent;'
         let fracToggle = document.getElementById(member + 'FracToggle');
