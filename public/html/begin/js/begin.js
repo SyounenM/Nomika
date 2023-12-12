@@ -10,14 +10,18 @@ function createGroup() {
     })
     .then(()=>{
         console.log("データが正常に書き込まれました");
-
         const groupURL = window.location.href + 'group.html?id=' + groupId;
         alert('グループが作成されました。\nURL: ' + groupURL);
-        createButton.href = `./group/group.html?id=${newGroupRef.key}`;
+        // createButton.href = `./group/group.html?id=${newGroupRef.key}`;
+        // 新しいURLに遷移する
+        window.location.href = `./group/group.html?id=${newGroupRef.key}`;
+
     })
     .catch((error)=>{
         console.error("データの書き込みに失敗しました", error);
     })
+
+
 
 }
 
