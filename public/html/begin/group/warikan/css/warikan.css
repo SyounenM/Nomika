@@ -202,6 +202,22 @@ input:checked ~ .base {
     margin-top: 10px;
     border-radius: 12px;
 }
+.details[open] {
+    .content {
+      animation: fadeIn 0.5s ease;
+    }
+  }
+@keyframes fadeIn {
+    0% {
+      opacity: 0;
+      transform: translateY(-10px);
+    }
+  
+    100% {
+      opacity: 1;
+      transform: none;
+    }
+  }
 #toggleButton {
     background-color: white;
     color: black;
@@ -209,6 +225,13 @@ input:checked ~ .base {
     border: 2px solid black;
     border-radius: 10px;
     cursor: pointer;
+    &:hover {
+        color: rgb(255, 140, 0);
+      }
+    
+      &::-webkit-details-marker {
+        display: none;
+      }
 }
 
 .marume{
