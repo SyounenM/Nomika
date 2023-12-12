@@ -1,6 +1,6 @@
 const groupId = new URLSearchParams(window.location.search).get('id');
 const logo = document.getElementById("logo");
-const top = document.getElementById("top");
+const topButton = document.getElementById("top");
 const home = document.getElementById("home");
 const cancelButton = document.getElementById("cancel");
 const updateButton = document.getElementById("update");
@@ -9,10 +9,10 @@ logo.href = `../group.html?id=${groupId}`;
 function showAlert() {
     var result = confirm('注意 グループから抜けることになります');
     if (result){
-        top.href = `../../../../index.html`;
+        topButton.href = `../../../../index.html`;
     }
 }
-top.onclick = showAlert;
+topButton.onclick = showAlert;
 home.href = `../group.html?id=${groupId}`;
 cancelButton.href = `../group.html?id=${groupId}`;
 updateButton.href = `../group.html?id=${groupId}`;

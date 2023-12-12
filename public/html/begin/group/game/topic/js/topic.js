@@ -1,11 +1,17 @@
 const groupId = new URLSearchParams(window.location.search).get('id');
 const logo = document.getElementById("logo");
-const top = document.getElementById("top");
+const topButton = document.getElementById("top");
 const home = document.getElementById("home");
 const back = document.getElementById("back");
 
 logo.href = `../../group.html?id=${groupId}`;
-top.onclick = showAlert;
+function showAlert() {
+  var result = confirm('注意 グループから抜けることになります');
+  if (result){
+      topButton.href = `../../../../../index.html`;
+  }
+}
+topButton.onclick = showAlert;
 home.href = `../../group.html?id=${groupId}`;
 back.href = `../game.html?id=${groupId}`;
 
