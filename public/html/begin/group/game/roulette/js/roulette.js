@@ -2,7 +2,7 @@ const groupId = new URLSearchParams(window.location.search).get('id');
 const logo = document.getElementById("logo");
 const topButton = document.getElementById("top");
 const home = document.getElementById("home");
-const back = document.getElementById("back");
+const backButton = document.getElementById("back");
 logo.href = `../../group.html?id=${groupId}`;
 function showAlert() {
     var result = confirm('注意 グループから抜けることになります');
@@ -12,7 +12,7 @@ function showAlert() {
 }
 topButton.onclick = showAlert;
 home.href = `../../group.html?id=${groupId}`;
-back.href = `../game.html?id=${groupId}`;
+backButton.href = `../game.html?id=${groupId}`;
 
 
 
