@@ -18,13 +18,13 @@ import { getDatabase, ref, get, set, update, push} from "https://www.gstatic.com
     // Your web app's Firebase configuration
 // For Firebase JS SDK v7.20.0 and later, measurementId is optional
 const firebaseConfig = {
-    apiKey: "AIzaSyC9zhxt23j7ynVelItKR-GOkszacgD1m2s",
-    authDomain: "nomika-f699e.firebaseapp.com",
-    projectId: "nomika-f699e",
-    storageBucket: "nomika-f699e.appspot.com",
-    messagingSenderId: "726205228358",
-    appId: "1:726205228358:web:3666f6a80b0c82e462b147",
-    measurementId: "G-Y4V81T4CBH"
+    apiKey: "AIzaSyDy570gn8EFfmfmg0GB74t8N7BXDOSRdf0",
+    authDomain: "nomika-7311b.firebaseapp.com",
+    projectId: "nomika-7311b",
+    storageBucket: "nomika-7311b.appspot.com",
+    messagingSenderId: "273662705348",
+    appId: "1:273662705348:web:18029e815a39fcb29d9391",
+    measurementId: "G-H8B51TR2Y8"
 };
 
 // Initialize Firebase
