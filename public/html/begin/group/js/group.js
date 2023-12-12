@@ -18,7 +18,8 @@ get_(ref_(database,'groups/' + groupId))
     groupH3.textContent = "This is " + name;
 })
     .catch((error) => {
-    console.error("データの読み取りに失敗しました", error);
+        console.log("ID:" + groupId);
+        console.error("データの読み取りに失敗しました", error);
 });
 
 
