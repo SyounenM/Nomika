@@ -1,10 +1,11 @@
-import { app, database, ref_, set_, get_, update_, push_}  from "../../../../js/master.js";
+import { app, database, ref_, set_, get_, update_, push_, showAlert}  from "../../../../js/master.js";
 const groupH3 = document.getElementById("groupH3");
 const tatekaeButton = document.getElementById("tatekaeButton");
 const warikanButton = document.getElementById("warikanButton");
 const gameButton = document.getElementById("gameButton");
 const editButton = document.getElementById("editButton");
 const logo = document.getElementById("logo");
+const top = document.getElementById("top");
 const home = document.getElementById("home");
 
 const groupId = new URLSearchParams(window.location.search).get('id');
@@ -28,4 +29,5 @@ warikanButton.href = `./warikan/warikan.html?id=${groupId}`;
 gameButton.href = `./game/game.html?id=${groupId}`;
 editButton.href = `./edit/edit.html?id=${groupId}`;
 logo.href = `./group.html?id=${groupId}`;
+top.onclick = showAlert;
 home.href = `./group.html?id=${groupId}`;

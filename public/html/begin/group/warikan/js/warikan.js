@@ -8,7 +8,7 @@ back.href = `../group.html?id=${groupId}`;
 
 
 
-import { app, database, ref_, get_, update_ } from "../../../../../js/master.js";
+import { app, database, ref_, get_, update_ , showAlert} from "../../../../../js/master.js";
 
 const messageRef = ref_(database, "message");
 
@@ -532,6 +532,9 @@ document.getElementById('toggleButton').addEventListener('click', function() {
         content.style.display = 'none';
     }
 });
+
+// top alert
+top.onclick = showAlert;
 
 
 // note//

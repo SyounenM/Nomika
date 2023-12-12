@@ -95,3 +95,6 @@ export function push_(ref) {
 //     console.error("データの書き込みに失敗しました", error);
 //     });
 
+export function showAlert() {
+    alert('注意 グループから抜けることになります');
+}
