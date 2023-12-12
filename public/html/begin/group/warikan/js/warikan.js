@@ -72,7 +72,7 @@ function viewBuilder() {
         let memberSpan = document.createElement('span');
         memberSpan.textContent = member;
         memberSpan.id = member + 'Span';
-        memberSpan.style = 'background-color:#BBBB; margin-right:10px; border: solid 1px #BBB; border-width: 2px; border-radius: 10px;';
+        memberSpan.style = 'background-color: white; margin-right:10px; border: solid 1px black; border-width: 2px; border-radius: 10px; padding: 3px;';
         // memberSpan.style.border = 'solid'
         memberDiv.appendChild(memberSpan);
     }

@@ -43,7 +43,7 @@ function createMember(member) {
     let memberSpan = document.createElement("span");  //tdに何か追加。
     memberSpan.type = 'text';
     memberSpan.textContent =  ''+ member + '' ;
-    memberSpan.style = 'background-color:#BBBB; margin-right:10px; border: solid 1px #BBB; border-width: 2px; border-radius: 10px;';
+    memberSpan.style = 'background-color:white; margin-right:10px; border: solid 1px black; border-width: 2px; border-radius: 10px; padding: 5px;';
     memberSpan.id = member + "Span";
 
     let cancelButton = document.createElement('button');
