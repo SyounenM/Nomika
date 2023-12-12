@@ -75,12 +75,12 @@
                     <table id="table">
                         <tr><th>色</th><th>項目名</th><th>割合</th></tr>
                         <!-- <tr class="item"><td><div class="color-indicator" style="background-color:#000000;"></div></td><td><input type="text" class="name" value="項目"></td><td><input type="number" class="ratio" value="1"></td><td class="probability"></td><td><button type="button" onclick="rmItem(this)">削除</button></td></tr> -->
-                        <tr class="item"><td><div class="color-indicator" style="background-color:#000000;"></div></td><td><input type="text" class="name" value="A"></td><td><input type="number" class="ratio" value="1" min="1"></td><td><button type="button" onclick="rmItem(this)">削除</button></td></tr>
-                        <tr class="item"><td><div class="color-indicator" style="background-color:#000000;"></div></td><td><input type="text" class="name" value="B"></td><td><input type="number" class="ratio" value="1" min="1"></td><td><button type="button" onclick="rmItem(this)">削除</button></td></tr>
-                        <tr class="item"><td><div class="color-indicator" style="background-color:#000000;"></div></td><td><input type="text" class="name" value="C"></td><td><input type="number" class="ratio" value="1" min="1"></td><td><button type="button" onclick="rmItem(this)">削除</button></td></tr>
-                        <tr class="item"><td><div class="color-indicator" style="background-color:#000000;"></div></td><td><input type="text" class="name" value="D"></td><td><input type="number" class="ratio" value="1" min="1"></td><td><button type="button" onclick="rmItem(this)">削除</button></td></tr>
-                        <tr class="item"><td><div class="color-indicator" style="background-color:#000000;"></div></td><td><input type="text" class="name" value="E"></td><td><input type="number" class="ratio" value="1" min="1"></td><td><button type="button" onclick="rmItem(this)">削除</button></td></tr>
-                        <tr class="item"><td><div class="color-indicator" style="background-color:#000000;"></div></td><td><input type="text" class="name" value="F"></td><td><input type="number" class="ratio" value="1" min="1"></td><td><button type="button" onclick="rmItem(this)">削除</button></td></tr>
+                        <tr class="item"><td><div class="color-indicator" style="background-color:#000000;"></div></td><td><input type="text" class="name input-content" value="A"></td><td><input type="number" class="ratio input-ratio" value="1" min="1"></td><td><button type="button" onclick="rmItem(this)">削除</button></td></tr>
+                        <tr class="item"><td><div class="color-indicator" style="background-color:#000000;"></div></td><td><input type="text" class="name input-content" value="B"></td><td><input type="number" class="ratio input-ratio" value="1" min="1"></td><td><button type="button" onclick="rmItem(this)">削除</button></td></tr>
+                        <tr class="item"><td><div class="color-indicator" style="background-color:#000000;"></div></td><td><input type="text" class="name input-content" value="C"></td><td><input type="number" class="ratio input-ratio" value="1" min="1"></td><td><button type="button" onclick="rmItem(this)">削除</button></td></tr>
+                        <tr class="item"><td><div class="color-indicator" style="background-color:#000000;"></div></td><td><input type="text" class="name input-content" value="D"></td><td><input type="number" class="ratio input-ratio" value="1" min="1"></td><td><button type="button" onclick="rmItem(this)">削除</button></td></tr>
+                        <tr class="item"><td><div class="color-indicator" style="background-color:#000000;"></div></td><td><input type="text" class="name input-content" value="E"></td><td><input type="number" class="ratio input-ratio" value="1" min="1"></td><td><button type="button" onclick="rmItem(this)">削除</button></td></tr>
+                        <tr class="item"><td><div class="color-indicator" style="background-color:#000000;"></div></td><td><input type="text" class="name input-content" value="F"></td><td><input type="number" class="ratio input-ratio" value="1" min="1"></td><td><button type="button" onclick="rmItem(this)">削除</button></td></tr>
                     </table>
                     <!-- <button type="button" class="add">追加</button> -->
                 </div>
@@ -111,7 +111,7 @@
                     });
                 }
                 $('.add').click(function(){
-                    var add = '<tr class="item"><td><div class="color-indicator" style="background-color:#000000;"></div></td><td><input type="text" class="name" value="項目"></td><td><input type="number" class="ratio" value="1" min="1"></td><td><button type="button" onclick="rmItem(this)">削除</button></td></tr>';
+                    var add = '<tr class="item"><td><div class="color-indicator" style="background-color:#000000;"></div></td><td><input type="text" class="name input-content" value="項目"></td><td><input type="number" class="ratio  input-ratio" value="1" min="1"></td><td><button type="button" onclick="rmItem(this)">削除</button></td></tr>';
                     $('#table').append(add);
                     recalculate();
                     if(mode==Mode.waiting){

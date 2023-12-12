@@ -26,6 +26,26 @@
     margin: 0 auto;
 }
 
+.input-content{
+  width: 232px;
+  margin: 2px;
+  padding: 10px 15px;
+  font-size: 1.3rem;
+  border-radius: 10px;
+  border: 2.5px solid black;
+  box-sizing: border-box;
+}
+.input-ratio{
+  width: 80px;
+  margin: 2px;
+  padding: 10px 15px;
+  font-size: 1.3rem;
+  border-radius: 18px;
+  border: 2.5px solid black;
+  box-sizing: border-box;
+}
+
+
 /* ルーレット1 */
 /* #roulette-container {
     width: 300px;
