@@ -1,5 +1,6 @@
 const groupId = new URLSearchParams(window.location.search).get('id');
 const logo = document.getElementById("logo");
+const top = document.getElementById("top");
 const home = document.getElementById("home");
 const back = document.getElementById("back");
 logo.href = `../group.html?id=${groupId}`;
@@ -8,7 +9,7 @@ back.href = `../group.html?id=${groupId}`;
 
 
 
-import { app, database, ref_, get_, update_ , showAlert} from "../../../../../js/master.js";
+import { app, database, ref_, get_, update_} from "../../../../../js/master.js";
 
 const messageRef = ref_(database, "message");
 
@@ -534,6 +535,12 @@ document.getElementById('toggleButton').addEventListener('click', function() {
 });
 
 // top alert
+function showAlert() {
+    var result = confirm('注意 グループから抜けることになります');
+    if (result){
+        top.href = `../../../../index.html`;
+    }
+}
 top.onclick = showAlert;
 
 

@@ -1,5 +1,3 @@
-import {showAlert}  from "../../../../../js/master.js";
-
 const groupId = new URLSearchParams(window.location.search).get('id');
 const logo = document.getElementById("logo");
 const top = document.getElementById("top");
@@ -9,6 +7,12 @@ const topic = document.getElementById("topic");
 const back = document.getElementById("back");
 
 logo.href = `../group.html?id=${groupId}`;
+function showAlert() {
+    var result = confirm('注意 グループから抜けることになります');
+    if (result){
+        top.href = `../../../../index.html`;
+    }
+}
 top.onclick = showAlert;
 home.href = `../group.html?id=${groupId}`;
 roulette.href = `./roulette/roulette.html?id=${groupId}`;

@@ -4,12 +4,17 @@ const top = document.getElementById("top");
 const home = document.getElementById("home");
 const back = document.getElementById("back");
 logo.href = `../group.html?id=${groupId}`;
+function showAlert() {
+    var result = confirm('注意 グループから抜けることになります');
+    if (result){
+        top.href = `../../../../index.html`;
+    }
+}
 top.onclick = showAlert;
 home.href = `../group.html?id=${groupId}`;
 back.href = `../group.html?id=${groupId}`;
 
 
-import {showAlert} from "../../../../../js/master.js";
 
 
 const memberList = ["秀島", "川崎", "佐々木", "福田", "松島"];

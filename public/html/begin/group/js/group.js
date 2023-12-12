@@ -1,4 +1,4 @@
-import { app, database, ref_, set_, get_, update_, push_, showAlert}  from "../../../../js/master.js";
+import { app, database, ref_, set_, get_, update_, push_}  from "../../../../js/master.js";
 const groupH3 = document.getElementById("groupH3");
 const tatekaeButton = document.getElementById("tatekaeButton");
 const warikanButton = document.getElementById("warikanButton");
@@ -29,5 +29,11 @@ warikanButton.href = `./warikan/warikan.html?id=${groupId}`;
 gameButton.href = `./game/game.html?id=${groupId}`;
 editButton.href = `./edit/edit.html?id=${groupId}`;
 logo.href = `./group.html?id=${groupId}`;
+function showAlert() {
+    var result = confirm('注意 グループから抜けることになります');
+    if (result){
+        top.href = `../../../index.html`;
+    }
+}
 top.onclick = showAlert;
 home.href = `./group.html?id=${groupId}`;
