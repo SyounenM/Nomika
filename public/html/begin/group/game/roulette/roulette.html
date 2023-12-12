@@ -15,12 +15,12 @@
         <img class="foam" src="../../../../../image/foam_index.png">
         <header class="header">
             <div class="logo">
-                <a id="logo">Nomika.</a>
+                <a href="../../group.html">Nomika.</a>
             </div>
             <nav class="navbar">
-                <a id="top" href="../../../../../index.html">Top</a>
-                <a id="home">Home</a>
+                <a href="../../group.html">Home</a>
                 <a href="#">About</a>
+                <a href="#">Services</a>
                 <a href="#">Contact</a>
             </nav>
         </header>
@@ -52,7 +52,7 @@
             integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
             crossorigin="anonymous"></script>
             <script src="./js/p5.min.js"></script>
-            <script type="module" src="./js/roulette.js"></script>
+            <script src="./js/roulette.js"></script>
             <style>
             .p5Canvas{
                 max-width: 600px;
@@ -73,14 +73,14 @@
                 <button type="button" class="add">追加</button>
                 <div>
                     <table id="table">
-                        <tr><th><div class="big">色</div></th><th><div class="big">項目名</div></th><th><div class="big">割合</div></th></tr>
+                        <tr><th>色</th><th>項目名</th><th>割合</th></tr>
                         <!-- <tr class="item"><td><div class="color-indicator" style="background-color:#000000;"></div></td><td><input type="text" class="name" value="項目"></td><td><input type="number" class="ratio" value="1"></td><td class="probability"></td><td><button type="button" onclick="rmItem(this)">削除</button></td></tr> -->
-                        <tr class="item"><td><div class="color-indicator" style="background-color:#000000;"></div></td><td><input type="text" class="name input-content" value="A"></td><td><input type="number" class="ratio input-ratio" value="1" min="1"></td><td><button type="button" onclick="rmItem(this)">削除</button></td></tr>
-                        <tr class="item"><td><div class="color-indicator" style="background-color:#000000;"></div></td><td><input type="text" class="name input-content" value="B"></td><td><input type="number" class="ratio input-ratio" value="1" min="1"></td><td><button type="button" onclick="rmItem(this)">削除</button></td></tr>
-                        <tr class="item"><td><div class="color-indicator" style="background-color:#000000;"></div></td><td><input type="text" class="name input-content" value="C"></td><td><input type="number" class="ratio input-ratio" value="1" min="1"></td><td><button type="button" onclick="rmItem(this)">削除</button></td></tr>
-                        <tr class="item"><td><div class="color-indicator" style="background-color:#000000;"></div></td><td><input type="text" class="name input-content" value="D"></td><td><input type="number" class="ratio input-ratio" value="1" min="1"></td><td><button type="button" onclick="rmItem(this)">削除</button></td></tr>
-                        <tr class="item"><td><div class="color-indicator" style="background-color:#000000;"></div></td><td><input type="text" class="name input-content" value="E"></td><td><input type="number" class="ratio input-ratio" value="1" min="1"></td><td><button type="button" onclick="rmItem(this)">削除</button></td></tr>
-                        <tr class="item"><td><div class="color-indicator" style="background-color:#000000;"></div></td><td><input type="text" class="name input-content" value="F"></td><td><input type="number" class="ratio input-ratio" value="1" min="1"></td><td><button type="button" onclick="rmItem(this)">削除</button></td></tr>
+                        <tr class="item"><td><div class="color-indicator" style="background-color:#000000;"></div></td><td><input type="text" class="name" value="A"></td><td><input type="number" class="ratio" value="1" min="1"></td><td><button type="button" onclick="rmItem(this)">削除</button></td></tr>
+                        <tr class="item"><td><div class="color-indicator" style="background-color:#000000;"></div></td><td><input type="text" class="name" value="B"></td><td><input type="number" class="ratio" value="1" min="1"></td><td><button type="button" onclick="rmItem(this)">削除</button></td></tr>
+                        <tr class="item"><td><div class="color-indicator" style="background-color:#000000;"></div></td><td><input type="text" class="name" value="C"></td><td><input type="number" class="ratio" value="1" min="1"></td><td><button type="button" onclick="rmItem(this)">削除</button></td></tr>
+                        <tr class="item"><td><div class="color-indicator" style="background-color:#000000;"></div></td><td><input type="text" class="name" value="D"></td><td><input type="number" class="ratio" value="1" min="1"></td><td><button type="button" onclick="rmItem(this)">削除</button></td></tr>
+                        <tr class="item"><td><div class="color-indicator" style="background-color:#000000;"></div></td><td><input type="text" class="name" value="E"></td><td><input type="number" class="ratio" value="1" min="1"></td><td><button type="button" onclick="rmItem(this)">削除</button></td></tr>
+                        <tr class="item"><td><div class="color-indicator" style="background-color:#000000;"></div></td><td><input type="text" class="name" value="F"></td><td><input type="number" class="ratio" value="1" min="1"></td><td><button type="button" onclick="rmItem(this)">削除</button></td></tr>
                     </table>
                     <!-- <button type="button" class="add">追加</button> -->
                 </div>
@@ -135,7 +135,7 @@
                 });
             </script>
         </div>
-        <a id="back" class="btn btn-border btn-roulette"><span>戻る</span></a> <!-- ボタンテンプレート -->
+        <a href="../game.html" class="btn btn-border btn-roulette"><span>戻る</span></a> <!-- ボタンテンプレート -->
         </div>
         </div>
     </body>
