@@ -24,6 +24,11 @@ body{
     position: relative;
     background:linear-gradient(0deg,rgb(255, 235, 9) ,rgb(255, 150, 0));
 }
+body h1{
+    color: #FFFFFF;
+    font-size: 48px;
+    margin: 20px;
+}
 body h3{
     color: #FFFFFF;
     font-size: 24px;

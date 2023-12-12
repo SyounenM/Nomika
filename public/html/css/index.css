@@ -6,15 +6,16 @@
     position: relative;
     top: 0px;
     width: 100%;
-    height: 4000px;
+    height: 5000px;
     text-align: center;
     min-width: 600px;
-    min-height: 1000px; 
+    min-height: 5000px; 
 }
 
 .btn-begin{
     position: relative;
     top: 100px;
+    left: -240px;
 }
 
 .skeleton {
@@ -26,7 +27,7 @@
   /* 円→（角丸四角形を経由）→正方形 にマスクの形状を変化させるキーフレーム */
 @keyframes reveal-image {
     from {
-        clip-path: inset(100%);
+        clip-path: inset(100% round 100%);
     }
     to {
         clip-path: inset(0);
@@ -41,3 +42,18 @@
     /* ↑ https://scroll-driven-animations.style/tools/view-timeline/ranges/#range-start-name=contain&range-start-percentage=0&range-end-name=contain&range-end-percentage=50&view-timeline-axis=block&view-timeline-inset=0&subject-size=smaller&subject-animation=scale-up&interactivity=clicktodrag&show-areas=yes&show-fromto=yes&show-labels=yes */
     margin: 80px;
 }
+
+@keyframes fadeIn {
+    from {
+      opacity: 0; /* 初期状態: 透明 */
+    }
+    to {
+      opacity: 1; /* 最終状態: 不透明 */
+    }
+}
+
+/* フェードインを適用する要素に対するスタイル */
+.fade-in {
+    animation: fadeIn 2.5s ease-in-out; /* アニメーションの名前、時間、タイミング関数の設定 */
+}
+
