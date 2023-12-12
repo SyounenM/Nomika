@@ -61,8 +61,8 @@
             }
             </style>
             <div id="canvas"></div>
-            <button type="button" id="reset" onclick="reset()">リセット</button>
-            <button type="button" id="start" onclick="start()">スタート</button>
+            <button class="resetButton" type="button" id="reset" onclick="reset()">リセット</button>
+            <button class="startButton" type="button" id="start" onclick="start()">スタート</button>
             <button type="button" id="stop" onclick="stop()" style="display:none;">ストップ</button>
         
             <h2>結果</h2>
@@ -79,8 +79,6 @@
                         <tr class="item"><td><div class="color-indicator" style="background-color:#000000;"></div></td><td><input type="text" class="name input-content" value="B"></td><td><input type="number" class="ratio input-ratio" value="1" min="1"></td><td><button class="deleteButton" type="button" onclick="rmItem(this)">削除</button></td></tr>
                         <tr class="item"><td><div class="color-indicator" style="background-color:#000000;"></div></td><td><input type="text" class="name input-content" value="C"></td><td><input type="number" class="ratio input-ratio" value="1" min="1"></td><td><button class="deleteButton" type="button" onclick="rmItem(this)">削除</button></td></tr>
                         <tr class="item"><td><div class="color-indicator" style="background-color:#000000;"></div></td><td><input type="text" class="name input-content" value="D"></td><td><input type="number" class="ratio input-ratio" value="1" min="1"></td><td><button class="deleteButton" type="button" onclick="rmItem(this)">削除</button></td></tr>
-                        <tr class="item"><td><div class="color-indicator" style="background-color:#000000;"></div></td><td><input type="text" class="name input-content" value="E"></td><td><input type="number" class="ratio input-ratio" value="1" min="1"></td><td><button class="deleteButton" type="button" onclick="rmItem(this)">削除</button></td></tr>
-                        <tr class="item"><td><div class="color-indicator" style="background-color:#000000;"></div></td><td><input type="text" class="name input-content" value="F"></td><td><input type="number" class="ratio input-ratio" value="1" min="1"></td><td><button class="deleteButton" type="button" onclick="rmItem(this)">削除</button></td></tr>
                     </table>
                     <!-- <button type="button" class="add">追加</button> -->
                 </div>
