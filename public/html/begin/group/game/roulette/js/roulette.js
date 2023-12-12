@@ -11,6 +11,7 @@ back.href = `../game.html?id=${groupId}`;
 
 
 
+import {showAlert}  from "../../../../../../js/master.js";
 
 // ルーレット1
 // const startButton = document.getElementById('start-button');

@@ -1,3 +1,5 @@
+import {showAlert}  from "../../../../../js/master.js";
+
 const groupId = new URLSearchParams(window.location.search).get('id');
 const logo = document.getElementById("logo");
 const top = document.getElementById("top");

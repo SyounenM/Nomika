@@ -13,6 +13,8 @@ updateButton.href = `../group.html?id=${groupId}`;
 
 
 
+import {showAlert}  from "../../../../../js/master.js";
+
 
 // 定数（データベースで共有した情報)
 let groupName = "飲み会"

@@ -9,6 +9,9 @@ top.onclick = showAlert;
 home.href = `../../group.html?id=${groupId}`;
 back.href = `../game.html?id=${groupId}`;
 
+
+import {showAlert}  from "../../../../../../js/master.js";
+
 // const topicButton = document.getElementById("topic-button");
 // const topic_list = ["貧乳？巨乳？","topic2","topic3"];
 // const result = document.getElementById("result");
