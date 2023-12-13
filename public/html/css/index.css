@@ -18,12 +18,6 @@
     left: 0px;
 }
 
-.skeleton {
-    height: 55vh; /* スクロールが発生するよう適当な高さを確保 */
-    width: 70vw;
-    opacity: 0;
-}
-
   /* 円→（角丸四角形を経由）→正方形 にマスクの形状を変化させるキーフレーム */
 @keyframes reveal-image {
     from {
