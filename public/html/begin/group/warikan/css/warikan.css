@@ -197,6 +197,16 @@ input:checked ~ .base {
 
 }
 
+.allButton{
+    font-size: 18px;
+    position: relative;
+    left: -5px;
+}
+
+input[type="number"] {
+    font-size: 20px; /* 任意のフォントサイズに調整 */
+}
+
 /* トグルボタン */
 #toggleContent {
     display: none;

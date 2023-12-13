@@ -137,7 +137,7 @@ function viewBuilder() {
         paymentInput.type = 'number';
         paymentInput.id = member + 'Payment';
         paymentInput.min = '0';
-        paymentInput.style.width = '50px';
+        paymentInput.style.width = '70px';
         paymentDiv.appendChild(paymentInput)
         const yen = document.createElement('span');
         yen.textContent = '円';
