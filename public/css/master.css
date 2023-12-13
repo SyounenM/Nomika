@@ -29,6 +29,10 @@ body h1{
     font-size: 48px;
     margin: 20px;
 }
+body h2{
+    color: #FFFFFF;
+    font-size: 36px;
+}
 body h3{
     color: #FFFFFF;
     font-size: 24px;
