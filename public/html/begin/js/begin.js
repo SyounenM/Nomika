@@ -6,6 +6,7 @@ const inputMember = document.getElementById("inputMember");
 const labelName = document.getElementById("labelName");
 const labelGroup = document.getElementById("labelGroup");
 const labelMember = document.getElementById("labelMember");
+const memberList = document.getElementById("memberList");
 
 inputName.addEventListener("input", function() {
     if (inputName.value !== "") {
@@ -28,6 +29,12 @@ inputMember.addEventListener("input", function() {
         labelMember.innerHTML = "<h5>メンバー名</h5>";
     }
 });
+
+if (inputName.value !== "") {
+    memberList.innerHTML = "<div></div>";
+}
+
+
 
 function createGroup() {
     const groupName = document.getElementById('groupNameInput').value;

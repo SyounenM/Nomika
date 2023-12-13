@@ -228,6 +228,7 @@ a.btn-border:active:before {
 }
 .cp_iptxt {
 	position: relative;
+    left: 250px;
 	width: 50%;
 	margin: 30px 3%;
 }
