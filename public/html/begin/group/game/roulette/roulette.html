@@ -49,10 +49,12 @@
                     <div id="canvas"></div>
                     <button class="resetButton" type="button" id="reset" onclick="reset()">リセット</button>
                     <button class="startButton" type="button" id="start" onclick="start()">スタート</button>
-                    <button type="button" id="stop" onclick="stop()" style="display:none;">ストップ</button>
+                    <button class="stopButton" type="button" id="stop" onclick="stop()" style="display:none;">ストップ</button>
                 
                     <h2>結果</h2>
-                    <p id="result"></p>
+                    <!-- <p id="space "style="visibility:hidden;">あああ</p> -->
+                    <!-- <p id="result"></p> -->
+                    <p id="result" ></p>
                 
                     <div>
                         <h2>設定</h2>
@@ -93,8 +95,8 @@
 
     <style>
         .color-indicator{
-            width: 10px;
-            height: 10px;
+            width: 20px;
+            height: 20px;
         }
         #result{
             font-size: 40px;

@@ -377,3 +377,9 @@ a.btn-border:active:before {
     height: 50px;
     border-radius: 10px;
 }
+.stopButton{
+    font-size: large;
+    width: 100px;
+    height: 50px;
+    border-radius: 10px;
+}

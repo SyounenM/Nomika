@@ -174,13 +174,13 @@ function validation(){
             badflag = true;
         }
     });
-    $('.ratio').each(function(){
-        if(!($(this).val()>0)){
-            badflag = true;
-        }
-    });
+    // $('.ratio').each(function(){
+    //     if(!($(this).val()>0)){
+    //         badflag = true;
+    //     }
+    // });
     if(badflag){
-        alert('項目名と割合を正しく設定してください。');
+        alert('項目名を正しく設定してください。');
         return 1;
     }
     return 0;
