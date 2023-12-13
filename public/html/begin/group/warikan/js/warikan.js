@@ -152,10 +152,10 @@ function viewBuilder() {
         ratioInput.min = '0';
         ratioInput.max = '100';
         ratioInput.step = '1';
-        ratioInput.style.width = '30px'
-        ratioInput.valueAsNumber = 1
+        ratioInput.style.width = '30px';
+        ratioInput.valueAsNumber = 1;
         ratioTd.appendChild(ratioInput);
-        tr.appendChild(ratioTd)
+        tr.appendChild(ratioTd);
         //金額固定
         let switchTd = document.createElement('td');
         let switchLabel = document.createElement('label');
