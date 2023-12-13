@@ -1,3 +1,12 @@
+import { app, database, ref_, set_, get_, update_, push_, goOffline_}  from "../../../../../js/master.js";
+
+// アプリケーションが閉じられたときに呼ばれる処理
+window.onbeforeunload = function () {
+    // Firebase Realtime Databaseへの接続を切断
+    goOffline_(database);
+};
+
+
 const groupId = new URLSearchParams(window.location.search).get('id');
 const logo = document.getElementById("logo");
 const top = document.getElementById("top");
@@ -7,9 +16,6 @@ logo.href = `../group.html?id=${groupId}`;
 home.href = `../group.html?id=${groupId}`;
 back.href = `../group.html?id=${groupId}`;
 
-
-
-import { app, database, ref_, get_, update_} from "../../../../../js/master.js";
 
 const messageRef = ref_(database, "message");
 
