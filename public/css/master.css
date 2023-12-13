@@ -109,8 +109,8 @@ footer {
     font-size: 22px;
 }
 .skeleton {
-    height: 50vh; /* スクロールが発生するよう適当な高さを確保 */
-    width: 70vw;
+    height: 500px; /* スクロールが発生するよう適当な高さを確保 */
+    width: 10px;
     opacity: 0;
 }
 
