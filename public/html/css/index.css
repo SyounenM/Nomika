@@ -54,6 +54,6 @@
 
 /* フェードインを適用する要素に対するスタイル */
 .fade-in {
-    animation: fadeIn 2.0s ease-in-out; /* アニメーションの名前、時間、タイミング関数の設定 */
+    animation: fadeIn 2.2s ease-in-out; /* アニメーションの名前、時間、タイミング関数の設定 */
 }
 
