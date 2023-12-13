@@ -9,6 +9,7 @@ const labelMember = document.getElementById("labelMember");
 const addButton = document.getElementById("addButton");
 let memberDiv = document.getElementById('memberList');
 let member;
+let memberList = [];
 
 inputName.addEventListener("input", function() {
     if (inputName.value !== "") {
@@ -38,13 +39,13 @@ addButton.addEventListener("click", function() {
     let memberSpan = document.createElement("span");  //tdに何か追加。
     memberSpan.type = 'text';
     memberSpan.textContent =  ''+ member + '' ;
-    memberSpan.style = 'height: 30px; background-color:white; margin-right:10px; border: solid 1px black; border-width: 2px; border-radius: 10px; padding: 5px;';
+    memberSpan.style = 'font-size: 25px; height: 50px; background-color:white; margin-right:10px; border: solid 1px black; border-width: 2px; border-radius: 10px; padding: 5px;';
     memberSpan.id = member + "Span";
 
     let cancelButton = document.createElement('button');
     cancelButton.textContent = "×";
     cancelButton.id = member + 'Cancel';
-    cancelButton.style = 'font-size: 15px; position: relative; top: -3px; width: 30px; background-color:white; border: solid 1px black; border-width: 2px; border-radius: 10px; padding: 5px; margin-left: 10px;';
+    cancelButton.style = 'font-size: 15px; position: relative; top: -3px; width: 35px; background-color:white; border: solid 1px black; border-width: 2px; border-radius: 10px; padding: 5px; margin-left: 10px;';
     // cancelButton.style.height = '15px';
     // cancelButton.style.width = '15px';
     // cancelButton.style.offset
@@ -57,9 +58,14 @@ addButton.addEventListener("click", function() {
     memberDiv.appendChild(memberSpan); 
 });
 
-
-
-
+function cancelMember(member) {
+    console.log(memberList);
+    let colIndex = memberList.indexOf(member);
+    memberList.splice(colIndex, 1);
+    console.log(memberList);
+    let target = document.getElementById(member + "Span");
+    target.remove();
+}
 
 function createGroup() {
     const groupName = document.getElementById('groupNameInput').value;

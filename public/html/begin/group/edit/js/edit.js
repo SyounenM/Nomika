@@ -57,7 +57,7 @@ function createMember(member) {
     let cancelButton = document.createElement('button');
     cancelButton.textContent = "×";
     cancelButton.id = member + 'Cancel';
-    cancelButton.style = 'font-size: 15px; position: relative; top: -3px; width: 30px; background-color:white; border: solid 1px black; border-width: 2px; border-radius: 10px; padding: 5px; margin-left: 10px;';
+    cancelButton.style = 'font-size: 15px; position: relative; top: -3px; width: 35px; background-color:white; border: solid 1px black; border-width: 2px; border-radius: 10px; padding: 5px; margin-left: 10px;';
     // cancelButton.style.height = '15px';
     // cancelButton.style.width = '15px';
     // cancelButton.style.offset
