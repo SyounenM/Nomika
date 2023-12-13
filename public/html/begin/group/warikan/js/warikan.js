@@ -1,3 +1,12 @@
+import { app, database, ref_, set_, get_, update_, push_, goOffline_}  from "../../../../../js/master.js";
+
+// アプリケーションが閉じられたときに呼ばれる処理
+window.onbeforeunload = function () {
+    // Firebase Realtime Databaseへの接続を切断
+    goOffline_(database);
+};
+
+
 const groupId = new URLSearchParams(window.location.search).get('id');
 const logo = document.getElementById("logo");
 const top = document.getElementById("top");
@@ -7,9 +16,6 @@ logo.href = `../group.html?id=${groupId}`;
 home.href = `../group.html?id=${groupId}`;
 back.href = `../group.html?id=${groupId}`;
 
-
-
-import { app, database, ref_, get_, update_} from "../../../../../js/master.js";
 
 const messageRef = ref_(database, "message");
 
@@ -60,6 +66,12 @@ let resultDict = {};
 
 let memberDiv = document.getElementById('member');
 let groupDiv = document.getElementById('group');
+const calcButton = document.getElementById("calculateButton");
+calcButton.onclick = calculate;
+const saveButton = document.getElementById("saveButton");
+saveButton.onclick = save;
+const allButton = document.getElementById("allButton");
+allButton.onclick = allCheck;
 
 
 
@@ -335,7 +347,7 @@ function roundPayment(payment, roundUnit, option) {
     if (roundUnit == 0) {
         roundUnit = 1;
     }
-    remain = payment % roundUnit;
+    let remain = payment % roundUnit;
     switch (option) {
         case 'ceil': //切り上げる
             payment -= remain;
@@ -462,7 +474,7 @@ function toggleCheckboxInSameRow(cell) {
 function allCheck() {
     let allButton = document.getElementById('allButton');
     allButton.innerHTML = (allButton.className=='allClear') ? '<small>全選択</small>' : '<small>全解除</small>';
-    allButton.classList.toggle('allClear');
+    allButton.className = (allButton.className=='allClear') ? "allButton" : "allClear";
     var checkboxes = document.querySelectorAll('input[class="checkbox"]');
     let checkExist = false;
     checkboxes.forEach(function (checkbox) {
@@ -520,7 +532,7 @@ checkboxes.forEach(function(checkbox) {
         addSyncEvent(checkbox);
         let allButton = document.getElementById('allButton');
         allButton.innerHTML = (allButton.className=='allClear') ? '<small>全選択</small>' : '<small>全解除</small>';
-        allButton.classList.toggle('allClear');
+        allButton.className = (allButton.className == 'allClear') ? "allButton": "allClear";
     });
 });
 

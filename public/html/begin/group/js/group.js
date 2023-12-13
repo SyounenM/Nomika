@@ -1,4 +1,4 @@
-import { app, database, ref_, set_, get_, update_, push_}  from "../../../../js/master.js";
+import { app, database, ref_, set_, get_, update_, push_, goOffline_}  from "../../../../js/master.js";
 const groupH3 = document.getElementById("groupH3");
 const tatekaeButton = document.getElementById("tatekaeButton");
 const warikanButton = document.getElementById("warikanButton");
@@ -37,3 +37,11 @@ function showAlert() {
 }
 top.onclick = showAlert;
 home.href = `./group.html?id=${groupId}`;
+
+
+
+// アプリケーションが閉じられたときに呼ばれる処理
+window.onbeforeunload = function () {
+    // Firebase Realtime Databaseへの接続を切断
+    goOffline_(database);
+};
