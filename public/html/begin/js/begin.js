@@ -65,7 +65,7 @@ function createGroup() {
     const groupName = document.getElementById('groupNameInput').value;
     const newGroupRef = push_(ref_(database, 'groups'));
     const groupId = newGroupRef.key;
-    update_(newGroupRef, {
+    set_(newGroupRef, {
         groupName: groupName
     })
     .then(()=>{
