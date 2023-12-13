@@ -245,6 +245,7 @@ function draw(){
 
     switch(mode){
     case Mode.waiting:
+        $('.RouletteSetup').removeClass('unselectable');
         break;
     case Mode.acceleration:
         if(speed<MAX_SPEED){
@@ -289,6 +290,7 @@ function draw(){
                 beforeAngleSum = angleSum;
             }
             $('#result').html(nameList[result]);
+            $('.RouletteSetup').addClass('unselectable');
         }
         break;
     }
