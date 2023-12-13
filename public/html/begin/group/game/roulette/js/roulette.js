@@ -245,6 +245,7 @@ function draw(){
 
     switch(mode){
     case Mode.waiting:
+        // $('.Roulette Setup').removeClass('unselectable');
         break;
     case Mode.acceleration:
         if(speed<MAX_SPEED){
@@ -274,6 +275,7 @@ function draw(){
         rotate(theta);
         break;
     case Mode.result:
+        // $('.Roulette Setup').addClass('unselectable');
         rotate(theta);
         if(!resultDisplayed){
             resultDisplayed = true;
