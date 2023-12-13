@@ -190,6 +190,11 @@ input:checked ~ .base {
     position: relative;
     left: -5px;
 }
+.allClear{
+    font-size: 18px;
+    position: relative;
+    left: -5px;
+}
 
 input[type="number"] {
     font-size: 20px; /* 任意のフォントサイズに調整 */

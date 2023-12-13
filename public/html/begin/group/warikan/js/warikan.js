@@ -70,6 +70,8 @@ const calcButton = document.getElementById("calculateButton");
 calcButton.onclick = calculate;
 const saveButton = document.getElementById("saveButton");
 saveButton.onclick = save;
+const allButton = document.getElementById("allButton");
+allButton.onclick = allCheck;
 
 
 
@@ -472,7 +474,7 @@ function toggleCheckboxInSameRow(cell) {
 function allCheck() {
     let allButton = document.getElementById('allButton');
     allButton.innerHTML = (allButton.className=='allClear') ? '<small>全選択</small>' : '<small>全解除</small>';
-    allButton.classList.toggle('allClear');
+    allButton.className = (allButton.className=='allClear') ? "allButton" : "allClear";
     var checkboxes = document.querySelectorAll('input[class="checkbox"]');
     let checkExist = false;
     checkboxes.forEach(function (checkbox) {
@@ -530,7 +532,7 @@ checkboxes.forEach(function(checkbox) {
         addSyncEvent(checkbox);
         let allButton = document.getElementById('allButton');
         allButton.innerHTML = (allButton.className=='allClear') ? '<small>全選択</small>' : '<small>全解除</small>';
-        allButton.classList.toggle('allClear');
+        allButton.className = (allButton.className == 'allClear') ? "allButton": "allClear";
     });
 });
 
