@@ -119,19 +119,20 @@
         }
         $('.add').click(function(){
             var add = '<tr class="item"><td><div class="color-indicator" style="background-color:#000000;"></div></td><td><input type="text" class="name input-content" value="項目"></td><td><input type="number" class="ratio  input-ratio" value="1" min="1"></td><td><button class="deleteButton" type="button" onclick="rmItem(this)">削除</button></td></tr>';
-            $('#table').append(add);
+
             recalculate();
             if(mode==Mode.waiting){
+                $('#table').append(add);
                 dataFetch();
             }
         });
         function rmItem(e){
-            if($('.ratio').length>2){
-                $(e).parent().parent().remove();
-                recalculate();
-            }
             if(mode==Mode.waiting){
-                dataFetch();
+                if($('.ratio').length>2){
+                    $(e).parent().parent().remove();
+                    recalculate();
+                    dataFetch();
+                }          
             }
         }
         $('#table').on('change', '.ratio', function(){
