@@ -6,6 +6,7 @@ const inputMember = document.getElementById("inputMember");
 const labelName = document.getElementById("labelName");
 const labelGroup = document.getElementById("labelGroup");
 const labelMember = document.getElementById("labelMember");
+const addButton = document.getElementById("addButton");
 const memberList = document.getElementById("memberList");
 
 inputName.addEventListener("input", function() {
@@ -30,8 +31,11 @@ inputMember.addEventListener("input", function() {
     }
 });
 
+addButton.addEventListener("click", function() {
+    member = inputMember.value;
+});
 if (inputName.value !== "") {
-    memberList.innerHTML = "<div></div>";
+    memberList.innerHTML += '<div class="member-list">' + member + '</div>';
 }
 
 
