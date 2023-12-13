@@ -66,6 +66,10 @@ let resultDict = {};
 
 let memberDiv = document.getElementById('member');
 let groupDiv = document.getElementById('group');
+const calcButton = document.getElementById("calculateButton");
+calcButton.onclick = calculate;
+const saveButton = document.getElementById("saveButton");
+saveButton.onclick = save;
 
 
 
@@ -341,7 +345,7 @@ function roundPayment(payment, roundUnit, option) {
     if (roundUnit == 0) {
         roundUnit = 1;
     }
-    remain = payment % roundUnit;
+    let remain = payment % roundUnit;
     switch (option) {
         case 'ceil': //切り上げる
             payment -= remain;
