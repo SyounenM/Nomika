@@ -27,18 +27,6 @@ td.selected {
     left: 0px;
 }
 
-.member {
-    margin-left: auto;
-    margin-right: auto;
-    max-width: 400px;
-    padding-left: 24px;
-    padding-right: 24px;
-    width: 100%;
-    color: black;
-}
-.member span{
-    display: inline-block;
-}
 .container {
     height: 500px;
     overflow-y: scroll;

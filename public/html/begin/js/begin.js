@@ -7,7 +7,8 @@ const labelName = document.getElementById("labelName");
 const labelGroup = document.getElementById("labelGroup");
 const labelMember = document.getElementById("labelMember");
 const addButton = document.getElementById("addButton");
-const memberList = document.getElementById("memberList");
+let memberDiv = document.getElementById('memberList');
+let member;
 
 inputName.addEventListener("input", function() {
     if (inputName.value !== "") {
@@ -31,12 +32,32 @@ inputMember.addEventListener("input", function() {
     }
 });
 
+// member
 addButton.addEventListener("click", function() {
     member = inputMember.value;
+    let memberSpan = document.createElement("span");  //tdに何か追加。
+    memberSpan.type = 'text';
+    memberSpan.textContent =  ''+ member + '' ;
+    memberSpan.style = 'height: 30px; background-color:white; margin-right:10px; border: solid 1px black; border-width: 2px; border-radius: 10px; padding: 5px;';
+    memberSpan.id = member + "Span";
+
+    let cancelButton = document.createElement('button');
+    cancelButton.textContent = "×";
+    cancelButton.id = member + 'Cancel';
+    cancelButton.style = 'font-size: 15px; position: relative; top: -3px; width: 30px; background-color:white; border: solid 1px black; border-width: 2px; border-radius: 10px; padding: 5px; margin-left: 10px;';
+    // cancelButton.style.height = '15px';
+    // cancelButton.style.width = '15px';
+    // cancelButton.style.offset
+
+    cancelButton.onclick = function(){
+        cancelMember(member);
+    };
+
+    memberSpan.appendChild(cancelButton)
+    memberDiv.appendChild(memberSpan); 
 });
-if (inputName.value !== "") {
-    memberList.innerHTML += '<div class="member-list">' + member + '</div>';
-}
+
+
 
 
 

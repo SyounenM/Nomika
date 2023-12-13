@@ -25,7 +25,7 @@ let groupName = "飲み会"
 let memberList = ["秀島", "川崎", "佐々木", "福田", "松島"];
 
 let memberTable = document.getElementById('memberTable');
-let memberListDiv = document.getElementById('memberList')
+let memberListDiv = document.getElementById('memberList');
 
 function viewBuilder() {
     let groupNameBox = document.getElementById('groupNameBox');
