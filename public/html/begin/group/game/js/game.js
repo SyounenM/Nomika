@@ -1,10 +1,10 @@
-import { app, database, ref_, set_, get_, update_, push_, goOffline_}  from "../../../../../js/master.js";
+// import { app, database, ref_, set_, get_, update_, push_, goOffline_}  from "../../../../../js/master.js";
 
-// アプリケーションが閉じられたときに呼ばれる処理
-window.onbeforeunload = function () {
-    // Firebase Realtime Databaseへの接続を切断
-    goOffline_(database);
-};
+// // アプリケーションが閉じられたときに呼ばれる処理
+// window.onbeforeunload = function () {
+//     // Firebase Realtime Databaseへの接続を切断
+//     goOffline_(database);
+// };
 
 
 const groupId = new URLSearchParams(window.location.search).get('id');
