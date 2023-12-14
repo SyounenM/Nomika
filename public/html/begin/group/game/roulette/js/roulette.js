@@ -256,6 +256,7 @@ function draw(){
     switch(mode){
     case Mode.waiting:
         $('.RouletteSetup').removeClass('unselectable');
+        $('#result').html("&nbsp;");
         break;
     case Mode.acceleration:
         if(speed<MAX_SPEED){
