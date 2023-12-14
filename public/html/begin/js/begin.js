@@ -72,7 +72,14 @@ function createGroup() {
     const newGroupRef = push_(ref_(database, 'groups'));
     const groupId = newGroupRef.key;
     set_(newGroupRef, {
-        groupName: groupName
+        groupName: groupName,
+        info:{
+            "秀島":0,
+            "川崎":0,
+            "佐々木":0, 
+            "福田":0, 
+            // "松島":0
+        }
     })
     .then(()=>{
         console.log("データが正常に書き込まれました");
