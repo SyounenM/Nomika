@@ -36,9 +36,9 @@ inputMember.addEventListener("input", function() {
 // member
 addButton.addEventListener("click", function() {
     member = inputMember.value;
-    let memberSpan = document.createElement("span");  //tdに何か追加。
+    let memberSpan = document.createElement("span");
     memberSpan.type = 'text';
-    memberSpan.textContent =  ''+ member + '' ;
+    memberSpan.textContent =  '' + member + '' ;
     memberSpan.style = 'font-size: 25px; height: 50px; background-color:white; margin-right:10px; border: solid 1px black; border-width: 2px; border-radius: 10px; padding: 7px;';
     memberSpan.id = member + "Span";
 
