@@ -306,3 +306,41 @@ function draw(){
     }
     drawRoulette();
 }
+
+
+function recalculate(){
+    var ratioSumJs = 0;
+    $('.ratio').each(function(){
+        ratioSumJs += $(this).val()-0; //文字から数字の変換
+    });
+    $(".item").each(function(){
+        var probability = ($(this).find(".ratio").first().val()-0) / ratioSumJs;
+        probability*=100;
+        probability = probability.toFixed(3);
+        $(this).children(".probability").first().html(probability+"%");
+    });
+}
+$('.add').click(function(){
+    var add = '<tr class="item"><td><div class="color-indicator" style="background-color:#000000;"></div></td><td><input type="text" class="name input-content" value="項目"></td><td><input type="number" class="ratio  input-ratio" value="1" min="1"></td><td><button class="deleteButton" type="button" onclick="rmItem(this)">削除</button></td></tr>';
+    
+    recalculate();
+    if(mode==Mode.waiting){
+        $('#table').append(add);
+        dataFetch();
+    }
+});
+function rmItem(e){
+    if(mode==Mode.waiting){
+        if($('.ratio').length>2){
+            $(e).parent().parent().remove();
+            recalculate();
+            dataFetch();
+        }          
+    }
+}
+$('#table').on('change', '.ratio', function(){
+    recalculate();
+    if(mode==Mode.waiting){
+        dataFetch();
+    }
+});
