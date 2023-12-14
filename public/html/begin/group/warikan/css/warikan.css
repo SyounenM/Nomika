@@ -33,7 +33,7 @@ td.selected {
     overflow: auto;
     width: 100%;
     position: relative;
-    left: -20px;
+    left: -15px;
 }
 .container table{
     width: 600px;
