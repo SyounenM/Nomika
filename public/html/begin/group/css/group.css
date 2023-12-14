@@ -6,7 +6,7 @@
 .btn-edit{
     position: relative;
     top: 200px;
-    left: 15px;
+    left: 0px;
 }
 .background-group {
     background-image: url('../../../../image/bubble.png');

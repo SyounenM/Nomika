@@ -148,7 +148,8 @@ button.btn {
 }
 
 a.btn-border {
-    margin-bottom: 12px;
+    margin-bottom: 20px;
+    margin-left: 5px;
     padding: 0;
     -webkit-transition: all 0.3s;
     transition: all 0.3s;
@@ -158,7 +159,7 @@ a.btn-border {
 a.btn-border span {
     position: relative;
     display: block;
-    padding: 1.28rem 4rem;
+    padding: 1.28rem 2.5rem;
     color: #000;
     border: 2px solid #000;
     border-radius: 0.5rem;
@@ -228,7 +229,7 @@ a.btn-border:active:before {
 }
 .cp_iptxt {
 	position: relative;
-    left: 250px;
+    left: 20%;
 	width: 50%;
 	margin: 30px 3%;
 }
@@ -353,6 +354,7 @@ a.btn-border:active:before {
     border-top-color: #aaa;
 }
 
+/* button */
 .addButton{
     font-size: large;
     width: 70px;
