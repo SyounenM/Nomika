@@ -16,6 +16,7 @@ const back = document.getElementById("back");
 logo.href = `../group.html?id=${groupId}`;
 home.href = `../group.html?id=${groupId}`;
 back.href = `../group.html?id=${groupId}`;
+top.onclick = showAlert;
 
 // htmlとの連携
 let memberDiv = document.getElementById('member');
@@ -57,25 +58,6 @@ let getFlag = false;
 //関数
 //画面生成
 function viewBuilder() {
-    // データベースから情報を取得
-    get_(groupRef)
-        .then((snapshot) => {
-        let data = snapshot.val();
-        groupName = data["groupName"];
-        preResult = data["info"];
-
-        console.log("groupname:" + groupName);
-        memberList = Object.keys(preResult);
-        //グループ名表示
-        groupDiv.innerHTML = 'グループ名：' + groupName + "</br>";
-        getFlag = true;
-    })
-        .catch((error) => {
-            console.log("ID:" + groupId);
-            console.error("データの読み取りに失敗しました", error);
-    });
-
-
     //メンバー表示
     for (let member of memberList) {
         let memberSpan = document.createElement('span');
@@ -502,12 +484,40 @@ function allCheck() {
         }
     })    
 }
+// top alert
+function showAlert() {
+    var result = confirm('注意 グループから抜けることになります');
+    if (result){
+        top.href = `../../../../index.html`;
+    }
+}
+
+
 
 
 // main///////////////////////////////////////////////////////////////////////
 // 画面生成
 let isSelecting = false;
-viewBuilder();
+// データベースから情報を取得
+get_(groupRef)
+    .then((snapshot) => {
+    let data = snapshot.val();
+    groupName = data["groupName"];
+    preResult = data["info"];
+
+    console.log("groupname:" + groupName);
+    memberList = Object.keys(preResult);
+    //グループ名表示
+    groupDiv.innerHTML = 'グループ名：' + groupName + "</br>";
+
+    // 画面生成
+    viewBuilder();
+})
+    .catch((error) => {
+        console.log("ID:" + groupId);
+        console.error("データの読み取りに失敗しました", error);
+});
+
 let select = document.querySelector('[name="member"]')
 select.onchange = event => {
     let payer = document.getElementById('payer').value;
@@ -555,14 +565,7 @@ document.getElementById('toggleButton').addEventListener('click', function() {
     }
 });
 
-// top alert
-function showAlert() {
-    var result = confirm('注意 グループから抜けることになります');
-    if (result){
-        top.href = `../../../../index.html`;
-    }
-}
-top.onclick = showAlert;
+
 
 
 // note//
