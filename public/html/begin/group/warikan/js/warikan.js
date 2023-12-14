@@ -48,14 +48,91 @@ let preResult = { // 前回までの割り勘の結果を格納するjson
     "松島":0
 };
 let resultDict = {};// 今回の割り勘結果を格納するjson
-
+let pushResult = {};
 // データベースへの参照
 let groupRef = ref_(database,'groups/' + groupId);
 let resultRef = ref_(database, 'groups/' + groupId + '/info');
 
 let getFlag = false;
 
-//関数
+
+
+
+// main//////////////////////////////////////////////////////////////////////////////////////////////
+// 画面生成
+let isSelecting = false;
+// データベースから情報を取得
+get_(groupRef)
+    .then((snapshot) => {
+    let data = snapshot.val();
+    groupName = data["groupName"];
+    preResult = data["info"];
+
+    console.log("groupname:" + groupName);
+    memberList = Object.keys(preResult);
+    //グループ名表示
+    groupDiv.innerHTML = 'グループ名：' + groupName + "</br>";
+
+    // 画面生成
+    viewBuilder();
+})
+    .catch((error) => {
+        console.log("ID:" + groupId);
+        console.error("データの読み取りに失敗しました", error);
+});
+
+let select = document.querySelector('[name="member"]')
+select.onchange = event => {
+    let payer = document.getElementById('payer').value;
+    for(let member of memberList){
+        let memberRow = document.getElementById(member + 'Row');
+        memberRow.style = 'background-color: transparent;'
+        let fracToggle = document.getElementById(member + 'FracToggle');
+        fracToggle.checked = false;
+
+    }
+    let payerRow = document.getElementById(payer + 'Row');
+    payerRow.style = 'background-color: #FFCCCC;';
+    let fracToggle = document.getElementById(payer + 'FracToggle');
+    fracToggle.checked = true;
+}
+
+//同時編集のイベント通知を設定
+// 同期するチェックボックスの要素を取得
+var checkboxes = document.querySelectorAll('input[class="checkbox"]');
+// 各チェックボックスに対してイベントリスナーを追加
+checkboxes.forEach(function(checkbox) {
+    checkbox.addEventListener('change', function() {
+        let nameId = checkbox.id.replace('CheckBox', 'Name');
+        let nameTd = document.getElementById(nameId);
+        if (checkbox.checked) {
+            nameTd.className = 'selected';
+        }else if (nameId.className != 'selected'){
+            nameTd.className = '';
+        }
+        // チェックボックスが変更されたら、対応する入力欄にイベントリスナーを追加または削除
+        addSyncEvent(checkbox);
+        let allButton = document.getElementById('allButton');
+        allButton.innerHTML = (allButton.className=='allClear') ? '<small>全選択</small>' : '<small>全解除</small>';
+        allButton.className = (allButton.className == 'allClear') ? "allButton": "allClear";
+    });
+});
+
+// トグルによる表示・非表示の切り替え
+document.getElementById('toggleButton').addEventListener('click', function() {
+    var content = document.getElementById('toggleContent');
+    if (content.style.display === 'none') {
+        content.style.display = 'block';
+    } else {
+        content.style.display = 'none';
+    }
+});
+
+
+
+
+
+//関数/////////////////////////////////////////////////////////////////////////////////////////////
 //画面生成
 function viewBuilder() {
     //メンバー表示
@@ -320,7 +397,7 @@ function calculate() {
     console.log(resultDict);
     for (let key in preResult){
         if (resultDict.hasOwnProperty(key)){
-            result[key] = preResult[key] + resultDict[key];
+            pushResult[key] = preResult[key] + resultDict[key];
         }
     }
     console.log(result);
@@ -356,9 +433,10 @@ function roundPayment(payment, roundUnit, option) {
 function save() {
     try {
         calculate();
-        set_(resultRef,result)
+        set_(resultRef,pushResult)
         .then(()=>{
             console.log("データが正常に書き込まれました");
+            alert("割り勘金額が保存されました")
         })
         .catch((error)=>{
             console.error("データの書き込みに失敗しました", error);
@@ -492,78 +570,6 @@ function showAlert() {
     }
 }
 
-
-
-
-// main///////////////////////////////////////////////////////////////////////
-// 画面生成
-let isSelecting = false;
-// データベースから情報を取得
-get_(groupRef)
-    .then((snapshot) => {
-    let data = snapshot.val();
-    groupName = data["groupName"];
-    preResult = data["info"];
-
-    console.log("groupname:" + groupName);
-    memberList = Object.keys(preResult);
-    //グループ名表示
-    groupDiv.innerHTML = 'グループ名：' + groupName + "</br>";
-
-    // 画面生成
-    viewBuilder();
-})
-    .catch((error) => {
-        console.log("ID:" + groupId);
-        console.error("データの読み取りに失敗しました", error);
-});
-
-let select = document.querySelector('[name="member"]')
-select.onchange = event => {
-    let payer = document.getElementById('payer').value;
-    for(let member of memberList){
-        let memberRow = document.getElementById(member + 'Row');
-        memberRow.style = 'background-color: transparent;'
-        let fracToggle = document.getElementById(member + 'FracToggle');
-        fracToggle.checked = false;
-
-    }
-    let payerRow = document.getElementById(payer + 'Row');
-    payerRow.style = 'background-color: #FFCCCC;';
-    let fracToggle = document.getElementById(payer + 'FracToggle');
-    fracToggle.checked = true;
-}
-
-//同時編集のイベント通知を設定
-// 同期するチェックボックスの要素を取得
-var checkboxes = document.querySelectorAll('input[class="checkbox"]');
-// 各チェックボックスに対してイベントリスナーを追加
-checkboxes.forEach(function(checkbox) {
-    checkbox.addEventListener('change', function() {
-        let nameId = checkbox.id.replace('CheckBox', 'Name');
-        let nameTd = document.getElementById(nameId);
-        if (checkbox.checked) {
-            nameTd.className = 'selected';
-        }else if (nameId.className != 'selected'){
-            nameTd.className = '';
-        }
-        // チェックボックスが変更されたら、対応する入力欄にイベントリスナーを追加または削除
-        addSyncEvent(checkbox);
-        let allButton = document.getElementById('allButton');
-        allButton.innerHTML = (allButton.className=='allClear') ? '<small>全選択</small>' : '<small>全解除</small>';
-        allButton.className = (allButton.className == 'allClear') ? "allButton": "allClear";
-    });
-});
-
-// トグルによる表示・非表示の切り替え
-document.getElementById('toggleButton').addEventListener('click', function() {
-    var content = document.getElementById('toggleContent');
-    if (content.style.display === 'none') {
-        content.style.display = 'block';
-    } else {
-        content.style.display = 'none';
-    }
-});
 
 
 
