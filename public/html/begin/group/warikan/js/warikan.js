@@ -149,7 +149,7 @@ function viewBuilder() {
         paymentInput.type = 'number';
         paymentInput.id = member + 'Payment';
         paymentInput.min = '0';
-        paymentInput.style.width = '70px';
+        paymentInput.style.width = '90px';
         paymentDiv.appendChild(paymentInput)
         const yen = document.createElement('span');
         yen.textContent = '円';
@@ -164,7 +164,7 @@ function viewBuilder() {
         ratioInput.min = '0';
         ratioInput.max = '100';
         ratioInput.step = '1';
-        ratioInput.style.width = '30px';
+        ratioInput.style.width = '55px';
         ratioInput.valueAsNumber = 1;
         ratioTd.appendChild(ratioInput);
         tr.appendChild(ratioTd);
