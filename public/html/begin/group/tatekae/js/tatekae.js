@@ -23,7 +23,26 @@ home.href = `../group.html?id=${groupId}`;
 back.href = `../group.html?id=${groupId}`;
 
 
+// データベースから情報を取得
+get_(groupRef)
+    .then((snapshot) => {
+    let data = snapshot.val();
+    groupName = data["groupName"];
+    preResult = data["info"];
 
+    memberList = Object.keys(preResult);
+    console.log("groupname:" + groupName);
+    console.log("memberList:" + memberList);
+    //グループ名表示
+    // groupDiv.innerHTML = 'グループ名：' + groupName + "</br>";
+
+    // 画面生成
+    viewBuilder();
+})
+    .catch((error) => {
+        console.log("ID:" + groupId);
+        console.error("データの読み取りに失敗しました", error);
+});
 
 const memberList = ["秀島", "川崎", "佐々木", "福田", "松島"];
 
