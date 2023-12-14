@@ -45,7 +45,25 @@
   box-sizing: border-box;
 }
 
+.p5Canvas{
+  max-width: 600px;
+  width: 100% !important;
+  height: auto !important;
+}
 
+.color-indicator{
+  width: 20px;
+  height: 20px;
+}
+#result{
+  font-size: 40px;
+  font-weight: bold;
+}
+.unselectable {
+  opacity: 0.5; /* 文字や表の不透明度を下げる（薄くする） */
+  pointer-events: none; /* イベントを無効にする（選択不可にする） */
+  /* 他にも必要に応じてスタイルを追加できます */
+}
 /* ルーレット1 */
 /* #roulette-container {
     width: 300px;
