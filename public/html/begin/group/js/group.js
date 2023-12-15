@@ -45,3 +45,140 @@ window.onbeforeunload = function () {
     // Firebase Realtime Databaseへの接続を切断
     goOffline_(database);
 };
+
+// 結果表示用 //////////////////////////////////////////////////////
+
+let memberList = [];
+
+// データベースへの参照
+let groupRef = ref_(database,'groups/' + groupId);
+let historyRef = ref_(database, 'groups/' + groupId + '/history');
+
+let historyList = [];
+let balanceList = [] ;
+let resultList = [];
+
+// データベースから情報を取得
+function getGroupInfo() {
+    get_(groupRef)
+        .then((snapshot) => {
+        let data = snapshot.val();
+        console.log(data);
+        memberList = data["groupMember"];
+        
+        console.log("memberList:" + memberList);
+        
+    }).then(addOption)
+        .catch((error) => {
+            console.log("ID:" + groupId);
+            console.error("データの読み取りに失敗しました", error);
+    });
+}
+
+function getHistory() {
+    return new Promise((resolve, reject) => {
+        get_(historyRef)
+            .then((snapshot) => {
+                let history = snapshot.val();
+                historyList = Object.values(history);
+                // historyList = historyData.map(item => item.data);
+                console.log(historyList);
+                resolve();
+            })
+            .catch((error) => {
+                console.error("データの読み取りに失敗しました", error);
+                reject(error);
+            });
+    });
+}
+
+function initializeBalanceList() {
+    for ( const member of memberList ) {
+        balanceList.push({"name": member, "balance": 0});
+    }
+}
+
+function calculateBalance() {
+    for( const { creditor, amount, debtor } of historyList ) {
+        let creditorObject = balanceList.find(memberObj => memberObj.name === creditor);
+        let debtorObject = balanceList.find(memberObj => memberObj.name === debtor);
+        if (creditorObject) {
+            creditorObject.balance += parseInt(amount);
+        }
+        if (debtorObject) {
+            debtorObject.balance -= parseInt(amount)
+        }
+    }
+}
+
+function calculation(liquidation = []) {
+    balanceList.sort((a, b) => b.balance - a.balance);
+    let creditor = balanceList[0];
+    let debtor = balanceList[balanceList.length - 1];
+
+    let amount = Math.min(creditor.balance, Math.abs(debtor.balance));
+
+    if (amount === 0) {
+        return { balanceList, liquidation };
+    }
+
+    // Perform the liquidation between creditor and debtor, and make a recursive call
+    creditor.balance -= amount;
+    debtor.balance += amount;
+
+    liquidation.push({
+        debtor: debtor.name,
+        creditor: creditor.name,
+        amount: amount
+    });
+    return calculation(liquidation);
+}
+
+function mainCalculation() {
+    console.log('Initial Balances:');
+    balanceList.forEach(balanceList => {
+        console.log(`${balanceList.name}: ${balanceList.balance}`);
+    });
+
+    // Perform the liquidation
+    let result = calculation();
+
+    // Display the liquidation amounts
+    console.log('-----------------');
+    console.log('Liquidation Amounts:');
+    result.liquidation.forEach(l => {
+        console.log(`${l.debtor} -> ${l.creditor}: ${parseInt(l.amount)}`);
+    });
+
+    // Display the remaining balances after liquidation
+    console.log('-----------------');
+    console.log('Remaining Balances:');
+    result.balanceList.forEach(p => {
+        console.log(`${p.name}: ${parseInt(p.balance)}`);
+    });
+
+    // Display the offset amount
+    console.log('-----------------');
+    let total = result.balanceList.reduce((acc, p) => acc + p.balance, 0);
+    console.log(`Offset Amount: ${parseInt(total)}`);
+    resultList = result.liquidation
+}
+
+function showResult() {
+
+    var res = document.getElementById("result");
+    res.innerHTML = ""; // 以前の結果をクリア
+    for (const obj of resultList) {
+        // 各結果を表示
+        res.innerHTML += `${obj.debtor}が${obj.creditor}に${obj.amount}円支払い<br>`;
+    }
+}
+
+// main //////////////////////////////////////////////////////
+getGroupInfo()
+    .then(getHistory)
+    .then(initializeBalanceList)
+    .then(calculateBalance)
+    .then(mainCalculation)
+    .then(showResult)
+    .catch(error => console.error(error));
