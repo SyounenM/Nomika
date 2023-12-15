@@ -71,7 +71,7 @@ function getGroupInfo() {
     }).then(addOption)
         .catch((error) => {
             console.log("ID:" + groupId);
-            console.error("データの読み取りに失敗しました", error);
+            console.error("グループ情報の読み取りに失敗しました", error);
     });
 }
 
@@ -86,7 +86,7 @@ function getHistory() {
                 resolve();
             })
             .catch((error) => {
-                console.error("データの読み取りに失敗しました", error);
+                console.error("履歴の読み取りに失敗しました", error);
                 reject(error);
             });
     });
