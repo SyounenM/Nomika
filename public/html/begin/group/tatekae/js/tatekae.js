@@ -22,9 +22,7 @@ top.onclick = showAlert;
 home.href = `../group.html?id=${groupId}`;
 back.href = `../group.html?id=${groupId}`;
 
-let groupName = "";
 let memberList = [];
-let preResult = {};
 // let resultDict = {};// 今回の割り勘結果を格納するjson
 // let pushResult = {};
 // データベースへの参照
@@ -32,110 +30,203 @@ let groupRef = ref_(database,'groups/' + groupId);
 let historyRef = ref_(database, 'groups/' + groupId + '/history');
 // let resultRef = ref_(database, 'groups/' + groupId);
 
-// データベースから情報を取得
-get_(groupRef)
-    .then((snapshot) => {
-    let data = snapshot.val();
-    console.log(data);
-    groupName = data["groupName"];
-    console.log("groupname:" + groupName);
-    preResult = data["info"];
-
-    memberList = Object.keys(preResult);
-    
-    console.log("memberList:" + memberList);
-    //グループ名表示
-    // groupDiv.innerHTML = 'グループ名：' + groupName + "</br>";
-
-    // 画面生成
-    addOption();
-})
-    .catch((error) => {
-        console.log("ID:" + groupId);
-        console.error("データの読み取りに失敗しました", error);
-});
-
-// const memberList = ["秀島", "川崎", "佐々木", "福田", "松島"];
-
 let historyList = [];
-
 let balanceList = [] ;
-
 let resultList = [];
+let selectedDebtors = [];
+
 
 function addOption() {
     let creditorSelect = document.getElementById("creditor select");
-    let debtorSelect = document.getElementById("debtor select");
-    for(const member of memberList) {
+    let debtorCheckboxWrapper = document.getElementById("debtor-checkbox-wrapper");
+    debtorCheckboxWrapper.innerHTML = ''; // Clear existing checkboxes
+
+    for (const member of memberList) {
         let creditorOption = document.createElement("option");
-        let debtorOption = document.createElement("option");
+        let debtorCheckbox = document.createElement("input");
+        let debtorLabel = document.createElement("label");
+
         creditorOption.text = member;
         creditorOption.value = member;
-        debtorOption.text = member;
-        debtorOption.value = member;
         creditorSelect.appendChild(creditorOption);
-        debtorSelect.appendChild(debtorOption);
+
+        debtorCheckbox.type = "checkbox";
+        debtorCheckbox.className = "checkbox";
+        debtorCheckbox.id = "debtor_" + member;
+        debtorCheckbox.value = member;
+        debtorLabel.htmlFor = "debtor_" + member;
+        debtorLabel.textContent = member;
+        
+        debtorCheckbox.addEventListener("change", function() {
+            // Handle checkbox change
+            if (this.checked) {
+                selectedDebtors.push(member);
+            } else {
+                const index = selectedDebtors.indexOf(member);
+                if (index !== -1) {
+                    selectedDebtors.splice(index, 1);
+                }
+            }
+            console.log("Selected Debtors:", selectedDebtors);
+        });
+
+        debtorCheckboxWrapper.appendChild(debtorCheckbox);
+        debtorCheckboxWrapper.appendChild(debtorLabel);
     }
+}
+
+// function addOption() {
+//     let creditorSelect = document.getElementById("creditor select");
+//     let debtorSelect = document.getElementById("debtor select");
+//     for(const member of memberList) {
+//         let creditorOption = document.createElement("option");
+//         let debtorOption = document.createElement("option");
+//         creditorOption.text = member;
+//         creditorOption.value = member;
+//         debtorOption.text = member;
+//         debtorOption.value = member;
+//         creditorSelect.appendChild(creditorOption);
+//         debtorSelect.appendChild(debtorOption);
+//     }
+// }
+
+// データベースから情報を取得
+function getGroupInfo() {
+    get_(groupRef)
+        .then((snapshot) => {
+        let data = snapshot.val();
+        console.log(data);
+        memberList = data["groupMember"];
+
+        // memberList = Object.keys(preResult);
+        
+        console.log("memberList:" + memberList);
+        //グループ名表示
+        // groupDiv.innerHTML = 'グループ名：' + groupName + "</br>";
+
+        
+    }).then(addOption)
+        .catch((error) => {
+            console.log("ID:" + groupId);
+            console.error("データの読み取りに失敗しました", error);
+    });
 }
 
 function initializeBalanceList() {
     for ( const member of memberList ) {
         balanceList.push({"name": member, "balance": 0});
-        console.log("balanceList確認");
-        console.log(balanceList);
     }
 }
 function checkFormInputs() {
+    let checkboxes = document.querySelectorAll('input.checkbox'); // セレクタを更新
+    let isChecked = false;
+
+    checkboxes.forEach(function (checkbox) {
+        if (checkbox.checked) {
+            isChecked = true;
+            return; // チェックされたチェックボックスが見つかった場合、ループを終了します
+        }
+    });
+
+    if (!isChecked) {
+        alert('複数の人を選択してください'); // 一つもチェックボックスがチェックされていない場合にアラートを表示
+        return false;
+    }
+
     if (document.getElementById('creditor select').value == '' || document.getElementById('creditor select').value == null) {
         alert('支払いした人を入力してください');
         console.error('creditorNotFoundError');
         return false;
     }
+
     if (document.getElementById('amount').value == '' || document.getElementById('amount').value == null) {
         alert('支払い金額を入力してください');
         console.error('AmountNotFoundError');
         return false;
-    }
-    else if (document.getElementById('debtor select').value == '' || document.getElementById('debtor select').value == null) {
-        alert('支払いしてもらった人を入力してください');
-        console.error('DebtorNotFoundError');
-        return false;
-    }
-    else if (document.getElementById('content').value == '' || document.getElementById('content').value == null) {
+    } else if (document.getElementById('content').value == '' || document.getElementById('content').value == null) {
         alert('支払い内容を入力してください');
         console.error('ContentNotFoundError');
         return false;
-    }
-    else {
+    } else {
         return true;
     }
 }
 
+
+function calculateWarikan() {
+    let creditor = document.getElementById("creditor select").value;
+    let amount = document.getElementById("amount").value;
+    let debtorsNumber = selectedDebtors.length;
+    let creditorPayment = Math.floor(amount / debtorsNumber);
+    let debtorPayment = Math.floor(amount / debtorsNumber);
+    let remainder = amount - debtorPayment * debtorsNumber;
+    let isIncludedCreditor = true;
+    if (creditor in selectedDebtors) {
+        isIncludedCreditor = true
+    }
+        else {
+            isIncludedCreditor = false;
+        }
+    while (true) {
+        if (remainder == 0) {
+            break;
+        }
+        else {
+            if (isIncludedCreditor) {
+                if (remainder % (debtorsNumber-1) == 0) {
+                    debtorPayment += remainder / (debtorsNumber-1);
+                    remainder = 0;
+                }
+                else {
+                    creditorPayment -= 1;
+                    remainder += 1;
+                }
+            }
+            else {
+                if (remainder % debtorsNumber == 0) {
+                    debtorPayment += remainder / debtorsNumber;
+                    remainder = 0;
+                }
+                else {
+                    creditorPayment -= 1;
+                    remainder += 1;
+                }
+            }
+        }
+    }
+    return debtorPayment;
+}
+
 function submitHistory() {
     return new Promise((resolve, reject) => {
-        const newHistoryRef = push_(ref_(database, 'groups/' + groupId + '/history'));
+        let debtorPayment = calculateWarikan();
         let creditor = document.getElementById("creditor select").value;
-        let amount = document.getElementById("amount").value;
-        let debtor = document.getElementById("debtor select").value;
+        // let amount = document.getElementById("amount").value;
+        // let debtor = document.getElementById("debtor select").value;
         let content = document.getElementById("content").value;
-        let data = {
-            "creditor": creditor,
-            "amount": amount,
-            "debtor": debtor,
-            "content": content
-        };
-
-        set_(newHistoryRef, {
-            "data": data
-        })
-        .then(() => {
-            console.log("データが正常に書き込まれました");
-            resolve();
-        })
-        .catch((error) => {
-            console.error("データの書き込みに失敗しました", error);
-            reject(error);
-        });
+        let data = {};
+        for (let debtor of selectedDebtors) {
+            if (debtor != creditor) {
+                data = {
+                    "creditor": creditor,
+                    "amount": debtorPayment,
+                    "debtor": debtor,
+                    "content": content
+                };
+            } else {
+                continue;
+            }
+            let newHistoryRef = push_(ref_(database, 'groups/' + groupId + '/history'));
+            set_(newHistoryRef, data)
+            .then(() => {
+                console.log("データが正常に書き込まれました");
+                resolve();
+            })
+            .catch((error) => {
+                console.error("データの書き込みに失敗しました", error);
+                reject(error);
+            });
+        }
     });
 }
 
@@ -144,8 +235,8 @@ function getHistory() {
         get_(historyRef)
             .then((snapshot) => {
                 let history = snapshot.val();
-                let historyData = Object.values(history);
-                historyList = historyData.map(item => item.data);
+                historyList = Object.values(history);
+                // historyList = historyData.map(item => item.data);
                 console.log(historyList);
                 resolve();
             })
@@ -193,14 +284,9 @@ function getHistory() {
 // }
 
 function calculateBalance() {
-    console.log("historyList確認");
-    console.log(historyList);
     for( const { creditor, amount, debtor } of historyList ) {
         let creditorObject = balanceList.find(memberObj => memberObj.name === creditor);
         let debtorObject = balanceList.find(memberObj => memberObj.name === debtor);
-        console.log("calculateBalance確認");
-        console.log(creditorObject);
-        console.log(debtorObject);
         if (creditorObject) {
             creditorObject.balance += parseInt(amount);
         }
@@ -264,6 +350,7 @@ function mainCalculation() {
 }
 
 function showResult() {
+
     var res = document.getElementById("result");
     res.innerHTML = ""; // 以前の結果をクリア
     for (const obj of resultList) {
@@ -272,23 +359,21 @@ function showResult() {
     }
 }
 
-function submitResult() {
-    return new Promise((resolve, reject) => {
-        const resultRef = ref_(database, 'groups/' + groupId + '/result');
+// function submitResult() {
+//     return new Promise((resolve, reject) => {
+//         const resultRef = ref_(database, 'groups/' + groupId + '/result');
 
-        set_(resultRef, {
-            "data": resultList
-        })
-        .then(() => {
-            console.log("データが正常に書き込まれました");
-            resolve();
-        })
-        .catch((error) => {
-            console.error("データの書き込みに失敗しました", error);
-            reject(error);
-        });
-    });
-}
+//         set_(resultRef, {resultList})
+//         .then(() => {
+//             console.log("データが正常に書き込まれました");
+//             resolve();
+//         })
+//         .catch((error) => {
+//             console.error("データの書き込みに失敗しました", error);
+//             reject(error);
+//         });
+//     });
+// }
 
 function submitForm() {
     let isFormValid = checkFormInputs();
@@ -299,11 +384,13 @@ function submitForm() {
             .then(calculateBalance)
             .then(mainCalculation)
             .then(showResult)
-            .then(submitResult)
+            // .then(submitResult)
             .catch(error => console.error(error));
     }
 }
 
+// main /////////////////////////////////////////////////////////////////////////////////////////
+getGroupInfo();
 document.getElementById("transactionForm").addEventListener("submit", function(event) {
     event.preventDefault();
     submitForm();
