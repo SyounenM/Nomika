@@ -40,5 +40,5 @@
     * ルーレットの項目にメンバーの名前を使いたかったが難航中
         * firebaseの項目をimportしたかったら，roulette.htmlの<\src>にtype="module"とすべき
         * だけどそうすると，import以降が読まれなくなってしまう
-            * できた．p5.jsのスコープの問題だった
+            * できた．[p5.jsのスコープの問題](https://qiita.com/youtoy/items/6f6522e2df781a200b39)だった
             * firebaseからデータを持ってくることができた．
