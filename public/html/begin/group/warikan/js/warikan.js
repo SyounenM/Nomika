@@ -58,79 +58,6 @@ let getFlag = false;
 
 
 
-// main//////////////////////////////////////////////////////////////////////////////////////////////
-// 画面生成
-let isSelecting = false;
-// データベースから情報を取得
-get_(groupRef)
-    .then((snapshot) => {
-    let data = snapshot.val();
-    groupName = data["groupName"];
-    preResult = data["info"];
-
-    console.log("groupname:" + groupName);
-    memberList = Object.keys(preResult);
-    //グループ名表示
-    groupDiv.innerHTML = 'グループ名：' + groupName + "</br>";
-
-    // 画面生成
-    viewBuilder();
-})
-    .catch((error) => {
-        console.log("ID:" + groupId);
-        console.error("データの読み取りに失敗しました", error);
-});
-
-let select = document.querySelector('[name="member"]')
-select.onchange = event => {
-    let payer = document.getElementById('payer').value;
-    for(let member of memberList){
-        let memberRow = document.getElementById(member + 'Row');
-        memberRow.style = 'background-color: transparent;'
-        let fracToggle = document.getElementById(member + 'FracToggle');
-        fracToggle.checked = false;
-
-    }
-    let payerRow = document.getElementById(payer + 'Row');
-    payerRow.style = 'background-color: #FFCCCC;';
-    let fracToggle = document.getElementById(payer + 'FracToggle');
-    fracToggle.checked = true;
-}
-
-//同時編集のイベント通知を設定
-// 同期するチェックボックスの要素を取得
-var checkboxes = document.querySelectorAll('input[class="checkbox"]');
-// 各チェックボックスに対してイベントリスナーを追加
-checkboxes.forEach(function(checkbox) {
-    checkbox.addEventListener('change', function() {
-        let nameId = checkbox.id.replace('CheckBox', 'Name');
-        let nameTd = document.getElementById(nameId);
-        if (checkbox.checked) {
-            nameTd.className = 'selected';
-        }else if (nameId.className != 'selected'){
-            nameTd.className = '';
-        }
-        // チェックボックスが変更されたら、対応する入力欄にイベントリスナーを追加または削除
-        addSyncEvent(checkbox);
-        let allButton = document.getElementById('allButton');
-        allButton.innerHTML = (allButton.className=='allClear') ? '<small>全選択</small>' : '<small>全解除</small>';
-        allButton.className = (allButton.className == 'allClear') ? "allButton": "allClear";
-    });
-});
-
-// トグルによる表示・非表示の切り替え
-document.getElementById('toggleButton').addEventListener('click', function() {
-    var content = document.getElementById('toggleContent');
-    if (content.style.display === 'none') {
-        content.style.display = 'block';
-    } else {
-        content.style.display = 'none';
-    }
-});
-
-
-
-
 
 //関数/////////////////////////////////////////////////////////////////////////////////////////////
 //画面生成
@@ -569,6 +496,79 @@ function showAlert() {
         top.href = `../../../../index.html`;
     }
 }
+
+
+
+// main//////////////////////////////////////////////////////////////////////////////////////////////
+// 画面生成
+let isSelecting = false;
+// データベースから情報を取得
+get_(groupRef)
+    .then((snapshot) => {
+    let data = snapshot.val();
+    groupName = data["groupName"];
+    preResult = data["info"];
+
+    console.log("groupname:" + groupName);
+    memberList = Object.keys(preResult);
+    //グループ名表示
+    groupDiv.innerHTML = 'グループ名：' + groupName + "</br>";
+
+    // 画面生成
+    viewBuilder();
+})
+    .catch((error) => {
+        console.log("ID:" + groupId);
+        console.error("データの読み取りに失敗しました", error);
+});
+
+let select = document.querySelector('[name="member"]')
+select.onchange = event => {
+    let payer = document.getElementById('payer').value;
+    for(let member of memberList){
+        let memberRow = document.getElementById(member + 'Row');
+        memberRow.style = 'background-color: transparent;'
+        let fracToggle = document.getElementById(member + 'FracToggle');
+        fracToggle.checked = false;
+
+    }
+    let payerRow = document.getElementById(payer + 'Row');
+    payerRow.style = 'background-color: #FFCCCC;';
+    let fracToggle = document.getElementById(payer + 'FracToggle');
+    fracToggle.checked = true;
+}
+
+//同時編集のイベント通知を設定
+// 同期するチェックボックスの要素を取得
+var checkboxes = document.querySelectorAll('input[class="checkbox"]');
+// 各チェックボックスに対してイベントリスナーを追加
+checkboxes.forEach(function(checkbox) {
+    checkbox.addEventListener('change', function() {
+        let nameId = checkbox.id.replace('CheckBox', 'Name');
+        let nameTd = document.getElementById(nameId);
+        if (checkbox.checked) {
+            nameTd.className = 'selected';
+        }else if (nameId.className != 'selected'){
+            nameTd.className = '';
+        }
+        // チェックボックスが変更されたら、対応する入力欄にイベントリスナーを追加または削除
+        addSyncEvent(checkbox);
+        let allButton = document.getElementById('allButton');
+        allButton.innerHTML = (allButton.className=='allClear') ? '<small>全選択</small>' : '<small>全解除</small>';
+        allButton.className = (allButton.className == 'allClear') ? "allButton": "allClear";
+    });
+});
+
+// トグルによる表示・非表示の切り替え
+document.getElementById('toggleButton').addEventListener('click', function() {
+    var content = document.getElementById('toggleContent');
+    if (content.style.display === 'none') {
+        content.style.display = 'block';
+    } else {
+        content.style.display = 'none';
+    }
+});
+
 
 
 
