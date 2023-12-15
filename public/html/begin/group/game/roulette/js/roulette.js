@@ -24,8 +24,8 @@ topButton.onclick = showAlert;
 home.href = `../../group.html?id=${groupId}`;
 backButton.href = `../game.html?id=${groupId}`;
 
-let groupRef = ref_(database,'groups/' + groupId);
 // データベースから名前を取得
+let groupRef = ref_(database,'groups/' + groupId);
 get_(groupRef)
     .then((snapshot) => {
     let data = snapshot.val();
@@ -37,100 +37,73 @@ get_(groupRef)
     console.error("データの読み取りに失敗しました", error);
 });
 
-// // JavaScriptのリストの値（仮の例）
-// const initialData = [
-//     { color: '#FF0000', name: 'A', ratio: 1 },
-//     { color: '#00FF00', name: 'B', ratio: 2 },
-//     // 他のデータ...
-// ];
+// ここが原因12/15
 
-// // リストからテーブルを動的に生成する関数
-// function generateTable(data) {
-//     const tableBody = document.getElementById('tableBody'); // テーブルのtbody要素のIDを取得する必要があります
+// JavaScriptのリストの値（仮の例）
+const initialData = [
+    { color: '#FF0000', name: 'A', ratio: 1 },
+    { color: '#00FF00', name: 'B', ratio: 2 },
+    // 他のデータ...
+];
 
-//     data.forEach(item => {
-//         const newRow = document.createElement('tr');
-//         newRow.classList.add('item');
+// リストからテーブルを動的に生成する関数
+function generateTable(data) {
+    const tableBody = document.getElementById('tableBody'); // テーブルのtbody要素のIDを取得する必要があります
 
-//         const colorIndicatorCell = document.createElement('td');
-//         const colorDiv = document.createElement('div');
-//         colorDiv.classList.add('color-indicator');
-//         colorDiv.style.backgroundColor = item.color;
-//         colorIndicatorCell.appendChild(colorDiv);
+    data.forEach(item => {
+        const newRow = document.createElement('tr');
+        newRow.classList.add('item');
 
-//         const nameCell = document.createElement('td');
-//         const nameInput = document.createElement('input');
-//         nameInput.type = 'text';
-//         nameInput.classList.add('name', 'input-content');
-//         nameInput.value = item.name;
-//         nameCell.appendChild(nameInput);
+        const colorIndicatorCell = document.createElement('td');
+        const colorDiv = document.createElement('div');
+        colorDiv.classList.add('color-indicator');
+        colorDiv.style.backgroundColor = item.color;
+        colorIndicatorCell.appendChild(colorDiv);
 
-//         const ratioCell = document.createElement('td');
-//         const ratioInput = document.createElement('input');
-//         ratioInput.type = 'number';
-//         ratioInput.classList.add('ratio', 'input-ratio');
-//         ratioInput.value = item.ratio;
-//         ratioInput.min = 1;
-//         ratioCell.appendChild(ratioInput);
+        const nameCell = document.createElement('td');
+        const nameInput = document.createElement('input');
+        nameInput.type = 'text';
+        nameInput.classList.add('name', 'input-content');
+        nameInput.value = item.name;
+        nameCell.appendChild(nameInput);
 
-//         const deleteButtonCell = document.createElement('td');
-//         const deleteButton = document.createElement('button');
-//         deleteButton.type = 'button';
-//         deleteButton.classList.add('deleteButton');
-//         deleteButton.textContent = '削除';
-//         deleteButton.onclick = function() {
-//             rmItem(this);
-//         };
-//         deleteButtonCell.appendChild(deleteButton);
+        const ratioCell = document.createElement('td');
+        const ratioInput = document.createElement('input');
+        ratioInput.type = 'number';
+        ratioInput.classList.add('ratio', 'input-ratio');
+        ratioInput.value = item.ratio;
+        ratioInput.min = 1;
+        ratioCell.appendChild(ratioInput);
 
-//         newRow.appendChild(colorIndicatorCell);
-//         newRow.appendChild(nameCell);
-//         newRow.appendChild(ratioCell);
-//         newRow.appendChild(deleteButtonCell);
+        const deleteButtonCell = document.createElement('td');
+        const deleteButton = document.createElement('button');
+        deleteButton.type = 'button';
+        deleteButton.classList.add('deleteButton');
+        deleteButton.textContent = '削除';
+        deleteButton.onclick = function() {
+            rmItem(this);
+        };
+        deleteButtonCell.appendChild(deleteButton);
 
-//         tableBody.appendChild(newRow);
-//     });
-// }
+        newRow.appendChild(colorIndicatorCell);
+        newRow.appendChild(nameCell);
+        newRow.appendChild(ratioCell);
+        newRow.appendChild(deleteButtonCell);
 
-// // テーブル生成関数を呼び出して初期データを適用
-// generateTable(initialData);
+        tableBody.appendChild(newRow);
+    });
+}
 
-
-// // ページの読み込み後にテーブルを生成
-// document.addEventListener('DOMContentLoaded', function() {
-//     generateTable(initialData);
-// });
+// テーブル生成関数を呼び出して初期データを適用
+generateTable(initialData);
 
 
-// ルーレット1
-// const startButton = document.getElementById('start-button');
-// const rouletteItems = document.getElementById('roulette-items');
-// let isSpinning = false;
-// let spinDuration;
+// ページの読み込み後にテーブルを生成
+document.addEventListener('DOMContentLoaded', function() {
+    generateTable(initialData);
+});
+// ここまでが原因12/15
 
-// startButton.addEventListener('click', () => {
-//   if (isSpinning) return;
-
-//   isSpinning = true;
-//   spinDuration = Math.random() * 3000 + 3000; // 3秒から6秒の間でランダムに回転時間を設定
-
-//   rouletteItems.style.transition = `top ${spinDuration}ms cubic-bezier(.1, .1, .1, 1)`;
-//   rouletteItems.style.top = `-${rouletteItems.offsetHeight}px`;
-
-//   setTimeout(() => {
-//     isSpinning = false;
-//     rouletteItems.style.transition = '';
-//     rouletteItems.style.top = '0px';
-
-//     // 結果表示処理
-//     const selectedItemIndex = Math.floor(Math.random() * rouletteItems.children.length);
-//     const selectedItem = rouletteItems.children[selectedItemIndex];
-//     alert(`結果は${selectedItem.textContent}です！`);
-//   }, spinDuration);
-// });
-
-
-// ルーレット2
 var Mode = {
     waiting: 0,
     acceleration: 1,
@@ -463,7 +436,7 @@ window.drawRoulette=()=>{
         angleSum += probabilityList[i]*2*PI;
     }
     pop();
-    console.log(memberList);
+    // console.log(memberList);
 }
 
 // function draw(){
