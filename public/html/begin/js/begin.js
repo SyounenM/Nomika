@@ -36,6 +36,7 @@ inputMember.addEventListener("input", function() {
 // member
 addButton.addEventListener("click", function() {
     member = inputMember.value;
+    memberList.push(member);
     let memberSpan = document.createElement("span");
     memberSpan.type = 'text';
     memberSpan.textContent =  '' + member + '' ;
@@ -73,16 +74,11 @@ function createGroup() {
     const groupId = newGroupRef.key;
     set_(newGroupRef, {
         groupName: groupName,
-        info:{
-            "秀島":0,
-            "川崎":0,
-            "佐々木":0, 
-            "福田":0, 
-            // "松島":0
-        }
+        groupMember: memberList
     })
     .then(()=>{
         console.log("データが正常に書き込まれました");
+        console.log(memberList);
         const groupURL = window.location.href + 'group.html?id=' + groupId;
         alert('グループが作成されました。\nURL: ' + groupURL);
         // createButton.href = `./group/group.html?id=${newGroupRef.key}`;
