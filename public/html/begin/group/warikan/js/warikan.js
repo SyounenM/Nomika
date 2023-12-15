@@ -396,6 +396,7 @@ function addSyncEvent(cell) {
 // 入力内容を同期する関数
 //割り勘金額の同期
 function syncPayment() {
+    var checkboxes = document.querySelectorAll('input[class="checkbox"]');
     checkboxes.forEach(function(checkbox) {
         var paymentId = checkbox.id.replace('CheckBox', 'Payment');
         var paymentInput = document.getElementById(paymentId);
@@ -407,6 +408,7 @@ function syncPayment() {
 }
 //傾斜比率の同期
 function syncRatio() {
+    var checkboxes = document.querySelectorAll('input[class="checkbox"]');
     checkboxes.forEach(function(checkbox) {
         var ratioId = checkbox.id.replace('CheckBox', 'Ratio');
         var ratioInput = document.getElementById(ratioId);
@@ -419,6 +421,7 @@ function syncRatio() {
 }
 //金額固定トグルの同期
 function syncFix() {
+    var checkboxes = document.querySelectorAll('input[class="checkbox"]');
     checkboxes.forEach(function(checkbox){
         var fixId = checkbox.id.replace('CheckBox', 'FixToggle');
         // console.log(fixId);
@@ -450,7 +453,7 @@ function endSelection() {
     })
     let allButton = document.getElementById('allButton');
     allButton.innerHTML = (!checkExist) ? '<small>全選択</small>' : '<small>全解除</small>';
-    allButton.className = (!checkExist) ? '' : 'allClear';
+    allButton.className = (!checkExist) ? 'allButton' : 'allClear';
     // console.log(allButton.className); 
 }
 // 選択されたメンバーの背景色とチェックボックスを管理
@@ -469,7 +472,7 @@ function toggleCheckboxInSameRow(cell) {
 function allCheck() {
     let allButton = document.getElementById('allButton');
     allButton.innerHTML = (allButton.className=='allClear') ? '<small>全選択</small>' : '<small>全解除</small>';
-    allButton.className = (allButton.className=='allClear') ? "allButton" : "allClear";
+    allButton.className = (allButton.className == 'allClear') ? "allButton": "allClear";
     var checkboxes = document.querySelectorAll('input[class="checkbox"]');
     let checkExist = false;
     checkboxes.forEach(function (checkbox) {
@@ -506,70 +509,68 @@ get_(groupRef)
     .then((snapshot) => {
     let data = snapshot.val();
     groupName = data["groupName"];
-    preResult = data["info"];
+    // preResult = 
 
     console.log("groupname:" + groupName);
-    memberList = Object.keys(preResult);
+    memberList = data["groupMember"];
+// memberList = ["s","d"]
+// groupName = "sss"
     //グループ名表示
     groupDiv.innerHTML = 'グループ名：' + groupName + "</br>";
 
     // 画面生成
     viewBuilder();
+    let select = document.querySelector('[name="member"]')
+    select.onchange = event => {
+        let payer = document.getElementById('payer').value;
+        for(let member of memberList){
+            let memberRow = document.getElementById(member + 'Row');
+            memberRow.style = 'background-color: transparent;'
+            let fracToggle = document.getElementById(member + 'FracToggle');
+            fracToggle.checked = false;
+
+        }
+        let payerRow = document.getElementById(payer + 'Row');
+        payerRow.style = 'background-color: #FFCCCC;';
+        let fracToggle = document.getElementById(payer + 'FracToggle');
+        fracToggle.checked = true;
+    }
+
+    //同時編集のイベント通知を設定
+    // 同期するチェックボックスの要素を取得
+    var checkboxes = document.querySelectorAll('input[class="checkbox"]');
+    // 各チェックボックスに対してイベントリスナーを追加
+    checkboxes.forEach(function(checkbox) {
+        checkbox.addEventListener('change', function() {
+            let nameId = checkbox.id.replace('CheckBox', 'Name');
+            let nameTd = document.getElementById(nameId);
+            if (checkbox.checked) {
+                nameTd.className = 'selected';
+            }else if (nameId.className != 'selected'){
+                nameTd.className = '';
+            }
+            // チェックボックスが変更されたら、対応する入力欄にイベントリスナーを追加または削除
+            addSyncEvent(checkbox);
+            let allButton = document.getElementById('allButton');
+            allButton.innerHTML = (allButton.className=='allClear') ? '<small>全選択</small>' : '<small>全解除</small>';
+            allButton.className = (allButton.className == 'allClear') ? "allButton": "allClear";
+        });
+    });
+
+    // トグルによる表示・非表示の切り替え
+    document.getElementById('toggleButton').addEventListener('click', function() {
+        var content = document.getElementById('toggleContent');
+        if (content.style.display === 'none') {
+            content.style.display = 'block';
+        } else {
+            content.style.display = 'none';
+        }
+    });
 })
     .catch((error) => {
         console.log("ID:" + groupId);
         console.error("データの読み取りに失敗しました", error);
 });
-
-let select = document.querySelector('[name="member"]')
-select.onchange = event => {
-    let payer = document.getElementById('payer').value;
-    for(let member of memberList){
-        let memberRow = document.getElementById(member + 'Row');
-        memberRow.style = 'background-color: transparent;'
-        let fracToggle = document.getElementById(member + 'FracToggle');
-        fracToggle.checked = false;
-
-    }
-    let payerRow = document.getElementById(payer + 'Row');
-    payerRow.style = 'background-color: #FFCCCC;';
-    let fracToggle = document.getElementById(payer + 'FracToggle');
-    fracToggle.checked = true;
-}
-
-//同時編集のイベント通知を設定
-// 同期するチェックボックスの要素を取得
-var checkboxes = document.querySelectorAll('input[class="checkbox"]');
-// 各チェックボックスに対してイベントリスナーを追加
-checkboxes.forEach(function(checkbox) {
-    checkbox.addEventListener('change', function() {
-        let nameId = checkbox.id.replace('CheckBox', 'Name');
-        let nameTd = document.getElementById(nameId);
-        if (checkbox.checked) {
-            nameTd.className = 'selected';
-        }else if (nameId.className != 'selected'){
-            nameTd.className = '';
-        }
-        // チェックボックスが変更されたら、対応する入力欄にイベントリスナーを追加または削除
-        addSyncEvent(checkbox);
-        let allButton = document.getElementById('allButton');
-        allButton.innerHTML = (allButton.className=='allClear') ? '<small>全選択</small>' : '<small>全解除</small>';
-        allButton.className = (allButton.className == 'allClear') ? "allButton": "allClear";
-    });
-});
-
-// トグルによる表示・非表示の切り替え
-document.getElementById('toggleButton').addEventListener('click', function() {
-    var content = document.getElementById('toggleContent');
-    if (content.style.display === 'none') {
-        content.style.display = 'block';
-    } else {
-        content.style.display = 'none';
-    }
-});
-
-
-
 
 
 
