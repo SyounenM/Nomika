@@ -3,7 +3,7 @@
     <head>
         <meta charset="utf-8" />
         <meta http-equiv="x-ua-compatible" content="IE=edge"> <!-- microsoft IE用。ここではいらない -->
-        <meta name="viewport" content="width=device, initial-scale=0.569"> <!-- viewport:ページのみている範囲の部分のこと。ここの設定をする -->
+        <meta name="viewport" content="width=device-width, initial-scale=0.569"> <!-- viewport:ページのみている範囲の部分のこと。ここの設定をする -->
         <link rel="stylesheet" href="../../../../../css/master.css"> <!-- 関係を"stylesheet"として -->
         <link rel="stylesheet" href="./css/roulette.css">
         <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -61,14 +61,16 @@
                         <button type="button" class="add addButton">追加</button>
                         <div>
                             <table id="table">
-                                <tr><th><a class="big">色</a></th><th><a class="big">項目名</a></th><th><a class="big">割合</a></th></tr>
-                                <!-- <tr class="item"><td><div class="color-indicator" style="background-color:#000000;"></div></td><td><input type="text" class="name" value="項目"></td><td><input type="number" class="ratio" value="1"></td><td class="probability"></td><td><button type="button" onclick="rmItem(this)">削除</button></td></tr> -->
-                                <tr class="item"><td><div class="color-indicator" style="background-color:#000000;"></div></td><td><input type="text" class="name input-content" value="A"></td><td><input type="number" class="ratio input-ratio" value="1" min="1"></td><td><button class="deleteButton" type="button" onclick="rmItem(this)">削除</button></td></tr>
-                                <tr class="item"><td><div class="color-indicator" style="background-color:#000000;"></div></td><td><input type="text" class="name input-content" value="B"></td><td><input type="number" class="ratio input-ratio" value="1" min="1"></td><td><button class="deleteButton" type="button" onclick="rmItem(this)">削除</button></td></tr>
-                                <tr class="item"><td><div class="color-indicator" style="background-color:#000000;"></div></td><td><input type="text" class="name input-content" value="C"></td><td><input type="number" class="ratio input-ratio" value="1" min="1"></td><td><button class="deleteButton" type="button" onclick="rmItem(this)">削除</button></td></tr>
-                                <tr class="item"><td><div class="color-indicator" style="background-color:#000000;"></div></td><td><input type="text" class="name input-content" value="D"></td><td><input type="number" class="ratio input-ratio" value="1" min="1"></td><td><button class="deleteButton" type="button" onclick="rmItem(this)">削除</button></td></tr>
+                                <thead>
+                                    <tr><th><a class="big">色</a></th><th><a class="big">項目名</a></th><th><a class="big">割合</a></th></tr>
+                                </thead>
+                                <tbody id="tableBody">
+                                    <tr class="item"><td><div class="color-indicator" style="background-color:#000000;"></div></td><td><input type="text" class="name input-content" value="A"></td><td><input type="number" class="ratio input-ratio" value="1" min="1"></td><td><button class="deleteButton" type="button" onclick="rmItem(this)">削除</button></td></tr>
+                                    <tr class="item"><td><div class="color-indicator" style="background-color:#000000;"></div></td><td><input type="text" class="name input-content" value="B"></td><td><input type="number" class="ratio input-ratio" value="1" min="1"></td><td><button class="deleteButton" type="button" onclick="rmItem(this)">削除</button></td></tr>
+                                    <tr class="item"><td><div class="color-indicator" style="background-color:#000000;"></div></td><td><input type="text" class="name input-content" value="C"></td><td><input type="number" class="ratio input-ratio" value="1" min="1"></td><td><button class="deleteButton" type="button" onclick="rmItem(this)">削除</button></td></tr>
+                                    <tr class="item"><td><div class="color-indicator" style="background-color:#000000;"></div></td><td><input type="text" class="name input-content" value="D"></td><td><input type="number" class="ratio input-ratio" value="1" min="1"></td><td><button class="deleteButton" type="button" onclick="rmItem(this)">削除</button></td></tr> 
+                                </tbody>
                             </table>
-                            <!-- <button type="button" class="add">追加</button> -->
                         </div>
                     </div>
                 </div>
@@ -84,7 +86,7 @@
     integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
     crossorigin="anonymous"></script>
     <script src="./js/p5.min.js"></script>
-    <script src="./js/roulette.js"></script>
+    <script type="module" src="./js/roulette.js"></script>
     <!-- <style>
     .p5Canvas{
         max-width: 600px;

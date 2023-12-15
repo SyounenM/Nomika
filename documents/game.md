@@ -34,3 +34,11 @@
 * roulette
     * 結果の下のスペースを調整した
     * ルーレットの項目にメンバーの名前を使いたいので将来的にonclickをjavascriptで定義する
+
+## 12/15
+* roulette
+    * ルーレットの項目にメンバーの名前を使いたかったが難航中
+        * firebaseの項目をimportしたかったら，roulette.htmlの<\src>にtype="module"とすべき
+        * だけどそうすると，import以降が読まれなくなってしまう
+            * できた．p5.jsのスコープの問題だった
+            * firebaseからデータを持ってくることができた．
