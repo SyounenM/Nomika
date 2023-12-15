@@ -1,5 +1,5 @@
 import { app, database, ref_, set_, get_, update_, push_, goOffline_}  from "../../../../../js/master.js";
-import { ServerValue } from "https://www.gstatic.com/firebasejs/10.7.0/firebase-database.js";
+// import { serverTimestamp } from "https://www.gstatic.com/firebasejs/10.7.0/firebase-database.js";
 // アプリケーションが閉じられたときに呼ばれる処理
 window.onbeforeunload = function () {
     // Firebase Realtime Databaseへの接続を切断
@@ -30,7 +30,7 @@ let pushResult = {};
 // データベースへの参照
 let groupRef = ref_(database,'groups/' + groupId);
 let historyRef = ref_(database, 'groups/' + groupId + '/history');
-let resultRef = ref_(database, 'groups/' + groupId + '/result');
+let resultRef = ref_(database, 'groups/' + groupId);
 
 // データベースから情報を取得
 get_(groupRef)
@@ -109,9 +109,11 @@ function checkFormInputs() {
     }
 }
 function submitHistory() {
+    const newHistoryRef = push_(ref_(database, 'groups/' + groupId + '/history'));
+    console.log(newHistoryRef)
     let creditor = document.getElementById("creditor select").value;
     let amount = document.getElementById("amount").value;
-    let debtor = [document.getElementById("debtor select").value];
+    let debtor = document.getElementById("debtor select").value;
     let content = document.getElementById("content").value;
     let data = {
         "creditor": creditor,
@@ -119,11 +121,10 @@ function submitHistory() {
         "debtor": debtor,
         "content": content
     };
-    update_(historyRef, {
-        history:{
-            "timestamp": ServerValue.TIMESTAMP,
-            "data":data
-        }
+    console.log(data)
+    set_(newHistoryRef, {
+        // "timestamp": serverTimestamp(),
+        "data":data
     })
     .then(()=>{
         console.log("データが正常に書き込まれました");
@@ -132,18 +133,16 @@ function submitHistory() {
         console.error("データの書き込みに失敗しました", error);
     })
 }
-function addHistory() {
-    let creditor = document.getElementById("creditor select").value;
-    let amount = document.getElementById("amount").value;
-    let involves = [document.getElementById("debtor select").value];
-    let content = document.getElementById("content").value;
-    let data = {
-        "creditor": creditor,
-        "amount": amount,
-        "involves": involves,
-        "content": content
-    };
-    historyList.push(data);
+function getHistory() {
+    get_(historyRef)
+        .then((snapshot) => {
+        let history = snapshot.val();
+        let historyData = Object.values(history);
+        historyList = historyData.map(item => item.data);
+    })
+        .catch((error) => {
+            console.error("データの読み取りに失敗しました", error);
+    });    
 }
 
 function calculateBalance() {
@@ -228,6 +227,7 @@ document.getElementById("transactionForm").addEventListener("submit", function(e
     let isFormValid = checkFormInputs();
     if (isFormValid) {
         submitHistory();
+        getHistory();
         // calculateBalance();
         // main();
         // showResult();
