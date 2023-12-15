@@ -51,11 +51,9 @@ let resultDict = {};// 今回の割り勘結果を格納するjson
 let pushResult = {};
 // データベースへの参照
 let groupRef = ref_(database,'groups/' + groupId);
-let resultRef = ref_(database, 'groups/' + groupId + '/info');
+
 
 let getFlag = false;
-
-
 
 
 //関数/////////////////////////////////////////////////////////////////////////////////////////////
@@ -359,14 +357,32 @@ function roundPayment(payment, roundUnit, option) {
 function save() {
     try {
         calculate();
-        set_(resultRef,pushResult)
-        .then(()=>{
-            console.log("データが正常に書き込まれました");
-            alert("割り勘金額が保存されました")
-        })
-        .catch((error)=>{
-            console.error("データの書き込みに失敗しました", error);
-        })
+        let creditor = document.getElementById("payer").value;
+        for (let member of memberList){
+            if (member == creditor){
+                continue;
+            }
+            let debtor = member;
+            let newHistoryRef = push_(ref_(database, 'groups/' + groupId +'/history'));
+            let amount = document.getElementById(member + "Payment").value;
+            let content = document.getElementById("content").value;
+            let data = {
+                "creditor": creditor,
+                "amount": amount,
+                "debtor": debtor,
+                "content": content
+            };    
+            set_(newHistoryRef, data)
+            .then(() => {
+                console.log("データが正常に書き込まれました");
+                // resolve();
+            })
+            .catch((error) => {
+                console.error("データの書き込みに失敗しました", error);
+                reject(error);
+            });    
+        }
+        alert("保存されました")
     } catch (error) {
         console.error('[' + error + ']' + ' not calculated');
         return;
