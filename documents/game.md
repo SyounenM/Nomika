@@ -42,3 +42,4 @@
         * だけどそうすると，import以降が読まれなくなってしまう
             * できた．[p5.jsのスコープの問題](https://qiita.com/youtoy/items/6f6522e2df781a200b39)だった
             * firebaseからデータを持ってくることができた．
+* [テスト用リンク](http://10.100.106.192:5500/public/html/begin/group/game/roulette/roulette.html?id=-NlgnL96rXkFpiGiDfgW)
