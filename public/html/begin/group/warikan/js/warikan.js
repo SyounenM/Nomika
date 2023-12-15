@@ -1,5 +1,36 @@
-// 定数・変数 データベースで共有したい情報
-let groupName = "飲み会"
+import { app, database, ref_, set_, get_, update_, push_, goOffline_}  from "../../../../../js/master.js";
+
+// アプリケーションが閉じられたときに呼ばれる処理
+window.onbeforeunload = function () {
+    // Firebase Realtime Databaseへの接続を切断
+    goOffline_(database);
+};
+
+// 画面遷移の行き先を指定
+const groupId = new URLSearchParams(window.location.search).get('id');
+console.log(groupId);
+const logo = document.getElementById("logo");
+const top = document.getElementById("top");
+const home = document.getElementById("home");
+const back = document.getElementById("back");
+logo.href = `../group.html?id=${groupId}`;
+home.href = `../group.html?id=${groupId}`;
+back.href = `../group.html?id=${groupId}`;
+top.onclick = showAlert;
+
+// htmlとの連携
+let memberDiv = document.getElementById('member');
+let groupDiv = document.getElementById('group');
+const calcButton = document.getElementById("calculateButton");
+calcButton.onclick = calculate;
+const saveButton = document.getElementById("saveButton");
+saveButton.onclick = save;
+const allButton = document.getElementById("allButton");
+allButton.onclick = allCheck;
+
+
+// グループの情報
+let groupName = ""
 let memberList = ["秀島", "川崎", "佐々木", "福田", "松島"];
 // let memberList = ['OB1','OB2',
 //  '3男総務', '3男1', '3男2', '3男3',
@@ -8,22 +39,34 @@ let memberList = ["秀島", "川崎", "佐々木", "福田", "松島"];
 // '2女1','2女2',
 // '1男1','1男2','1男3','1男4','1男5',
 // '1女1','1女2','1女3','1女4','1女5',];
-let resultDict = {};
 
-let memberDiv = document.getElementById('member');
-let groupDiv = document.getElementById('group');
+let preResult = { // 前回までの割り勘の結果を格納するjson
+    "秀島":0, 
+    "川崎":0, 
+    "佐々木":0, 
+    "福田":0, 
+    "松島":0
+};
+let resultDict = {};// 今回の割り勘結果を格納するjson
+let pushResult = {};
+// データベースへの参照
+let groupRef = ref_(database,'groups/' + groupId);
+let resultRef = ref_(database, 'groups/' + groupId + '/info');
 
-//関数
+let getFlag = false;
+
+
+
+
+//関数/////////////////////////////////////////////////////////////////////////////////////////////
 //画面生成
 function viewBuilder() {
-    //グループ名表示
-    groupDiv.innerHTML = 'グループ名：' + groupName + "</br>";
     //メンバー表示
     for (let member of memberList) {
         let memberSpan = document.createElement('span');
         memberSpan.textContent = member;
         memberSpan.id = member + 'Span';
-        memberSpan.style = 'background-color:#BBBB; margin-right:10px; border: solid 1px #BBB; border-width: 2px; border-radius: 10px;';
+        memberSpan.style = 'background-color: white; margin-right:10px; border: solid 1px black; border-width: 2px; border-radius: 10px; padding: 3px;';
         // memberSpan.style.border = 'solid'
         memberDiv.appendChild(memberSpan);
     }
@@ -87,7 +130,7 @@ function viewBuilder() {
         paymentInput.type = 'number';
         paymentInput.id = member + 'Payment';
         paymentInput.min = '0';
-        paymentInput.style.width = '50px';
+        paymentInput.style.width = '90px';
         paymentDiv.appendChild(paymentInput)
         const yen = document.createElement('span');
         yen.textContent = '円';
@@ -102,10 +145,10 @@ function viewBuilder() {
         ratioInput.min = '0';
         ratioInput.max = '100';
         ratioInput.step = '1';
-        ratioInput.style.width = '30px'
-        ratioInput.valueAsNumber = 1
+        ratioInput.style.width = '55px';
+        ratioInput.valueAsNumber = 1;
         ratioTd.appendChild(ratioInput);
-        tr.appendChild(ratioTd)
+        tr.appendChild(ratioTd);
         //金額固定
         let switchTd = document.createElement('td');
         let switchLabel = document.createElement('label');
@@ -278,6 +321,12 @@ function calculate() {
         resultDict[String(memberList[i])]= resultList[i];
     }
     console.log(resultDict);
+    for (let key in preResult){
+        if (resultDict.hasOwnProperty(key)){
+            pushResult[key] = preResult[key] + resultDict[key];
+        }
+    }
+    console.log(result);
 }
 
 // 丸めこみの関数
@@ -285,7 +334,7 @@ function roundPayment(payment, roundUnit, option) {
     if (roundUnit == 0) {
         roundUnit = 1;
     }
-    remain = payment % roundUnit;
+    let remain = payment % roundUnit;
     switch (option) {
         case 'ceil': //切り上げる
             payment -= remain;
@@ -310,6 +359,14 @@ function roundPayment(payment, roundUnit, option) {
 function save() {
     try {
         calculate();
+        set_(resultRef,pushResult)
+        .then(()=>{
+            console.log("データが正常に書き込まれました");
+            alert("割り勘金額が保存されました")
+        })
+        .catch((error)=>{
+            console.error("データの書き込みに失敗しました", error);
+        })
     } catch (error) {
         console.error('[' + error + ']' + ' not calculated');
         return;
@@ -412,7 +469,7 @@ function toggleCheckboxInSameRow(cell) {
 function allCheck() {
     let allButton = document.getElementById('allButton');
     allButton.innerHTML = (allButton.className=='allClear') ? '<small>全選択</small>' : '<small>全解除</small>';
-    allButton.classList.toggle('allClear');
+    allButton.className = (allButton.className=='allClear') ? "allButton" : "allClear";
     var checkboxes = document.querySelectorAll('input[class="checkbox"]');
     let checkExist = false;
     checkboxes.forEach(function (checkbox) {
@@ -431,12 +488,39 @@ function allCheck() {
         }
     })    
 }
+// top alert
+function showAlert() {
+    var result = confirm('注意 グループから抜けることになります');
+    if (result){
+        top.href = `../../../../index.html`;
+    }
+}
 
 
-// main///////////////////////////////////////////////////////////////////////
+
+// main//////////////////////////////////////////////////////////////////////////////////////////////
 // 画面生成
 let isSelecting = false;
-viewBuilder();
+// データベースから情報を取得
+get_(groupRef)
+    .then((snapshot) => {
+    let data = snapshot.val();
+    groupName = data["groupName"];
+    preResult = data["info"];
+
+    console.log("groupname:" + groupName);
+    memberList = Object.keys(preResult);
+    //グループ名表示
+    groupDiv.innerHTML = 'グループ名：' + groupName + "</br>";
+
+    // 画面生成
+    viewBuilder();
+})
+    .catch((error) => {
+        console.log("ID:" + groupId);
+        console.error("データの読み取りに失敗しました", error);
+});
+
 let select = document.querySelector('[name="member"]')
 select.onchange = event => {
     let payer = document.getElementById('payer').value;
@@ -470,9 +554,27 @@ checkboxes.forEach(function(checkbox) {
         addSyncEvent(checkbox);
         let allButton = document.getElementById('allButton');
         allButton.innerHTML = (allButton.className=='allClear') ? '<small>全選択</small>' : '<small>全解除</small>';
-        allButton.classList.toggle('allClear');
+        allButton.className = (allButton.className == 'allClear') ? "allButton": "allClear";
     });
 });
+
+// トグルによる表示・非表示の切り替え
+document.getElementById('toggleButton').addEventListener('click', function() {
+    var content = document.getElementById('toggleContent');
+    if (content.style.display === 'none') {
+        content.style.display = 'block';
+    } else {
+        content.style.display = 'none';
+    }
+});
+
+
+
+
+
+
+
+
 
 
 // note//
