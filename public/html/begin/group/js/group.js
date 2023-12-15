@@ -60,20 +60,23 @@ let resultList = [];
 
 // データベースから情報を取得
 function getGroupInfo() {
-    get_(groupRef)
-        .then((snapshot) => {
-        let data = snapshot.val();
-        console.log(data);
-        memberList = data["groupMember"];
-        
-        console.log("memberList:" + memberList);
-        
-    }).then(addOption)
-        .catch((error) => {
-            console.log("ID:" + groupId);
-            console.error("グループ情報の読み取りに失敗しました", error);
+    return new Promise((resolve, reject) => {
+        get_(groupRef)
+            .then((snapshot) => {
+                let data = snapshot.val();
+                console.log(data);
+                memberList = data["groupMember"];
+                console.log("memberList:" + memberList);
+                resolve(); // ここでプロミスを解決
+            })
+            .catch((error) => {
+                console.log("ID:" + groupId);
+                console.error("グループ情報の読み取りに失敗しました", error);
+                reject(error); // エラーの場合はプロミスを拒否
+            });
     });
 }
+
 
 function getHistory() {
     return new Promise((resolve, reject) => {
@@ -82,7 +85,8 @@ function getHistory() {
                 let history = snapshot.val();
                 historyList = Object.values(history);
                 // historyList = historyData.map(item => item.data);
-                console.log(historyList);
+                console.log("historyList");
+                console.log("historyList", historyList);
                 resolve();
             })
             .catch((error) => {
@@ -165,7 +169,6 @@ function mainCalculation() {
 }
 
 function showResult() {
-
     var res = document.getElementById("result");
     res.innerHTML = ""; // 以前の結果をクリア
     for (const obj of resultList) {

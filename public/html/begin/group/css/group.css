@@ -21,3 +21,9 @@
     min-width: 600px;
     min-height: 1200px; 
 }
+.result-group{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 10vh;
+}
