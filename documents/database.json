@@ -1,0 +1,23 @@
+{
+    "db_root":{
+        "groups":{
+            "groupId":{
+                "groupName": "name" , 
+                "groupMember": [
+                    "member1",
+                    "member2"
+                ], 
+                "history": {
+                    "historyId": {
+                        "amount": 0,
+                        "content": "xxx",
+                        "creditor": "member1",
+                        "debtor": "member2"
+                    },
+                    "historyId2": {
+                    }
+                }
+            }
+        }
+    }               
+}
