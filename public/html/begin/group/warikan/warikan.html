@@ -2,10 +2,9 @@
 <html lang="ja">
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=0.569">
     <!-- <link rel="stylesheet" href="style.css"> -->
     <meta http-equiv="x-ua-compatible" content="IE=edge"> <!-- microsoft IE用。ここではいらない -->
-    <meta name="viewport" content="width=device, initial-scale=1.0"> <!-- viewport:ページのみている範囲の部分のこと。ここの設定をする -->
     <link rel="stylesheet" href="../../../../css/master.css"> <!-- 関係を"stylesheet"として -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -17,64 +16,69 @@
     <img class="foam" src="../../../../image/foam_index.png">
     <header class="header">
       <div class="logo">
-          <a href="../group.html">Nomika.</a>
+          <a id="logo">Nomika.</a>
       </div>
       <nav class="navbar">
-          <a href="../group.html">Home</a>
+          <a id="top">Top</a>
+          <a id="home">Home</a>
           <a href="#">About</a>
-          <a href="#">Services</a>
           <a href="#">Contact</a>
       </nav>
     </header>
     <div class="background-warikan">
       <div class="home">
         <br>
-        <div id="group"></div>
-        <div class="groupInfo">
-          <div id="member" class="content"></div>
+        <div id="group" class="big"></div>
+        <div class="groupInfo big">
+          <div id="member" class="member"></div>
         </div>
         <br>
         <form id="transactionForm">
+          <div class="select-wrapper payer">
+            <div>
+              <select id="payer" name="member" class="select" id="creditor select"></select>
+            </div>
+          </div>
+          <a class="big text-payer">が</a>
           <div>
-            <select id="payer" name="member"></select>
-            が
+            <input type="text" id="content" placeholder="飲み代" class="input content">
+            <a class="big text-content">を</a>
           </div>
           <div>
-            <input type="text" id="content" placeholder="飲み代">
-            を
-          </div>
-          <div>
-            <input type="number" id="amount" placeholder="1000">
-            円払った
+            <input type="number" id="amount" placeholder="1000" class="input amount">
+            <a class="big text-amount">円払った</a>
           </div>
           <br>
-          <div>
-            <small>丸め単位：</small>
-            <select type="number" id="round"></select>
-            <span>円単位</span>
+          <button id="toggleButton" type="button"><a class="big">端数を分ける</a></button>
+          <div id="toggleContent">
+              <select type="number" id="round" class="select number"></select>
+              <a class="big">円単位</a>
+              <select name="option" id="option" class="select marume">
+                <option value="ceil">切り上げ</option>
+                <option value="round">四捨五入</option>
+                <option value="floor">切り捨て</option>
+              </select>
           </div>
-          <select name="option" id="option">
-            <option value="ceil">切り上げ</option>
-            <option value="round">四捨五入</option>
-            <option value="floor">切り捨て</option>
-          </select>
           <!-- <div>
             <small>端数</small>
             <select id="payer" name="member"></select>
             が払う
           </div> -->
-          <div id="buttons">
+          <div id="buttons1">
             <!-- <input type="submit" value="submit" onclick="calculate()" /> -->
-            <br>
-            <button type="button">戻る</button>
-            <button type="button" onclick="calculate()">精算</button>
-            <br>
-            <button type="button" onclick="save()">保存</button>
+            <!-- <br> -->
+            <!-- <button type="button" class="btn-border btn">戻る</button> -->
+            <button id="calculateButton" type="button" onclick="calculate()">精算</button>
+            <button id="saveButton" type="button" onclick="save()">保存</button>
           </div>
+            <!-- <br> -->
+          <!-- <div id="buttons2">
+            <button type="button" class="btn btn-border" onclick="save()">保存</button>
+          </div> -->
         </form>
         <br>
         <div id="result" class="container">
-          <table align="center" id="result_table" border="">  
+          <table align="center" id="result_table" border="" class="table">  
             <caption>
               <!-- 結果 -->
             </caption>
@@ -83,8 +87,8 @@
             <thead>
               <tr>
                 <th colspan="6">
-                  <div align="left">
-                    <button onclick="allCheck()" id="allButton" >
+                  <div align="left" id="ab">
+                    <button class="allButton" onclick="allCheck()" id="allButton" >
                       <small>全選択</small>
                     </button>
                   </div>
@@ -99,9 +103,9 @@
                 </th>
                 <th>名前</th>
                 <th>割り勘金額</th>
-                <th>傾斜<br>比率</th>
-                <th>金額<br>固定</th>
-                <th>端数<br>支払</th>
+                <th>傾斜比率</th>
+                <th>金額固定</th>
+                <th>端数支払</th>
               </tr>
             </thead>
             <tfoot>
@@ -118,7 +122,8 @@
             </tbody>
           </table>
         </div>
-        <script src="js/warikan.js"></script>
+        <script type="module" src="js/warikan.js"></script>
+        <a id="back" class="btn btn-border btn-warikan"><span>戻る</span></a>
       </div>
     </div>
   </body>
