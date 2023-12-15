@@ -35,28 +35,32 @@ inputMember.addEventListener("input", function() {
 
 // member
 addButton.addEventListener("click", function() {
-    member = inputMember.value;
-    memberList.push(member);
-    let memberSpan = document.createElement("span");
-    memberSpan.type = 'text';
-    memberSpan.textContent =  '' + member + '' ;
-    memberSpan.style = 'font-size: 25px; height: 50px; background-color:white; margin-right:10px; border: solid 1px black; border-width: 2px; border-radius: 10px; padding: 7px;';
-    memberSpan.id = member + "Span";
+    if (inputMember.value != "") {
+        member = inputMember.value;
+        memberList.push(member);
+        let memberSpan = document.createElement("span");
+        memberSpan.type = 'text';
+        memberSpan.textContent =  '' + member + '' ;
+        memberSpan.style = 'font-size: 25px; height: 50px; background-color:white; margin-right:10px; border: solid 1px black; border-width: 2px; border-radius: 10px; padding: 7px;';
+        memberSpan.id = member + "Span";
 
-    let cancelButton = document.createElement('button');
-    cancelButton.textContent = "×";
-    cancelButton.id = member + 'Cancel';
-    cancelButton.style = 'font-size: 15px; position: relative; top: -3px; width: 35px; background-color:white; border: solid 1px black; border-width: 2px; border-radius: 10px; padding: 5px; margin-left: 10px;';
-    // cancelButton.style.height = '15px';
-    // cancelButton.style.width = '15px';
-    // cancelButton.style.offset
+        let cancelButton = document.createElement('button');
+        cancelButton.textContent = "×";
+        cancelButton.id = member + 'Cancel';
+        cancelButton.style = 'font-size: 15px; position: relative; top: -3px; width: 35px; background-color:white; border: solid 1px black; border-width: 2px; border-radius: 10px; padding: 5px; margin-left: 10px;';
+        // cancelButton.style.height = '15px';
+        // cancelButton.style.width = '15px';
+        // cancelButton.style.offset
 
-    cancelButton.onclick = function(){
-        cancelMember(member);
-    };
+        cancelButton.onclick = function(){
+            cancelMember(member);
+        };
 
-    memberSpan.appendChild(cancelButton)
-    memberDiv.appendChild(memberSpan); 
+        memberSpan.appendChild(cancelButton)
+        memberDiv.appendChild(memberSpan); 
+    } else {
+        alert('メンバー名を入力してください');
+    }
 });
 
 function cancelMember(member) {
