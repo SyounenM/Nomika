@@ -105,6 +105,7 @@ function getHistory() {
             })
             .catch((error) => {
                 console.error("履歴の読み取りに失敗しました", error);
+                dispScope.style.display = "none";
                 reject(error);
             });
     });

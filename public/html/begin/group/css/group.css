@@ -3,9 +3,9 @@
     top: 50px;
     left: 0px;
 }
-.btn-edit{
+.btn-other{
     position: relative;
-    top: 50px;
+    top: 110px;
     left: 0px;
 }
 .background-group {
@@ -19,14 +19,36 @@
     /* height: 1200px; → group.jsで指定 */
     text-align: center;
     min-width: 600px;
-    min-height: 1200px; 
+    min-height: 1000px; 
 }
 .group-name{
     margin: 5px;
 }
 .result-text{
     position: absolute;
-    top: 140px;
+    top: 150px;
+}
+.register-text{
+    position: relatic;
+    top: 0px;
+}
+.other-text{
+    position: relative;
+    top: 70px;
+}
+.line-1{
+    border: 2.5px solid white;
+    position: relative;
+    top: 10px;
+    width: 500px;
+    margin: 0 auto;
+}
+.line-2{
+    border: 2.5px solid white;
+    position: relative;
+    top: 80px;
+    width: 500px;
+    margin: 0 auto;
 }
 .result-group{
     margin: 80px;
