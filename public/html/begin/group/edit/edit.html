@@ -4,7 +4,7 @@
     <meta charset="utf-8" />
     <!-- <link rel="stylesheet" href="style.css"> -->
     <meta http-equiv="x-ua-compatible" content="IE=edge"> <!-- microsoft IE用。ここではいらない -->
-        <meta name="viewport" content="width=device, initial-scale=0.569"> <!-- viewport:ページのみている範囲の部分のこと。ここの設定をする -->
+        <meta name="viewport" content="width=device-width, initial-scale=0.569"> <!-- viewport:ページのみている範囲の部分のこと。ここの設定をする -->
         <link rel="stylesheet" href="../../../../css/master.css"> <!-- 関係を"stylesheet"として -->
         <link rel="stylesheet" href="./css/edit.css">
         <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -42,11 +42,9 @@
     </div>
     <br>
     <div id="groupName" class="big">メンバー名<br>
-        <input type="text" placeholder="かずや" id="newMember" class="input newMember">
-        <button type="button" id="addButton" class="addButton" onclick="addMember()">
-            追加
-        </button>
-        <div id="memberList"></div>
+        <input type="text" placeholder="かずや" id="inputMember" class="input newMember">
+        <button id="addButton" type="button" class="add addButton">追加</button><br>
+        <div id="memberList" class="member"></div>
     </div>
     <br>
     <a id="update" class="btn btn-border btn-edit"><span>更新</span></a>
