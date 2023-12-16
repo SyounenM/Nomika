@@ -37,6 +37,7 @@ inputMember.addEventListener("input", function() {
 addButton.addEventListener("click", function() {
     if (inputMember.value != "") {
         member = inputMember.value;
+        inputMember.value = "";
         memberList.push(member);
         let memberSpan = document.createElement("span");
         memberSpan.type = 'text';
@@ -73,7 +74,7 @@ function cancelMember(member) {
 }
 
 function createGroup() {
-    if (memberList.length != 0) {
+    if (memberList.length > 1) {
         const groupName = document.getElementById('groupNameInput').value;
         const newGroupRef = push_(ref_(database, 'groups'));
         const groupId = newGroupRef.key;
@@ -95,7 +96,7 @@ function createGroup() {
             console.error("データの書き込みに失敗しました", error);
         })
     } else {
-        alert('メンバーを追加してください');
+        alert('二人以上メンバーを追加してください');
     }
 }
 

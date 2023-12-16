@@ -7,6 +7,11 @@ const editButton = document.getElementById("editButton");
 const logo = document.getElementById("logo");
 const top = document.getElementById("top");
 const home = document.getElementById("home");
+// 画面高さ
+var dispScope = document.getElementById("result-group");
+var background = document.getElementById("background-group");
+var dispHeight = 100;
+var backHeight = 1200;
 
 const groupId = new URLSearchParams(window.location.search).get('id');
 console.log("groupId:" + groupId);
@@ -16,7 +21,7 @@ get_(ref_(database,'groups/' + groupId))
     const data = snapshot.val();
     const name = data["groupName"]
     console.log("groupname:" + name);
-    groupH3.textContent = "This is " + name;
+    groupH3.textContent = "グループ名 : " + name;
 })
     .catch((error) => {
         console.log("ID:" + groupId);
@@ -170,11 +175,17 @@ function mainCalculation() {
 
 function showResult() {
     var res = document.getElementById("result");
+    console.log("height: " + dispHeight);
+    console.log(backHeight);
     res.innerHTML = ""; // 以前の結果をクリア
     for (const obj of resultList) {
         // 各結果を表示
-        res.innerHTML += `${obj.debtor}が${obj.creditor}に${obj.amount}円支払い<br>`;
+        res.innerHTML += `<div class="result">${obj.debtor} → ${obj.creditor} : ${obj.amount}円</div>`;
+        dispHeight += 31;
+        backHeight += 31;
     }
+    dispScope.style.height = dispHeight + "px";
+    background.style.height = backHeight + "px";
 }
 
 // main //////////////////////////////////////////////////////
