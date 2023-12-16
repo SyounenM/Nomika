@@ -529,16 +529,16 @@ function showAlert() {
 // 画面生成
 let isSelecting = false;
 // データベースから情報を取得
-// get_(groupRef)
-//     .then((snapshot) => {
-//     let data = snapshot.val();
-//     groupName = data["groupName"];
-//     // preResult = 
+get_(groupRef)
+    .then((snapshot) => {
+    let data = snapshot.val();
+    groupName = data["groupName"];
+    // preResult = 
 
-//     console.log("groupname:" + groupName);
-//     memberList = data["groupMember"];
-memberList = ["s","d","w","3"]
-groupName = "sss"
+    console.log("groupname:" + groupName);
+    memberList = data["groupMember"];
+// memberList = ["s","d","w","3"]
+// groupName = "sss"
     //グループ名表示
     groupDiv.innerHTML = 'グループ名：' + groupName + "</br>";
 
@@ -590,11 +590,11 @@ groupName = "sss"
             content.style.display = 'none';
         }
     });
-// })
-//     .catch((error) => {
-//         console.log("ID:" + groupId);
-//         console.error("データの読み取りに失敗しました", error);
-// });
+})
+    .catch((error) => {
+        console.log("ID:" + groupId);
+        console.error("データの読み取りに失敗しました", error);
+});
 
 
 
