@@ -24,6 +24,18 @@ topButton.onclick = showAlert;
 home.href = `../../group.html?id=${groupId}`;
 backButton.href = `../game.html?id=${groupId}`;
 
+// // 画面高さ
+var backgroundRoulette = document.getElementById("background-roulette");
+var backHeight;
+
+// 高さの変更
+function changeHeight() {
+    var offsetTop = backButton.offsetTop;
+    console.log(offsetTop);
+    backHeight = offsetTop + 600;
+    backgroundRoulette.style.height = backHeight + "px";
+}
+
 // データベースから名前を取得
 let groupRef = ref_(database,'groups/' + groupId);
 get_(groupRef)
@@ -309,6 +321,7 @@ window.dataFetch=()=>{
         }
     }
     cssColorSet();
+    changeHeight();
 }
 
 // function validation(){
