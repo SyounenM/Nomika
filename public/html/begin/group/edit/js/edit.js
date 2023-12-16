@@ -6,6 +6,18 @@ window.onbeforeunload = function () {
     goOffline_(database);
 };
 
+// 画面高さ
+var background = document.getElementById("background-edit");
+var backHeight = 0;
+
+
+// 高さの変更
+function changeHeight() {
+    var offsetTop = updateButton.offsetTop;
+    console.log(offsetTop);
+    backHeight = offsetTop + 500;
+    background.style.height = backHeight + "px";
+}
 
 const groupId = new URLSearchParams(window.location.search).get('id');
 const logo = document.getElementById("logo");
@@ -13,6 +25,7 @@ const topButton = document.getElementById("top");
 const home = document.getElementById("home");
 const cancelButton = document.getElementById("cancel");
 const updateButton = document.getElementById("update");
+
 
 logo.href = `../group.html?id=${groupId}`;
 function showAlert() {
@@ -28,7 +41,7 @@ cancelButton.href = `../group.html?id=${groupId}`;
 
 
 
-// 定数（データベースで共有した情報)
+// メンバー編集
 let memberList = [];
 const groupMemberRef = ref_(database, 'groups/' + groupId + '/groupMember');
 get_(groupMemberRef)
@@ -37,6 +50,7 @@ get_(groupMemberRef)
         memberList = snapshot.val();
         console.log(memberList);
         displayMembers();
+        changeHeight();
     } else {
         console.log('データが存在しません');
     }
@@ -84,7 +98,7 @@ addButton.addEventListener("click", function() {
         let memberSpan = document.createElement("span");
         memberSpan.type = 'text';
         memberSpan.textContent =  '' + member + '' ;
-        memberSpan.style = 'font-size: 25px; height: 50px; background-color:white; margin:10px; border: solid 1px black; border-width: 2px; border-radius: 10px; padding: 7px;';
+        memberSpan.style = 'font-size: 25px; height: 50px; background-color:yellow; margin:10px; border: solid 1px black; border-width: 2px; border-radius: 10px; padding: 7px;';
         memberSpan.id = member + "Span";
 
         let cancelButton = document.createElement('button');
@@ -101,6 +115,9 @@ addButton.addEventListener("click", function() {
 
         memberSpan.appendChild(cancelButton)
         memberDiv.appendChild(memberSpan); 
+
+        changeHeight();
+
     } else {
         alert('メンバー名を入力してください');
     }

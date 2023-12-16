@@ -1,5 +1,11 @@
 import { app, database, ref_, set_, get_, update_, push_, goOffline_}  from "../../../../../js/master.js";
 
+// 画面高さ
+var dispScope = document.getElementById("result");
+var background = document.getElementById("background-warikan");
+var dispHeight = 430;
+var backHeight = 1550;
+
 // アプリケーションが閉じられたときに呼ばれる処理
 window.onbeforeunload = function () {
     // Firebase Realtime Databaseへの接続を切断
@@ -67,6 +73,8 @@ function viewBuilder() {
         memberSpan.style = 'background-color: white; margin-right:10px; border: solid 1px black; border-width: 2px; border-radius: 10px; padding: 3px;';
         // memberSpan.style.border = 'solid'
         memberDiv.appendChild(memberSpan);
+        dispHeight += 42;
+        backHeight += 42;
     }
     //支払い人
     let payerSelect = document.getElementById("payer");
@@ -199,6 +207,10 @@ function viewBuilder() {
     payerRow.className = 'payerRow'
     let fracToggle = document.getElementById(payer + 'FracToggle');
     fracToggle.checked = true;
+
+    // 表示部分の高さ設定
+    dispScope.style.height = dispHeight + "px";
+    background.style.height = backHeight + "px";
 }
 
 //精算

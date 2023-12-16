@@ -16,7 +16,7 @@ td.selected {
     position: relative;
     top: 0px;
     width: 100%;
-    height: 1600px;
+    /* height: 1600px; → warikan.jsで指定 */
     text-align: center;
     min-width: 600px;
     min-height: 1600px; 
@@ -28,7 +28,7 @@ td.selected {
 }
 
 .container {
-    height: 500px;
+    /* height: 500px; → warikan.jsで指定 */
     overflow-y: scroll;
     overflow: auto;
     width: 100%;
