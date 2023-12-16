@@ -278,7 +278,7 @@ function calculate() {
         if (fixToggle.checked) {
             console.log( member + ' fixed');
             let fixedPayment = document.getElementById(member + 'Payment').value;
-            preTotal = totalAmount;
+            let preTotal = totalAmount;
             totalAmount -= fixedPayment;
             console.log('total amount: ' + preTotal + ' => ' + totalAmount);
             continue
@@ -576,6 +576,32 @@ function allCheck() {
             nameTd.className = 'selected';
         }else if (nameId.className != 'selected'){
             nameTd.className = '';
+        }
+
+        const inputId = checkbox.id.replace('CheckBox', 'Payment');
+        const ratioId = checkbox.id.replace('CheckBox', 'Ratio');
+        
+        const inputElement = document.getElementById(inputId);
+        const ratioElement = document.getElementById(ratioId);
+        if (checkbox.checked) {
+            // チェックされた場合、入力欄を表示
+            inputElement.removeAttribute('readonly', 'false');
+            inputElement.style.border = '1px solid black';
+            inputElement.style.backgroundColor = 'white';   
+            // チェックされた場合、入力欄を表示
+            ratioElement.removeAttribute('readonly', 'false');
+            ratioElement.style.border = '1px solid black';
+            ratioElement.style.backgroundColor = 'white';                
+        } else {
+            // チェックされていない場合、入力欄を非表示
+            inputElement.setAttribute('readonly', 'true');
+            inputElement.style.border = 'none';
+            inputElement.style.outline = 'none';
+            inputElement.style.backgroundColor = 'transparent';
+            ratioElement.setAttribute('readonly', 'true');
+            ratioElement.style.border = 'none';
+            ratioElement.style.outline = 'none';
+            ratioElement.style.backgroundColor = 'transparent';
         }
     })    
 }
