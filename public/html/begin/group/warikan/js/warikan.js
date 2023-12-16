@@ -268,9 +268,11 @@ function calculate() {
     for (let i = 0; i < unfixedCount; i++) {
         let amountPerPerson = (totalAmount * membersRatio[i].ratio) / totalRatio;
         // let resultText = "¥" + amountPerPerson.toFixed(2);
+        console.log(amountPerPerson);
         let dutchOption = document.getElementById('option'); //計算方法のオプション
         let result = roundPayment(amountPerPerson, roundUnit, dutchOption.value);
         resultList.push(result)
+        console.log(result);
     }
     console.log(resultList);
     //一回目の計算の合計
@@ -336,7 +338,9 @@ function roundPayment(payment, roundUnit, option) {
     switch (option) {
         case 'ceil': //切り上げる
             payment -= remain;
-            payment += roundUnit;            
+            if (remain != 0){
+                payment += roundUnit;          
+            }  
             break;
         case 'round': //四捨五入
             if (remain/roundUnit < 0.5) { //四捨
@@ -365,6 +369,10 @@ function save() {
             let debtor = member;
             let newHistoryRef = push_(ref_(database, 'groups/' + groupId +'/history'));
             let amount = document.getElementById(member + "Payment").value;
+            console.log(amount);
+            amount = Number(amount);
+            console.log(typeof amount);
+            console.log(amount);
             let content = document.getElementById("content").value;
             let data = {
                 "creditor": creditor,
@@ -521,16 +529,16 @@ function showAlert() {
 // 画面生成
 let isSelecting = false;
 // データベースから情報を取得
-get_(groupRef)
-    .then((snapshot) => {
-    let data = snapshot.val();
-    groupName = data["groupName"];
-    // preResult = 
+// get_(groupRef)
+//     .then((snapshot) => {
+//     let data = snapshot.val();
+//     groupName = data["groupName"];
+//     // preResult = 
 
-    console.log("groupname:" + groupName);
-    memberList = data["groupMember"];
-// memberList = ["s","d"]
-// groupName = "sss"
+//     console.log("groupname:" + groupName);
+//     memberList = data["groupMember"];
+memberList = ["s","d","w","3"]
+groupName = "sss"
     //グループ名表示
     groupDiv.innerHTML = 'グループ名：' + groupName + "</br>";
 
@@ -582,11 +590,11 @@ get_(groupRef)
             content.style.display = 'none';
         }
     });
-})
-    .catch((error) => {
-        console.log("ID:" + groupId);
-        console.error("データの読み取りに失敗しました", error);
-});
+// })
+//     .catch((error) => {
+//         console.log("ID:" + groupId);
+//         console.error("データの読み取りに失敗しました", error);
+// });
 
 
 
