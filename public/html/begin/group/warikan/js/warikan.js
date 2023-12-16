@@ -196,7 +196,7 @@ function viewBuilder() {
     // 支払い者の表示を変える
     let payer = document.getElementById('payer').value;
     let payerRow = document.getElementById(payer + 'Row');
-    payerRow.style = 'background-color: #FFCCCC;';
+    payerRow.className = 'payerRow'
     let fracToggle = document.getElementById(payer + 'FracToggle');
     fracToggle.checked = true;
 }
@@ -537,8 +537,8 @@ get_(groupRef)
 
     console.log("groupname:" + groupName);
     memberList = data["groupMember"];
-// memberList = ["s","d","w","3"]
-// groupName = "sss"
+memberList = ["s","d","w","3"]
+groupName = "sss"
     //グループ名表示
     groupDiv.innerHTML = 'グループ名：' + groupName + "</br>";
 
