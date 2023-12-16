@@ -11,6 +11,21 @@ let memberDiv = document.getElementById('memberList');
 let member;
 let memberList = [];
 
+
+// 画面高さ
+var background = document.getElementById("background-begin");
+var backHeight = 0;
+changeHeight();
+
+// 高さの変更
+function changeHeight() {
+    var offsetTop = createButton.offsetTop;
+    console.log(offsetTop);
+    backHeight = offsetTop + 600;
+    background.style.height = backHeight + "px";
+}
+
+
 // inputName.addEventListener("input", function() {
 //     if (inputName.value !== "") {
 //         labelName.innerHTML = "";
@@ -59,6 +74,9 @@ addButton.addEventListener("click", function() {
 
         memberSpan.appendChild(cancelButton)
         memberDiv.appendChild(memberSpan); 
+
+        changeHeight();
+
     } else {
         alert('メンバー名を入力してください');
     }

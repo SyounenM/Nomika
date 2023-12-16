@@ -41,7 +41,7 @@ cancelButton.href = `../group.html?id=${groupId}`;
 
 
 
-// メンバー編集
+// 初期画面生成
 let memberList = [];
 const groupMemberRef = ref_(database, 'groups/' + groupId + '/groupMember');
 get_(groupMemberRef)
@@ -85,6 +85,8 @@ function displayMembers() {
         memberDiv.appendChild(memberSpan);
     }
 }
+
+// メンバー編集
 
 const inputMember = document.getElementById("inputMember");
 
