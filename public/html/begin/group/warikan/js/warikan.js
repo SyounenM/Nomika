@@ -570,41 +570,48 @@ function allCheck() {
     })
     checkboxes.forEach(function (checkbox) {
         checkbox.checked = !checkExist;
-        let nameId = checkbox.id.replace('CheckBox', 'Name');
-        let nameTd = document.getElementById(nameId);
-        if (checkbox.checked) {
-            nameTd.className = 'selected';
-        }else if (nameId.className != 'selected'){
-            nameTd.className = '';
-        }
-
-        const inputId = checkbox.id.replace('CheckBox', 'Payment');
-        const ratioId = checkbox.id.replace('CheckBox', 'Ratio');
-        
-        const inputElement = document.getElementById(inputId);
-        const ratioElement = document.getElementById(ratioId);
-        if (checkbox.checked) {
-            // チェックされた場合、入力欄を表示
-            inputElement.removeAttribute('readonly', 'false');
-            inputElement.style.border = '1px solid black';
-            inputElement.style.backgroundColor = 'white';   
-            // チェックされた場合、入力欄を表示
-            ratioElement.removeAttribute('readonly', 'false');
-            ratioElement.style.border = '1px solid black';
-            ratioElement.style.backgroundColor = 'white';                
-        } else {
-            // チェックされていない場合、入力欄を非表示
-            inputElement.setAttribute('readonly', 'true');
-            inputElement.style.border = 'none';
-            inputElement.style.outline = 'none';
-            inputElement.style.backgroundColor = 'transparent';
-            ratioElement.setAttribute('readonly', 'true');
-            ratioElement.style.border = 'none';
-            ratioElement.style.outline = 'none';
-            ratioElement.style.backgroundColor = 'transparent';
-        }
+        setVisualEvent(checkbox);
     })    
 }
+
+function setVisualEvent(checkbox) {
+    let nameId = checkbox.id.replace('CheckBox', 'Name');
+    let nameTd = document.getElementById(nameId);
+    if (checkbox.checked) {
+        nameTd.className = 'selected';
+    }else if (nameId.className != 'selected'){
+        nameTd.className = '';
+    }
+    // checkbox.addEventListener('change', function() {
+    addSyncEvent(checkbox);  
+    // })          
+    const inputId = checkbox.id.replace('CheckBox', 'Payment');
+    const ratioId = checkbox.id.replace('CheckBox', 'Ratio');
+    
+    const inputElement = document.getElementById(inputId);
+    const ratioElement = document.getElementById(ratioId);
+    if (checkbox.checked) {
+        // チェックされた場合、入力欄を表示
+        inputElement.removeAttribute('readonly', 'false');
+        inputElement.style.border = '1px solid black';
+        inputElement.style.backgroundColor = 'white';   
+        // チェックされた場合、入力欄を表示
+        ratioElement.removeAttribute('readonly', 'false');
+        ratioElement.style.border = '1px solid black';
+        ratioElement.style.backgroundColor = 'white';                
+    } else {
+        // チェックされていない場合、入力欄を非表示
+        inputElement.setAttribute('readonly', 'true');
+        inputElement.style.border = 'none';
+        inputElement.style.outline = 'none';
+        inputElement.style.backgroundColor = 'transparent';
+        ratioElement.setAttribute('readonly', 'true');
+        ratioElement.style.border = 'none';
+        ratioElement.style.outline = 'none';
+        ratioElement.style.backgroundColor = 'transparent';
+    }
+}
+
 // top alert
 function showAlert() {
     var result = confirm('注意 グループから抜けることになります');
@@ -656,41 +663,7 @@ get_(groupRef)
     // 各チェックボックスに対してイベントリスナーを追加
     checkboxes.forEach(function(checkbox) {
         checkbox.addEventListener('change', function() {
-            let nameId = checkbox.id.replace('CheckBox', 'Name');
-            let nameTd = document.getElementById(nameId);
-            if (checkbox.checked) {
-                nameTd.className = 'selected';
-            }else if (nameId.className != 'selected'){
-                nameTd.className = '';
-            }
-            // チェックボックスが変更されたら、対応する入力欄にイベントリスナーを追加または削除
-            addSyncEvent(checkbox);            
-            const inputId = checkbox.id.replace('CheckBox', 'Payment');
-            const ratioId = checkbox.id.replace('CheckBox', 'Ratio');
-            
-            const inputElement = document.getElementById(inputId);
-            const ratioElement = document.getElementById(ratioId);
-            if (checkbox.checked) {
-                // チェックされた場合、入力欄を表示
-                inputElement.removeAttribute('readonly', 'false');
-                inputElement.style.border = '1px solid black';
-                inputElement.style.backgroundColor = 'white';   
-                // チェックされた場合、入力欄を表示
-                ratioElement.removeAttribute('readonly', 'false');
-                ratioElement.style.border = '1px solid black';
-                ratioElement.style.backgroundColor = 'white';                
-            } else {
-                // チェックされていない場合、入力欄を非表示
-                inputElement.setAttribute('readonly', 'true');
-                inputElement.style.border = 'none';
-                inputElement.style.outline = 'none';
-                inputElement.style.backgroundColor = 'transparent';
-                ratioElement.setAttribute('readonly', 'true');
-                ratioElement.style.border = 'none';
-                ratioElement.style.outline = 'none';
-                ratioElement.style.backgroundColor = 'transparent';
-            }
-        
+            setVisualEvent(checkbox);
             allButton.innerHTML = (!checkbox.checked) ? '<small>全編集</small>' : '<small>全解除</small>';
             allButton.className = (!checkbox.checked) ? "allButton": "allClear";
             
@@ -706,7 +679,6 @@ get_(groupRef)
             content.style.display = 'none';
         }
     });
-
 })
     .catch((error) => {
         console.log("ID:" + groupId);
