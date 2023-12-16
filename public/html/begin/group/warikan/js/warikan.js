@@ -537,8 +537,8 @@ get_(groupRef)
 
     console.log("groupname:" + groupName);
     memberList = data["groupMember"];
-memberList = ["s","d","w","3"]
-groupName = "sss"
+// memberList = ["s","d","w","3"]
+// groupName = "sss"
     //グループ名表示
     groupDiv.innerHTML = 'グループ名：' + groupName + "</br>";
 
@@ -549,13 +549,13 @@ groupName = "sss"
         let payer = document.getElementById('payer').value;
         for(let member of memberList){
             let memberRow = document.getElementById(member + 'Row');
-            memberRow.style = 'background-color: transparent;'
+            memberRow.className = "debtorRow";
             let fracToggle = document.getElementById(member + 'FracToggle');
             fracToggle.checked = false;
 
         }
         let payerRow = document.getElementById(payer + 'Row');
-        payerRow.style = 'background-color: #FFCCCC;';
+        payerRow.className = 'payerRow';
         let fracToggle = document.getElementById(payer + 'FracToggle');
         fracToggle.checked = true;
     }
