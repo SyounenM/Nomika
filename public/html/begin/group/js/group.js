@@ -7,11 +7,20 @@ const editButton = document.getElementById("editButton");
 const logo = document.getElementById("logo");
 const top = document.getElementById("top");
 const home = document.getElementById("home");
+
 // 画面高さ
 var dispScope = document.getElementById("result-group");
 var background = document.getElementById("background-group");
 var dispHeight = 100;
-var backHeight = 1200;
+var backHeight;
+
+// 高さの変更
+function changeHeight() {
+    var offsetTop = editButton.offsetTop;
+    console.log(offsetTop);
+    backHeight = offsetTop + 600;
+    background.style.height = backHeight + "px";
+}
 
 const groupId = new URLSearchParams(window.location.search).get('id');
 console.log("groupId:" + groupId);
@@ -182,10 +191,8 @@ function showResult() {
         // 各結果を表示
         res.innerHTML += `<div class="result">${obj.debtor} → ${obj.creditor} : ${obj.amount}円</div>`;
         dispHeight += 31;
-        backHeight += 31;
     }
     dispScope.style.height = dispHeight + "px";
-    background.style.height = backHeight + "px";
 }
 
 // main //////////////////////////////////////////////////////
@@ -195,4 +202,5 @@ getGroupInfo()
     .then(calculateBalance)
     .then(mainCalculation)
     .then(showResult)
+    .then(changeHeight)
     .catch(error => console.error(error));

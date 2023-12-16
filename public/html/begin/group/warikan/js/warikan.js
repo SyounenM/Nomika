@@ -1,10 +1,5 @@
 import { app, database, ref_, set_, get_, update_, push_, goOffline_}  from "../../../../../js/master.js";
 
-// 画面高さ
-var dispScope = document.getElementById("result");
-var background = document.getElementById("background-warikan");
-var dispHeight = 430;
-var backHeight = 1550;
 
 // アプリケーションが閉じられたときに呼ばれる処理
 window.onbeforeunload = function () {
@@ -23,6 +18,21 @@ logo.href = `../group.html?id=${groupId}`;
 home.href = `../group.html?id=${groupId}`;
 back.href = `../group.html?id=${groupId}`;
 top.onclick = showAlert;
+
+
+// 画面高さ
+var dispScope = document.getElementById("result");
+var background = document.getElementById("background-warikan");
+var dispHeight = 430;
+var backHeight;
+
+// 高さの変更
+function changeHeight() {
+    var offsetTop = back.offsetTop;
+    console.log(offsetTop);
+    backHeight = offsetTop + 500;
+    background.style.height = backHeight + "px";
+}
 
 // htmlとの連携
 let memberDiv = document.getElementById('member');
@@ -58,8 +68,9 @@ let pushResult = {};
 // データベースへの参照
 let groupRef = ref_(database,'groups/' + groupId);
 
-
+// flg
 let getFlag = false;
+let flgConfirm = true;
 
 
 //関数/////////////////////////////////////////////////////////////////////////////////////////////
@@ -73,8 +84,7 @@ function viewBuilder() {
         memberSpan.style = 'background-color: white; margin-right:10px; border: solid 1px black; border-width: 2px; border-radius: 10px; padding: 3px;';
         // memberSpan.style.border = 'solid'
         memberDiv.appendChild(memberSpan);
-        dispHeight += 42;
-        backHeight += 42;
+        dispHeight += 42; //表示部分高さの変更
     }
     //支払い人
     let payerSelect = document.getElementById("payer");
@@ -210,7 +220,7 @@ function viewBuilder() {
 
     // 表示部分の高さ設定
     dispScope.style.height = dispHeight + "px";
-    background.style.height = backHeight + "px";
+    changeHeight(); // 背景部分の高さの変更
 }
 
 //精算
@@ -230,6 +240,9 @@ function calculate() {
         console.error('AmountNotFoundError');
         // throw new Error('AmountNotFoundError');
         document.getElementById('amount').value = 33333;
+        flgConfirm = false;
+    } else {
+        flgConfirm = true;
     }
     let fracCount = 0;
     for(let member of memberList){
@@ -402,7 +415,12 @@ function save() {
                 reject(error);
             });    
         }
-        alert("保存されました")
+        if (flgConfirm){
+            var confirmation = confirm("保存されました。ホーム画面に戻りますか？");
+            if (confirmation) {
+                window.location.href = `../group.html?id=${groupId}`;
+            }
+        }
     } catch (error) {
         console.error('[' + error + ']' + ' not calculated');
         return;

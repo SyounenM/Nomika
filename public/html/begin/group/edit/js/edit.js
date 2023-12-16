@@ -84,6 +84,7 @@ function displayMembers() {
         memberSpan.appendChild(cancelButton);
         memberDiv.appendChild(memberSpan);
     }
+    memberDiv.appendChild(document.createElement('br'));
 }
 
 // メンバー編集
