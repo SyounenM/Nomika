@@ -102,7 +102,7 @@ function viewBuilder() {
         checkInput.id = member + 'CheckBox';
         checkInput.className = 'checkbox'
         checkInput.onclick = function(){ //クリックでチェックをつける
-            toggleCheckbox(this);
+            // checkInput.toggle();
         }
         checkTd.appendChild(checkInput);
         tr.appendChild(checkTd);
@@ -125,10 +125,14 @@ function viewBuilder() {
         let paymentTd = document.createElement('td');
         let paymentDiv = document.createElement('div');
         let paymentInput = document.createElement('input');
-        paymentInput.type = 'number';
         paymentInput.id = member + 'Payment';
+        paymentInput.type = 'number';
         paymentInput.min = '0';
         paymentInput.style.width = '90px';
+        paymentInput.setAttribute('readonly', 'true');
+        paymentInput.style.border = 'none';
+        paymentInput.style.outline = 'none';
+        paymentInput.style.backgroundColor = 'transparent';    
         paymentDiv.appendChild(paymentInput)
         const yen = document.createElement('span');
         yen.textContent = '円';
@@ -145,6 +149,10 @@ function viewBuilder() {
         ratioInput.step = '1';
         ratioInput.style.width = '55px';
         ratioInput.valueAsNumber = 1;
+        ratioInput.setAttribute('readonly', 'true');
+        ratioInput.style.border = 'none';
+        ratioInput.style.outline = 'none';
+        ratioInput.style.backgroundColor = 'transparent';   
         ratioTd.appendChild(ratioInput);
         tr.appendChild(ratioTd);
         //金額固定
@@ -459,11 +467,11 @@ function syncFix() {
 // メンバーを複数選択するための関数
 function startSelection(cell) {
     isSelecting = true;
-    toggleCellSelection(cell);
+    chengeViewOfCell(cell);
 }
 function selectCell(cell) {
     if (isSelecting) {
-        toggleCellSelection(cell);
+        chengeViewOfCell(cell);
     }
 }
 function endSelection() {
@@ -476,26 +484,52 @@ function endSelection() {
         }
     })
     let allButton = document.getElementById('allButton');
-    allButton.innerHTML = (!checkExist) ? '<small>全選択</small>' : '<small>全解除</small>';
+    allButton.innerHTML = (!checkExist) ? '<small>全編集</small>' : '<small>全解除</small>';
     allButton.className = (!checkExist) ? 'allButton' : 'allClear';
     // console.log(allButton.className); 
 }
 // 選択されたメンバーの背景色とチェックボックスを管理
-function toggleCellSelection(cell) {
+function chengeViewOfCell(cell) {
     cell.classList.toggle("selected");
-    toggleCheckboxInSameRow(cell);
+    changeViewOfRow(cell);
 }
-function toggleCheckboxInSameRow(cell) {
+function changeViewOfRow(cell) {
     const row = cell.parentNode;
     const checkboxCell = row.querySelector('td:nth-child(1) input[class="checkbox"]');
     // checkboxCell.checked = !checkboxCell.checked;
     checkboxCell.checked = (cell.className == 'selected') ? true : false ;
+    const inputId = checkboxCell.id.replace('CheckBox', 'Payment');
+    const ratioId = checkboxCell.id.replace('CheckBox', 'Ratio');
+    
+    const inputElement = document.getElementById(inputId);
+    const ratioElement = document.getElementById(ratioId);
+    if (checkboxCell.checked) {
+        // チェックされた場合、入力欄を表示
+        inputElement.removeAttribute('readonly', 'false');
+        inputElement.style.border = '1px solid black';
+        inputElement.style.backgroundColor = 'white';   
+        // チェックされた場合、入力欄を表示
+        ratioElement.removeAttribute('readonly', 'false');
+        ratioElement.style.border = '1px solid black';
+        ratioElement.style.backgroundColor = 'white';                
+    } else {
+        // チェックされていない場合、入力欄を非表示
+        inputElement.setAttribute('readonly', 'true');
+        inputElement.style.border = 'none';
+        inputElement.style.outline = 'none';
+        inputElement.style.backgroundColor = 'transparent';
+        ratioElement.setAttribute('readonly', 'true');
+        ratioElement.style.border = 'none';
+        ratioElement.style.outline = 'none';
+        ratioElement.style.backgroundColor = 'transparent';
+    }
     addSyncEvent(checkboxCell);
+    
 }
 //一括選択・解除
 function allCheck() {
     let allButton = document.getElementById('allButton');
-    allButton.innerHTML = (allButton.className=='allClear') ? '<small>全選択</small>' : '<small>全解除</small>';
+    allButton.innerHTML = (allButton.className=='allClear') ? '<small>全編集</small>' : '<small>全解除</small>';
     allButton.className = (allButton.className == 'allClear') ? "allButton": "allClear";
     var checkboxes = document.querySelectorAll('input[class="checkbox"]');
     let checkExist = false;
@@ -574,10 +608,36 @@ get_(groupRef)
                 nameTd.className = '';
             }
             // チェックボックスが変更されたら、対応する入力欄にイベントリスナーを追加または削除
-            addSyncEvent(checkbox);
-            let allButton = document.getElementById('allButton');
-            allButton.innerHTML = (allButton.className=='allClear') ? '<small>全選択</small>' : '<small>全解除</small>';
-            allButton.className = (allButton.className == 'allClear') ? "allButton": "allClear";
+            addSyncEvent(checkbox);            
+            const inputId = checkbox.id.replace('CheckBox', 'Payment');
+            const ratioId = checkbox.id.replace('CheckBox', 'Ratio');
+            
+            const inputElement = document.getElementById(inputId);
+            const ratioElement = document.getElementById(ratioId);
+            if (checkbox.checked) {
+                // チェックされた場合、入力欄を表示
+                inputElement.removeAttribute('readonly', 'false');
+                inputElement.style.border = '1px solid black';
+                inputElement.style.backgroundColor = 'white';   
+                // チェックされた場合、入力欄を表示
+                ratioElement.removeAttribute('readonly', 'false');
+                ratioElement.style.border = '1px solid black';
+                ratioElement.style.backgroundColor = 'white';                
+            } else {
+                // チェックされていない場合、入力欄を非表示
+                inputElement.setAttribute('readonly', 'true');
+                inputElement.style.border = 'none';
+                inputElement.style.outline = 'none';
+                inputElement.style.backgroundColor = 'transparent';
+                ratioElement.setAttribute('readonly', 'true');
+                ratioElement.style.border = 'none';
+                ratioElement.style.outline = 'none';
+                ratioElement.style.backgroundColor = 'transparent';
+            }
+        
+            allButton.innerHTML = (!checkbox.checked) ? '<small>全編集</small>' : '<small>全解除</small>';
+            allButton.className = (!checkbox.checked) ? "allButton": "allClear";
+            
         });
     });
 
@@ -590,6 +650,7 @@ get_(groupRef)
             content.style.display = 'none';
         }
     });
+
 })
     .catch((error) => {
         console.log("ID:" + groupId);
@@ -602,6 +663,6 @@ get_(groupRef)
 
 
 
+
 // note//
 // TODO: 金額固定と端数調整が共存しないようにする
-// TODO: チェックが入らないと編集できないようにする
