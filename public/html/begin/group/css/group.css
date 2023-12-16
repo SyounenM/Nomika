@@ -1,11 +1,11 @@
 .btn-group{
     position: relative;
-    top: 200px;
+    top: 50px;
     left: 0px;
 }
 .btn-edit{
     position: relative;
-    top: 200px;
+    top: 50px;
     left: 0px;
 }
 .background-group {
@@ -24,16 +24,22 @@
 .group-name{
     margin: 5px;
 }
+.result-text{
+    position: absolute;
+    top: 140px;
+}
 .result-group{
     margin: 80px;
     display: flex;
     justify-content: center;
     align-items: center;
     /* height: 100px; → group.jsで指定 */
+    border: 2.5px solid black;
+    border-radius: 40px;
 }
 .result{
     position: relative;
-    top: 100px;
+    top: 0px;
     margin: 5px;
     padding: 7px;
     color: black;

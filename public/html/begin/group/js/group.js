@@ -11,7 +11,7 @@ const home = document.getElementById("home");
 // 画面高さ
 var dispScope = document.getElementById("result-group");
 var background = document.getElementById("background-group");
-var dispHeight = 100;
+var dispHeight = 300;
 var backHeight;
 
 // 高さの変更
@@ -190,7 +190,7 @@ function showResult() {
     for (const obj of resultList) {
         // 各結果を表示
         res.innerHTML += `<div class="result">${obj.debtor} → ${obj.creditor} : ${obj.amount}円</div>`;
-        dispHeight += 31;
+        dispHeight += 60;
     }
     dispScope.style.height = dispHeight + "px";
 }
