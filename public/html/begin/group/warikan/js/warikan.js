@@ -196,7 +196,7 @@ function viewBuilder() {
     // 支払い者の表示を変える
     let payer = document.getElementById('payer').value;
     let payerRow = document.getElementById(payer + 'Row');
-    payerRow.style = 'background-color: #FFCCCC;';
+    payerRow.className = 'payerRow'
     let fracToggle = document.getElementById(payer + 'FracToggle');
     fracToggle.checked = true;
 }
@@ -549,13 +549,13 @@ get_(groupRef)
         let payer = document.getElementById('payer').value;
         for(let member of memberList){
             let memberRow = document.getElementById(member + 'Row');
-            memberRow.style = 'background-color: transparent;'
+            memberRow.className = "debtorRow";
             let fracToggle = document.getElementById(member + 'FracToggle');
             fracToggle.checked = false;
 
         }
         let payerRow = document.getElementById(payer + 'Row');
-        payerRow.style = 'background-color: #FFCCCC;';
+        payerRow.className = 'payerRow';
         let fracToggle = document.getElementById(payer + 'FracToggle');
         fracToggle.checked = true;
     }

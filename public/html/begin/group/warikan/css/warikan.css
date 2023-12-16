@@ -145,10 +145,16 @@ input:checked ~ .circle {
 }
   
 input:checked ~ .base {
-  background-color: rgb(33, 230, 99);
+  background-color: rgb(230, 195, 18);
   transition: 0.5s;
 }
 
+.payerRow{
+    background-color: #f6eabe;
+}
+.debtorRow{
+    background-color: transparent;
+}
 #ab{
     padding-left: 2.5%;
 }
