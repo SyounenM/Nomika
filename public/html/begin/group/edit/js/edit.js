@@ -78,11 +78,13 @@ addButton.addEventListener("click", function() {
     if (inputMember.value != "") {
         let member;
         member = inputMember.value;
+        inputMember.value = "";
         memberList.push(member);
+        console.log(memberList);
         let memberSpan = document.createElement("span");
         memberSpan.type = 'text';
         memberSpan.textContent =  '' + member + '' ;
-        memberSpan.style = 'font-size: 25px; height: 50px; background-color:white; margin-right:10px; border: solid 1px black; border-width: 2px; border-radius: 10px; padding: 7px;';
+        memberSpan.style = 'font-size: 25px; height: 50px; background-color:white; margin:10px; border: solid 1px black; border-width: 2px; border-radius: 10px; padding: 7px;';
         memberSpan.id = member + "Span";
 
         let cancelButton = document.createElement('button');
@@ -105,7 +107,6 @@ addButton.addEventListener("click", function() {
 });
 
 function cancelMember(member) {
-    console.log(memberList);
     let colIndex = memberList.indexOf(member);
     memberList.splice(colIndex, 1);
     console.log(memberList);
@@ -115,25 +116,8 @@ function cancelMember(member) {
 
 function updateMembers() {
     if (memberList.length != 0) {
-        let groupName;
-        const groupNameRef = ref_(database, 'groups/' + groupId + '/groupName');
-        const groupRef = ref_(database, 'groups/' + groupId);
-        get_(groupNameRef)
-            .then((snapshot) => {
-                if (snapshot.exists()) {
-                groupName = snapshot.val();
-                console.log('データ:', groupName);
-                } else {
-                console.log('データが存在しません');
-                }
-            })
-            .catch((error) => {
-                console.error('データの取得に失敗:', error);
-            });
-        set_(groupRef, {
-            groupName: groupName,
-            groupMember: memberList
-        })
+        const membersRef = ref_(database, 'groups/' + groupId + '/groupMember');
+        set_(membersRef, memberList)
         .then(()=>{
             console.log("データが正常に書き込まれました");
             console.log(memberList);
