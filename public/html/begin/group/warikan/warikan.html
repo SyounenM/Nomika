@@ -49,14 +49,15 @@
             <a class="big text-amount">円払った</a>
           </div>
           <br>
-          <button id="toggleButton" type="button"><a class="big">端数を分ける</a></button>
+          <button id="toggleButton" type="button"><a class="big">端数のわけかた</a></button>
           <div id="toggleContent" style="display: none;">
               <select type="number" id="round" class="select number"></select>
               <a class="big">円単位</a>
+              <br>
               <select name="option" id="option" class="select marume">
-                <option value="ceil">切り上げ</option>
-                <option value="round">四捨五入</option>
-                <option value="floor">切り捨て</option>
+                <option value="ceil">支払う人少なめ</option>
+                <option value="round">なるべく均等</option>
+                <option value="floor">支払う人多め</option>
               </select>
           </div>
           <!-- <div>
