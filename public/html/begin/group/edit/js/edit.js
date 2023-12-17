@@ -42,8 +42,27 @@ cancelButton.href = `../group.html?id=${groupId}`;
 
 
 // 初期画面生成
+// グループ名
+const groupNameRef = ref_(database, 'groups/' + groupId + '/groupName');
+const groupName = document.getElementById("groupNameBox");
+
+get_(groupNameRef)
+    .then((snapshot) => {
+    if (snapshot.exists()) {
+        groupName.value = snapshot.val();
+    } else {
+        console.log('データが存在しません');
+    }
+    })
+    .catch((error) => {
+    console.error('データの取得に失敗:', error);
+});
+
+// メンバー
 let memberList = [];
+let memberDiv = document.getElementById('memberList');
 const groupMemberRef = ref_(database, 'groups/' + groupId + '/groupMember');
+
 get_(groupMemberRef)
     .then((snapshot) => {
     if (snapshot.exists()) {
@@ -58,8 +77,6 @@ get_(groupMemberRef)
     .catch((error) => {
     console.error('データの取得に失敗:', error);
 });
-
-let memberDiv = document.getElementById('memberList');
 
 function displayMembers() {
     for (let i = 0; i < memberList.length; i++) {
@@ -87,8 +104,27 @@ function displayMembers() {
     memberDiv.appendChild(document.createElement('br'));
 }
 
-// メンバー編集
 
+// 編集
+function updateGroup(){
+    updateGroupName();
+    updateMembers();
+    alert('編集が完了しました');
+    window.location.href = `../group.html?id=${groupId}`;
+}
+
+// グループ名編集
+function updateGroupName() {
+    set_(groupNameRef, groupName.value)
+    .then(()=>{
+        console.log("データが正常に書き込まれました");
+    })
+    .catch((error)=>{
+        console.error("データの書き込みに失敗しました", error);
+    })
+}
+
+// メンバー編集
 const inputMember = document.getElementById("inputMember");
 
 addButton.addEventListener("click", function() {
@@ -141,12 +177,6 @@ function updateMembers() {
         .then(()=>{
             console.log("データが正常に書き込まれました");
             console.log(memberList);
-            // const groupURL = window.location.href + 'group.html?id=' + groupId;
-            // alert('グループが作成されました。\nURL: ' + groupURL);
-            // createButton.href = `./group/group.html?id=${newGroupRef.key}`;
-            // 新しいURLに遷移する
-            window.location.href = `../group.html?id=${groupId}`;
-
         })
         .catch((error)=>{
             console.error("データの書き込みに失敗しました", error);
@@ -156,4 +186,6 @@ function updateMembers() {
     }
 }
 
-updateButton.onclick = updateMembers;
+
+// 更新ボタンで編集内容を反映
+updateButton.onclick = updateGroup;
