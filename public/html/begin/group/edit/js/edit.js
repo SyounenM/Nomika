@@ -104,6 +104,19 @@ function displayMembers() {
     memberDiv.appendChild(document.createElement('br'));
 }
 
+// history
+let historyList = [];
+let historyRef = ref_(database, 'groups/' + groupId + '/history');
+get_(historyRef)
+.then((snapshot) => {
+    let history = snapshot.val();
+    historyList = Object.values(history);
+    console.log("historyList");
+    console.log("historyList", historyList);
+})
+.catch((error) => {
+    console.error("履歴の読み取りに失敗しました", error);
+});
 
 // 編集
 function updateGroup(){
@@ -170,6 +183,13 @@ addButton.addEventListener("click", function() {
 });
 
 function cancelMember(member) {
+    for( const { creditor, debtor } of historyList ) {
+        console.log(creditor, debtor);
+        if (creditor == member || debtor == member) {
+            alert('このメンバーは履歴に登録されているため削除できません');
+            return;
+        }
+    }
     let colIndex = memberList.indexOf(member);
     memberList.splice(colIndex, 1);
     console.log(memberList);
