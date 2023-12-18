@@ -125,6 +125,7 @@ function updateGroupName() {
 }
 
 // メンバー編集
+const addButton = document.getElementById("addButton");
 const inputMember = document.getElementById("inputMember");
 
 addButton.addEventListener("click", function() {
@@ -132,6 +133,12 @@ addButton.addEventListener("click", function() {
         let member;
         member = inputMember.value;
         inputMember.value = "";
+        for (let i = 0; i < member.length; i++) {
+            if (memberList[i] == member){
+                alert('既に追加されています。同名のメンバーは追加できません。');
+                return;
+            }
+        }
         memberList.push(member);
         console.log(memberList);
         let memberSpan = document.createElement("span");
