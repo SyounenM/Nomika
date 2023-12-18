@@ -98,7 +98,12 @@ function cancelMember(member) {
     target.remove();
 }
 
+let flgAlredyCreated = false;
 function createGroup() {
+    if (flgAlredyCreated) {
+        return;
+    }
+    flgAlredyCreated = true;
     if (memberList.length > 1) {
         const groupName = document.getElementById('groupNameInput').value;
         const newGroupRef = push_(ref_(database, 'groups'));
