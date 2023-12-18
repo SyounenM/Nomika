@@ -168,7 +168,8 @@ addButton.addEventListener("click", function() {
         // cancelButton.style.width = '15px';
         // cancelButton.style.offset
 
-        cancelButton.onclick = function(){
+        cancelButton.onclick = function(event){
+            event.preventDefault();
             cancelMember(member);
         };
 

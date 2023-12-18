@@ -75,7 +75,8 @@ addButton.addEventListener("click", function() {
         // cancelButton.style.width = '15px';
         // cancelButton.style.offset
 
-        cancelButton.onclick = function(){
+        cancelButton.onclick = function(event){
+            event.preventDefault();
             cancelMember(member);
         };
 
@@ -89,8 +90,8 @@ addButton.addEventListener("click", function() {
     }
 });
 
+//TODO:メンバーをキャンセルすると再読み込みする
 function cancelMember(member) {
-    console.log(memberList);
     let colIndex = memberList.indexOf(member);
     memberList.splice(colIndex, 1);
     console.log(memberList);
