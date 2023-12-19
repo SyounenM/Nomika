@@ -6,8 +6,6 @@ console.log("start");
 //     goOffline_(database);
 // };
 
-
-
 const groupId = new URLSearchParams(window.location.search).get('id');
 const logo = document.getElementById("logo");
 const topButton = document.getElementById("top");
