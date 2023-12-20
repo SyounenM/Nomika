@@ -6,8 +6,6 @@ console.log("start");
 //     goOffline_(database);
 // };
 
-
-
 const groupId = new URLSearchParams(window.location.search).get('id');
 const logo = document.getElementById("logo");
 const topButton = document.getElementById("top");
@@ -42,7 +40,7 @@ get_(groupRef)
     .then((snapshot) => {
     let data = snapshot.val();
     let memberList = data["groupMember"];
-    console.log("memberList:" + memberList);
+    // console.log("memberList:" + memberList);
 })
     .catch((error) => {
     console.log("ID:" + groupId);
@@ -52,15 +50,16 @@ get_(groupRef)
 // ここが原因12/15
 
 // JavaScriptのリストの値（仮の例）
+console.log(memberList);
 const initialData = [
-    { color: '#FF0000', name: 'A', ratio: 1 },
-    { color: '#00FF00', name: 'B', ratio: 2 },
+    { name: 'A', ratio: 1 },
+    { name: 'B', ratio: 1 },
     // 他のデータ...
 ];
 
 // リストからテーブルを動的に生成する関数
 function generateTable(data) {
-    const tableBody = document.getElementById('tableBody'); // テーブルのtbody要素のIDを取得する必要があります
+    const tableBody = document.getElementById('tableBody');
 
     data.forEach(item => {
         const newRow = document.createElement('tr');
@@ -105,10 +104,6 @@ function generateTable(data) {
         tableBody.appendChild(newRow);
     });
 }
-
-// テーブル生成関数を呼び出して初期データを適用
-generateTable(initialData);
-
 
 // ページの読み込み後にテーブルを生成
 document.addEventListener('DOMContentLoaded', function() {
