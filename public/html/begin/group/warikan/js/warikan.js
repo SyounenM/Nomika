@@ -56,20 +56,10 @@ let memberList = ["秀島", "川崎", "佐々木", "福田", "松島"];
 // '1男1','1男2','1男3','1男4','1男5',
 // '1女1','1女2','1女3','1女4','1女5',];
 
-let preResult = { // 前回までの割り勘の結果を格納するjson
-    "秀島":0, 
-    "川崎":0, 
-    "佐々木":0, 
-    "福田":0, 
-    "松島":0
-};
-let resultDict = {};// 今回の割り勘結果を格納するjson
-let pushResult = {};
 // データベースへの参照
 let groupRef = ref_(database,'groups/' + groupId);
 
 // flg
-let getFlag = false;
 let flgConfirm = true;
 
 
@@ -349,17 +339,6 @@ function calculate() {
         document.getElementById(unfixedList[i] + 'Payment').value = resultList[i];   
     }
     console.log('--- calculate finish ---');
-    resultDict = {};
-    for (let i=0; i< memberList.length; i++) {
-        resultDict[String(memberList[i])]= resultList[i];
-    }
-    console.log(resultDict);
-    for (let key in preResult){
-        if (resultDict.hasOwnProperty(key)){
-            pushResult[key] = preResult[key] + resultDict[key];
-        }
-    }
-    console.log(result);
 }
 
 // 丸めこみの関数
@@ -640,8 +619,8 @@ get_(groupRef)
 
     console.log("groupname:" + groupName);
     memberList = data["groupMember"];
-// memberList = ["s","d","w","3"]
-// groupName = "sss"
+memberList = ["s","d","w","3"]
+groupName = "sss"
     //グループ名表示
     groupDiv.innerHTML = 'グループ名：' + groupName + "</br>";
 
