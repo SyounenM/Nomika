@@ -175,29 +175,35 @@ function submitHistory() {
         // let amount = document.getElementById("amount").value;
         // let debtor = document.getElementById("debtor select").value;
         let content = document.getElementById("content").value;
-        let data = {};
+        let data = [];
+        data.push({
+            "creditor": creditor,
+            "amount": debtorPayment,
+            "debtor": selectedDebtors,
+            "content": content
+        });
         for (let debtor of selectedDebtors) {
             if (debtor != creditor) {
-                data = {
+                data.push({
                     "creditor": creditor,
                     "amount": debtorPayment,
                     "debtor": debtor,
                     "content": content
-                };
+                });
             } else {
                 continue;
             }
-            let newHistoryRef = push_(ref_(database, 'groups/' + groupId + '/history'));
-            set_(newHistoryRef, data)
-            .then(() => {
-                console.log("履歴が正常に書き込まれました");
-                resolve();
-            })
-            .catch((error) => {
-                console.error("履歴の書き込みに失敗しました", error);
-                reject(error);
-            });
         }
+        let newHistoryRef = push_(ref_(database, 'groups/' + groupId + '/history'));
+        set_(newHistoryRef, data)
+        .then(() => {
+            console.log("履歴が正常に書き込まれました");
+            resolve();
+        })
+        .catch((error) => {
+            console.error("履歴の書き込みに失敗しました", error);
+            reject(error);
+        });
     });
 }
 

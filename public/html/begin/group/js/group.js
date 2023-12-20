@@ -118,14 +118,17 @@ function initializeBalanceList() {
 }
 
 function calculateBalance() {
-    for( const { creditor, amount, debtor } of historyList ) {
-        let creditorObject = balanceList.find(memberObj => memberObj.name === creditor);
-        let debtorObject = balanceList.find(memberObj => memberObj.name === debtor);
-        if (creditorObject) {
-            creditorObject.balance += parseInt(amount);
-        }
-        if (debtorObject) {
-            debtorObject.balance -= parseInt(amount)
+    for (var i = 0; i < historyList.length; i++) {
+        console.log("historyList[", i, "]", historyList[i]);
+        for( const { creditor, amount, debtor } of historyList[i] ) {
+            let creditorObject = balanceList.find(memberObj => memberObj.name === creditor);
+            let debtorObject = balanceList.find(memberObj => memberObj.name === debtor);
+            if (creditorObject) {
+                creditorObject.balance += parseInt(amount);
+            }
+            if (debtorObject) {
+                debtorObject.balance -= parseInt(amount)
+            }
         }
     }
 }
