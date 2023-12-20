@@ -36,6 +36,10 @@
     position: relative;
     top: 70px;
 }
+.history-text{
+    position: relative;
+    top: 140px;
+}
 .line-1{
     border: 2.5px solid white;
     position: relative;
@@ -47,6 +51,13 @@
     border: 2.5px solid white;
     position: relative;
     top: 80px;
+    width: 500px;
+    margin: 0 auto;
+}
+.line-3{
+    border: 2.5px solid white;
+    position: relative;
+    top: 150px;
     width: 500px;
     margin: 0 auto;
 }
@@ -69,5 +80,13 @@
     border: 2.5px solid black;
     border-color: black;
     border-radius: 10px;
+    font-size: 25px;
+}
+.history-group{
+    position: relative;
+    top: 180px;
+    margin: 5px;
+    padding: 7px;
+    border: 2.5px solid black;
     font-size: 25px;
 }

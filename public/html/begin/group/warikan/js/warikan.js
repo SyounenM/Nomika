@@ -395,6 +395,11 @@ function save() {
     try {
         calculate();
         let creditor = document.getElementById("payer").value;
+        let content = document.getElementById("content").value;
+        if (content == '' || content == null) {
+            alert('支払い内容を入力してください');
+            return;
+        }
         for (let member of memberList){
             if (member == creditor){
                 continue;
@@ -406,7 +411,6 @@ function save() {
             amount = Number(amount);
             console.log(typeof amount);
             console.log(amount);
-            let content = document.getElementById("content").value;
             let data = {
                 "creditor": creditor,
                 "amount": amount,
@@ -427,6 +431,8 @@ function save() {
             var confirmation = confirm("保存されました。ホーム画面に戻りますか？");
             if (confirmation) {
                 window.location.href = `../group.html?id=${groupId}`;
+            }else{
+                location.reload();
             }
         }
     } catch (error) {

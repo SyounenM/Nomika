@@ -33,6 +33,8 @@ let balanceList = [] ;
 let resultList = [];
 let selectedDebtors = [];
 
+let flgConfirm = true;
+
 function addOption() {
     let creditorSelect = document.getElementById("creditor select");
     let debtorCheckboxWrapper = document.getElementById("debtor-checkbox-wrapper");
@@ -101,7 +103,7 @@ function checkFormInputs() {
     });
 
     if (!isChecked) {
-        alert('複数の人を選択してください'); // 一つもチェックボックスがチェックされていない場合にアラートを表示
+        alert('1人以上選択してください'); // 一つもチェックボックスがチェックされていない場合にアラートを表示
         return false;
     }
 
@@ -197,6 +199,14 @@ function submitHistory() {
                 console.error("履歴の書き込みに失敗しました", error);
                 reject(error);
             });
+        }
+        if (flgConfirm){
+            var confirmation = confirm("保存されました。ホーム画面に戻りますか？");
+            if (confirmation) {
+                window.location.href = `../group.html?id=${groupId}`;
+            }else{
+                location.reload();
+            }
         }
     });
 }

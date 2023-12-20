@@ -196,6 +196,15 @@ function showResult() {
     dispScope.style.height = dispHeight + "px";
 }
 
+function showHistory() {
+    var his = document.getElementById("history-group");
+    console.log(historyList);
+    for (const obj of historyList) {
+        // 各結果を表示
+        his.innerHTML += `<a src= class="history">${obj.content} ${obj.debtor} → ${obj.creditor} : ${obj.amount}円</a>`;
+    }
+}
+
 // main //////////////////////////////////////////////////////
 getGroupInfo()
     .then(getHistory)
@@ -203,5 +212,6 @@ getGroupInfo()
     .then(calculateBalance)
     .then(mainCalculation)
     .then(showResult)
+    .then(showHistory)
     .then(changeHeight)
     .catch(error => console.error(error));
