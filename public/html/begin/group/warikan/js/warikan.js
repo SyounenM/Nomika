@@ -619,8 +619,8 @@ get_(groupRef)
 
     console.log("groupname:" + groupName);
     memberList = data["groupMember"];
-memberList = ["s","d","w","3"]
-groupName = "sss"
+// memberList = ["s","d","w","3"]
+// groupName = "sss"
     //グループ名表示
     groupDiv.innerHTML = 'グループ名：' + groupName + "</br>";
 
