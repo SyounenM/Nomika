@@ -59,9 +59,6 @@ let memberList = ["秀島", "川崎", "佐々木", "福田", "松島"];
 // データベースへの参照
 let groupRef = ref_(database,'groups/' + groupId);
 
-// flg
-let flgConfirm = true;
-
 
 //関数/////////////////////////////////////////////////////////////////////////////////////////////
 //画面生成
@@ -223,6 +220,7 @@ function viewBuilder() {
 
 //精算
 function calculate() {
+    let flgConfirm = true;
     if (document.getElementById('payer').value == '' || document.getElementById('payer').value == null) {
         alert('支払いした人を入力してください');
         console.error('PayerNotFoundError');

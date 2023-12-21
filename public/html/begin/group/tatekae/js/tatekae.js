@@ -169,6 +169,7 @@ function calculateWarikan() {
 }
 
 function submitHistory() {
+    let flgConfirm = true;
     return new Promise((resolve, reject) => {
         let debtorPayment = calculateWarikan();
         let creditor = document.getElementById("creditor select").value;
@@ -205,6 +206,14 @@ function submitHistory() {
             console.error("履歴の書き込みに失敗しました", error);
             reject(error);
         });
+        if (flgConfirm){
+            var confirmation = confirm("保存されました。ホーム画面に戻りますか？");
+            if (confirmation) {
+                window.location.href = `../group.html?id=${groupId}`;
+            }else{
+                location.reload();
+            }
+        }
     });
 }
 

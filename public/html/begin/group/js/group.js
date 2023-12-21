@@ -191,7 +191,7 @@ function showResult() {
 }
 
 function showHistory() {
-    var his = document.getElementById("history-group");
+    var historyGroup = document.getElementById("history-group");
     let method;
     console.log(historyList);
     for (var i = 0; i < historyList.length; i++) {
@@ -200,23 +200,24 @@ function showHistory() {
         method = obj.method
         // 各結果を表示
         if (i == historyList.length - 1) {
-            his.innerHTML += `<a id="history-last" class="history"">${obj.content} : ${obj.amount}円</a>`;
+            historyGroup.innerHTML += `<a id="history-last" class="history"">${obj.content} : ${obj.amount}円</a>`;
             const hisLast = document.getElementById("history-last");
             hisLast.onclick = function(event){
                 event.preventDefault();
-                editHistory("-last", historyList[i], method);
+                editHistory("last", historyList[i], method);
             };
         }else{
-            his.innerHTML += `<a id="history" class="history" onclick="editHistory(historyList[i])">${obj.content} : ${obj.amount}円</a><br>`;
+            historyGroup.innerHTML += `<a id="history" class="history" onclick="editHistory(historyList[i])">${obj.content} : ${obj.amount}円</a><br>`;
             const his = document.getElementById("history");
-            his.id += " " + historyList[i][0].id;
+            his.id += "-" + obj.content;
+            console.log("hisId", his.id);
             his.onclick = function(event){
                 event.preventDefault();
-                editHistory(his.content, historyList[i], method);
+                editHistory(obj.content, historyList[i], method);
             };
         }
     }
-    var children = his.children;
+    var children = historyGroup.children;
     // 子要素をコンソールに表示
     for (var i = 0; i < children.length; i++) {
         console.log(children[i]);
@@ -225,7 +226,7 @@ function showHistory() {
 }
 
 function editHistory(content, history, method) {
-    const his = document.getElementById("history" + content);
+    const his = document.getElementById("history-" + content);
     let colIndex = historyList.indexOf(history);
     historyList.splice(colIndex, 1);
     console.log(historyList);
