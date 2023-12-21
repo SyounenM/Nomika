@@ -1,4 +1,4 @@
-import { app, database, ref_, set_, get_, update_, push_, goOffline_}  from "../../../../js/master.js";
+import {database, ref_, set_, get_, update_, push_, goOffline_}  from "../../../../js/master.js";
 const groupH3 = document.getElementById("groupH3");
 const tatekaeButton = document.getElementById("tatekaeButton");
 const warikanButton = document.getElementById("warikanButton");

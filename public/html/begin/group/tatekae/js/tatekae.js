@@ -1,4 +1,4 @@
-import { app, database, ref_, set_, get_, update_, push_, goOffline_}  from "../../../../../js/master.js";
+import {database, ref_, set_, get_, update_, push_, goOffline_}  from "../../../../../js/master.js";
 // import { serverTimestamp } from "https://www.gstatic.com/firebasejs/10.7.0/firebase-database.js";
 // アプリケーションが閉じられたときに呼ばれる処理
 window.onbeforeunload = function () {

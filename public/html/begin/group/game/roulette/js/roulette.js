@@ -1,4 +1,4 @@
-import { app, database, ref_, set_, get_, update_, push_, goOffline_}  from "../../../../../../js/master.js";
+import {database, ref_, set_, get_, update_, push_, goOffline_}  from "../../../../../../js/master.js";
 console.log("start");
 // // アプリケーションが閉じられたときに呼ばれる処理
 // window.onbeforeunload = function () {

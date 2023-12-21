@@ -1,6 +1,4 @@
-import { app, database, ref_, set_, get_, update_, push_, goOffline_}  from "../../../../../js/master.js";
-
-
+import {database, ref_, set_, get_, update_, push_, goOffline_}  from "../../../../../js/master.js";
 // アプリケーションが閉じられたときに呼ばれる処理
 window.onbeforeunload = function () {
     // Firebase Realtime Databaseへの接続を切断
@@ -10,6 +8,8 @@ window.onbeforeunload = function () {
 // 画面遷移の行き先を指定
 const groupId = new URLSearchParams(window.location.search).get('id');
 console.log(groupId);
+const historyId = new URLSearchParams(window.location.search).get('historyId');
+
 const logo = document.getElementById("logo");
 const top = document.getElementById("top");
 const home = document.getElementById("home");
@@ -44,25 +44,34 @@ saveButton.onclick = save;
 const allButton = document.getElementById("allButton");
 allButton.onclick = allCheck;
 
-
 // グループの情報
 let groupName = ""
 let memberList = ["秀島", "川崎", "佐々木", "福田", "松島"];
-// let memberList = ['OB1','OB2',
-//  '3男総務', '3男1', '3男2', '3男3',
-// '3女1','3女2','3女3',
-// '2男1','2男2','2男3','2男4',
-// '2女1','2女2',
-// '1男1','1男2','1男3','1男4','1男5',
-// '1女1','1女2','1女3','1女4','1女5',];
+let totalAmount = 0;
+let content = "";
+let creditor = "";
+let resultDict = {};
+let roundUnit = 0;
+let option = "";
+let fixedList =[];
+let fracList = [];
+let ratioDict = {};
 
 // データベースへの参照
 let groupRef = ref_(database,'groups/' + groupId);
+let historyRef = ref_(database,'groups/' + groupId + '/history/' + historyId);
+
+
+//flgs
+let flgConfirm = true;
+let isSelecting = false;
 
 
 //関数/////////////////////////////////////////////////////////////////////////////////////////////
 //画面生成
 function viewBuilder() {
+    //グループ名表示
+    groupDiv.innerHTML = 'グループ名：' + groupName + "</br>";
     //メンバー表示
     for (let member of memberList) {
         let memberSpan = document.createElement('span');
@@ -82,9 +91,20 @@ function viewBuilder() {
         payerOption.id = member + 'PayerOption';
         payerSelect.appendChild(payerOption);
     }
+    if (creditor != ""){
+        payerSelect.value = creditor;
+    }
+    // 内容
+    let contentInput = document.getElementById('content');
+    if (content != ""){
+        contentInput.value = content;
+    }
     //総額
-    let amoundSelect = document.getElementById('amount');
-    amoundSelect.min = '0';
+    let amountSelect = document.getElementById('amount');
+    amountSelect.min = '0';
+    if (totalAmount != 0){
+        amountSelect.value = totalAmount;
+    }
     //丸め単位
     let roundSelect = document.getElementById('round');
     const roundList = [1, 5, 10, 50, 100, 500, 1000];
@@ -93,6 +113,15 @@ function viewBuilder() {
         roundOption.text = val;
         roundOption.id = val + 'Option';
         roundSelect.appendChild(roundOption);
+    }
+    if (roundUnit != 0){
+        roundSelect.value = roundUnit;
+    }
+
+    //丸めオプション
+    let optionSelect = document.getElementById('option');
+    if (option != ""){
+        optionSelect.value = option;
     }
     //結果
     let resultTableBody = document.getElementById('tableBody');
@@ -137,7 +166,11 @@ function viewBuilder() {
         paymentInput.setAttribute('readonly', 'true');
         paymentInput.style.border = 'none';
         paymentInput.style.outline = 'none';
-        paymentInput.style.backgroundColor = 'transparent';    
+        paymentInput.style.backgroundColor = 'transparent';  
+        console.log("reuslt:" + resultDict);
+        if (Object.keys(resultDict).length){
+            paymentInput.value = resultDict[member];
+        }  
         paymentDiv.appendChild(paymentInput)
         const yen = document.createElement('span');
         yen.textContent = '円';
@@ -157,7 +190,10 @@ function viewBuilder() {
         ratioInput.setAttribute('readonly', 'true');
         ratioInput.style.border = 'none';
         ratioInput.style.outline = 'none';
-        ratioInput.style.backgroundColor = 'transparent';   
+        ratioInput.style.backgroundColor = 'transparent';  
+        if (Object.keys(ratioDict).length) {
+            ratioInput.value = ratioDict[member];
+        }
         ratioTd.appendChild(ratioInput);
         tr.appendChild(ratioTd);
         //金額固定
@@ -175,6 +211,15 @@ function viewBuilder() {
         circleDiv.className = 'circle';
         let baseDiv = document.createElement('div');
         baseDiv.className = 'base';
+        console.log(fixedList);
+        if (fixedList.length != 0){
+            console.log("fix");
+            if (fixedList.includes(member)){
+                switchInput.checked = true;
+            }else{
+                switchInput.checked = false;
+            }
+        }
         switchDiv.appendChild(switchInput);
         switchDiv.appendChild(circleDiv);
         switchDiv.appendChild(baseDiv);
@@ -196,6 +241,13 @@ function viewBuilder() {
         circleDiv2.className = 'circle';
         let baseDiv2 = document.createElement('div');
         baseDiv2.className = 'base';
+        if (fracList != []){
+            if(fracList.includes(member)){
+                switchInput2.checked = true;
+            }else{
+                switchInput2.checked = false;
+            }
+        }
         switchDiv2.appendChild(switchInput2);
         switchDiv2.appendChild(circleDiv2);
         switchDiv2.appendChild(baseDiv2);
@@ -220,23 +272,24 @@ function viewBuilder() {
 
 //精算
 function calculate() {
-    let flgConfirm = true;
+    flgConfirm = true;
     if (document.getElementById('payer').value == '' || document.getElementById('payer').value == null) {
         alert('支払いした人を入力してください');
         console.error('PayerNotFoundError');
         throw new Error('PayerNotFoundError');
     }
-    // if (document.getElementById('content').value == '' || document.getElementById('content').value == null) {
-    //     alert('支払い内容を入力してください');
-    //     console.error('ContentNotFoundError');
-    //     throw new Error('ContentNotFoundError');
-    // }
+    if (document.getElementById('content').value == '' || document.getElementById('content').value == null) {
+        alert('支払い内容を入力してください');
+        console.error('ContentNotFoundError');
+        flgConfirm = false;
+        throw new Error('ContentNotFoundError');
+    }
     if (document.getElementById('amount').value == '' || document.getElementById('amount').value == null) {
         alert('支払い金額を入力してください');
         console.error('AmountNotFoundError');
-        // throw new Error('AmountNotFoundError');
-        document.getElementById('amount').value = 33333;
         flgConfirm = false;
+        throw new Error('AmountNotFoundError');
+        // document.getElementById('amount').value = 33333;
     } else {
         flgConfirm = true;
     }
@@ -256,11 +309,11 @@ function calculate() {
 
     //計算開始
     console.log('--- calculate start ---');
-    let totalAmount = parseFloat(document.getElementById('amount').value);
-    let initialAmount = totalAmount;
+    totalAmount = parseFloat(document.getElementById('amount').value);
 
     //金額固定を除外
     let unfixedList = [];
+    fixedList =[]
     for (let member of memberList) {
         let fixToggle = document.getElementById(member + 'FixToggle');
         if (fixToggle.checked) {
@@ -269,6 +322,7 @@ function calculate() {
             let preTotal = totalAmount;
             totalAmount -= fixedPayment;
             console.log('total amount: ' + preTotal + ' => ' + totalAmount);
+            fixedList.push(member);
             continue
         }
         unfixedList.push(member)
@@ -282,6 +336,7 @@ function calculate() {
     }
     // 各参加者ごとの支払い金額を計算
     let totalRatio = membersRatio.reduce((sum, member) => sum + member.ratio, 0);
+    console.log(totalRatio);
     let roundUnit = parseInt(document.getElementById('round').value);
     console.log('roundUnit' + roundUnit);
     let unfixedCount = unfixedList.length;
@@ -337,6 +392,11 @@ function calculate() {
         document.getElementById(unfixedList[i] + 'Payment').value = resultList[i];   
     }
     console.log('--- calculate finish ---');
+    resultDict = {};
+    for (let member of memberList){
+        let payment = document.getElementById(member + 'Payment').value;
+        resultDict[member] = payment;
+    }
 }
 
 // 丸めこみの関数
@@ -373,11 +433,53 @@ function save() {
         calculate();
         let creditor = document.getElementById("payer").value;
         let content = document.getElementById("content").value;
-        if (content == '' || content == null) {
-            alert('支払い内容を入力してください');
-            return;
-        }
+
         let data = [];
+        let debtorList = [...memberList];
+        debtorList.splice(debtorList.indexOf(creditor));
+        // 参加者の名前と割合を取得
+        ratioDict = {};
+        for(let member of memberList) {
+            let name = document.getElementById(member + 'Name').textContent;
+            let ratio = parseFloat(document.getElementById(member + 'Ratio').valueAsNumber);
+            ratioDict[name] = ratio;
+        }
+        //金額固定者
+        fixedList = [];
+        for (let member of memberList) {
+            let fixToggle = document.getElementById(member + 'FixToggle');
+            if (fixToggle.checked) {
+                fixedList.push(member)                
+            }
+        }
+        console.log(fixedList);
+        // 差分を端数を支払う人
+        fracList = []
+        for (let member of memberList) {
+            let fracToggle = document.getElementById(member + 'FracToggle');
+            if (fracToggle.checked) {
+                fracList.push(member);
+            }
+        }
+        roundUnit = parseInt(document.getElementById('round').value);
+
+        option = document.getElementById('option').value;
+        //合計金額
+        let totalAmount = document.getElementById("amount").value;
+        
+        data.push({
+            "method": "warikan",
+            "creditor": creditor,
+            "amount": totalAmount,
+            "debtor": debtorList,
+            "content": content,
+            "resultDict" :resultDict,
+            "roundUnit": roundUnit,
+            "option": option,
+            "ratio": ratioDict,
+            "fixedMember": fixedList,
+            "fracMember": fracList
+        })
         for (let member of memberList){
             if (member == creditor){
                 continue;
@@ -395,8 +497,12 @@ function save() {
                 "content": content
             });     
         }
-        let newHistoryRef = push_(ref_(database, 'groups/' + groupId +'/history'));
-        set_(newHistoryRef, data)
+        if (historyId == null){
+            historyRef = push_(ref_(database, 'groups/' + groupId +'/history'));
+        }else {
+            historyRef = ref_(database,'groups/' + groupId + '/history/' + historyId);
+        }
+        set_(historyRef, data)
         .then(() => {
             console.log("データが正常に書き込まれました");
             // resolve();
@@ -608,66 +714,80 @@ function showAlert() {
 
 // main//////////////////////////////////////////////////////////////////////////////////////////////
 // 画面生成
-let isSelecting = false;
+// memberList = ["s","d","w","3"]
+// groupName = "sss"
+
 // データベースから情報を取得
 get_(groupRef)
     .then((snapshot) => {
-    let data = snapshot.val();
-    groupName = data["groupName"];
-    // preResult = 
+        let data = snapshot.val();
+        groupName = data["groupName"];
+        console.log("groupname:" + groupName);
+        memberList = data["groupMember"];
+        console.log("historyId:" + historyId);
 
-    console.log("groupname:" + groupName);
-    memberList = data["groupMember"];
-// memberList = ["s","d","w","3"]
-// groupName = "sss"
-    //グループ名表示
-    groupDiv.innerHTML = 'グループ名：' + groupName + "</br>";
-
-    // 画面生成
-    viewBuilder();
-    let select = document.querySelector('[name="member"]')
-    select.onchange = event => {
-        let payer = document.getElementById('payer').value;
-        for(let member of memberList){
-            let memberRow = document.getElementById(member + 'Row');
-            memberRow.className = "debtorRow";
-            let fracToggle = document.getElementById(member + 'FracToggle');
-            fracToggle.checked = false;
-
+        if (historyId != null){
+            let groupInfo = data["history"][historyId][0];
+            totalAmount = groupInfo["amount"];
+            content = groupInfo["content"] ?? "";
+            creditor = groupInfo["creditor"] ?? "";
+            resultDict = groupInfo["resultDict"] ?? {};
+            console.log("getResult:"+resultDict);
+            roundUnit = groupInfo["roundUnit"] ?? 0;
+            option = groupInfo["option"] ?? "ceil"
+            fixedList = groupInfo["fixedMember"] ?? [];
+            fracList = groupInfo["fracMember"] ?? [];
+            ratioDict = groupInfo["ratio"] ?? {};   
         }
-        let payerRow = document.getElementById(payer + 'Row');
-        payerRow.className = 'payerRow';
-        let fracToggle = document.getElementById(payer + 'FracToggle');
-        fracToggle.checked = true;
-    }
+    })
+    .then(()=>{
+        console.log("start");
+        // 画面生成
+        viewBuilder();
 
-    //同時編集のイベント通知を設定
-    // 同期するチェックボックスの要素を取得
-    var checkboxes = document.querySelectorAll('input[class="checkbox"]');
-    // 各チェックボックスに対してイベントリスナーを追加
-    checkboxes.forEach(function(checkbox) {
-        checkbox.addEventListener('change', function() {
-            setVisualEvent(checkbox);
-            allButton.innerHTML = (!checkbox.checked) ? '<small>全編集</small>' : '<small>全解除</small>';
-            allButton.className = (!checkbox.checked) ? "allButton": "allClear";
-            
+        let select = document.querySelector('[name="member"]')
+        select.onchange = event => {
+            let payer = document.getElementById('payer').value;
+            for(let member of memberList){
+                let memberRow = document.getElementById(member + 'Row');
+                memberRow.className = "debtorRow";
+                let fracToggle = document.getElementById(member + 'FracToggle');
+                fracToggle.checked = false;
+
+            }
+            let payerRow = document.getElementById(payer + 'Row');
+            payerRow.className = 'payerRow';
+            let fracToggle = document.getElementById(payer + 'FracToggle');
+            fracToggle.checked = true;
+        }
+
+        //同時編集のイベント通知を設定
+        // 同期するチェックボックスの要素を取得
+        var checkboxes = document.querySelectorAll('input[class="checkbox"]');
+        // 各チェックボックスに対してイベントリスナーを追加
+        checkboxes.forEach(function(checkbox) {
+            checkbox.addEventListener('change', function() {
+                setVisualEvent(checkbox);
+                allButton.innerHTML = (!checkbox.checked) ? '<small>全編集</small>' : '<small>全解除</small>';
+                allButton.className = (!checkbox.checked) ? "allButton": "allClear";
+                
+            });
         });
-    });
 
-    // トグルによる表示・非表示の切り替え
-    document.getElementById('toggleButton').addEventListener('click', function() {
-        var content = document.getElementById('toggleContent');
-        if (content.style.display === 'none') {
-            content.style.display = 'block';
-        } else {
-            content.style.display = 'none';
-        }
-    });
-})
+        // トグルによる表示・非表示の切り替え
+        document.getElementById('toggleButton').addEventListener('click', function() {
+            var content = document.getElementById('toggleContent');
+            if (content.style.display === 'none') {
+                content.style.display = 'block';
+            } else {
+                content.style.display = 'none';
+            }
+        });
+    })
     .catch((error) => {
         console.log("ID:" + groupId);
         console.error("データの読み取りに失敗しました", error);
-});
+    });
 
 
 
