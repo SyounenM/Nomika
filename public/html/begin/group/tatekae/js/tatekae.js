@@ -70,6 +70,7 @@ function addOption() {
 
         debtorCheckboxWrapper.appendChild(debtorCheckbox);
         debtorCheckboxWrapper.appendChild(debtorLabel);
+        debtorCheckboxWrapper.innerHTML += "<br>";
     }
 }
 
@@ -102,7 +103,7 @@ function checkFormInputs() {
     });
 
     if (!isChecked) {
-        alert('複数の人を選択してください'); // 一つもチェックボックスがチェックされていない場合にアラートを表示
+        alert('誰に払ったかをを選択してください'); // 一つもチェックボックスがチェックされていない場合にアラートを表示
         return false;
     }
 

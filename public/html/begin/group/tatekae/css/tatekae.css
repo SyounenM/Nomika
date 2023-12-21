@@ -32,15 +32,16 @@
 }
 .text-debtor{
     position: relative;
-    left: 30px;
+    top: -35px;
+    left: 160px;
 }
 .text-content{
     position: relative;
-    left: 30px;
+    left: 34px;
 }
 .text-amount{
     position: relative;
-    left: 34px;
+    left: 37px;
 }
 .submit{
     position: relative;
@@ -51,13 +52,16 @@
 
 .checkbox{
     position: relative;
-    left: 0px;
+    left: -80px;
     font-size: 0px;
-    height: 25px;
-    width: 25px;
+    height: 35px;
+    width: 35px;
     padding: 15px;
-    margin
+    margin: 5px;
 }
 .checkbox-label{
-    font-size: 30px;
+    position: relative;
+    left: -80px;
+    top: -7px;
+    font-size: 35px;
 }

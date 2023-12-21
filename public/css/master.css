@@ -401,3 +401,28 @@ a.btn-border:active:before {
 .member span{
     display: inline-block;
 }
+
+/* checkbox
+input[type="checkbox"] {
+    position: relative;
+    width: 16px;
+    height: 16px;
+    border: 2px solid #000;
+    vertical-align: -5px;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    background-color: #fff;
+}
+
+input[type="checkbox"]:checked:before {
+    position: absolute;
+    top: 5px;
+    left: 10px;
+    transform: rotate(50deg);
+    width: 10px;
+    height: 20px;
+    border-right: 2px solid #000;
+    border-bottom: 2px solid #000;
+    content: '';
+} */
