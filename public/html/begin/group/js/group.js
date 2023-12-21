@@ -12,15 +12,7 @@ const home = document.getElementById("home");
 var dispScope = document.getElementById("result-group");
 var background = document.getElementById("background-group");
 var dispHeight = 300;
-var backHeight;
 
-// 高さの変更
-function changeHeight() {
-    var offsetTop = editButton.offsetTop;
-    console.log(offsetTop);
-    backHeight = offsetTop + 600;
-    background.style.height = backHeight + "px";
-}
 
 const groupId = new URLSearchParams(window.location.search).get('id');
 console.log("groupId:" + groupId);
@@ -119,8 +111,8 @@ function initializeBalanceList() {
 
 function calculateBalance() {
     for (var i = 0; i < historyList.length; i++) {
-        console.log("historyList[", i, "]", historyList[i]);
-        for( const { creditor, amount, debtor } of historyList[i] ) {
+        console.log("historyList[", i, "]", historyList[i].slice(1));
+        for( const { creditor, amount, debtor } of historyList[i].slice(1) ) {
             let creditorObject = balanceList.find(memberObj => memberObj.name === creditor);
             let debtorObject = balanceList.find(memberObj => memberObj.name === debtor);
             if (creditorObject) {
@@ -189,7 +181,6 @@ function mainCalculation() {
 function showResult() {
     var res = document.getElementById("result");
     console.log("height: " + dispHeight);
-    console.log(backHeight);
     res.innerHTML = ""; // 以前の結果をクリア
     for (const obj of resultList) {
         // 各結果を表示
@@ -201,12 +192,66 @@ function showResult() {
 
 function showHistory() {
     var his = document.getElementById("history-group");
+    let method;
     console.log(historyList);
-    for (const obj of historyList) {
+    for (var i = 0; i < historyList.length; i++) {
+        console.log("historyList[", i, "]", historyList[i][0]);
+        const obj = historyList[i][0]
+        method = obj.method
         // 各結果を表示
-        his.innerHTML += `<a src= class="history">${obj.content} ${obj.debtor} → ${obj.creditor} : ${obj.amount}円</a>`;
+        if (i == historyList.length - 1) {
+            his.innerHTML += `<a id="history-last" class="history"">${obj.content} : ${obj.amount}円</a>`;
+            const hisLast = document.getElementById("history-last");
+            hisLast.onclick = function(event){
+                event.preventDefault();
+                editHistory("-last", historyList[i], method);
+            };
+        }else{
+            his.innerHTML += `<a id="history" class="history" onclick="editHistory(historyList[i])">${obj.content} : ${obj.amount}円</a><br>`;
+            const his = document.getElementById("history");
+            his.id += " " + historyList[i][0].id;
+            his.onclick = function(event){
+                event.preventDefault();
+                editHistory(his.content, historyList[i], method);
+            };
+        }
+    }
+    var children = his.children;
+    // 子要素をコンソールに表示
+    for (var i = 0; i < children.length; i++) {
+        console.log(children[i]);
+        children[i].href = `./tatekae/tatekae.html?id=${groupId}`;
     }
 }
+
+function editHistory(content, history, method) {
+    const his = document.getElementById("history" + content);
+    let colIndex = historyList.indexOf(history);
+    historyList.splice(colIndex, 1);
+    console.log(historyList);
+    set_(historyRef, historyList);
+    his.remove();
+    // location.reload();
+    if (method == "tatekae"){
+        window.location.href = `./tatekae/tatekae.html?id=${groupId}`;
+    }else if (method == "warikan"){
+        window.location.href = `./warikan/warikan.html?id=${groupId}`;
+    }
+}
+
+// 高さの変更
+function changeHeight() {
+    const hisLast = document.getElementById("history-last");
+    var offsetTop = hisLast.offsetTop;
+    const texthis = document.getElementById("history-text");
+    var offsetTop2 = texthis.offsetTop;
+    console.log("text history height", offsetTop2);
+    console.log("last history height", offsetTop);
+    const hisHeight = offsetTop + offsetTop2 + 600;
+    console.log("hisHeight", hisHeight);
+    background.style.height = hisHeight + "px";
+}
+
 
 // main //////////////////////////////////////////////////////
 getGroupInfo()
@@ -218,3 +263,5 @@ getGroupInfo()
     .then(showHistory)
     .then(changeHeight)
     .catch(error => console.error(error));
+
+

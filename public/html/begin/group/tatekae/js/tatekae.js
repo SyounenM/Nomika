@@ -172,13 +172,14 @@ function submitHistory() {
     return new Promise((resolve, reject) => {
         let debtorPayment = calculateWarikan();
         let creditor = document.getElementById("creditor select").value;
-        // let amount = document.getElementById("amount").value;
+        let amount = document.getElementById("amount").value;
         // let debtor = document.getElementById("debtor select").value;
         let content = document.getElementById("content").value;
         let data = [];
         data.push({
+            "method": "tatekae",
             "creditor": creditor,
-            "amount": debtorPayment,
+            "amount": amount,
             "debtor": selectedDebtors,
             "content": content
         });
