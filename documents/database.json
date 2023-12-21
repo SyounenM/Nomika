@@ -9,10 +9,28 @@
                 ], 
                 "history": {
                     "historyId": {
-                        "amount": 0,
-                        "content": "xxx",
-                        "creditor": "member1",
-                        "debtor": "member2"
+                        "0": {
+                            "method": "tatekae or warikan",
+                            "amount": 0,
+                            "content": "xxx",
+                            "creditor": "member1",
+                            "debtor": {
+                                "0": "member2",
+                                "1": "member3"
+                            }
+                        },
+                        "1": {
+                            "amount": 0,
+                            "content": "xxx",
+                            "creditor": "member1",
+                            "debtor": "member2"
+                        },
+                        "2": {
+                            "amount": 0,
+                            "content": "xxx",
+                            "creditor": "member1",
+                            "debtor": "member3"
+                        }
                     },
                     "historyId2": {
                     }
