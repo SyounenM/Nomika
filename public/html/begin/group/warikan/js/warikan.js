@@ -379,33 +379,34 @@ function save() {
             alert('支払い内容を入力してください');
             return;
         }
+        let data = [];
         for (let member of memberList){
             if (member == creditor){
                 continue;
             }
             let debtor = member;
-            let newHistoryRef = push_(ref_(database, 'groups/' + groupId +'/history'));
             let amount = document.getElementById(member + "Payment").value;
             console.log(amount);
             amount = Number(amount);
             console.log(typeof amount);
             console.log(amount);
-            let data = {
+            data.push({
                 "creditor": creditor,
                 "amount": amount,
                 "debtor": debtor,
                 "content": content
-            };    
-            set_(newHistoryRef, data)
-            .then(() => {
-                console.log("データが正常に書き込まれました");
-                // resolve();
-            })
-            .catch((error) => {
-                console.error("データの書き込みに失敗しました", error);
-                reject(error);
-            });    
+            });     
         }
+        let newHistoryRef = push_(ref_(database, 'groups/' + groupId +'/history'));
+        set_(newHistoryRef, data)
+        .then(() => {
+            console.log("データが正常に書き込まれました");
+            // resolve();
+        })
+        .catch((error) => {
+            console.error("データの書き込みに失敗しました", error);
+            reject(error);
+        });   
         if (flgConfirm){
             var confirmation = confirm("保存されました。ホーム画面に戻りますか？");
             if (confirmation) {

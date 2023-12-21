@@ -33,8 +33,6 @@ let balanceList = [] ;
 let resultList = [];
 let selectedDebtors = [];
 
-let flgConfirm = true;
-
 function addOption() {
     let creditorSelect = document.getElementById("creditor select");
     let debtorCheckboxWrapper = document.getElementById("debtor-checkbox-wrapper");
@@ -103,7 +101,7 @@ function checkFormInputs() {
     });
 
     if (!isChecked) {
-        alert('1人以上選択してください'); // 一つもチェックボックスがチェックされていない場合にアラートを表示
+        alert('複数の人を選択してください'); // 一つもチェックボックスがチェックされていない場合にアラートを表示
         return false;
     }
 
@@ -174,40 +172,39 @@ function submitHistory() {
     return new Promise((resolve, reject) => {
         let debtorPayment = calculateWarikan();
         let creditor = document.getElementById("creditor select").value;
-        // let amount = document.getElementById("amount").value;
+        let amount = document.getElementById("amount").value;
         // let debtor = document.getElementById("debtor select").value;
         let content = document.getElementById("content").value;
-        let data = {};
+        let data = [];
+        data.push({
+            "method": "tatekae",
+            "creditor": creditor,
+            "amount": amount,
+            "debtor": selectedDebtors,
+            "content": content
+        });
         for (let debtor of selectedDebtors) {
             if (debtor != creditor) {
-                data = {
+                data.push({
                     "creditor": creditor,
                     "amount": debtorPayment,
                     "debtor": debtor,
                     "content": content
-                };
+                });
             } else {
                 continue;
             }
-            let newHistoryRef = push_(ref_(database, 'groups/' + groupId + '/history'));
-            set_(newHistoryRef, data)
-            .then(() => {
-                console.log("履歴が正常に書き込まれました");
-                resolve();
-            })
-            .catch((error) => {
-                console.error("履歴の書き込みに失敗しました", error);
-                reject(error);
-            });
         }
-        if (flgConfirm){
-            var confirmation = confirm("保存されました。ホーム画面に戻りますか？");
-            if (confirmation) {
-                window.location.href = `../group.html?id=${groupId}`;
-            }else{
-                location.reload();
-            }
-        }
+        let newHistoryRef = push_(ref_(database, 'groups/' + groupId + '/history'));
+        set_(newHistoryRef, data)
+        .then(() => {
+            console.log("履歴が正常に書き込まれました");
+            resolve();
+        })
+        .catch((error) => {
+            console.error("履歴の書き込みに失敗しました", error);
+            reject(error);
+        });
     });
 }
 
