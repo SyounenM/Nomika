@@ -52,6 +52,7 @@ let content = "";
 let creditor = "";
 let resultDict = {};
 let roundUnit = 0;
+let option = "";
 let fixedList =[];
 let fracList = [];
 let ratioDict = {};
@@ -115,6 +116,12 @@ function viewBuilder() {
     }
     if (roundUnit != 0){
         roundSelect.value = roundUnit;
+    }
+
+    //丸めオプション
+    let optionSelect = document.getElementById('option');
+    if (option != ""){
+        optionSelect.value = option;
     }
     //結果
     let resultTableBody = document.getElementById('tableBody');
@@ -458,6 +465,7 @@ function save() {
         }
         roundUnit = parseInt(document.getElementById('round').value);
 
+        option = document.getElementById('option');
         //合計金額
         let totalAmount = document.getElementById("amount").value;
         
@@ -469,6 +477,7 @@ function save() {
             "content": content,
             "resultDict" :resultDict,
             "roundUnit": roundUnit,
+            "option": option,
             "ratio": ratioDict,
             "fixedMember": fixedList,
             "fracMember": fracList
@@ -727,6 +736,7 @@ get_(groupRef)
             resultDict = groupInfo["resultDict"] ?? {};
             console.log("getResult:"+resultDict);
             roundUnit = groupInfo["roundUnit"] ?? 0;
+            option = groupInfo["option"] ?? "ceil"
             fixedList = groupInfo["fixedMember"] ?? [];
             fracList = groupInfo["fracMember"] ?? [];
             ratioDict = groupInfo["ratio"] ?? {};   
