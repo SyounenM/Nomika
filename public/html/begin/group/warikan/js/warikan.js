@@ -272,23 +272,24 @@ function viewBuilder() {
 
 //精算
 function calculate() {
-    let flgConfirm = true;
+    flgConfirm = true;
     if (document.getElementById('payer').value == '' || document.getElementById('payer').value == null) {
         alert('支払いした人を入力してください');
         console.error('PayerNotFoundError');
         throw new Error('PayerNotFoundError');
     }
-    // if (document.getElementById('content').value == '' || document.getElementById('content').value == null) {
-    //     alert('支払い内容を入力してください');
-    //     console.error('ContentNotFoundError');
-    //     throw new Error('ContentNotFoundError');
-    // }
+    if (document.getElementById('content').value == '' || document.getElementById('content').value == null) {
+        alert('支払い内容を入力してください');
+        console.error('ContentNotFoundError');
+        flgConfirm = false;
+        throw new Error('ContentNotFoundError');
+    }
     if (document.getElementById('amount').value == '' || document.getElementById('amount').value == null) {
         alert('支払い金額を入力してください');
         console.error('AmountNotFoundError');
-        // throw new Error('AmountNotFoundError');
-        document.getElementById('amount').value = 33333;
         flgConfirm = false;
+        throw new Error('AmountNotFoundError');
+        // document.getElementById('amount').value = 33333;
     } else {
         flgConfirm = true;
     }
@@ -432,10 +433,7 @@ function save() {
         calculate();
         let creditor = document.getElementById("payer").value;
         let content = document.getElementById("content").value;
-        if (content == '' || content == null) {
-            alert('支払い内容を入力してください');
-            return;
-        }
+
         let data = [];
         let debtorList = [...memberList];
         debtorList.splice(debtorList.indexOf(creditor));
