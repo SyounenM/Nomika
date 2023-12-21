@@ -465,7 +465,7 @@ function save() {
         }
         roundUnit = parseInt(document.getElementById('round').value);
 
-        option = document.getElementById('option');
+        option = document.getElementById('option').value;
         //合計金額
         let totalAmount = document.getElementById("amount").value;
         
