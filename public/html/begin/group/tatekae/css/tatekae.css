@@ -48,3 +48,16 @@
     color: black;
     background-color: #EFEFEF;
 }
+
+.checkbox{
+    position: relative;
+    left: 0px;
+    font-size: 0px;
+    height: 25px;
+    width: 25px;
+    padding: 15px;
+    margin
+}
+.checkbox-label{
+    font-size: 30px;
+}

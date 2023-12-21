@@ -198,46 +198,44 @@ function showHistory() {
         console.log("historyList[", i, "]", historyList[i][0]);
         const obj = historyList[i][0]
         method = obj.method
+        // let his;
         // 各結果を表示
         if (i == historyList.length - 1) {
-            historyGroup.innerHTML += `<a id="history-last" class="history"">${obj.content} : ${obj.amount}円</a>`;
+            historyGroup.innerHTML += `<button id="history-last" class="history">${obj.content} : ${obj.amount}円</a>`;
             const hisLast = document.getElementById("history-last");
+            console.log("hisId", hisLast.id);
             hisLast.onclick = function(event){
                 event.preventDefault();
-                editHistory("last", historyList[i], method);
-            };
+                editHistory("last", i, method);
+            }
         }else{
-            historyGroup.innerHTML += `<a id="history" class="history" onclick="editHistory(historyList[i])">${obj.content} : ${obj.amount}円</a><br>`;
-            const his = document.getElementById("history");
-            his.id += "-" + obj.content;
-            console.log("hisId", his.id);
+            let his = document.createElement('button');
+            his.textContent = `${obj.content} : ${obj.amount}円`;
+            his.id = "history-" + obj.content;
+            his.className = "history";
+            // historyGroup.innerHTML += `<button id="history-${obj.content}" class="history">${obj.content} : ${obj.amount}円</button><br>`;
             his.onclick = function(event){
                 event.preventDefault();
-                editHistory(obj.content, historyList[i], method);
-            };
+                editHistory(obj.content, i, method);
+            }
+            historyGroup.appendChild(his);
+            console.log("hisId", his.id);
         }
-    }
-    var children = historyGroup.children;
-    // 子要素をコンソールに表示
-    for (var i = 0; i < children.length; i++) {
-        console.log(children[i]);
-        children[i].href = `./tatekae/tatekae.html?id=${groupId}`;
     }
 }
 
-function editHistory(content, history, method) {
+function editHistory(content, index, method) {
     const his = document.getElementById("history-" + content);
-    let colIndex = historyList.indexOf(history);
-    historyList.splice(colIndex, 1);
+    historyList.splice(index, 1);
     console.log(historyList);
     set_(historyRef, historyList);
     his.remove();
     // location.reload();
-    if (method == "tatekae"){
-        window.location.href = `./tatekae/tatekae.html?id=${groupId}`;
-    }else if (method == "warikan"){
-        window.location.href = `./warikan/warikan.html?id=${groupId}`;
-    }
+    // if (method == "tatekae"){
+    //     window.location.href = `./tatekae/tatekae.html?id=${groupId}`;
+    // }else if (method == "warikan"){
+    //     window.location.href = `./warikan/warikan.html?id=${groupId}`;
+    // }
 }
 
 // 高さの変更
