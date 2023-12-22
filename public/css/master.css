@@ -402,7 +402,7 @@ a.btn-border:active:before {
     display: inline-block;
 }
 
-/* checkbox
+/* checkbox */
 input[type="checkbox"] {
     position: relative;
     width: 16px;
@@ -425,4 +425,4 @@ input[type="checkbox"]:checked:before {
     border-right: 2px solid #000;
     border-bottom: 2px solid #000;
     content: '';
-} */
+}
