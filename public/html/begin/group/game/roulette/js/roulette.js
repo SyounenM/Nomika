@@ -33,29 +33,31 @@ function changeHeight() {
     backHeight = offsetTop + 600;
     backgroundRoulette.style.height = backHeight + "px";
 }
-
-// データベースから名前を取得
-let groupRef = ref_(database,'groups/' + groupId);
-get_(groupRef)
+// ページの読み込み後にテーブルを生成
+document.addEventListener('DOMContentLoaded', function() {
+    // データベースから名前を取得
+    let groupRef = ref_(database,'groups/' + groupId);
+    get_(groupRef)
     .then((snapshot) => {
     let data = snapshot.val();
     let memberList = data["groupMember"];
     // console.log("memberList:" + memberList);
-})
+    })
     .catch((error) => {
     console.log("ID:" + groupId);
     console.error("データの読み取りに失敗しました", error);
+    });
+    // console.log(memberList);
+    let initialData = [
+        { name: 'A', ratio: 1 },
+        { name: 'B', ratio: 1 },
+    ];
+    generateTable(initialData);
 });
-
 // ここが原因12/15
 
 // JavaScriptのリストの値（仮の例）
-console.log(memberList);
-const initialData = [
-    { name: 'A', ratio: 1 },
-    { name: 'B', ratio: 1 },
-    // 他のデータ...
-];
+// console.log(memberList);
 
 // リストからテーブルを動的に生成する関数
 function generateTable(data) {
@@ -105,10 +107,7 @@ function generateTable(data) {
     });
 }
 
-// ページの読み込み後にテーブルを生成
-document.addEventListener('DOMContentLoaded', function() {
-    generateTable(initialData);
-});
+
 // ここまでが原因12/15
 
 var Mode = {
