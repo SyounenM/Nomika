@@ -73,6 +73,7 @@ function addOption() {
         newPara.appendChild(debtorLabel);
         debtorCheckboxWrapper.appendChild(newPara);
     }
+    changeHeight();
 }
 
 // データベースから情報を取得
@@ -330,6 +331,16 @@ function submitForm() {
             // .then(showResult)
             // .catch(error => console.error(error));
     }
+}
+
+// 高さの変更
+function changeHeight() {
+    const background = document.getElementById("background-tatekae");
+    var offsetTop = back.offsetTop;
+    console.log("back height", offsetTop);
+    const hisHeight = offsetTop + 600;
+    console.log("hisHeight", hisHeight);
+    background.style.height = hisHeight + "px";
 }
 
 // main /////////////////////////////////////////////////////////////////////////////////////////
