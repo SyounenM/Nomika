@@ -47,7 +47,6 @@ document.addEventListener('DOMContentLoaded', function() {
     console.log("ID:" + groupId);
     console.error("データの読み取りに失敗しました", error);
     });
-    // console.log(memberList);
     let initialData = [
         { name: 'A', ratio: 1 },
         { name: 'B', ratio: 1 },
@@ -537,6 +536,7 @@ window.draw=()=>{
         theta += speed;
         theta-=(Math.floor(theta/2/PI))*2*PI;
         rotate(theta);
+        $('.RouletteSetup').addClass('unselectable');
         break;
     case Mode.constant:
         theta += speed;
