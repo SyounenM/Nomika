@@ -134,7 +134,7 @@ function viewBuilder() {
         let checkInput = document.createElement('input');
         checkInput.type = 'checkbox';
         checkInput.id = member + 'CheckBox';
-        checkInput.className = 'checkbox'
+        checkInput.className = 'checkbox-warikan'
         checkInput.onclick = function(){ //クリックでチェックをつける
             // checkInput.toggle();
         }

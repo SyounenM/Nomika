@@ -48,7 +48,7 @@ function addOption() {
         creditorSelect.appendChild(creditorOption);
 
         debtorCheckbox.type = "checkbox";
-        debtorCheckbox.className = "checkbox";
+        debtorCheckbox.className = "checkbox-tatekae";
         debtorCheckbox.id = "debtor_" + member;
         debtorCheckbox.value = member;
         debtorLabel.htmlFor = "debtor_" + member;
