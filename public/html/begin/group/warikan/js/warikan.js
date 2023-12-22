@@ -548,7 +548,7 @@ function addSyncEvent(cell) {
 // 入力内容を同期する関数
 //割り勘金額の同期
 function syncPayment() {
-    var checkboxes = document.querySelectorAll('input[class="checkbox"]');
+    var checkboxes = document.querySelectorAll('input[class="checkbox-tatekae"]');
     checkboxes.forEach(function(checkbox) {
         var paymentId = checkbox.id.replace('CheckBox', 'Payment');
         var paymentInput = document.getElementById(paymentId);
@@ -573,7 +573,7 @@ function syncRatio() {
 }
 //金額固定トグルの同期
 function syncFix() {
-    var checkboxes = document.querySelectorAll('input[class="checkbox"]');
+    var checkboxes = document.querySelectorAll('input[class="checkbox-tatekae"]');
     checkboxes.forEach(function(checkbox){
         var fixId = checkbox.id.replace('CheckBox', 'FixToggle');
         // console.log(fixId);
@@ -596,7 +596,7 @@ function selectCell(cell) {
 }
 function endSelection() {
     isSelecting = false;
-    var checkboxes = document.querySelectorAll('input[class="checkbox"]');
+    var checkboxes = document.querySelectorAll('input[class="checkbox-tatekae"]');
     let checkExist = false;
     checkboxes.forEach(function (checkbox) {
         if (checkbox.checked) {
@@ -615,7 +615,7 @@ function chengeViewOfCell(cell) {
 }
 function changeViewOfRow(cell) {
     const row = cell.parentNode;
-    const checkboxCell = row.querySelector('td:nth-child(1) input[class="checkbox"]');
+    const checkboxCell = row.querySelector('td:nth-child(1) input[class="checkbox-tatekae"]');
     // checkboxCell.checked = !checkboxCell.checked;
     checkboxCell.checked = (cell.className == 'selected') ? true : false ;
     const inputId = checkboxCell.id.replace('CheckBox', 'Payment');
@@ -651,7 +651,7 @@ function allCheck() {
     let allButton = document.getElementById('allButton');
     allButton.innerHTML = (allButton.className=='allClear') ? '<small>全編集</small>' : '<small>全解除</small>';
     allButton.className = (allButton.className == 'allClear') ? "allButton": "allClear";
-    var checkboxes = document.querySelectorAll('input[class="checkbox"]');
+    var checkboxes = document.querySelectorAll('input[class="checkbox-tatekae"]');
     let checkExist = false;
     checkboxes.forEach(function (checkbox) {
         if (checkbox.checked) {
@@ -763,7 +763,7 @@ get_(groupRef)
 
         //同時編集のイベント通知を設定
         // 同期するチェックボックスの要素を取得
-        var checkboxes = document.querySelectorAll('input[class="checkbox"]');
+        var checkboxes = document.querySelectorAll('input[class="checkbox-warikan"]');
         // 各チェックボックスに対してイベントリスナーを追加
         checkboxes.forEach(function(checkbox) {
             checkbox.addEventListener('change', function() {
