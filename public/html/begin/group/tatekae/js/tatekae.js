@@ -48,7 +48,7 @@ function addOption() {
         creditorSelect.appendChild(creditorOption);
 
         debtorCheckbox.type = "checkbox";
-        debtorCheckbox.className = "checkbox";
+        debtorCheckbox.className = "checkbox-tatekae";
         debtorCheckbox.id = "debtor_" + member;
         debtorCheckbox.value = member;
         debtorLabel.htmlFor = "debtor_" + member;
@@ -90,7 +90,7 @@ function getGroupInfo() {
 }
 
 function checkFormInputs() {
-    let checkboxes = document.querySelectorAll('input.checkbox'); // セレクタを更新
+    let checkboxes = document.querySelectorAll('input.checkbox-tatekae'); // セレクタを更新
     let isChecked = false;
 
     checkboxes.forEach(function (checkbox) {
