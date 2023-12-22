@@ -42,6 +42,7 @@ function addOption() {
         let creditorOption = document.createElement("option");
         let debtorCheckbox = document.createElement("input");
         let debtorLabel = document.createElement("label");
+        let newPara = document.createElement("p");
 
         creditorOption.text = member;
         creditorOption.value = member;
@@ -68,9 +69,9 @@ function addOption() {
             console.log("Selected Debtors:", selectedDebtors);
         });
 
-        debtorCheckboxWrapper.appendChild(debtorCheckbox);
-        debtorCheckboxWrapper.appendChild(debtorLabel);
-        debtorCheckboxWrapper.innerHTML += "<br>";
+        newPara.appendChild(debtorCheckbox);
+        newPara.appendChild(debtorLabel);
+        debtorCheckboxWrapper.appendChild(newPara);
     }
 }
 
@@ -92,7 +93,7 @@ function getGroupInfo() {
 }
 
 function checkFormInputs() {
-    let checkboxes = document.querySelectorAll('input.checkbox'); // セレクタを更新
+    let checkboxes = document.querySelectorAll('input.checkbox-tatekae'); // セレクタを更新
     let isChecked = false;
 
     checkboxes.forEach(function (checkbox) {
