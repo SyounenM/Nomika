@@ -70,6 +70,7 @@ function addOption() {
 
         debtorCheckboxWrapper.appendChild(debtorCheckbox);
         debtorCheckboxWrapper.appendChild(debtorLabel);
+        // debtorCheckboxWrapper.innerHTML += "<br>";
     }
 }
 
