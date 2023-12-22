@@ -133,20 +133,20 @@ input:checked ~ .circle {
 }
 
 .circle {
-  position: absolute;
-  top: 2px;
-  left: 1px;
-  width: 20px;
-  height: 20px;
-  margin-left: 12px;
-  border-radius: 10px;
-  background-color: white;
-  transition: 0.5s;
+    position: absolute;
+    top: 2px;
+    left: 1px;
+    width: 20px;
+    height: 20px;
+    margin-left: 12px;
+    border-radius: 10px;
+    background-color: white;
+    transition: 0.5s;
 }
-  
+
 input:checked ~ .base {
-  background-color: rgb(230, 195, 18);
-  transition: 0.5s;
+    background-color: rgb(230, 195, 18);
+    transition: 0.5s;
 }
 
 .payerRow{
@@ -227,11 +227,11 @@ input[type="number"] {
     cursor: pointer;
     &:hover {
         color: rgb(255, 140, 0);
-      }
+    }
     
-      &::-webkit-details-marker {
+    &::-webkit-details-marker {
         display: none;
-      }
+    }
 }
 
 .marume{

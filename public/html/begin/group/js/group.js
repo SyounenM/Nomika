@@ -12,6 +12,7 @@ const home = document.getElementById("home");
 var dispScope = document.getElementById("result-group");
 var background = document.getElementById("background-group");
 var dispHeight = 300;
+let resTextHeight = 0;
 
 
 const groupId = new URLSearchParams(window.location.search).get('id');
@@ -190,6 +191,22 @@ function showResult() {
     dispScope.style.height = dispHeight + "px";
 }
 
+function showMembers() {
+    for (let member of memberList) {
+        let memberDiv = document.getElementById('member');
+        let memberSpan = document.createElement('span');
+        memberSpan.textContent = member;
+        memberSpan.id = member + 'Span';
+        memberSpan.style = 'background-color: white; margin-right:10px; border: solid 1px black; border-width: 2px; border-radius: 10px; padding: 3px;';
+        // memberSpan.style.border = 'solid'
+        memberDiv.appendChild(memberSpan);
+        dispHeight += 42; //表示部分高さの変更
+    }
+    let lastMember = document.getElementById(memberList[memberList.length - 1] + 'Span');
+    console.log("lastMemberHeight", lastMember.offsetTop);
+    resTextHeight = lastMember.offsetTop + 100;
+}
+
 function showHistory() {
     var historyGroup = document.getElementById("history-group");
     let method;
@@ -240,6 +257,8 @@ function editHistory(content, index, method) {
 
 // 高さの変更
 function changeHeight() {
+    const resText = document.getElementById("result-text");
+    resText.style.height = resTextHeight + "px";
     const hisLast = document.getElementById("history-last");
     var offsetTop = hisLast.offsetTop;
     const texthis = document.getElementById("history-text");
@@ -259,6 +278,7 @@ getGroupInfo()
     .then(calculateBalance)
     .then(mainCalculation)
     .then(showResult)
+    .then(showMembers)
     .then(showHistory)
     .then(changeHeight)
     .catch(error => console.error(error));
