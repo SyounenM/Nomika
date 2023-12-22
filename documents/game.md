@@ -44,3 +44,27 @@
             * firebaseからデータを持ってくることができた．
     * chatGPTに聞いて，リストから表の値を持って来れるようにした
         * けどルーレットの図と結果が対応してないから今後調整すべき
+
+## 12/22
+* roulette
+    * コードを以下のように変えるとメンバーが読み込まれたが，そうするとルーレットの描画がされない．ちなみに再び読み込むと描画される．
+    
+```bash
+document.addEventListener('DOMContentLoaded', function() {
+    let groupRef = ref_(database,'groups/' + groupId);
+    get_(groupRef)
+    .then((snapshot) => {
+        let data = snapshot.val();
+        let memberList = data["groupMember"];
+        console.log("success");
+        
+        // データを取得後にテーブルを生成する
+        let initialData = memberList.map(name => ({ name, ratio: 1 }));
+        generateTable(initialData);
+    })
+    .catch((error) => {
+        console.log("ID:" + groupId);
+        console.error("データの読み取りに失敗しました", error);
+    });
+});
+```
