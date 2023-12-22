@@ -53,6 +53,7 @@ function addOption() {
         debtorCheckbox.value = member;
         debtorLabel.htmlFor = "debtor_" + member;
         debtorLabel.textContent = member;
+        debtorLabel.className = "checkbox-label";
         
         debtorCheckbox.addEventListener("change", function() {
             // Handle checkbox change

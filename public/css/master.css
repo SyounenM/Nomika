@@ -402,3 +402,53 @@ a.btn-border:active:before {
     display: inline-block;
 }
 
+
+/* checkbox */
+input[type="checkbox"].checkbox-tatekae {
+    position: relative;
+    left: -90px;
+    width: 30px;
+    height: 30px;
+    border: 2px solid #000;
+    vertical-align: -5px;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    background-color: #fff;
+}
+
+input[type="checkbox"].checkbox-warikan {
+    position: relative;
+    width: 30px;
+    height: 30px;
+    border: 2px solid #000;
+    vertical-align: -5px;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    background-color: #fff;
+}
+
+input[type="checkbox"].checkbox-tatekae:checked:before {
+    position: absolute;
+    top: 2px;
+    left: 8px;
+    transform: rotate(50deg);
+    width: 10px;
+    height: 20px;
+    border-right: 2px solid #000;
+    border-bottom: 2px solid #000;
+    content: '';
+}
+
+input[type="checkbox"].checkbox-warikan:checked:before {
+    position: absolute;
+    top: 2px;
+    left: 8px;
+    transform: rotate(50deg);
+    width: 10px;
+    height: 20px;
+    border-right: 2px solid #000;
+    border-bottom: 2px solid #000;
+    content: '';
+}
