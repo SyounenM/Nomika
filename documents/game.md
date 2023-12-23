@@ -48,7 +48,7 @@
 ## 12/22
 * roulette
     * コードを以下のように変えるとメンバーが読み込まれたが，そうするとルーレットの描画がされない．ちなみに再び読み込むと描画される．
-    
+
 ```bash
 document.addEventListener('DOMContentLoaded', function() {
     let groupRef = ref_(database,'groups/' + groupId);
@@ -68,3 +68,7 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 });
 ```
+
+## 12/23
+* roulette
+    * memberListが反映できた．リロード時にsetup関数とdraw関数も実行させるようにしたら解決した
