@@ -41,17 +41,18 @@ document.addEventListener('DOMContentLoaded', function() {
     .then((snapshot) => {
     let data = snapshot.val();
     let memberList = data["groupMember"];
-    // console.log("memberList:" + memberList);
+    let initialData = [];
+    for (let i = 0; i < memberList.length; i++) {
+        initialData.push({ name: memberList[i], ratio: 1 });
+    }
+    generateTable(initialData);
+    setup();
+    draw();
     })
     .catch((error) => {
     console.log("ID:" + groupId);
     console.error("データの読み取りに失敗しました", error);
     });
-    let initialData = [
-        { name: 'A', ratio: 1 },
-        { name: 'B', ratio: 1 },
-    ];
-    generateTable(initialData);
 });
 // ここが原因12/15
 
