@@ -49,7 +49,7 @@
 * roulette
     * コードを以下のように変えるとメンバーが読み込まれたが，そうするとルーレットの描画がされない．ちなみに再び読み込むと描画される．
 
-<!-- ```bash
+```bash
 document.addEventListener('DOMContentLoaded', function()
 {   let groupRef = ref_(database,'groups/' + groupId);
     get_(groupRef)
@@ -67,7 +67,7 @@ document.addEventListener('DOMContentLoaded', function()
         console.error("データの読み取りに失敗しました", error);
     });
     });
-``` -->
+```
 
 ## 12/23
 * roulette
