@@ -76,5 +76,6 @@ document.addEventListener('DOMContentLoaded', function() {
 # 12/25
 * roulette
     * ルーレットのデザイン修正
+    * ルーレットの針が赤色にできなくなっちゃった．このままでもいいけど
 * topic
     * 履歴が重複しないように変更した

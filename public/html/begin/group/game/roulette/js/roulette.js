@@ -148,7 +148,7 @@ window.setup=()=>{
     textSize(20);
     // stroke(0,0,0);
     // fill(0,0,0);
-    background(0,0,0,0);
+    background(255,255,255,0);
     recalculate();
     dataFetch();
 }
@@ -292,10 +292,10 @@ window.drawRoulette=()=>{
 }
 
 window.draw=()=>{
-    fill(0,0,0,0);
+    fill(255,255,255,0);
     translate(width/2, height/2);
 
-    fill(255,0,0);
+    // fill(255,0,0);
     push();
     translate(0, -RADIUS-MARGIN);
     triangle(0, 0, -TRIANGLE_SIZE/2, -TRIANGLE_SIZE, TRIANGLE_SIZE/2, -TRIANGLE_SIZE);
