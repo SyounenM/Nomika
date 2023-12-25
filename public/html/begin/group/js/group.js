@@ -270,6 +270,15 @@ function changeHeight() {
     background.style.height = hisHeight + "px";
 }
 
+document.getElementById("copy-page").onclick = function() {
+    $(document.body).append("<textarea id=\"copyTarget\" style=\"position:absolute; left:-9999px; top:0px;\" readonly=\"readonly\">" + location.href + "</textarea>");
+    let obj = document.getElementById("copyTarget");
+    let range = document.createRange();
+    range.selectNode(obj);
+    window.getSelection().addRange(range);
+    navigator.clipboard.writeText(location.href); // location.hrefを渡す
+    document.getElementById("cAction").innerHTML = "コピーしました";
+};
 
 // main //////////////////////////////////////////////////////
 getGroupInfo()
