@@ -1,10 +1,10 @@
 import {database, ref_, set_, get_, update_, push_, goOffline_}  from "../../../../../../js/master.js";
 console.log("start");
 // // アプリケーションが閉じられたときに呼ばれる処理
-// window.onbeforeunload = function () {
+window.onbeforeunload = function () {
 //     // Firebase Realtime Databaseへの接続を切断
-//     goOffline_(database);
-// };
+    goOffline_(database);
+};
 
 const groupId = new URLSearchParams(window.location.search).get('id');
 const logo = document.getElementById("logo");
@@ -33,6 +33,7 @@ function changeHeight() {
     backHeight = offsetTop + 600;
     backgroundRoulette.style.height = backHeight + "px";
 }
+
 // ページの読み込み後にテーブルを生成
 document.addEventListener('DOMContentLoaded', function() {
     // データベースから名前を取得
@@ -54,12 +55,7 @@ document.addEventListener('DOMContentLoaded', function() {
     console.error("データの読み取りに失敗しました", error);
     });
 });
-// ここが原因12/15
 
-// JavaScriptのリストの値（仮の例）
-// console.log(memberList);
-
-// リストからテーブルを動的に生成する関数
 function generateTable(data) {
     const tableBody = document.getElementById('tableBody');
 
@@ -107,9 +103,6 @@ function generateTable(data) {
     });
 }
 
-
-// ここまでが原因12/15
-
 var Mode = {
     waiting: 0,
     acceleration: 1,
@@ -138,33 +131,16 @@ const DECEL_RAND_LEVEL = 10;
 const DECEL_RAND_MAGNITUDE = 0.001;
 const Lightness = 170;
 
-var holding = false;
+// var holding = false;
 
-// function getRandomInt(min, max) {
-//   return min+Math.floor(Math.random() * Math.floor(max-min));
-// }
 window.getRandomInt=(min, max)=> {
     return min+Math.floor(Math.random() * Math.floor(max-min));
   }
 
-// function preload(){
-    
-// }
 window.preload=()=>{
     
 }
 
-// function setup(){
-//     console.log("setup");
-//     var canvas = createCanvas(600,400);
-//     canvas.parent('canvas');
-//     textSize(20);
-//     // stroke(0,0,0);
-//     // fill(0,0,0);
-//     background(255,255,255,0);
-//     recalculate();
-//     dataFetch();
-// }
 window.setup=()=>{
     console.log("setup");
     var canvas = createCanvas(600,400);
@@ -172,62 +148,34 @@ window.setup=()=>{
     textSize(20);
     // stroke(0,0,0);
     // fill(0,0,0);
-    background(255,255,255,0);
+    background(0,0,0,0);
     recalculate();
     dataFetch();
 }
 
-// function mousePressed(){
+// window.mousePressed=()=>{
 //     holding = true;
     
 // }
-window.mousePressed=()=>{
-    holding = true;
-    
-}
 
-// function mouseReleased() {
+// window.mouseReleased=()=>{
 //     holding = false;
 
 // }
-window.mouseReleased=()=>{
-    holding = false;
 
-}
-
-// function touchStarted(){
+// window.touchStarted=()=>{
 //     mousePressed();
 // }
-window.touchStarted=()=>{
-    mousePressed();
-}
 
-// function touchEnded(){
+// window.touchEnded=()=>{
 //     mouseReleased();
 // }
-window.touchEnded=()=>{
-    mouseReleased();
-}
 
-//set color indicator
-// function cssColorSet(){
-//     console.log("cssColorSet");
-//     var counter = 0;
-//     $('.color-indicator').each(function(){
-//         push();
-//         colorMode(HSL, 255);
-//         var c = color(colorList[counter],255-COLOR_ADJ*colorList[counter],Lightness);
-//         pop();
-//         console.log("popped1")
-//         $(this).css('background-color', "rgb("+c._getRed()+","+c._getGreen()+","+c._getBlue()+")");
-//         counter++;
-//     });
-// }
 window.cssColorSet=()=>{
     console.log("cssColorSet");
     var counter = 0;
     $('.color-indicator').each(function(){
-        push();
+        // push();
         colorMode(HSL, 255);
         var c = color(colorList[counter],255-COLOR_ADJ*colorList[counter],Lightness);
         pop();
@@ -237,46 +185,6 @@ window.cssColorSet=()=>{
     });
 }
 
-//input to array
-// function dataFetch(){
-//     console.log("dataFetch");
-//     ratioSum = 0.0;
-//     $('.item').each(function(){
-//         var ratio = $(this).find('.ratio').val()-0;
-//         ratioSum += ratio;
-//     });
-//     nameList = [];
-//     probabilityList = [];
-//     $('.item').each(function(){
-//         var name = $(this).find('.name').val();
-//         var ratio = $(this).find('.ratio').val()-0;
-//         nameList.push(name);
-//         probabilityList.push(ratio/ratioSum);
-//     });
-//     //color
-//     var colors = [];
-//     len = nameList.length;
-//     for(var i=0;i<len;i++){
-//         colors.push(Math.floor(255/len*i));
-//     }
-//     colorList = [];
-//     if(len%2==0){
-//         for(var i=0;i<len;i+=2){
-//             colorList[i] = colors[Math.floor(i/2)];
-//         }
-//         for(var i=1;i<len;i+=2){
-//             colorList[i] = colors[Math.floor(i/2 + len/2)];
-//         }
-//     }else{
-//         for(var i=0;i<len;i+=2){
-//             colorList[i] = colors[Math.floor(i/2)];
-//         }
-//         for(var i=1;i<len;i+=2){
-//             colorList[i] = colors[Math.floor(i/2)+Math.floor(len/2)+1];
-//         }
-//     }
-//     cssColorSet();
-// }
 window.dataFetch=()=>{
     console.log("dataFetch");
     ratioSum = 0.0;
@@ -318,24 +226,6 @@ window.dataFetch=()=>{
     changeHeight();
 }
 
-// function validation(){
-//     var badflag = false;
-//     $('.name').each(function(){
-//         if($(this).val()==""){
-//             badflag = true;
-//         }
-//     });
-//     // $('.ratio').each(function(){
-//     //     if(!($(this).val()>0)){
-//     //         badflag = true;
-//     //     }
-//     // });
-//     if(badflag){
-//         alert('項目名を正しく設定してください。');
-//         return 1;
-//     }
-//     return 0;
-// }
 window.validation=()=>{
     var badflag = false;
     $('.name').each(function(){
@@ -355,18 +245,6 @@ window.validation=()=>{
     return 0;
 }
 
-
-// function start(){
-//     if(mode==Mode.waiting){
-//         if(validation()==1){
-//             return;
-//         }
-//         $('#stop').css('display', 'inline-block');
-//         $('#start').css('display', 'none');
-//         dataFetch();
-//         mode = Mode.acceleration;
-//     }
-// }
 window.start=()=>{
     if(mode==Mode.waiting){
         if(validation()==1){
@@ -379,14 +257,6 @@ window.start=()=>{
     }
 }
 
-// function stop(){
-//     if(//mode==Mode.acceleration || 
-//        mode==Mode.constant){
-//         $('#start').css('display', 'none');
-//         $('#stop').css('display', 'none');
-//         mode = Mode.deceleration;
-//     }
-// }
 window.stop=()=>{
     if(//mode==Mode.acceleration || 
        mode==Mode.constant){
@@ -396,18 +266,6 @@ window.stop=()=>{
     }
 }
 
-// function reset(){
-//     $('#start').css('display', 'inline-block');
-//     $('#stop').css('display', 'none');
-//     theta = 0.0;
-//     speed = 0.0;
-//     mode = Mode.waiting;
-//     if(validation()==0){
-//         dataFetch();
-//     }
-//     $('#result').html('????');
-//     resultDisplayed = false;
-// }
 window.reset=()=>{
     $('#start').css('display', 'inline-block');
     $('#stop').css('display', 'none');
@@ -421,18 +279,6 @@ window.reset=()=>{
     resultDisplayed = false;
 }
 
-// function drawRoulette(){
-//     var angleSum = 0.0;
-//     push();
-//     colorMode(HSL, 255);
-//     for(var i=0;i<len;i++){
-//         fill(colorList[i],255-COLOR_ADJ*colorList[i],Lightness);
-//         arc(0,0,RADIUS*2,RADIUS*2,angleSum,angleSum+2*PI*probabilityList[i]);
-//         angleSum += probabilityList[i]*2*PI;
-//     }
-//     pop();
-//     console.log("popped2")
-// }
 window.drawRoulette=()=>{
     var angleSum = 0.0;
     push();
@@ -443,77 +289,10 @@ window.drawRoulette=()=>{
         angleSum += probabilityList[i]*2*PI;
     }
     pop();
-    // console.log(memberList);
 }
 
-// function draw(){
-//     fill(255,255,255,0);
-//     // rect(0,0,width,height);
-//     translate(width/2, height/2);
-
-//     fill(255,0,0);
-//     push();
-//     translate(0, -RADIUS-MARGIN);
-//     triangle(0, 0, -TRIANGLE_SIZE/2, -TRIANGLE_SIZE, TRIANGLE_SIZE/2, -TRIANGLE_SIZE);
-//     pop();
-
-//     switch(mode){
-//     case Mode.waiting:
-//         $('.RouletteSetup').removeClass('unselectable');
-//         $('#result').html("&nbsp;");
-//         break;
-//     case Mode.acceleration:
-//         if(speed<MAX_SPEED){
-//             speed += ACCEL;
-//         }else{
-//             mode = Mode.constant;
-//             speed = MAX_SPEED;
-//         }
-//         theta += speed;
-//         theta-=(Math.floor(theta/2/PI))*2*PI;
-//         rotate(theta);
-//         break;
-//     case Mode.constant:
-//         theta += speed;
-//         theta-=(Math.floor(theta/2/PI))*2*PI;
-//         rotate(theta);
-//         break;
-//     case Mode.deceleration:
-//         if(speed>DECEL){
-//             speed -= DECEL+getRandomInt(-DECEL_RAND_LEVEL,DECEL_RAND_LEVEL)*DECEL_RAND_MAGNITUDE;
-//         }else{
-//             speed = 0.0;
-//             mode = Mode.result;
-//         }
-//         theta += speed;
-//         theta-=(Math.floor(theta/2/PI))*2*PI;
-//         rotate(theta);
-//         break;
-//     case Mode.result:
-//         rotate(theta);
-//         if(!resultDisplayed){
-//             resultDisplayed = true;
-//             var angleSum = theta;
-//             var beforeAngleSum = theta;
-//             var result = 0;
-//             for(var i=0;i<len;i++){
-//                 angleSum += probabilityList[i]*2*PI;
-//                 if((angleSum>3/2*PI&&beforeAngleSum<3/2*PI) || (angleSum>7/2*PI&&beforeAngleSum<7/2*PI)){
-//                     result = i;
-//                     break;
-//                 }
-//                 beforeAngleSum = angleSum;
-//             }
-//             $('#result').html(nameList[result]);
-//             $('.RouletteSetup').addClass('unselectable');
-//         }
-//         break;
-//     }
-//     drawRoulette();
-// }
 window.draw=()=>{
-    fill(255,255,255,0);
-    // rect(0,0,width,height);
+    fill(0,0,0,0);
     translate(width/2, height/2);
 
     fill(255,0,0);
@@ -576,21 +355,11 @@ window.draw=()=>{
         break;
     }
     drawRoulette();
+    fill(255,255,255);
+    translate(0,0);
+    circle(0,0,20)
 }
 
-
-// function recalculate(){
-//     var ratioSumJs = 0;
-//     $('.ratio').each(function(){
-//         ratioSumJs += $(this).val()-0; //文字から数字の変換
-//     });
-//     $(".item").each(function(){
-//         var probability = ($(this).find(".ratio").first().val()-0) / ratioSumJs;
-//         probability*=100;
-//         probability = probability.toFixed(3);
-//         $(this).children(".probability").first().html(probability+"%");
-//     });
-// }
 window.recalculate=()=>{
     var ratioSumJs = 0;
     $('.ratio').each(function(){
@@ -612,15 +381,7 @@ $('.add').click(function(){
         dataFetch();
     }
 });
-// function rmItem(e){
-//     if(mode==Mode.waiting){
-//         if($('.ratio').length>2){
-//             $(e).parent().parent().remove();
-//             recalculate();
-//             dataFetch();
-//         }          
-//     }
-// }
+
 window.rmItem=(e)=>{
     if(mode==Mode.waiting){
         if($('.ratio').length>2){

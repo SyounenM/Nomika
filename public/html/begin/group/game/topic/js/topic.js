@@ -1,10 +1,10 @@
 // import {database, ref_, set_, get_, update_, push_, goOffline_}  from "../../../../../../js/master.js";
 
 // // アプリケーションが閉じられたときに呼ばれる処理
-// window.onbeforeunload = function () {
+window.onbeforeunload = function () {
 //     // Firebase Realtime Databaseへの接続を切断
-//     goOffline_(database);
-// };
+    goOffline_(database);
+};
 
 
 const groupId = new URLSearchParams(window.location.search).get('id');
@@ -121,12 +121,13 @@ window.addEventListener('load', function() {
 
 document.querySelector('.card').addEventListener('click', function() {
   const cardInner = document.querySelector('.card-inner');
-  const randomText = getRandomText();
 
   if (!cardFlipped) {
+    const randomText = getRandomText();
     // カードが裏返っていない場合は表にする
     cardInner.style.transform = "rotateY(180deg)";
     document.getElementById('randomText').textContent = randomText;
+    console.log(textHistory)
   } else {
     // カードが裏返っている場合は裏に戻す
     cardInner.style.transform = "rotateY(0deg)";

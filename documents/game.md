@@ -72,3 +72,9 @@ document.addEventListener('DOMContentLoaded', function() {
 ## 12/23
 * roulette
     * memberListが反映できた．リロード時にsetup関数とdraw関数も実行させるようにしたら解決した
+
+# 12/25
+* roulette
+    * ルーレットのデザイン修正
+* topic
+    * 履歴が重複しないように変更した
