@@ -282,12 +282,12 @@ document.getElementById("copy-page").onclick = function() {
 
 // main //////////////////////////////////////////////////////
 getGroupInfo()
+    .then(showMembers)
     .then(getHistory)
     .then(initializeBalanceList)
     .then(calculateBalance)
     .then(mainCalculation)
     .then(showResult)
-    .then(showMembers)
     .then(showHistory)
     .then(changeHeight)
     .catch(error => console.error(error));
