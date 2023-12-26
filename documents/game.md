@@ -79,3 +79,9 @@ document.addEventListener('DOMContentLoaded', function() {
     * ルーレットの針が赤色にできなくなっちゃった．このままでもいいけど
 * topic
     * 履歴が重複しないように変更した
+
+# 12/26
+* これからやりたい事
+    * rouletteの色生成のアルゴリズム
+    * topicの話題編集機能
+    * paypay決済機能
