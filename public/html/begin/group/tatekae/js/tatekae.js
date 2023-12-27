@@ -72,6 +72,7 @@ function addOption() {
         newPara.appendChild(debtorCheckbox);
         newPara.appendChild(debtorLabel);
         debtorCheckboxWrapper.appendChild(newPara);
+
     }
     changeHeight();
 }
