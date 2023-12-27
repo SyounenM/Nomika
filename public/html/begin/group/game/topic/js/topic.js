@@ -79,7 +79,7 @@ back.href = `../game.html?id=${groupId}`;
 //   cardFlipped = !cardFlipped;
 // });
 
-const texts = [
+var texts = [
   "Text 1",
   "Text 2",
   "Text 3",
@@ -138,3 +138,148 @@ document.querySelector('.card').addEventListener('click', function() {
 
 
 // Path: top/html/begin/group/game/topic/js/topic.js
+
+// texts から指定された要素を削除する関数
+function removeFromTexts(text) {
+  const index = texts.indexOf(text);
+  if (index !== -1) {
+    predefinedText.splice(index, 1);
+  }
+}
+
+// 削除ボタンが押された際の処理
+function rmItem(element) {
+  const row = element.closest('tr');
+  if (row && row.parentNode.querySelectorAll('tr.item').length > 1) {
+    const input = row.querySelector('.input-content');
+    const text = input.value;
+    row.remove();
+
+    // predefinedText 配列から該当の要素を削除
+    const index = texts.indexOf(text);
+    if (index !== -1) {
+      texts.splice(index, 1);
+    }
+  }
+}
+
+// document.addEventListener('DOMContentLoaded', function() {
+//   const tableBody = document.getElementById('tableBody');
+
+//   // リストの要素数分、新しいテキストボックスを生成し、テーブルに追加する
+//     texts.forEach(text => {
+//       const newRow = document.createElement('tr');
+//       newRow.classList.add('item');
+
+//       const nameCell = document.createElement('td');
+//       const nameInput = document.createElement('input');
+//       nameInput.type = 'text';
+//       nameInput.classList.add('name', 'input-content');
+//       nameInput.value = text;
+//       nameCell.appendChild(nameInput);
+
+//       const deleteButtonCell = document.createElement('td');
+//       const deleteButton = document.createElement('button');
+//       deleteButton.type = 'button';
+//       deleteButton.classList.add('deleteButton');
+//       deleteButton.textContent = '削除';
+//       deleteButtonCell.appendChild(deleteButton);
+
+//       newRow.appendChild(nameCell);
+//       newRow.appendChild(deleteButtonCell);
+
+//       tableBody.appendChild(newRow);
+//   });
+// });
+
+// document.addEventListener('DOMContentLoaded', function() {
+//   const tableBody = document.getElementById('tableBody');
+//   // リストの要素数分、新しいテキストボックスを生成し、テーブルに追加する
+//   texts.forEach((text) => {
+//     const newRow = document.createElement('tr');
+//     newRow.classList.add('item');
+
+//     const nameCell = document.createElement('td');
+//     const nameInput = document.createElement('input');
+//     nameInput.type = 'text';
+//     nameInput.classList.add('name', 'input-content');
+//     nameInput.value = text;
+//     // nameInput.addEventListener('input', function() {
+//     //   texts[index] = this.value;
+//     //   console.log(texts); // テキスト変更時にリストを更新する例
+//     // });
+//     nameCell.appendChild(nameInput);
+
+//     const deleteButtonCell = document.createElement('td');
+//     const deleteButton = document.createElement('button');
+//     deleteButton.type = 'button';
+//     deleteButton.classList.add('deleteButton');
+//     deleteButton.textContent = '削除';
+//     // deleteButton.onclick = function() {
+//     //   rmItem(this);
+//     // };
+//     deleteButtonCell.appendChild(deleteButton);
+
+//     newRow.appendChild(nameCell);
+//     newRow.appendChild(deleteButtonCell);
+
+//     tableBody.appendChild(newRow);
+//   });
+// });
+$(document).ready(function() {
+  const tableBody = $('#tableBody');
+  texts.forEach((text) => {
+    const newRow = $('<tr>').addClass('item');
+    const nameCell = $('<td>');
+    const nameInput = $('<input>').attr({
+      type: 'text',
+      class: 'name input-content',
+      value: text
+    });
+    nameCell.append(nameInput);
+
+    const deleteButtonCell = $('<td>');
+    const deleteButton = $('<button>').attr({
+      type: 'button',
+      class: 'deleteButton'
+    }).text('削除');
+    deleteButtonCell.append(deleteButton);
+
+    newRow.append(nameCell, deleteButtonCell);
+    tableBody.append(newRow);
+  });
+});
+
+// 追加ボタンをクリックしたときの処理
+$('.add').click(function(){
+  var add = '<tr class="item"><td><input type="text" class="name input-content"></td><td><button class="deleteButton" type="button" onclick="rmItem(this)">削除</button></td></tr>';
+  $('#table').append(add);
+  texts.push('');
+});
+
+// 削除ボタンをクリックしたときの処理
+tableBody.addEventListener('click', function(event) {
+  if (event.target.classList.contains('deleteButton')) {
+    const row = event.target.closest('tr');
+    if (tableBody.childNodes.length > 1) {
+      rmItem(row);
+    } else {
+      alert('最後の要素は削除できません');
+    }
+  }
+});
+
+// テキストボックスの内容が変更されたときの処理
+tableBody.addEventListener('input', function(event) {
+  const target = event.target;
+  if (target && target.classList.contains('input-content')) {
+    const index = Array.from(tableBody.children).indexOf(target.parentElement.parentElement);
+    texts[index] = target.value;
+  }
+});
+
+
+// tableBody.addEventListener('input', function() {
+//   const index = Array.from(tableBody.children).indexOf(newRow);
+//   texts[index] = this.value;
+// });

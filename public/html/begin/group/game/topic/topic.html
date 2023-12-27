@@ -39,11 +39,20 @@
                       </div>
                     </div>
                 </div> 
+                <button type="button" class="add addButton">追加</button>
+                <table id="table">
+                    <thead>
+                        <tr><th><a class="big">項目</a></th></tr>
+                        <!-- <tr class="item"><td><input type="text" class="name input-content"></td><td><button class="deleteButton" type="button" onclick="rmItem(this)">削除</button></td></tr> -->
+                    </thead>
+                    <tbody id="tableBody"></tbody>
+                </table>
                 <a id="back" class="btn btn-border btn-topic"><span>戻る</span></a> <!-- ボタンテンプレート -->
             </div>
         </div>
     </div>
     </body>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script type="module" src="./js/topic.js"></script>
     <footer>
         <p>© All rights reserved by dmmwebcampmedia.</p>

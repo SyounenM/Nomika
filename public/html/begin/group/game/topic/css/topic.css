@@ -75,3 +75,15 @@
   position: relative;
   top: 80px;
 }
+
+#table{
+  top: 0px;
+  left: 0px;
+  margin: 0 auto;
+}
+
+.big{
+  top: 0px;
+  left: 0px;
+  margin: 0 auto;
+}
