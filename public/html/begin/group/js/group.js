@@ -270,7 +270,7 @@ function changeHeight() {
     background.style.height = hisHeight + "px";
 }
 
-// コピー機能
+// リンクコピー機能
 document.getElementById("copy-page").onclick = function() {
     const copyText = document.createElement("textarea");
     copyText.value = location.href;
@@ -315,11 +315,19 @@ function launchApp() {
         window.location.href = 'https://paypay.ne.jp';
     }
 }
-
-// ボタンをクリックしたときにlaunchApp関数を実行する
-document.getElementById("view-url").onclick = function() {
+// ボタンをクリックしたときにlaunchApp関数を実行してPayPayを起動
+document.getElementById("PayPay").onclick = function() {
     launchApp();
 };
+
+// LINE共有機能
+document.getElementById('LINE').addEventListener('click', function() {
+    const currentURL = encodeURIComponent(window.location.href);
+    const sharedText = ''; // 共有するテキスト
+  
+    const lineShareURL = `http://line.me/R/share?text=${sharedText} ${currentURL}`;
+    window.open(lineShareURL, '_blank');
+  });
 
 // main //////////////////////////////////////////////////////
 getGroupInfo()
