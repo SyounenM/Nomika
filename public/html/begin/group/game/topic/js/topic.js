@@ -6,7 +6,6 @@ window.onbeforeunload = function () {
     goOffline_(database);
 };
 
-
 const groupId = new URLSearchParams(window.location.search).get('id');
 const logo = document.getElementById("logo");
 const topButton = document.getElementById("top");
@@ -23,61 +22,6 @@ function showAlert() {
 topButton.onclick = showAlert;
 home.href = `../../group.html?id=${groupId}`;
 back.href = `../game.html?id=${groupId}`;
-
-// import {showAlert}  from "../../../../../../js/master.js";
-
-// const topicButton = document.getElementById("topic-button");
-// const topic_list = ["貧乳？巨乳？","topic2","topic3"];
-// const result = document.getElementById("result");
-
-// function topic() {
-//     const r = Math.random();
-//     if (r < 0.2) {
-//         result.textContent = topic_list[0];
-//         result.style.color = "red";
-//     } else if (r < 0.7) {
-//         result.textContent = topic_list[1];
-//         result.style.color = "black";
-//     }
-//     else {
-//         result.textContent = topic_list[2];
-//         result.style.color = "blue";
-//     }
-// }
-// topicButton.onclick = topic;
-
-
-// const texts = [
-//     "貧乳？巨乳？",
-//     "Text 2",
-//     "Text 3",
-//     // Add more texts as needed
-//   ];
-  
-// let cardFlipped = false;
-
-// function getRandomText() {
-//   const randomIndex = Math.floor(Math.random() * texts.length);
-//   return texts[randomIndex];
-// }
-
-// document.querySelector('.card').addEventListener('click', function() {
-//   const cardInner = document.querySelector('.card-inner');
-//   const randomText = getRandomText();
-
-//   if (cardFlipped) {
-//     // 裏返していたら表に戻す
-//     cardInner.style.transform = "rotateY(0deg)";
-//     document.getElementById('randomText').textContent = "";
-//   } else {
-//     // 表から裏に回転してテキストを表示
-//     cardInner.style.transform = "rotateY(180deg)";
-//     document.getElementById('randomText').textContent = randomText;
-//   }
-
-//   // カードの状態を反転
-//   cardFlipped = !cardFlipped;
-// });
 
 var texts = [
   "Text 1",
@@ -136,9 +80,6 @@ document.querySelector('.card').addEventListener('click', function() {
   cardFlipped = !cardFlipped; // カードの状態を切り替える
 });
 
-
-// Path: top/html/begin/group/game/topic/js/topic.js
-
 // texts から指定された要素を削除する関数
 function removeFromTexts(text) {
   const index = texts.indexOf(text);
@@ -163,69 +104,6 @@ function rmItem(element) {
   }
 }
 
-// document.addEventListener('DOMContentLoaded', function() {
-//   const tableBody = document.getElementById('tableBody');
-
-//   // リストの要素数分、新しいテキストボックスを生成し、テーブルに追加する
-//     texts.forEach(text => {
-//       const newRow = document.createElement('tr');
-//       newRow.classList.add('item');
-
-//       const nameCell = document.createElement('td');
-//       const nameInput = document.createElement('input');
-//       nameInput.type = 'text';
-//       nameInput.classList.add('name', 'input-content');
-//       nameInput.value = text;
-//       nameCell.appendChild(nameInput);
-
-//       const deleteButtonCell = document.createElement('td');
-//       const deleteButton = document.createElement('button');
-//       deleteButton.type = 'button';
-//       deleteButton.classList.add('deleteButton');
-//       deleteButton.textContent = '削除';
-//       deleteButtonCell.appendChild(deleteButton);
-
-//       newRow.appendChild(nameCell);
-//       newRow.appendChild(deleteButtonCell);
-
-//       tableBody.appendChild(newRow);
-//   });
-// });
-
-// document.addEventListener('DOMContentLoaded', function() {
-//   const tableBody = document.getElementById('tableBody');
-//   // リストの要素数分、新しいテキストボックスを生成し、テーブルに追加する
-//   texts.forEach((text) => {
-//     const newRow = document.createElement('tr');
-//     newRow.classList.add('item');
-
-//     const nameCell = document.createElement('td');
-//     const nameInput = document.createElement('input');
-//     nameInput.type = 'text';
-//     nameInput.classList.add('name', 'input-content');
-//     nameInput.value = text;
-//     // nameInput.addEventListener('input', function() {
-//     //   texts[index] = this.value;
-//     //   console.log(texts); // テキスト変更時にリストを更新する例
-//     // });
-//     nameCell.appendChild(nameInput);
-
-//     const deleteButtonCell = document.createElement('td');
-//     const deleteButton = document.createElement('button');
-//     deleteButton.type = 'button';
-//     deleteButton.classList.add('deleteButton');
-//     deleteButton.textContent = '削除';
-//     // deleteButton.onclick = function() {
-//     //   rmItem(this);
-//     // };
-//     deleteButtonCell.appendChild(deleteButton);
-
-//     newRow.appendChild(nameCell);
-//     newRow.appendChild(deleteButtonCell);
-
-//     tableBody.appendChild(newRow);
-//   });
-// });
 $(document).ready(function() {
   const tableBody = $('#tableBody');
   texts.forEach((text) => {
@@ -277,9 +155,3 @@ tableBody.addEventListener('input', function(event) {
     texts[index] = target.value;
   }
 });
-
-
-// tableBody.addEventListener('input', function() {
-//   const index = Array.from(tableBody.children).indexOf(newRow);
-//   texts[index] = this.value;
-// });
