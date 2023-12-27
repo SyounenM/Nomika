@@ -88,7 +88,7 @@ function removeFromTexts(text) {
   }
 }
 
-// 削除ボタンが押された際の処理
+// 削除する関数
 function rmItem(element) {
   const row = element.closest('tr');
   if (row && row.parentNode.querySelectorAll('tr.item').length > 1) {
