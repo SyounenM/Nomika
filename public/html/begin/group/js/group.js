@@ -272,19 +272,23 @@ function changeHeight() {
 
 // コピー機能
 document.getElementById("copy-page").onclick = function() {
-    $(document.body).append("<textarea id=\"copyTarget\" style=\"position:absolute; left:-9999px; top:0px;\" readonly=\"readonly\">" + location.href + "</textarea>");
-    let obj = document.getElementById("copyTarget");
-    let range = document.createRange();
-    range.selectNode(obj);
-    window.getSelection().addRange(range);
-    navigator.clipboard.writeText(location.href); // location.hrefを渡す
+    const copyText = document.createElement("textarea");
+    copyText.value = location.href;
+    copyText.setAttribute('readonly', '');
+    copyText.style.position = 'absolute';
+    copyText.style.left = '-9999px';
+    document.body.appendChild(copyText);
+    copyText.select();
+    copyText.setSelectionRange(0, 99999);
+    document.execCommand('copy');
+    document.body.removeChild(copyText);
     document.getElementById("cAction").innerHTML = "コピーしました";
 };
 
 // https://qiita.com/tarusawa_ken/items/9d9a8b7b6ca8b6984eb9
 // launchApp関数を定義
 function launchApp() {
-    var IOS_SCHEME = 'paypay';
+    var IOS_SCHEME = 'paypay://';
     var IOS_STORE = 'https://apps.apple.com/jp/app/paypay-ペイペイ/id1435783608';
     var ANDROID_SCHEME = 'AndroidのURLスキームをここに入れるべし！';
     var ANDROID_PACKAGE = 'Androidのパッケージ名をここに入れるべし！';
@@ -294,7 +298,7 @@ function launchApp() {
     
     // iPhone端末ならアプリを開くかApp Storeを開く。
     if (userAgent.search(/iphone|ipad|ipod/) > -1) {
-        window.location.href = IOS_SCHEME + '://';
+        window.location.href = IOS_SCHEME;
         // app storeに飛ばす例外処理をちゃんと考える
         // setTimeout(function() {
         //     window.location.href = IOS_STORE;
