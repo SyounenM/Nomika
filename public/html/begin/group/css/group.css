@@ -89,3 +89,9 @@
     padding: 7px;
     font-size: 25px;
 }
+.copy-button{
+    position: relative;
+    left: -13px;
+    color: black;
+    background-color: #EFEFEF;
+}

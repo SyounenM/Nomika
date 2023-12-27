@@ -204,7 +204,7 @@ function showMembers() {
     }
     let lastMember = document.getElementById(memberList[memberList.length - 1] + 'Span');
     console.log("lastMemberHeight", lastMember.offsetTop);
-    resTextHeight = lastMember.offsetTop + 100;
+    resTextHeight = lastMember.offsetTop + 60;
 }
 
 function showHistory() {
@@ -218,7 +218,7 @@ function showHistory() {
         // let his;
         // 各結果を表示
         if (i == historyList.length - 1) {
-            historyGroup.innerHTML += `<button id="history-last" class="history">${obj.content} : ${obj.amount}円</a>`;
+            historyGroup.innerHTML += `<button id="history-last" class="input history">${obj.content} : ${obj.amount}円</a>`;
             const hisLast = document.getElementById("history-last");
             console.log("hisId", hisLast.id);
             hisLast.onclick = function(event){
@@ -229,8 +229,8 @@ function showHistory() {
             let his = document.createElement('button');
             his.textContent = `${obj.content} : ${obj.amount}円`;
             his.id = "history-" + obj.content;
-            his.className = "history";
-            // historyGroup.innerHTML += `<button id="history-${obj.content}" class="history">${obj.content} : ${obj.amount}円</button><br>`;
+            his.className = "input history";
+            // historyGroup.innerHTML += `<button id="history-${obj.content}" class="input history">${obj.content} : ${obj.amount}円</button><br>`;
             his.onclick = function(event){
                 event.preventDefault();
                 editHistory(obj.content, i, method);
@@ -258,7 +258,7 @@ function editHistory(content, index, method) {
 // 高さの変更
 function changeHeight() {
     const resText = document.getElementById("result-text");
-    resText.style.height = resTextHeight + "px";
+    resText.style.top = resTextHeight + "px";
     const hisLast = document.getElementById("history-last");
     var offsetTop = hisLast.offsetTop;
     const texthis = document.getElementById("history-text");
