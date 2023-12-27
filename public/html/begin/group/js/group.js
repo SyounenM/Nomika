@@ -270,14 +270,55 @@ function changeHeight() {
     background.style.height = hisHeight + "px";
 }
 
+// コピー機能
 document.getElementById("copy-page").onclick = function() {
-    $(document.body).append("<textarea id=\"copyTarget\" style=\"position:absolute; left:-9999px; top:0px;\" readonly=\"readonly\">" + location.href + "</textarea>");
-    let obj = document.getElementById("copyTarget");
-    let range = document.createRange();
-    range.selectNode(obj);
-    window.getSelection().addRange(range);
-    navigator.clipboard.writeText(location.href); // location.hrefを渡す
+    const copyText = document.createElement("textarea");
+    copyText.value = location.href;
+    copyText.setAttribute('readonly', '');
+    copyText.style.position = 'absolute';
+    copyText.style.left = '-9999px';
+    document.body.appendChild(copyText);
+    copyText.select();
+    copyText.setSelectionRange(0, 99999);
+    document.execCommand('copy');
+    document.body.removeChild(copyText);
     document.getElementById("cAction").innerHTML = "コピーしました";
+};
+
+// https://qiita.com/tarusawa_ken/items/9d9a8b7b6ca8b6984eb9
+// launchApp関数を定義
+function launchApp() {
+    var IOS_SCHEME = 'paypay://';
+    var IOS_STORE = 'https://apps.apple.com/jp/app/paypay-ペイペイ/id1435783608';
+    var ANDROID_SCHEME = 'AndroidのURLスキームをここに入れるべし！';
+    var ANDROID_PACKAGE = 'Androidのパッケージ名をここに入れるべし！';
+    var PC_SITE = '公式サイトのURLとかここに入れるべし！'
+
+    var userAgent = navigator.userAgent.toLowerCase();
+    
+    // iPhone端末ならアプリを開くかApp Storeを開く。
+    if (userAgent.search(/iphone|ipad|ipod/) > -1) {
+        window.location.href = IOS_SCHEME;
+        // app storeに飛ばす例外処理をちゃんと考える
+        // setTimeout(function() {
+        //     window.location.href = IOS_STORE;
+        // }, 500);  
+    }
+    // Android端末ならアプリを開くかGoogle Playを開く。
+    // 実験してないので動くかわからない
+    else if (userAgent.search(/android/) > -1) {
+        window.location.href = 'intent://#Intent;scheme=' + ANDROID_SCHEME
+                + ';package=' + ANDROID_PACKAGE + ';end';
+    }
+    // その他・不明・PCなどの場合はサイトを開く。
+    else {
+        window.location.href = 'https://paypay.ne.jp';
+    }
+}
+
+// ボタンをクリックしたときにlaunchApp関数を実行する
+document.getElementById("view-url").onclick = function() {
+    launchApp();
 };
 
 // main //////////////////////////////////////////////////////
