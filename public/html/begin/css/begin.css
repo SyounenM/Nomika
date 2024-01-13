@@ -21,3 +21,13 @@
     width: 10px;
     opacity: 0;
 }
+
+.amount{
+    width: 120px;
+    position: relative;
+    left: -40px;
+}
+.text-amount{
+    position: relative;
+    left: -120px;
+}

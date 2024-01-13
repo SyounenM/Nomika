@@ -11,18 +11,18 @@
 }
 .foam{
     margin: 0px;
-    height: 190px;
-    width: 1450px;
+    height: 210px;
+    width: 1550px;
     min-width: 100%;
     z-index: 20;
     position: fixed;
 }
 .icon{
-    width: 250px;
+    width: 280px;
     position: absolute;
     position: fixed;
-    left: -5px;
-    top: -65px;
+    left: -15px;
+    top: -75px;
     z-index: 21;
 }
 body{
@@ -32,6 +32,7 @@ body{
     position: relative;
     left: -10px;
     background:linear-gradient(0deg,rgb(255, 235, 9) ,rgb(255, 150, 0));
+    overflow-x: hidden;
 }
 body h1{
     color: #FFFFFF;
@@ -69,12 +70,12 @@ body h5{
     min-height: 50px;
 }
 .logo a{
-    font-size: 50px;
+    font-size: 55px;
     color: black;
     text-decoration: none;
     position: absolute;
     top: 18px;
-    left: 186px;
+    left: 198px;
     font-weight: 600;
 }
 .navbar a{ /* anchorのみに作用する */

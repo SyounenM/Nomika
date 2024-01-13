@@ -133,3 +133,14 @@ function createGroup() {
 
 createButton.onclick = createGroup;
 
+
+// let amountSelect = document.getElementById('amount');
+// amountSelect.min = '1';
+// amountSelect.max = '99'
+// if (totalAmount != 0){
+//     amountSelect.value = totalAmount;
+// }
+// const amountDiv = document.getElementById("amount-div");
+// const cpWidth = inputMember.width+inputMember.offsetLeft;
+// console.log(cpWidth)
+// amountDiv.style = `position: relative; left: ${cpWidth}px;`
