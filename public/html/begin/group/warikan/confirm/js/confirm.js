@@ -1,3 +1,5 @@
+const icon = document.getElementById("icon");
+
 // 定数・変数 (データベースで共有した情報)
 let groupName = "飲み会"
 let memberList = ["秀島", "川崎", "佐々木", "福田", "松島"];

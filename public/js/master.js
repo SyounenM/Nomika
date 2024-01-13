@@ -97,4 +97,3 @@ export function goOffline_(database) {
 //     .catch((error) => {
 //     console.error("データの書き込みに失敗しました", error);
 //     });
-

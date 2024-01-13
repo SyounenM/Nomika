@@ -9,11 +9,12 @@ window.onbeforeunload = function () {
 const groupId = new URLSearchParams(window.location.search).get('id');
 console.log(groupId);
 const historyId = new URLSearchParams(window.location.search).get('historyId');
-
+const icon = document.getElementById("icon");
 const logo = document.getElementById("logo");
 const top = document.getElementById("top");
 const home = document.getElementById("home");
 const back = document.getElementById("back");
+icon.href = `../group.html?id=${groupId}`;
 logo.href = `../group.html?id=${groupId}`;
 home.href = `../group.html?id=${groupId}`;
 back.href = `../group.html?id=${groupId}`;

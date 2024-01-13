@@ -4,6 +4,7 @@ const tatekaeButton = document.getElementById("tatekaeButton");
 const warikanButton = document.getElementById("warikanButton");
 const gameButton = document.getElementById("gameButton");
 const editButton = document.getElementById("editButton");
+const icon = document.getElementById("icon");
 const logo = document.getElementById("logo");
 const top = document.getElementById("top");
 const home = document.getElementById("home");
@@ -35,6 +36,7 @@ tatekaeButton.href = `./tatekae/tatekae.html?id=${groupId}`;
 warikanButton.href = `./warikan/warikan.html?id=${groupId}`;
 gameButton.href = `./game/game.html?id=${groupId}`;
 editButton.href = `./edit/edit.html?id=${groupId}`;
+icon.href = `./group.html?id=${groupId}`;
 logo.href = `./group.html?id=${groupId}`;
 function showAlert() {
     var result = confirm('注意 グループから抜けることになります');
