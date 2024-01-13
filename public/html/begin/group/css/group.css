@@ -95,6 +95,9 @@
     color: black;
     background-color: #EFEFEF;
 }
+.history{
+    color: black;
+}
 
 /* トグルボタン */
 #toggleContent {
@@ -126,6 +129,7 @@
     }
 }
 
+/* 共有 */
 .copy{
     width: 150px;
     height: 70px;
@@ -144,12 +148,10 @@
         display: none;
     }
 }
-
 .paypay{
     background-color: #EFEFEF;
     margin: 10px;
 }
-
 .line{
     background-color: #EFEFEF;
     margin: 10px;

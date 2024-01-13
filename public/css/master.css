@@ -365,38 +365,53 @@ a.btn-border:active:before {
 
 /* button */
 .addButton{
+    margin: 20px;
     font-size: 20px;
     width: 90px;
     height: 60px;
     border-radius: 10px;
     background-color: white;
     border: 2px solid black;
-    border-radius: 10px;
     color: #000;
 }
 .deleteButton{
+    margin: 10px;
     font-size: large;
     width: 70px;
     height: 50px;
     border-radius: 10px;
+    background-color: white;
+    border: 2px solid black;
+    color: #000;
 }
 .startButton{
+    margin: 10px;
     font-size: large;
     width: 100px;
     height: 50px;
     border-radius: 10px;
+    background-color: white;
+    border: 2px solid black;
+    color: #000;
 }
 .resetButton{
+    margin: 10px;
     font-size: large;
     width: 100px;
     height: 50px;
     border-radius: 10px;
+    background-color: white;
+    border: 2px solid black;
+    color: #000;
 }
 .stopButton{
     font-size: large;
     width: 100px;
     height: 50px;
     border-radius: 10px;
+    background-color: white;
+    border: 2px solid black;
+    color: #000;
 }
 
 /* メンバーリスト */

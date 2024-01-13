@@ -28,12 +28,7 @@ var texts = [
   "Text 2",
   "Text 3",
   "Text 4",
-  "Text 5",
-  "Text 6",
-  "Text 7",
-  "Text 8",
-  "Text 9",
-  "Text 10"
+  "Text 5"
   // Add more texts as needed
 ];
 
@@ -133,6 +128,7 @@ $('.add').click(function(){
   var add = '<tr class="item"><td><input type="text" class="name input-content"></td><td><button class="deleteButton" type="button" onclick="rmItem(this)">削除</button></td></tr>';
   $('#table').append(add);
   texts.push('');
+  changeHeight()
 });
 
 // 削除ボタンをクリックしたときの処理
@@ -144,6 +140,7 @@ tableBody.addEventListener('click', function(event) {
     } else {
       alert('最後の要素は削除できません');
     }
+    changeHeight()
   }
 });
 
@@ -155,3 +152,13 @@ tableBody.addEventListener('input', function(event) {
     texts[index] = target.value;
   }
 });
+
+// 高さの変更
+function changeHeight() {
+  const background = document.getElementById("background-topic");
+  var offsetTop = back.offsetTop;
+  console.log("back height", offsetTop);
+  const hisHeight = offsetTop + 600;
+  console.log("hisHeight", hisHeight);
+  background.style.height = hisHeight + "px";
+}

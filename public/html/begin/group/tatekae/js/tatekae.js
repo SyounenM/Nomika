@@ -69,6 +69,8 @@ function addOption() {
             console.log("Selected Debtors:", selectedDebtors);
         });
 
+        newPara.className = "new-para"
+
         newPara.appendChild(debtorCheckbox);
         newPara.appendChild(debtorLabel);
         debtorCheckboxWrapper.appendChild(newPara);

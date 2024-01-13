@@ -55,6 +55,14 @@
     flex-direction: column;
     align-items: flex-start;
 }
+.new-para{
+    position: relative;
+    left: -280px;
+}
+.checkbox-tatekae{
+    position: relative;
+    left: 0px;
+}
 .checkbox-label{
     position: relative;
     left: 460px;

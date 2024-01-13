@@ -181,6 +181,7 @@ window.cssColorSet=()=>{
         pop();
         console.log("popped1")
         $(this).css('background-color', "rgb("+c._getRed()+","+c._getGreen()+","+c._getBlue()+")");
+        $(this).css("border", "2px solid black")
         counter++;
     });
 }
