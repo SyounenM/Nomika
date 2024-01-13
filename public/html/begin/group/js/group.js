@@ -265,10 +265,19 @@ function changeHeight() {
     var offsetTop2 = texthis.offsetTop;
     console.log("text history height", offsetTop2);
     console.log("last history height", offsetTop);
-    const hisHeight = offsetTop + offsetTop2 + 600;
+    const hisHeight = offsetTop + offsetTop2 + 830;
     console.log("hisHeight", hisHeight);
     background.style.height = hisHeight + "px";
 }
+
+document.getElementById('toggleButton').addEventListener('click', function() {
+    var content = document.getElementById('toggleContent');
+    if (content.style.display === 'none') {
+        content.style.display = 'block';
+    } else {
+        content.style.display = 'none';
+    }
+});
 
 // リンクコピー機能
 document.getElementById("copy-page").onclick = function() {

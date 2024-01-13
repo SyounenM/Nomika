@@ -12,10 +12,17 @@
 .foam{
     margin: 0px;
     height: 190px;
-    width: 2000px;
+    width: 1400px;
     min-width: 100%;
     z-index: 20;
     position: fixed;
+}
+.icon{
+    width: 250px;
+    position: relative;
+    left: -70px;
+    top: 35px;
+    z-index: 21;
 }
 body{
     width: 100%;
@@ -64,16 +71,18 @@ body h5{
     color: black;
     text-decoration: none;
     position: absolute;
-    top: 23px;
-    left: 72px;
+    top: 20px;
+    left: 180px;
     font-weight: 600;
 }
 .navbar a{ /* anchorのみに作用する */
+    position: relative;
+    left: 50px;
     font-size: 18px;
     color: black;
     text-decoration: none;
     font-weight: 500;
-    margin-left: 20px;
+    margin-left: 15px;
     vertical-align: 0px;
     transition: 300ms; /* hoverまでの時間 */
 }
@@ -356,10 +365,14 @@ a.btn-border:active:before {
 
 /* button */
 .addButton{
-    font-size: large;
-    width: 70px;
-    height: 50px;
+    font-size: 20px;
+    width: 90px;
+    height: 60px;
     border-radius: 10px;
+    background-color: white;
+    border: 2px solid black;
+    border-radius: 10px;
+    color: #000;
 }
 .deleteButton{
     font-size: large;

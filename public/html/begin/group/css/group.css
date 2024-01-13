@@ -19,7 +19,7 @@
     /* height: 1200px; → group.jsで指定 */
     text-align: center;
     min-width: 600px;
-    min-height: 1000px; 
+    min-height: 1400px; 
 }
 .group-name{
     margin: 5px;
@@ -94,4 +94,63 @@
     left: -13px;
     color: black;
     background-color: #EFEFEF;
+}
+
+/* トグルボタン */
+#toggleContent {
+    display: none;
+    margin-right: auto;
+    margin-left: auto;
+    width: 300px;
+    background-color: white;
+    border: 2.5px solid black;
+    padding: 15px;
+    margin-top: 10px;
+    margin-bottom: 20px;
+    border-radius: 12px;
+}
+#toggleButton {
+    margin: 20px;
+    background-color: white;
+    color: black;
+    padding: 10px 20px;
+    border: 2px solid black;
+    border-radius: 10px;
+    cursor: pointer;
+    &:hover {
+        color: rgb(255, 140, 0);
+    }
+    
+    &::-webkit-details-marker {
+        display: none;
+    }
+}
+
+.copy{
+    width: 150px;
+    height: 70px;
+    font-size: 18px;
+    margin: 10px;
+    color: black;
+    background-color: #EFEFEF;
+    border: 2px solid black;
+    border-radius: 10px;
+    border-width: 2px;
+    &:hover {
+        color: rgb(255, 140, 0);
+    }
+    
+    &::-webkit-details-marker {
+        display: none;
+    }
+}
+
+.paypay{
+    background-color: #EFEFEF;
+    margin: 10px;
+}
+
+.line{
+    background-color: #EFEFEF;
+    margin: 10px;
 }
