@@ -97,6 +97,14 @@
 }
 .history{
     color: black;
+    width: 400px;
+    margin: 2px;
+    padding: 10px 15px;
+    font-size: 30px;
+    border-radius: 10px;
+    border: 2px solid black;
+    box-sizing: border-box;
+    background-color: #EFEFEF;
 }
 
 /* トグルボタン */
