@@ -165,8 +165,14 @@
     margin: 10px;
     border: 2px solid white;
 }
+.paypay:hover{
+    border: 2px solid orange;
+}
 .line{
     background-color: #EFEFEF;
     margin: 10px;
     border: 2px solid white;
+}
+.line:hover{
+    border: 2px solid orange;
 }
