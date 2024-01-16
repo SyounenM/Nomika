@@ -61,8 +61,19 @@ function addOption() {
         debtorCheckbox.addEventListener("change", function() {
             // Handle checkbox change
             if (this.checked) {
-                selectedDebtors.push(member);
+                if (!selectedDebtors.includes(member)){
+                    selectedDebtors.push(member);
+                }
             } else {
+                if (allDebtorCheckbox.checked) {
+                    allDebtorCheckbox.checked = false;
+                    for (const member_ of memberList) {
+                        if (member_ != member){
+                            let checkbox = document.getElementById("debtor_" + member_);
+                            checkbox.checked = true;
+                        }
+                    }
+                }
                 const index = selectedDebtors.indexOf(member);
                 if (index !== -1) {
                     selectedDebtors.splice(index, 1);
@@ -77,9 +88,59 @@ function addOption() {
         newPara.appendChild(debtorLabel);
         debtorCheckboxWrapper.appendChild(newPara);
         var rect = back.getBoundingClientRect();
-        debtorCheckbox.style.left = rect.left/1.6 + "px";
-        debtorLabel.style.left = rect.left/1.6+ 20 + "px";
+        debtorCheckbox.style.left = rect.left/1.5 + "px";
+        debtorLabel.style.left = rect.left/1.5+ 20 + "px";
     }
+
+    let allCreditorOption = document.createElement("option");
+    let allDebtorCheckbox = document.createElement("input");
+    let allDebtorLabel = document.createElement("label");
+    let allNewPara = document.createElement("p");
+
+    allCreditorOption.text = "全員";
+    allCreditorOption.value = "全員";
+    creditorSelect.appendChild(allCreditorOption);
+
+    allDebtorCheckbox.type = "checkbox";
+    allDebtorCheckbox.className = "checkbox-tatekae";
+    allDebtorCheckbox.id = "debtor_all";
+    allDebtorCheckbox.value = "全員";
+    allDebtorLabel.htmlFor = "debtor_all";
+    allDebtorLabel.textContent = "全員";
+    allDebtorLabel.className = "checkbox-label";
+    
+    allDebtorCheckbox.addEventListener("change", function() {
+        // Handle checkbox change
+        if (this.checked) {
+            for (const member of memberList) {
+                if (!selectedDebtors.includes(member)){
+                    selectedDebtors.push(member);
+                }
+                let checkbox = document.getElementById("debtor_" + member);
+                checkbox.checked = true;
+            }
+        } else {
+            for (const member of memberList) {
+                const index = selectedDebtors.indexOf(member);
+                if (index !== -1) {
+                    selectedDebtors.splice(index, 1);
+                }
+                let checkbox = document.getElementById("debtor_" + member);
+                checkbox.checked = false;
+            }
+        }
+        console.log("Selected Debtors:", selectedDebtors);
+    });
+
+    allNewPara.className = "new-para"
+
+    allNewPara.appendChild(allDebtorCheckbox);
+    allNewPara.appendChild(allDebtorLabel);
+    debtorCheckboxWrapper.insertBefore(allNewPara, debtorCheckboxWrapper.firstChild);
+    var rect = back.getBoundingClientRect();
+    allDebtorCheckbox.style.left = rect.left/1.5 + "px";
+    allDebtorLabel.style.left = rect.left/1.5+ 20 + "px";
+
     changeHeight();
 }
 
