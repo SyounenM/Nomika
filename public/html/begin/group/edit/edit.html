@@ -42,8 +42,12 @@
         <input type="text" id="groupNameBox" class="input">
     </div>
     <br>
-    <div id="groupName" class="big">メンバー名<br>
-        <input type="text" placeholder="かずや" id="inputMember" class="input newMember">
+    <div id="groupName" class="big member-name">メンバー名<br>
+        <input type="text" placeholder="かずや" id="inputMember" class="input newMember"><br>
+        <div id="amount-div">
+            <input type="number" id="amount" value="1" class="input amount">
+            <a class="big text-amount">人</a>
+        </div>
         <button id="addButton" type="button" class="add addButton">追加</button><br>
         <div id="memberList" class="member"></div>
     </div>

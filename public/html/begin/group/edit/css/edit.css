@@ -16,6 +16,20 @@
 }
 .newMember{
     position: relative;
-    left: 18px;
+    left: 0px;
     margin: 20px;
+}
+.amount{
+    width: 120px;
+    position: relative;
+    left: -40px;
+}
+.text-amount{
+    position: relative;
+    left: -118px;
+}
+.add{
+    position: relative;
+    top: -101px;
+    left: 60px;
 }
