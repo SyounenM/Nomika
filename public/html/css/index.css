@@ -6,10 +6,10 @@
     position: relative;
     top: 0px;
     width: 100%;
-    height: 3700px;
+    height: 4000px;
     text-align: center;
     min-width: 600px;
-    min-height: 4000px; 
+    min-height: 4300px; 
 }
 
 .btn-begin{
@@ -29,10 +29,12 @@
 }
 
 .animationElement {
+    width: 480px;
+    height: 480px;
     /* スクロールアニメーションの設定 */
     animation: reveal-image linear both; /* アニメーションを指定。イージングはlinear。animation-fill-modeはboth */
     animation-timeline: view();
-    animation-range: contain -150% contain 60%; /* 開始: 要素がビューポートに完全に入った時、終了: ビューポートの真ん中 */
+    animation-range: contain -230% contain 20%; /* 開始: 要素がビューポートに完全に入った時、終了: ビューポートの真ん中 */
     /* ↑ https://scroll-driven-animations.style/tools/view-timeline/ranges/#range-start-name=contain&range-start-percentage=0&range-end-name=contain&range-end-percentage=50&view-timeline-axis=block&view-timeline-inset=0&subject-size=smaller&subject-animation=scale-up&interactivity=clicktodrag&show-areas=yes&show-fromto=yes&show-labels=yes */
     margin: 80px;
 }
