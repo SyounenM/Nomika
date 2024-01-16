@@ -77,8 +77,8 @@ function addOption() {
         newPara.appendChild(debtorLabel);
         debtorCheckboxWrapper.appendChild(newPara);
         var rect = back.getBoundingClientRect();
-        debtorCheckbox.style.left = rect.left/1.5 + "px";
-        debtorLabel.style.left = rect.left/1.5+ 20 + "px";
+        debtorCheckbox.style.left = rect.left/1.6 + "px";
+        debtorLabel.style.left = rect.left/1.6+ 20 + "px";
     }
     changeHeight();
 }

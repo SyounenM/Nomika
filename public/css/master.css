@@ -41,15 +41,15 @@ body h1{
 }
 body h2{
     color: #FFFFFF;
-    font-size: 36px;
+    font-size: 40px;
 }
 body h3{
     color: #FFFFFF;
-    font-size: 24px;
+    font-size: 28px;
 }
 body h4{
     color: black;
-    font-size: 24px;
+    font-size: 28px;
 }
 body h5{
     font-size: 21px;
@@ -119,7 +119,7 @@ footer {
     min-height: 100px;
 }
 .big{
-    font-size: 22px;
+    font-size: 23px;
 }
 
 *,
@@ -138,7 +138,7 @@ html {
 .btn,
 a.btn,
 button.btn {
-    font-size: 1.5rem;
+    font-size: 1.7rem;
     font-weight: 700;
     line-height: 1.6;
     display: inline-block;
@@ -235,7 +235,7 @@ a.btn-border:active:before {
     width: 232px;
     margin: 10px;
     padding: 10px 15px;
-    font-size: 1.6rem;
+    font-size: 2.0rem;
     border-radius: 10px;
     border: 2px solid black;
     box-sizing: border-box;
@@ -257,10 +257,8 @@ a.btn-border:active:before {
 	outline: none;
 }
 .ef {
-    font-weight: 700;
 	position: relative;
 	padding: 7px 15px;
-	border: 0;
 	border: 2.5px solid #1b2538;
 	background: transparent;
 }
@@ -335,7 +333,7 @@ a.btn-border:active:before {
     border: 2px solid black;
     border-radius: 10px;
     padding: 5px 25px 5px 10px;
-    font-size: 1.6rem;
+    font-size: 2.2rem;
     cursor: pointer;
     color: #000;
     background-color: white;
@@ -370,9 +368,9 @@ a.btn-border:active:before {
 /* button */
 .addButton{
     margin: 20px;
-    font-size: 20px;
-    width: 90px;
-    height: 60px;
+    font-size: 24px;
+    width: 100px;
+    height: 70px;
     border-radius: 10px;
     background-color: white;
     border: 2px solid black;
@@ -390,8 +388,8 @@ a.btn-border:active:before {
 }
 .startButton{
     margin: 10px;
-    font-size: large;
-    width: 100px;
+    font-size: 24px;
+    width: 120px;
     height: 50px;
     border-radius: 10px;
     background-color: white;
@@ -400,8 +398,8 @@ a.btn-border:active:before {
 }
 .resetButton{
     margin: 10px;
-    font-size: large;
-    width: 100px;
+    font-size: 24px;
+    width: 120px;
     height: 50px;
     border-radius: 10px;
     background-color: white;
@@ -409,8 +407,8 @@ a.btn-border:active:before {
     color: #000;
 }
 .stopButton{
-    font-size: large;
-    width: 100px;
+    font-size: 24px;
+    width: 120px;
     height: 50px;
     border-radius: 10px;
     background-color: white;

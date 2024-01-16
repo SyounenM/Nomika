@@ -94,7 +94,6 @@ function getHistory() {
                 let history = snapshot.val();
                 historyList = Object.values(history);
                 // historyList = historyData.map(item => item.data);
-                console.log("historyList");
                 console.log("historyList", historyList);
                 resolve();
             })
@@ -199,7 +198,7 @@ function showMembers() {
         let memberSpan = document.createElement('span');
         memberSpan.textContent = member;
         memberSpan.id = member + 'Span';
-        memberSpan.style = 'background-color: white; margin-right:10px; border: solid 1px black; border-width: 2px; border-radius: 10px; padding: 3px;';
+        memberSpan.style = 'font-size: 25px; background-color: white; margin-right:10px; border: solid 1px black; border-width: 2px; border-radius: 10px; padding: 8px;';
         // memberSpan.style.border = 'solid'
         memberDiv.appendChild(memberSpan);
         dispHeight += 42; //表示部分高さの変更
@@ -207,6 +206,20 @@ function showMembers() {
     let lastMember = document.getElementById(memberList[memberList.length - 1] + 'Span');
     console.log("lastMemberHeight", lastMember.offsetTop);
     resTextHeight = lastMember.offsetTop + 60;
+}
+
+function addHistory(div, obj, his, index, method) {
+    div.innerHTML += `<button id="history-${obj.content}" class="history">${obj.content} : ${obj.amount}円</button>`;
+    his = document.getElementById("history-" + obj.content);
+    his.textContent = `${obj.content} : ${obj.amount}円`;
+    his.id = "history-" + obj.content;
+    his.className = "history";
+    his.onclick = function(event){
+        event.preventDefault();
+        editHistory(obj.content, index, method);
+    }
+    // console.log("hisId", history.id);
+    div.innerHTML += "<br>";
 }
 
 function showHistory() {
@@ -217,10 +230,10 @@ function showHistory() {
         console.log("historyList[", i, "]", historyList[i][0]);
         const obj = historyList[i][0]
         method = obj.method
-        // let his;
+        let his;
         // 各結果を表示
         if (i == historyList.length - 1) {
-            historyGroup.innerHTML += `<button id="history-last" class="history">${obj.content} : ${obj.amount}円</a><br>`;
+            historyGroup.innerHTML += `<button id="history-last" class="history">${obj.content} : ${obj.amount}円</button>`;
             const hisLast = document.getElementById("history-last");
             console.log("hisId", hisLast.id);
             hisLast.onclick = function(event){
@@ -228,28 +241,19 @@ function showHistory() {
                 editHistory("last", i, method);
             }
         }else{
-            let his = document.createElement('button');
-            his.textContent = `${obj.content} : ${obj.amount}円`;
-            his.id = "history-" + obj.content;
-            his.className = "history";
-            // historyGroup.innerHTML += `<button id="history-${obj.content}" class="input history">${obj.content} : ${obj.amount}円</button><br>`;
-            his.onclick = function(event){
-                event.preventDefault();
-                editHistory(obj.content, i, method);
-            }
-            historyGroup.appendChild(his);
-            console.log("hisId", his.id);
-            historyGroup.innerHTML += "<br>";
+            addHistory(historyGroup, obj, his, i, method);
         }
     }
 }
 
 function editHistory(content, index, method) {
-    const his = document.getElementById("history-" + content);
-    historyList.splice(index, 1);
-    console.log(historyList);
-    set_(historyRef, historyList);
-    his.remove();
+    console.log("content", content);
+    // const his = document.getElementById("history-" + content);
+    // console.log(index);
+    // historyList.splice(index-1, 1);
+    // console.log(historyList);
+    // set_(historyRef, historyList);
+    // his.remove();
     // location.reload();
     // if (method == "tatekae"){
     //     window.location.href = `./tatekae/tatekae.html?id=${groupId}`;
@@ -266,14 +270,13 @@ function changeHeight() {
     var offsetTop = hisLast.offsetTop;
     const texthis = document.getElementById("history-text");
     var offsetTop2 = texthis.offsetTop;
-    console.log("text history height", offsetTop2);
-    console.log("last history height", offsetTop);
     const hisHeight = offsetTop + offsetTop2 + 830;
     console.log("hisHeight", hisHeight);
     background.style.height = hisHeight + "px";
 }
 
-document.getElementById('toggleButton').addEventListener('click', function() {
+const toggleButton = document.getElementById('toggleButton');
+toggleButton.addEventListener('click', function() {
     var content = document.getElementById('toggleContent');
     if (content.style.display === 'none') {
         content.style.display = 'block';
@@ -336,10 +339,10 @@ document.getElementById("PayPay").onclick = function() {
 document.getElementById('LINE').addEventListener('click', function() {
     const currentURL = encodeURIComponent(window.location.href);
     const sharedText = ''; // 共有するテキスト
-  
+
     const lineShareURL = `http://line.me/R/share?text=${sharedText} ${currentURL}`;
     window.open(lineShareURL, '_blank');
-  });
+});
 
 // main //////////////////////////////////////////////////////
 getGroupInfo()
