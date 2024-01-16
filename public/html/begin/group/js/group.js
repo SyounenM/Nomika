@@ -198,7 +198,7 @@ function showMembers() {
         let memberSpan = document.createElement('span');
         memberSpan.textContent = member;
         memberSpan.id = member + 'Span';
-        memberSpan.style = 'font-size: 25px; background-color: white; margin-right:10px; border: solid 1px black; border-width: 2px; border-radius: 10px; padding: 8px;';
+        memberSpan.style = 'font-size: 25px; background-color: white; margin-right:10px; border: solid 1px black; border-width: 2px; border-radius: 10px; padding-left: 8px; padding-right: 8px; padding-top: 4px; padding-bottom: 4px;';
         // memberSpan.style.border = 'solid'
         memberDiv.appendChild(memberSpan);
         dispHeight += 42; //表示部分高さの変更
