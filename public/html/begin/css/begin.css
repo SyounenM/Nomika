@@ -25,9 +25,14 @@
 .amount{
     width: 120px;
     position: relative;
-    left: -40px;
+    left: -8px;
 }
 .text-amount{
     position: relative;
-    left: -120px;
+    left: -85px;
+}
+.add{
+    position: relative;
+    top: 0px;
+    left: -20px;
 }
