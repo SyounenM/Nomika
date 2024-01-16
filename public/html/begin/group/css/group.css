@@ -152,6 +152,7 @@
     border: 2px solid black;
     border-radius: 10px;
     border-width: 2px;
+    transition: 500ms; /* hoverまでの時間 */
     &:hover {
         color: rgb(255, 140, 0);
     }
@@ -164,6 +165,7 @@
     background-color: #EFEFEF;
     margin: 10px;
     border: 2px solid white;
+    transition: 500ms; /* hoverまでの時間 */
 }
 .paypay:hover{
     border: 2px solid orange;
@@ -172,6 +174,7 @@
     background-color: #EFEFEF;
     margin: 10px;
     border: 2px solid white;
+    transition: 500ms; /* hoverまでの時間 */
 }
 .line:hover{
     border: 2px solid orange;
