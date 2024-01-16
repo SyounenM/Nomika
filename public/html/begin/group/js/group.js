@@ -220,7 +220,7 @@ function showHistory() {
         // let his;
         // 各結果を表示
         if (i == historyList.length - 1) {
-            historyGroup.innerHTML += `<button id="history-last" class="input history">${obj.content} : ${obj.amount}円</a>`;
+            historyGroup.innerHTML += `<button id="history-last" class="input history">${obj.content} : ${obj.amount}円</a><br>`;
             const hisLast = document.getElementById("history-last");
             console.log("hisId", hisLast.id);
             hisLast.onclick = function(event){
@@ -239,6 +239,7 @@ function showHistory() {
             }
             historyGroup.appendChild(his);
             console.log("hisId", his.id);
+            historyGroup.innerHTML += "<br>";
         }
     }
 }

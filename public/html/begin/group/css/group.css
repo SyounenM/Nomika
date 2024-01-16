@@ -151,8 +151,10 @@
 .paypay{
     background-color: #EFEFEF;
     margin: 10px;
+    border: 2px solid white;
 }
 .line{
     background-color: #EFEFEF;
     margin: 10px;
+    border: 2px solid white;
 }
