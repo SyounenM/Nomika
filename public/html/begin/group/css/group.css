@@ -106,6 +106,7 @@
     border: 2px solid black;
     box-sizing: border-box;
     background-color: #EFEFEF;
+    transition: 300ms; /* hoverまでの時間 */
 }
 .history:hover{
     color: rgb(255, 140, 0);

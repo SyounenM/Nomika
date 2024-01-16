@@ -46,10 +46,6 @@ body h2{
 body h3{
     color: #FFFFFF;
     font-size: 28px;
-    transition: 300ms; /* hoverまでの時間 */
-}
-body h3:hover{
-    color: rgb(255, 140, 0);
 }
 body h4{
     color: black;
