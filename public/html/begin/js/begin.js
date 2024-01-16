@@ -50,53 +50,57 @@ inputMember.addEventListener("input", function() {
 
 // member
 addButton.addEventListener("click", function() {
-    if (inputMember.value != "") {
-        for (let i = 0; i < amountSelect.value; i++) {
-            if (amountSelect.value != 1){
-                member = inputMember.value + (i + 1);
-            }
-            else{
-                member = inputMember.value;
-            }
-            if (i == amountSelect.value - 1){
-                inputMember.value = "";
-                amountSelect.value = 1;
-            }
-            for (let i = 0; i < member.length; i++) {
-                if (memberList[i] == member){
-                    alert('既に追加されています。同名のメンバーは追加できません。');
-                    return;
+    if (amountSelect.value >= 1 || amountSelect.value <= 99) {
+        if (inputMember.value != "") {
+            for (let i = 0; i < amountSelect.value; i++) {
+                if (amountSelect.value != 1){
+                    member = inputMember.value + (i + 1);
                 }
+                else{
+                    member = inputMember.value;
+                }
+                if (i == amountSelect.value - 1){
+                    inputMember.value = "";
+                    amountSelect.value = 1;
+                }
+                for (let i = 0; i < member.length; i++) {
+                    if (memberList[i] == member){
+                        alert('既に追加されています。同名のメンバーは追加できません。');
+                        return;
+                    }
+                }
+                memberList.push(member);
+                console.log(memberList);
+                let memberSpan = document.createElement("span");
+                memberSpan.type = 'text';
+                memberSpan.textContent =  '' + member + '' ;
+                memberSpan.style = 'font-size: 25px; height: 50px; background-color:white; margin-right:10px; border: solid 1px black; border-width: 2px; border-radius: 10px; padding: 7px;';
+                memberSpan.id = member + "Span";
+
+                let cancelButton = document.createElement('button');
+                cancelButton.textContent = "×";
+                cancelButton.id = member + 'Cancel';
+                cancelButton.style = 'font-size: 15px; position: relative; top: -3px; width: 35px; background-color:white; border: solid 1px black; border-width: 2px; border-radius: 10px; padding: 5px; margin-left: 10px; color: black;';
+                // cancelButton.style.height = '15px';
+                // cancelButton.style.width = '15px';
+                // cancelButton.style.offset
+
+                cancelButton.onclick = function(event){
+                    event.preventDefault();
+                    cancelMember(member);
+                };
+
+                memberSpan.appendChild(cancelButton)
+                memberDiv.appendChild(memberSpan); 
             }
-            memberList.push(member);
-            console.log(memberList);
-            let memberSpan = document.createElement("span");
-            memberSpan.type = 'text';
-            memberSpan.textContent =  '' + member + '' ;
-            memberSpan.style = 'font-size: 25px; height: 50px; background-color:white; margin-right:10px; border: solid 1px black; border-width: 2px; border-radius: 10px; padding: 7px;';
-            memberSpan.id = member + "Span";
 
-            let cancelButton = document.createElement('button');
-            cancelButton.textContent = "×";
-            cancelButton.id = member + 'Cancel';
-            cancelButton.style = 'font-size: 15px; position: relative; top: -3px; width: 35px; background-color:white; border: solid 1px black; border-width: 2px; border-radius: 10px; padding: 5px; margin-left: 10px; color: black;';
-            // cancelButton.style.height = '15px';
-            // cancelButton.style.width = '15px';
-            // cancelButton.style.offset
+            changeHeight();
 
-            cancelButton.onclick = function(event){
-                event.preventDefault();
-                cancelMember(member);
-            };
-
-            memberSpan.appendChild(cancelButton)
-            memberDiv.appendChild(memberSpan); 
+        } else {
+            alert('メンバー名を入力してください');
         }
-
-        changeHeight();
-
     } else {
-        alert('メンバー名を入力してください');
+        alert('人数を1-99の数字で入力してください');
     }
 });
 
@@ -147,11 +151,3 @@ createButton.onclick = createGroup;
 let amountSelect = document.getElementById('amount');
 amountSelect.min = '1';
 amountSelect.max = '99';
-
-function validateSelect(selectElement) {
-    // 選択された値が数値でない場合
-    if (isNaN(selectElement.value)) {
-        // デフォルトの選択（例: 最初のオプション）に戻す
-        selectElement.selectedIndex = 0;
-    }
-}
