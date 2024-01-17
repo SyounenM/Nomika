@@ -169,7 +169,7 @@ addButton.addEventListener("click", function() {
                 let memberSpan = document.createElement("span");
                 memberSpan.type = 'text';
                 memberSpan.textContent =  '' + member + '' ;
-                memberSpan.style = 'font-size: 25px; height: 50px; background-color:white; margin-right:10px; border: solid 1px black; border-width: 2px; border-radius: 10px; padding: 7px;';
+                memberSpan.style = 'font-size: 25px; height: 50px; background-color:yellow; margin-right:10px; border: solid 1px black; border-width: 2px; border-radius: 10px; padding: 7px;';
                 memberSpan.id = member + "Span";
 
                 let cancelButton = document.createElement('button');
