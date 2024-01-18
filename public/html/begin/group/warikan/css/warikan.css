@@ -188,7 +188,10 @@ input:checked ~ .base {
     color: #212529;
     border-radius: 0.5rem;
     z-index: 10;
-
+    transition: 300ms; /* hoverまでの時間 */
+}
+.button:hover{
+    color: rgb(255, 140, 0);
 }
 
 .allButton{
@@ -200,6 +203,10 @@ input:checked ~ .base {
     background-color: rgba(247, 238, 205, 0.999);
     border: 2px solid black;
     border-radius: 10px;
+    transition: 300ms; /* hoverまでの時間 */
+}
+.allButton:hover{
+    color: rgb(255, 140, 0);
 }
 .allClear{
     font-size: 20px;
@@ -210,6 +217,10 @@ input:checked ~ .base {
     background-color: rgba(247, 238, 205, 0.999);
     border: 2px solid black;
     border-radius: 10px;
+    transition: 300ms; /* hoverまでの時間 */
+}
+.allClear:hover{
+    color: rgb(255, 140, 0);
 }
 .calculate-button{
     border: 2px solid black;
@@ -243,6 +254,7 @@ input[type="number"] {
     border: 2px solid black;
     border-radius: 10px;
     cursor: pointer;
+    transition: 300ms; /* hoverまでの時間 */
     &:hover {
         color: rgb(255, 140, 0);
     }

@@ -48,6 +48,10 @@
     left: -13px;
     color: black;
     background-color: #EFEFEF;
+    transition: 300ms; /* hoverまでの時間 */
+}
+.submit:hover{
+    color: rgb(255, 140, 0);
 }
 
 .check{

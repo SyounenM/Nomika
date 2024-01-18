@@ -169,8 +169,10 @@ document.getElementById('toggleButton').addEventListener('click', function() {
   if (content.style.display === 'none') {
     content.style.display = 'block';
     document.getElementById("cAction").innerHTML = "閉じる";
+    changeHeight()
   } else {
     content.style.display = 'none';
     document.getElementById("cAction").innerHTML = "内容を編集";
+    changeHeight()
   }
 });

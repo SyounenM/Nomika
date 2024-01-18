@@ -9,7 +9,7 @@
     height: 1000px;
     text-align: center;
     min-width: 600px;
-    min-height: 1250px; 
+    min-height: 1000px; 
 }
 
 .card {
@@ -118,6 +118,7 @@
   border-radius: 10px;
   cursor: pointer;
   position: relative;
+  transition: 300ms; /* hoverまでの時間 */
   &:hover {
       color: rgb(255, 140, 0);
   }

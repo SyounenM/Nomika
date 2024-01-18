@@ -133,6 +133,7 @@
     border: 2px solid black;
     border-radius: 10px;
     cursor: pointer;
+    transition: 300ms; /* hoverまでの時間 */
     &:hover {
         color: rgb(255, 140, 0);
     }

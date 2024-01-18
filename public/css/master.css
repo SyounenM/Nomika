@@ -18,12 +18,16 @@
     position: fixed;
 }
 .icon{
-    width: 330px;
+    width: 320px;
     position: absolute;
     position: fixed;
     left: -68px;
-    top: -94px;
+    top: -90px;
     z-index: 21;
+    transition: 300ms; /* hoverまでの時間 */
+}
+.icon:hover{
+    transform: scale(1.1);
 }
 body{
     width: 100%;
@@ -77,6 +81,10 @@ body h5{
     top: 23px;
     left: 178px;
     font-weight: 600;
+    transition: 500ms; /* hoverまでの時間 */
+}
+.logo a:hover{
+    color: rgb(255, 140, 0);
 }
 .navbar a{ /* anchorのみに作用する */
     position: relative;
@@ -160,7 +168,6 @@ button.btn {
     border-radius: 0.5rem;
     z-index: 10;
 }
-
 a.btn-border {
     margin-bottom: 20px;
     margin-left: 5px;
@@ -376,6 +383,10 @@ a.btn-border:active:before {
     background-color: white;
     border: 2px solid black;
     color: #000;
+    transition: 300ms; /* hoverまでの時間 */
+}
+.addButton:hover{
+    color: orange;
 }
 .deleteButton{
     margin: 10px;
@@ -386,6 +397,10 @@ a.btn-border:active:before {
     background-color: white;
     border: 2px solid black;
     color: #000;
+    transition: 300ms; /* hoverまでの時間 */
+}
+.deleteButton:hover{
+    color: orange;
 }
 .startButton{
     margin: 10px;
@@ -396,6 +411,10 @@ a.btn-border:active:before {
     background-color: white;
     border: 2px solid black;
     color: #000;
+    transition: 300ms; /* hoverまでの時間 */
+}
+.startButton:hover{
+    color: orange;
 }
 .resetButton{
     margin: 10px;
@@ -406,6 +425,10 @@ a.btn-border:active:before {
     background-color: white;
     border: 2px solid black;
     color: #000;
+    transition: 300ms; /* hoverまでの時間 */
+}
+.resetButton:hover{
+    color: orange;
 }
 .stopButton{
     margin: 10px;
@@ -416,6 +439,10 @@ a.btn-border:active:before {
     background-color: white;
     border: 2px solid black;
     color: #000;
+    transition: 300ms; /* hoverまでの時間 */
+}
+.stopButton:hover{
+    color: orange;
 }
 
 /* メンバーリスト */
