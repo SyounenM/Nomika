@@ -62,8 +62,10 @@ let memberList = [];
 // データベースへの参照
 let groupRef = ref_(database,'groups/' + groupId);
 let historyRef = ref_(database, 'groups/' + groupId + '/history');
+console.log(historyRef);
 
 let historyList = [];
+let historyIdList = [];
 let balanceList = [] ;
 let resultList = [];
 
@@ -92,7 +94,11 @@ function getHistory() {
         get_(historyRef)
             .then((snapshot) => {
                 let history = snapshot.val();
+                console.log(history);
+                console.log(history["-NoS6GjRCQKbdHrebQBy"]);
                 historyList = Object.values(history);
+                historyIdList = Object.keys(history)
+                console.log(historyIdList);
                 // historyList = historyData.map(item => item.data);
                 console.log("historyList", historyList);
                 resolve();
@@ -238,7 +244,9 @@ function showHistory() {
             console.log("hisId", hisLast.id);
             hisLast.onclick = function(event){
                 event.preventDefault();
-                editHistory("last", i, method);
+                console.log(i);
+                console.log(historyIdList[i-1]);
+                editHistory("last", i, method,historyIdList[i-1]);
             }
         }else{
             addHistory(historyGroup, obj, his, i, method);
@@ -246,7 +254,7 @@ function showHistory() {
     }
 }
 
-function editHistory(content, index, method) {
+function editHistory(content, index, method,historyId) {
     console.log("content", content);
     // const his = document.getElementById("history-" + content);
     // console.log(index);
@@ -260,6 +268,7 @@ function editHistory(content, index, method) {
     // }else if (method == "warikan"){
     //     window.location.href = `./warikan/warikan.html?id=${groupId}`;
     // }
+    window.location.href = `./warikan/warikan.html?id=${groupId}&historyId=${historyId}`
 }
 
 // 高さの変更

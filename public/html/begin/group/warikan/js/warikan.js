@@ -500,6 +500,7 @@ function save() {
         }
         if (historyId == null){
             historyRef = push_(ref_(database, 'groups/' + groupId +'/history'));
+            console.log(historyRef.key);
         }else {
             historyRef = ref_(database,'groups/' + groupId + '/history/' + historyId);
         }
