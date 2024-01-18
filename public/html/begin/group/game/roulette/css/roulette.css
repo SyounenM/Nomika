@@ -30,7 +30,7 @@
   width: 232px;
   margin: 2px;
   padding: 10px 15px;
-  font-size: 1.6rem;
+  font-size: 1.3rem;
   border-radius: 10px;
   border: 2.5px solid black;
   box-sizing: border-box;
@@ -39,14 +39,14 @@
   width: 80px;
   margin: 2px;
   padding: 10px 15px;
-  font-size: 1.6rem;
+  font-size: 1.3rem;
   border-radius: 18px;
   border: 2.5px solid black;
   box-sizing: border-box;
 }
 
 .p5Canvas{
-  max-width: 600px;
+  /* max-width: 600px; */
   width: 100% !important;
   height: auto !important;
 }
@@ -62,40 +62,7 @@
 .unselectable {
   opacity: 0.5; /* 文字や表の不透明度を下げる（薄くする） */
   pointer-events: none; /* イベントを無効にする（選択不可にする） */
-  /* 他にも必要に応じてスタイルを追加できます */
 }
-/* ルーレット1 */
-/* #roulette-container {
-    width: 300px;
-    height: 300px;
-    border: 1px solid #000;
-    position: relative;
-    overflow: hidden;
-    margin: 0 auto;
-  }
-  
-  #roulette-items {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-    position: absolute;
-    top: 0;
-    left: 0;
-  }
-  
-  #roulette-items li {
-    width: 300px;
-    height: 100%;
-    line-height: 300px;
-    font-size: 24px;
-  }
-  
-  #start-button {
-    display: block;
-    margin: 20px auto;
-  } */
-
-  /* ルーレット2 */
 
 .btn-roulette{
   position: relative;

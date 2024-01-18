@@ -9,6 +9,8 @@
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
         <link href="https://fonts.googleapis.com/css2?family=Klee+One:wght@600&display=swap" rel="stylesheet">
+        <link rel=”apple-touch-icon” href="../../../../../image/apple-touch-icon.png" sizes=”180×180″>
+        <link rel="icon" type="image/x-icon" href="../../../../../image/favicon.ico">
         <title>Nomika</title>
     </head>
     <body>
@@ -32,23 +34,26 @@
                 <!-- <a id="result"></a> -->
                 <div class="card">
                     <div class="card-inner">
-                      <div class="card-front">
-                        Click to flip
-                      </div>
-                      <div class="card-back">
-                        <p id="randomText"></p>
-                      </div>
+                        <div class="card-front">
+                            Click to flip
+                        </div>
+                        <div class="card-back">
+                            <p id="randomText"></p>
+                        </div>
                     </div>
                 </div> 
-                <button type="button" class="add addButton">追加</button>
-                <table id="table">
-                    <thead>
-                        <tr><th><a class="big">項目</a></th></tr>
-                        <!-- <tr class="item"><td><input type="text" class="name input-content"></td><td><button class="deleteButton" type="button" onclick="rmItem(this)">削除</button></td></tr> -->
-                    </thead>
-                    <tbody id="tableBody"></tbody>
-                </table>
-                <a id="back" class="btn btn-border btn-topic"><span>戻る</span></a> <!-- ボタンテンプレート -->
+                <!-- <button type="button" class="add addButton">追加</button> -->
+                <div>
+                    <button id="toggleButton" type="button"><a class="big" id="cAction">内容を編集</a></button>
+                </div>
+                <div id="toggleContent" style="display: none;">
+                    <button class="add addButton" type="button" id="addButton"><span id="cAction">追加</span></button>
+                    <table id="table">
+                        <thead><tr><th><a class="big">項目</a></th></tr></thead>
+                        <tbody id="tableBody"></tbody>
+                    </table>
+                </div>
+                <a id="back" class="btn btn-border btn-topic"><span>戻る</span></a> 
             </div>
         </div>
     </div>

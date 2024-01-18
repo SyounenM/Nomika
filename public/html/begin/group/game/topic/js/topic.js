@@ -164,3 +164,14 @@ function changeHeight() {
   console.log("hisHeight", hisHeight);
   background.style.height = hisHeight + "px";
 }
+
+document.getElementById('toggleButton').addEventListener('click', function() {
+  var content = document.getElementById('toggleContent');
+  if (content.style.display === 'none') {
+    content.style.display = 'block';
+    document.getElementById("cAction").innerHTML = "閉じる";
+  } else {
+    content.style.display = 'none';
+    document.getElementById("cAction").innerHTML = "内容を編集";
+  }
+});
