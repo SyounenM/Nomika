@@ -155,24 +155,6 @@ window.setup=()=>{
     dataFetch();
 }
 
-// window.mousePressed=()=>{
-//     holding = true;
-    
-// }
-
-// window.mouseReleased=()=>{
-//     holding = false;
-
-// }
-
-// window.touchStarted=()=>{
-//     mousePressed();
-// }
-
-// window.touchEnded=()=>{
-//     mouseReleased();
-// }
-
 window.cssColorSet=()=>{
     console.log("cssColorSet");
     var counter = 0;
@@ -236,11 +218,6 @@ window.validation=()=>{
             badflag = true;
         }
     });
-    // $('.ratio').each(function(){
-    //     if(!($(this).val()>0)){
-    //         badflag = true;
-    //     }
-    // });
     if(badflag){
         alert('項目名を正しく設定してください。');
         return 1;

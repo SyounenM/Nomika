@@ -31,7 +31,6 @@ var texts = [
   "Text 3",
   "Text 4",
   "Text 5"
-  // Add more texts as needed
 ];
 
 let textHistory = []; // 表示したテキストの履歴を保持する配列

@@ -27,24 +27,7 @@
                 <a href="#">Contact</a>
             </nav>
         </header>
-        <!-- ルーレット1 -->
-        <!-- <div class="background-game">
-            <div class="home">
-                <h3>Welcome to Nomika.<br></h3>
-                <div id="roulette-container">
-                    <ul id="roulette-items">
-                      <li>アイテム1</li>
-                      <li>アイテム2</li>
-                      <li>アイテム3</li>
-                    </ul>
-                </div>
-                <button id="start-button">スタート</button>
-                <script src="js/roulette.js"></script>
-            </div>
-        </div> -->
 
-        
-        <!-- ルーレット2 -->
         <div id="background-roulette" class="background-roulette">
             <div class="home">
                 <div>
@@ -55,8 +38,6 @@
                     <button class="stopButton" type="button" id="stop" onclick="stop()" style="display:none;">ストップ</button>
                 
                     <h2>結果</h2>
-                    <!-- <p id="space "style="visibility:hidden;">あああ</p> -->
-                    <!-- <p id="result"></p> -->
                     <p id="result" ></p>
                 
                     <div class="RouletteSetup">
@@ -68,10 +49,6 @@
                                     <tr><th><a class="big">色</a></th><th><a class="big">項目名</a></th><th><a class="big">比率</a></th></tr>
                                 </thead>
                                 <tbody id="tableBody">
-                                    <!-- <tr class="item"><td><div class="color-indicator" style="background-color:#000000;"></div></td><td><input type="text" class="name input-content" value="A"></td><td><input type="number" class="ratio input-ratio" value="1" min="1"></td><td><button class="deleteButton" type="button" onclick="rmItem(this)">削除</button></td></tr>
-                                    <tr class="item"><td><div class="color-indicator" style="background-color:#000000;"></div></td><td><input type="text" class="name input-content" value="B"></td><td><input type="number" class="ratio input-ratio" value="1" min="1"></td><td><button class="deleteButton" type="button" onclick="rmItem(this)">削除</button></td></tr>
-                                    <tr class="item"><td><div class="color-indicator" style="background-color:#000000;"></div></td><td><input type="text" class="name input-content" value="C"></td><td><input type="number" class="ratio input-ratio" value="1" min="1"></td><td><button class="deleteButton" type="button" onclick="rmItem(this)">削除</button></td></tr>
-                                    <tr class="item"><td><div class="color-indicator" style="background-color:#000000;"></div></td><td><input type="text" class="name input-content" value="D"></td><td><input type="number" class="ratio input-ratio" value="1" min="1"></td><td><button class="deleteButton" type="button" onclick="rmItem(this)">削除</button></td></tr>  -->
                                 </tbody>
                             </table>
                         </div>
@@ -90,66 +67,4 @@
     crossorigin="anonymous"></script>
     <script src="./js/p5.min.js"></script>
     <script type="module" src="./js/roulette.js"></script>
-    <!-- <style>
-    .p5Canvas{
-        max-width: 600px;
-        width: 100% !important;
-        height: auto !important;
-    }
-    </style> -->
-
-    <!-- <style>
-        .color-indicator{
-            width: 20px;
-            height: 20px;
-        }
-        #result{
-            font-size: 40px;
-            font-weight: bold;
-        }
-        .unselectable {
-            opacity: 0.5; /* 文字や表の不透明度を下げる（薄くする） */
-            pointer-events: none; /* イベントを無効にする（選択不可にする） */
-            /* 他にも必要に応じてスタイルを追加できます */
-        }
-    </style> -->
-
-    <!-- <script>
-        function recalculate(){
-            var ratioSumJs = 0;
-            $('.ratio').each(function(){
-                ratioSumJs += $(this).val()-0; //文字から数字の変換
-            });
-            $(".item").each(function(){
-                var probability = ($(this).find(".ratio").first().val()-0) / ratioSumJs;
-                probability*=100;
-                probability = probability.toFixed(3);
-                $(this).children(".probability").first().html(probability+"%");
-            });
-        }
-        $('.add').click(function(){
-            var add = '<tr class="item"><td><div class="color-indicator" style="background-color:#000000;"></div></td><td><input type="text" class="name input-content" value="項目"></td><td><input type="number" class="ratio  input-ratio" value="1" min="1"></td><td><button class="deleteButton" type="button" onclick="rmItem(this)">削除</button></td></tr>';
-            
-            recalculate();
-            if(mode==Mode.waiting){
-                $('#table').append(add);
-                dataFetch();
-            }
-        });
-        function rmItem(e){
-            if(mode==Mode.waiting){
-                if($('.ratio').length>2){
-                    $(e).parent().parent().remove();
-                    recalculate();
-                    dataFetch();
-                }          
-            }
-        }
-        $('#table').on('change', '.ratio', function(){
-            recalculate();
-            if(mode==Mode.waiting){
-                dataFetch();
-            }
-        });
-    </script> -->
 </html>
