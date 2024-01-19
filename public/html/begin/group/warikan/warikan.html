@@ -58,8 +58,8 @@
               <a class="big">円単位</a>
               <br>
               <select name="option" id="option" class="select marume">
-                <option value="ceil">支払う人少なめ</option>
                 <option value="round">なるべく均等</option>
+                <option value="ceil">支払う人少なめ</option>
                 <option value="floor">支払う人多め</option>
               </select>
           </div>
@@ -81,7 +81,7 @@
           </div> -->
         </form>
         <br>
-        <div id="result" class="container">
+        <div id="result" class="container" style="height: 639px;">
           <table align="center" id="result_table" border="" class="table">  
             <caption>
               <!-- 結果 -->
@@ -98,18 +98,18 @@
                   </div>
                 </th>
               </tr>
-              <tr>
-                <th id="selectHead">編集
+              <tr id="heads">
+                <th class="colnames" id="selectHead">編集
                   <!-- <br>
                   <button onclick="allCheck()">
                     ×<br>
                   </button> -->
                 </th>
-                <th>名前</th>
-                <th>割り勘金額</th>
-                <th>傾斜比率</th>
-                <th>金額固定</th>
-                <th>端数支払</th>
+                <th class="colnames">名前</th>
+                <th class="colnames">割り勘金額</th>
+                <th class="colnames">傾斜比率</th>
+                <th class="colnames">金額固定</th>
+                <th class="colnames">端数支払</th>
               </tr>
             </thead>
             <tfoot>

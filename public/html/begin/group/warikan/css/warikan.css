@@ -28,9 +28,9 @@ td.selected {
 }
 
 .container {
-    /* height: 500px; → warikan.jsで指定 */
-    overflow-y: scroll;
-    overflow: auto;
+    /* height: 100px; */
+    overflow-y: auto;
+    /* overflow: auto; */
     width: 100%;
     position: relative;
     left: -15px;
@@ -41,7 +41,7 @@ td.selected {
     margin-left: auto;
     margin-right: auto;
     border-spacing: 0;
-    overflow: hidden;
+    overflow: auto;
 }
 .container td{
     white-space: nowrap;
@@ -66,7 +66,6 @@ td.selected {
 }
 .container th:first-child{
     border-left: none;
-
 }
 .container thead{
     white-space: nowrap;
@@ -76,6 +75,17 @@ td.selected {
     position: sticky;
     top: 0;
     left: 0;
+}
+.colnames ::before{
+    content: "";
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    width: 100%;
+    height: 100%;
+    border: 1px solid #000066;
+    box-sizing: content-box;
+
 }
 .container tbody{
     background: rgba(255, 150, 0, 0.25);
