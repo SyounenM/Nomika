@@ -95,7 +95,6 @@ function getHistory() {
             .then((snapshot) => {
                 let history = snapshot.val();
                 console.log(history);
-                console.log(history["-NoS6GjRCQKbdHrebQBy"]);
                 historyList = Object.values(history);
                 historyIdList = Object.keys(history)
                 console.log(historyIdList);
@@ -193,7 +192,7 @@ function showResult() {
     for (const obj of resultList) {
         // 各結果を表示
         res.innerHTML += `<div class="result">${obj.debtor} → ${obj.creditor} : ${obj.amount}円</div>`;
-        dispHeight += 60;
+        dispHeight += 18;
     }
     dispScope.style.height = dispHeight + "px";
 }
@@ -255,11 +254,7 @@ function changeHeight() {
     resText.style.top = resTextHeight + "px";
     let bottom = document.getElementById("bottom");
     var offsetTop = bottom.offsetTop;
-    const texthis = document.getElementById("history-text");
-    var offsetTop2 = texthis.offsetTop;
-    const hisHeight = offsetTop + offsetTop2 - 1400;
-    console.log("hisHeight", hisHeight);
-    background.style.height = hisHeight + "px";
+    background.style.height = offsetTop + 800 + "px";
 }
 
 const toggleButton = document.getElementById('toggleButton');
@@ -270,6 +265,7 @@ toggleButton.addEventListener('click', function() {
     } else {
         content.style.display = 'none';
     }
+    changeHeight();
 });
 
 // リンクコピー機能
@@ -334,6 +330,7 @@ document.getElementById('LINE').addEventListener('click', function() {
 // main //////////////////////////////////////////////////////
 getGroupInfo()
     .then(showMembers)
+    .then(changeHeight)
     .then(getHistory)
     .then(initializeBalanceList)
     .then(calculateBalance)

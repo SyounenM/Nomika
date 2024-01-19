@@ -29,9 +29,10 @@ var backHeight;
 
 // 高さの変更
 function changeHeight() {
-    var offsetTop = back.offsetTop;
+    const offsetTop = back.offsetTop;
+    // back.style.height = offsetTop + 100 + "px";
     console.log(offsetTop);
-    backHeight = offsetTop + 500;
+    backHeight = offsetTop + 600;
     background.style.height = backHeight + "px";
 }
 

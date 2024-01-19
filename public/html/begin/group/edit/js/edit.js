@@ -216,6 +216,7 @@ function cancelMember(member) {
     console.log(memberList);
     let target = document.getElementById(member + "Span");
     target.remove();
+    changeHeight();
 }
 
 function updateMembers() {
