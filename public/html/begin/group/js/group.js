@@ -214,72 +214,50 @@ function showMembers() {
     resTextHeight = lastMember.offsetTop + 60;
 }
 
-function addHistory(div, obj, his, index, method) {
-    div.innerHTML += `<button id="history-${obj.content}" class="history">${obj.content} : ${obj.amount}円</button>`;
-    his = document.getElementById("history-" + obj.content);
-    his.textContent = `${obj.content} : ${obj.amount}円`;
-    his.id = "history-" + obj.content;
-    his.className = "history";
-    his.onclick = function(event){
-        event.preventDefault();
-        editHistory(obj.content, index, method);
-    }
-    // console.log("hisId", history.id);
-    div.innerHTML += "<br>";
-}
-
 function showHistory() {
     var historyGroup = document.getElementById("history-group");
-    let method;
     console.log(historyList);
     for (var i = 0; i < historyList.length; i++) {
         console.log("historyList[", i, "]", historyList[i][0]);
         const obj = historyList[i][0]
-        method = obj.method
-        let his;
         // 各結果を表示
-        if (i == historyList.length - 1) {
-            historyGroup.innerHTML += `<button id="history-last" class="history">${obj.content} : ${obj.amount}円</button>`;
-            const hisLast = document.getElementById("history-last");
-            console.log("hisId", hisLast.id);
-            hisLast.onclick = function(event){
-                event.preventDefault();
-                console.log(i);
-                console.log(historyIdList[i-1]);
-                editHistory("last", i, method,historyIdList[i-1]);
-            }
-        }else{
-            addHistory(historyGroup, obj, his, i, method);
+        historyGroup.innerHTML += `<button id="history-${obj.content}" class="history">${obj.content} : ${obj.amount}円</button>`;
+    }
+    for (var i = 0; i < historyList.length; i++) {
+        console.log("historyList[", i, "]", historyList[i][0]);
+        const obj = historyList[i][0]
+        let method = obj.method
+        let his = document.getElementById("history-" + obj.content);
+        console.log("his", his.id);
+        let index = i;
+        console.log(method);
+        his.onclick = function(event){
+            event.preventDefault();
+            console.log(index);
+            editHistory(obj.content, index, method, historyIdList[index]);
         }
     }
 }
 
-function editHistory(content, index, method,historyId) {
+function editHistory(content, index, method, historyId) {
     console.log("content", content);
-    // const his = document.getElementById("history-" + content);
-    // console.log(index);
-    // historyList.splice(index-1, 1);
-    // console.log(historyList);
-    // set_(historyRef, historyList);
-    // his.remove();
-    // location.reload();
-    // if (method == "tatekae"){
-    //     window.location.href = `./tatekae/tatekae.html?id=${groupId}`;
-    // }else if (method == "warikan"){
-    //     window.location.href = `./warikan/warikan.html?id=${groupId}`;
-    // }
-    window.location.href = `./warikan/warikan.html?id=${groupId}&historyId=${historyId}`
+    if (method == "tatekae"){
+        window.location.href = `./tatekae/tatekae.html?id=${groupId}&historyId=${historyId}`;
+    } 
+    if (method == "warikan"){
+        window.location.href = `./warikan/warikan.html?id=${groupId}&historyId=${historyId}`;
+    }
 }
 
 // 高さの変更
 function changeHeight() {
     const resText = document.getElementById("result-text");
     resText.style.top = resTextHeight + "px";
-    const hisLast = document.getElementById("history-last");
-    var offsetTop = hisLast.offsetTop;
+    let bottom = document.getElementById("bottom");
+    var offsetTop = bottom.offsetTop;
     const texthis = document.getElementById("history-text");
     var offsetTop2 = texthis.offsetTop;
-    const hisHeight = offsetTop + offsetTop2 + 830;
+    const hisHeight = offsetTop + offsetTop2 - 1300;
     console.log("hisHeight", hisHeight);
     background.style.height = hisHeight + "px";
 }
@@ -364,5 +342,3 @@ getGroupInfo()
     .then(showHistory)
     .then(changeHeight)
     .catch(error => console.error(error));
-
-
