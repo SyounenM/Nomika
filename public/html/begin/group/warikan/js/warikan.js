@@ -791,6 +791,41 @@ get_(groupRef)
         console.error("データの読み取りに失敗しました", error);
     });
 
+    // // ページが完全に読み込まれた後に実行
+    // document.addEventListener("DOMContentLoaded", function () {
+    //     // Shepherd.jsのインスタンスを作成
+    //     var tour = new Shepherd.Tour({
+    //         defaultStepOptions: {
+    //             classes: 'shepherd-theme-arrows',
+    //             scrollTo: true,
+    //         },
+    //         useModalOverlay: true,
+    //     });
+        
+    //     tour.addStep({
+    //         id: 'step1',
+    //         text: 'This is a step!',
+    //         attachTo: {
+    //             element: '.example-class',
+    //             on: 'bottom',
+    //         },
+    //         modifiers: [
+    //             {
+    //                 name: 'keepTogether',
+    //                 options: {
+    //                     glued: true,
+    //                 },
+    //             },
+    //             {
+    //                 name: 'arrow',
+    //                 options: {
+    //                     element: '.example-class',
+    //                 },
+    //             },
+    //         ],
+    //     });        
+    // });
+  
 
 
 
