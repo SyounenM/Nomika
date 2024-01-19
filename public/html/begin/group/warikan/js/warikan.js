@@ -82,7 +82,7 @@ function viewBuilder() {
         memberSpan.style = 'background-color: white; margin-right:10px; border: solid 1px black; border-width: 2px; border-radius: 10px; padding: 3px;';
         // memberSpan.style.border = 'solid'
         memberDiv.appendChild(memberSpan);
-        dispHeight += 42; //表示部分高さの変更
+        // dispHeight += 20; //表示部分高さの変更
     }
     //支払い人
     let payerSelect = document.getElementById("payer");
@@ -151,6 +151,10 @@ function viewBuilder() {
         nameTd.onmouseover = function(){ //長押し中は選択
             selectCell(this);
         };
+        nameTd.ontouchmove = function (event) {
+            event.preventDefault();
+            selectCell(this);
+        }
         nameTd.onmouseup = function(){ //長押し終了で選択終わり
             endSelection();
         };
@@ -268,7 +272,7 @@ function viewBuilder() {
     fracToggle.checked = true;
 
     // 表示部分の高さ設定
-    dispScope.style.height = dispHeight + "px";
+    // dispScope.style.height = dispHeight + "px";
     changeHeight(); // 背景部分の高さの変更
 }
 
