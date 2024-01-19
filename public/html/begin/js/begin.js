@@ -8,7 +8,6 @@ const labelGroup = document.getElementById("labelGroup");
 const labelMember = document.getElementById("labelMember");
 const addButton = document.getElementById("addButton");
 let memberDiv = document.getElementById('memberList');
-let member;
 let memberList = [];
 
 
@@ -53,6 +52,7 @@ addButton.addEventListener("click", function() {
     if (amountSelect.value >= 1 || amountSelect.value <= 99) {
         if (inputMember.value != "") {
             for (let i = 0; i < amountSelect.value; i++) {
+                let member;
                 if (amountSelect.value != 1){
                     member = inputMember.value + (i + 1);
                 }
@@ -107,8 +107,10 @@ addButton.addEventListener("click", function() {
 //TODO:メンバーをキャンセルすると再読み込みする
 function cancelMember(member) {
     let colIndex = memberList.indexOf(member);
+    console.log(colIndex);
     memberList.splice(colIndex, 1);
     console.log(memberList);
+    console.log(member);
     let target = document.getElementById(member + "Span");
     target.remove();
 }

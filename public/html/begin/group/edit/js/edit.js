@@ -61,7 +61,6 @@ get_(groupNameRef)
 });
 
 // メンバー
-let member;
 let memberList = [];
 let memberDiv = document.getElementById('memberList');
 const groupMemberRef = ref_(database, 'groups/' + groupId + '/groupMember');
@@ -148,6 +147,7 @@ addButton.addEventListener("click", function() {
     if (amountSelect.value >= 1 || amountSelect.value <= 99) {
         if (inputMember.value != "") {
             for (let i = 0; i < amountSelect.value; i++) {
+                let member;
                 if (amountSelect.value != 1){
                     member = inputMember.value + (i + 1);
                 }
@@ -181,7 +181,7 @@ addButton.addEventListener("click", function() {
                 // cancelButton.style.offset
 
                 cancelButton.onclick = function(event){
-                    event.preventDefault();
+                    // event.preventDefault();
                     cancelMember(member);
                 };
 
