@@ -47,11 +47,11 @@
   }
   
   .card-front {
-    background-color: #6A2C70;
+    background-color: #F16D14;
     color: #fff;
     display: flex;
     align-items: center;
-    border: 10px solid #6A2C70;
+    border: 10px solid #F16D14;
     border-radius: 10px;
     justify-content: center;
     font-size: 24px;
@@ -110,6 +110,7 @@
   border-radius: 12px;
 }
 #toggleButton {
+  top: 20px;
   margin: 20px;
   background-color: white;
   color: black;
