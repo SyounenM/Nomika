@@ -29,11 +29,17 @@ let memberList = [];
 // データベースへの参照
 let groupRef = ref_(database,'groups/' + groupId);
 let historyRef = ref_(database, 'groups/' + groupId + '/history');
+const historyId = new URLSearchParams(window.location.search).get('historyId');
 
 let historyList = [];
 let balanceList = [] ;
 let resultList = [];
 let selectedDebtors = [];
+let isEdit = false;
+let totalAmount = 0;
+let content = "";
+let creditor = "";
+let debtor = [];
 
 function addOption() {
     let creditorSelect = document.getElementById("creditor select");
@@ -81,6 +87,29 @@ function addOption() {
             }
             console.log("Selected Debtors:", selectedDebtors);
         });
+
+        if (isEdit) {
+            debtorCheckbox.checked = debtor.includes(member);
+            if (debtorCheckbox.checked) {
+                if (!selectedDebtors.includes(member)){
+                    selectedDebtors.push(member);
+                }
+            } else {
+                if (allDebtorCheckbox.checked) {
+                    allDebtorCheckbox.checked = false;
+                    for (const member_ of memberList) {
+                        if (member_ != member){
+                            let checkbox = document.getElementById("debtor_" + member_);
+                            checkbox.checked = true;
+                        }
+                    }
+                }
+                const index = selectedDebtors.indexOf(member);
+                if (index !== -1) {
+                    selectedDebtors.splice(index, 1);
+                }
+            }
+        }
 
         newPara.className = "new-para"
 
@@ -132,6 +161,33 @@ function addOption() {
         console.log("Selected Debtors:", selectedDebtors);
     });
 
+    if (isEdit) {
+        allDebtorCheckbox.checked = debtor.length === memberList.length;
+        if (allDebtorCheckbox.checked) {
+            for (const member of memberList) {
+                if (!selectedDebtors.includes(member)){
+                    selectedDebtors.push(member);
+                }
+                let checkbox = document.getElementById("debtor_" + member);
+                checkbox.checked = true;
+            }
+        } else {
+            for (const member of memberList) {
+                const index = selectedDebtors.indexOf(member);
+                if (index !== -1) {
+                    selectedDebtors.splice(index, 1);
+                }
+                let checkbox = document.getElementById("debtor_" + member);
+                checkbox.checked = false;
+            }
+        }
+        creditorSelect.value = creditor;
+        let amount = document.getElementById("amount");
+        let contentElement = document.getElementById("content");
+        amount.value = totalAmount;
+        contentElement.value = content;
+    }
+
     allNewPara.className = "new-para"
 
     allNewPara.appendChild(allDebtorCheckbox);
@@ -151,8 +207,16 @@ function getGroupInfo() {
         let data = snapshot.val();
         console.log(data);
         memberList = data["groupMember"];
-        
         console.log("memberList:" + memberList);
+
+        if (historyId != null){
+            isEdit = true;
+            let groupInfo = data["history"][historyId][0];
+            totalAmount = groupInfo["amount"];
+            content = groupInfo["content"] ?? "";
+            creditor = groupInfo["creditor"] ?? "";
+            debtor = groupInfo["debtor"] ?? [];
+        }
         
     }).then(addOption)
         .catch((error) => {
@@ -268,7 +332,13 @@ function submitHistory() {
                 continue;
             }
         }
-        let newHistoryRef = push_(ref_(database, 'groups/' + groupId + '/history'));
+        let newHistoryRef;
+        if (historyId == null){
+            newHistoryRef = push_(ref_(database, 'groups/' + groupId +'/history'));
+            console.log(newHistoryRef.key);
+        }else {
+            newHistoryRef = ref_(database,'groups/' + groupId + '/history/' + historyId);
+        }
         set_(newHistoryRef, data)
         .then(() => {
             console.log("履歴が正常に書き込まれました");

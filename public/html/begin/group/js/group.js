@@ -221,7 +221,7 @@ function showHistory() {
         console.log("historyList[", i, "]", historyList[i][0]);
         const obj = historyList[i][0]
         // 各結果を表示
-        historyGroup.innerHTML += `<button id="history-${obj.content}" class="history">${obj.content} : ${obj.amount}円</button>`;
+        historyGroup.innerHTML += `<button id="history-${obj.content}" class="history">${obj.content} : ${obj.amount}円</button><br>`;
     }
     for (var i = 0; i < historyList.length; i++) {
         console.log("historyList[", i, "]", historyList[i][0]);
@@ -257,7 +257,7 @@ function changeHeight() {
     var offsetTop = bottom.offsetTop;
     const texthis = document.getElementById("history-text");
     var offsetTop2 = texthis.offsetTop;
-    const hisHeight = offsetTop + offsetTop2 - 1300;
+    const hisHeight = offsetTop + offsetTop2 - 1400;
     console.log("hisHeight", hisHeight);
     background.style.height = hisHeight + "px";
 }
