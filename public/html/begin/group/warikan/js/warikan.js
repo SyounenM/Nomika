@@ -1,4 +1,4 @@
-import {database, ref_, set_, get_, update_, push_, goOffline_}  from "../../../../../js/master.js";
+import {database, ref_, set_, get_, update_, push_, goOffline_, remove_}  from "../../../../../js/master.js";
 // アプリケーションが閉じられたときに呼ばれる処理
 window.onbeforeunload = function () {
     // Firebase Realtime Databaseへの接続を切断
@@ -14,6 +14,8 @@ const logo = document.getElementById("logo");
 const top = document.getElementById("top");
 const home = document.getElementById("home");
 const back = document.getElementById("back");
+const remove = document.getElementById("remove");
+remove.style.display = "none";
 icon.href = `../group.html?id=${groupId}`;
 logo.href = `../group.html?id=${groupId}`;
 home.href = `../group.html?id=${groupId}`;
@@ -32,7 +34,7 @@ function changeHeight() {
     const offsetTop = back.offsetTop;
     // back.style.height = offsetTop + 100 + "px";
     console.log(offsetTop);
-    backHeight = offsetTop + 600;
+    backHeight = offsetTop + 1550;
     background.style.height = backHeight + "px";
 }
 
@@ -744,7 +746,17 @@ get_(groupRef)
             option = groupInfo["option"] ?? "ceil"
             fixedList = groupInfo["fixedMember"] ?? [];
             fracList = groupInfo["fracMember"] ?? [];
-            ratioDict = groupInfo["ratio"] ?? {};   
+            ratioDict = groupInfo["ratio"] ?? {};  
+            const remove = document.getElementById("remove");
+            const newHistoryRef = ref_(database,'groups/' + groupId + '/history/' + historyId);
+            remove.style.display = "";
+            remove.onclick = function() {
+                var confirmation = confirm("この履歴を削除しますか？");
+                if (confirmation) {
+                    remove_(newHistoryRef);
+                    window.location.href = `../group.html?id=${groupId}`;
+                }
+            } 
         }
     })
     .then(()=>{

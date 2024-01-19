@@ -19,7 +19,7 @@ td.selected {
     /* height: 1600px; → warikan.jsで指定 */
     text-align: center;
     min-width: 600px;
-    min-height: 1600px; 
+    min-height: 2300px; 
 }
 .btn-warikan{
     position: relative;
@@ -305,4 +305,8 @@ input[type="number"] {
 .text-amount{
     position: relative;
     left: -2px;
+}
+.back{
+    position: relative;
+    top: 50px;
 }

@@ -1,4 +1,4 @@
-import {database, ref_, set_, get_, update_, push_, goOffline_}  from "../../../../../js/master.js";
+import {database, ref_, set_, get_, update_, push_, goOffline_, remove_}  from "../../../../../js/master.js";
 // import { serverTimestamp } from "https://www.gstatic.com/firebasejs/10.7.0/firebase-database.js";
 // アプリケーションが閉じられたときに呼ばれる処理
 window.onbeforeunload = function () {
@@ -12,6 +12,8 @@ const logo = document.getElementById("logo");
 const top = document.getElementById("top");
 const home = document.getElementById("home");
 const back = document.getElementById("back");
+const remove = document.getElementById("remove");
+remove.style.display = "none";
 icon.href = `../group.html?id=${groupId}`;
 logo.href = `../group.html?id=${groupId}`;
 function showAlert() {
@@ -166,6 +168,15 @@ function addOption() {
         let contentElement = document.getElementById("content");
         amount.value = totalAmount;
         contentElement.value = content;
+        const newHistoryRef = ref_(database,'groups/' + groupId + '/history/' + historyId);
+        remove.style.display = "";
+        remove.onclick = function() {
+            var confirmation = confirm("この履歴を削除しますか？");
+            if (confirmation) {
+                remove_(newHistoryRef);
+                window.location.href = `../group.html?id=${groupId}`;
+            }
+        }
     }
 
     allNewPara.className = "new-para"
