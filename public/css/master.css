@@ -176,7 +176,6 @@ a.btn-border {
     transition: all 0.3s;
     border-radius: 0;
 }
-
 a.btn-border span {
     position: relative;
     display: block;
@@ -186,7 +185,6 @@ a.btn-border span {
     border-radius: 0.5rem;
     background: #fff;
 }
-
 a.btn-border:before {
     position: absolute;
     bottom: -8px;
@@ -218,25 +216,20 @@ a.btn-border:before {
     -webkit-backface-visibility: hidden;
     backface-visibility: hidden;
 }
-
 a.btn-border:hover {
     -webkit-transform: translate(0, 3px);
     transform: translate(0, 3px);
 }
-
 a.btn-border:hover:before {
     bottom: -5px;
 }
-
 a.btn-border:active {
     -webkit-transform: translate(0, 7px);
     transform: translate(0, 7px);
 }
-
 a.btn-border:active:before {
     bottom: -1px;
 }
-
 
 /* input */
 .input{
