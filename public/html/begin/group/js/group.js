@@ -257,6 +257,14 @@ function changeHeight() {
     background.style.height = offsetTop + 800 + "px";
 }
 
+function changeFooter(){
+    const footer = document.getElementById("footer");
+    console.log("footer", footer.offsetWidth);
+    var viewportWidth = window.innerWidth;
+    footer.style.width = viewportWidth + 10 + "px";
+    console.log("footer", footer.offsetWidth);
+}
+
 const toggleButton = document.getElementById('toggleButton');
 toggleButton.addEventListener('click', function() {
     var content = document.getElementById('toggleContent');
@@ -329,6 +337,7 @@ document.getElementById('LINE').addEventListener('click', function() {
 
 // main //////////////////////////////////////////////////////
 getGroupInfo()
+    .then(changeFooter)
     .then(showMembers)
     .then(changeHeight)
     .then(getHistory)

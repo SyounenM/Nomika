@@ -18,6 +18,13 @@ function changeHeight() {
     backHeight = offsetTop + 500;
     background.style.height = backHeight + "px";
 }
+function changeFooter(){
+    const footer = document.getElementById("footer");
+    console.log("footer", footer.offsetWidth);
+    var viewportWidth = window.innerWidth;
+    footer.style.width = viewportWidth + 10 + "px";
+    console.log("footer", footer.offsetWidth);
+}
 
 const groupId = new URLSearchParams(window.location.search).get('id');
 const icon = document.getElementById("icon");
@@ -72,6 +79,7 @@ get_(groupMemberRef)
         console.log(memberList);
         displayMembers();
         changeHeight();
+        changeFooter();
     } else {
         console.log('データが存在しません');
     }
@@ -194,6 +202,7 @@ addButton.addEventListener("click", function() {
             }
 
             changeHeight();
+            changeFooter();
 
         } else {
             alert('メンバー名を入力してください');
@@ -217,6 +226,7 @@ function cancelMember(member) {
     let target = document.getElementById(member + "Span");
     target.remove();
     changeHeight();
+    changeFooter();
 }
 
 function updateMembers() {

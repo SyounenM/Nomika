@@ -140,6 +140,7 @@ $('.add').click(function(){
   $('#table').append(add);
   texts.push('');
   changeHeight()
+  changeFooter();
 });
 
 // 削除ボタンをクリックしたときの処理
@@ -152,6 +153,7 @@ tableBody.addEventListener('click', function(event) {
       alert('最後の要素は削除できません');
     }
     changeHeight()
+    changeFooter();
   }
 });
 
@@ -173,16 +175,25 @@ function changeHeight() {
   console.log("hisHeight", hisHeight);
   background.style.height = hisHeight + "px";
 }
+function changeFooter(){
+  const footer = document.getElementById("footer");
+  console.log("footer", footer.offsetWidth);
+  var viewportWidth = window.innerWidth;
+  footer.style.width = viewportWidth + 10 + "px";
+  console.log("footer", footer.offsetWidth);
+}
 
 document.getElementById('toggleButton').addEventListener('click', function() {
   var content = document.getElementById('toggleContent');
   if (content.style.display === 'none') {
     content.style.display = 'block';
     document.getElementById("cAction").innerHTML = "閉じる";
-    changeHeight()
+    changeHeight();
+    changeFooter();
   } else {
     content.style.display = 'none';
     document.getElementById("cAction").innerHTML = "内容を編集";
-    changeHeight()
+    changeHeight();
+    changeFooter();
   }
 });

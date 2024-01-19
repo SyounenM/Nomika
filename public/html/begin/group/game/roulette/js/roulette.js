@@ -35,6 +35,13 @@ function changeHeight() {
     backHeight = offsetTop + 600;
     backgroundRoulette.style.height = backHeight + "px";
 }
+function changeFooter(){
+    const footer = document.getElementById("footer");
+    console.log("footer", footer.offsetWidth);
+    var viewportWidth = window.innerWidth;
+    footer.style.width = viewportWidth + 10 + "px";
+    console.log("footer", footer.offsetWidth);
+}
 
 // ページの読み込み後にテーブルを生成
 document.addEventListener('DOMContentLoaded', function() {
@@ -209,6 +216,7 @@ window.dataFetch=()=>{
     }
     cssColorSet();
     changeHeight();
+    changeFooter();
 }
 
 window.validation=()=>{

@@ -189,6 +189,7 @@ function addOption() {
     allDebtorLabel.style.left = rect.left/1.5+ 20 + "px";
 
     changeHeight();
+    changeFooter();
 }
 
 // データベースから情報を取得
@@ -470,6 +471,13 @@ function changeHeight() {
     const hisHeight = offsetTop + 600;
     console.log("hisHeight", hisHeight);
     background.style.height = hisHeight + "px";
+}
+function changeFooter(){
+    const footer = document.getElementById("footer");
+    console.log("footer", footer.offsetWidth);
+    var viewportWidth = window.innerWidth;
+    footer.style.width = viewportWidth + 10 + "px";
+    console.log("footer", footer.offsetWidth);
 }
 
 // main /////////////////////////////////////////////////////////////////////////////////////////

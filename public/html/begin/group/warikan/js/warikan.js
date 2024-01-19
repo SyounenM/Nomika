@@ -37,6 +37,13 @@ function changeHeight() {
     backHeight = offsetTop + 1650;
     background.style.height = backHeight + "px";
 }
+function changeFooter(){
+    const footer = document.getElementById("footer");
+    console.log("footer", footer.offsetWidth);
+    var viewportWidth = window.innerWidth;
+    footer.style.width = viewportWidth + 10 + "px";
+    console.log("footer", footer.offsetWidth);
+}
 
 // htmlとの連携
 let memberDiv = document.getElementById('member');
@@ -276,6 +283,7 @@ function viewBuilder() {
     // 表示部分の高さ設定
     // dispScope.style.height = dispHeight + "px";
     changeHeight(); // 背景部分の高さの変更
+    changeFooter();
 }
 
 //精算

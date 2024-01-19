@@ -15,6 +15,7 @@ let memberList = [];
 var background = document.getElementById("background-begin");
 var backHeight = 0;
 changeHeight();
+changeFooter();
 
 // 高さの変更
 function changeHeight() {
@@ -24,6 +25,13 @@ function changeHeight() {
     background.style.height = backHeight + "px";
 }
 
+function changeFooter(){
+    const footer = document.getElementById("footer");
+    console.log("footer", footer.offsetWidth);
+    var viewportWidth = window.innerWidth;
+    footer.style.width = viewportWidth + 10 + "px";
+    console.log("footer", footer.offsetWidth);
+}
 
 // inputName.addEventListener("input", function() {
 //     if (inputName.value !== "") {

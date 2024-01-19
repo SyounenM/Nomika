@@ -30,3 +30,13 @@ home.href = `../group.html?id=${groupId}`;
 roulette.href = `./roulette/roulette.html?id=${groupId}`;
 topic.href = `./topic/topic.html?id=${groupId}`;
 back.href = `../group.html?id=${groupId}`;
+
+function changeFooter(){
+    const footer = document.getElementById("footer");
+    console.log("footer", footer.offsetWidth);
+    var viewportWidth = window.innerWidth;
+    footer.style.width = viewportWidth + 10 + "px";
+    console.log("footer", footer.offsetWidth);
+}
+
+changeFooter();

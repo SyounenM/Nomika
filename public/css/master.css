@@ -8,6 +8,7 @@
 }
 .html {
     overscroll-behavior: none;
+    overflow-x: clip;
 }
 .foam{
     margin: 0px;
