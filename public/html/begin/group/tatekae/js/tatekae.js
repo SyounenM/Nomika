@@ -88,29 +88,6 @@ function addOption() {
             console.log("Selected Debtors:", selectedDebtors);
         });
 
-        if (isEdit) {
-            debtorCheckbox.checked = debtor.includes(member);
-            if (debtorCheckbox.checked) {
-                if (!selectedDebtors.includes(member)){
-                    selectedDebtors.push(member);
-                }
-            } else {
-                if (allDebtorCheckbox.checked) {
-                    allDebtorCheckbox.checked = false;
-                    for (const member_ of memberList) {
-                        if (member_ != member){
-                            let checkbox = document.getElementById("debtor_" + member_);
-                            checkbox.checked = true;
-                        }
-                    }
-                }
-                const index = selectedDebtors.indexOf(member);
-                if (index !== -1) {
-                    selectedDebtors.splice(index, 1);
-                }
-            }
-        }
-
         newPara.className = "new-para"
 
         newPara.appendChild(debtorCheckbox);
@@ -173,12 +150,15 @@ function addOption() {
             }
         } else {
             for (const member of memberList) {
-                const index = selectedDebtors.indexOf(member);
-                if (index !== -1) {
-                    selectedDebtors.splice(index, 1);
-                }
                 let checkbox = document.getElementById("debtor_" + member);
-                checkbox.checked = false;
+                checkbox.checked = debtor.includes(member);
+                if (checkbox.checked) {
+                    if (!selectedDebtors.includes(member)){
+                        selectedDebtors.push(member);
+                    }
+                    let checkbox = document.getElementById("debtor_" + member);
+                    checkbox.checked = true;
+                } 
             }
         }
         creditorSelect.value = creditor;
