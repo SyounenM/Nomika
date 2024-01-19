@@ -34,7 +34,7 @@ function changeHeight() {
     const offsetTop = back.offsetTop;
     // back.style.height = offsetTop + 100 + "px";
     console.log(offsetTop);
-    backHeight = offsetTop + 1550;
+    backHeight = offsetTop + 1650;
     background.style.height = backHeight + "px";
 }
 
