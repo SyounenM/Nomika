@@ -149,7 +149,11 @@ addButton.addEventListener("click", function() {
             for (let i = 0; i < amountSelect.value; i++) {
                 let member;
                 if (amountSelect.value != 1){
-                    member = inputMember.value + (i + 1);
+                    if (i < 9){
+                        member = inputMember.value + "__0" + (i + 1);
+                    } else {
+                        member = inputMember.value + "__" + (i + 1);
+                    }
                 }
                 else{
                     member = inputMember.value;
