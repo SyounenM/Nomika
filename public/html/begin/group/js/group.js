@@ -29,8 +29,6 @@ get_(ref_(database,'groups/' + groupId))
     .catch((error) => {
         console.log("ID:" + groupId);
         console.error("データの読み取りに失敗しました", error);
-        // 別のURLにリダイレクト
-        window.location.href = `../../../500.html`;
 });
 
 
@@ -86,8 +84,6 @@ function getGroupInfo() {
                 console.log("ID:" + groupId);
                 console.error("グループ情報の読み取りに失敗しました", error);
                 reject(error); // エラーの場合はプロミスを拒否
-                        // 別のURLにリダイレクト
-                window.location.href = `../../../500.html`;
             });
     });
 }
@@ -110,8 +106,6 @@ function getHistory() {
                 console.error("履歴の読み取りに失敗しました", error);
                 dispScope.style.display = "none";
                 reject(error);
-                // 別のURLにリダイレクト
-                // window.location.href = `../../../404.html`;
             });
     });
 }
@@ -276,8 +270,23 @@ toggleButton.addEventListener('click', function() {
     var content = document.getElementById('toggleContent');
     if (content.style.display === 'none') {
         content.style.display = 'block';
+        toggleButton.textContent = "閉じる";
     } else {
         content.style.display = 'none';
+        toggleButton.textContent = "共有";
+    }
+    changeHeight();
+});
+
+const toggleButton2 = document.getElementById('toggleButton2');
+toggleButton2.addEventListener('click', function() {
+    var content = document.getElementById('toggleContent2');
+    if (content.style.display === 'none') {
+        content.style.display = 'block';
+        toggleButton2.textContent = "閉じる";
+    } else {
+        content.style.display = 'none';
+        toggleButton2.textContent = "メンバー";
     }
     changeHeight();
 });
