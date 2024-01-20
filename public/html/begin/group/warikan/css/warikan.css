@@ -23,7 +23,7 @@ td.selected {
 }
 .btn-warikan{
     position: relative;
-    top: -130px;
+    top: 80px;
     left: 0px;
 }
 
@@ -318,12 +318,10 @@ input[type="number"] {
     position: relative;
     left: -2px;
 }
-.back{
-    position: relative;
-    top: 50px;
-}
 .use{
     color: rgb(90, 59, 0);
     font-size: 48px;
     margin: 20px;
+    position: relative;
+    top: 200px;
 }

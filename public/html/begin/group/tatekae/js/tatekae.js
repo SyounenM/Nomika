@@ -96,8 +96,8 @@ function addOption() {
         newPara.appendChild(debtorLabel);
         debtorCheckboxWrapper.appendChild(newPara);
         var rect = back.getBoundingClientRect();
-        debtorCheckbox.style.left = rect.left/1.5 + "px";
-        debtorLabel.style.left = rect.left/1.5+ 20 + "px";
+        debtorCheckbox.style.left = rect.left/1.4 + "px";
+        debtorLabel.style.left = rect.left/1.4+ 20 + "px";
     }
 
     let allCreditorOption = document.createElement("option");
@@ -185,8 +185,8 @@ function addOption() {
     allNewPara.appendChild(allDebtorLabel);
     debtorCheckboxWrapper.insertBefore(allNewPara, debtorCheckboxWrapper.firstChild);
     var rect = back.getBoundingClientRect();
-    allDebtorCheckbox.style.left = rect.left/1.5 + "px";
-    allDebtorLabel.style.left = rect.left/1.5+ 20 + "px";
+    allDebtorCheckbox.style.left = rect.left/1.4 + "px";
+    allDebtorLabel.style.left = rect.left/1.4+ 20 + "px";
 
     changeHeight();
     changeFooter();

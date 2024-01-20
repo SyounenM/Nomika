@@ -15,7 +15,7 @@ var backHeight = 0;
 function changeHeight() {
     var offsetTop = updateButton.offsetTop;
     console.log(offsetTop);
-    backHeight = offsetTop + 500;
+    backHeight = offsetTop + 600;
     background.style.height = backHeight + "px";
 }
 function changeFooter(){
