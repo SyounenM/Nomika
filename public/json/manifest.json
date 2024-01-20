@@ -1,7 +1,7 @@
 {
-    "name": "Nomika",
+    "name": "Nomika (ノミカ)",
     "short_name": "Nomika",
-    "description": "",
+    "description": "飲み会をもっと楽しくするWebアプリ(サイト)Nomika! \n  傾斜や割り勘機能も搭載して飲み会の精算をスムーズに!\n ルーレットや話題など飲み会ゲームも！",
     "start_url": "/",
     "display": "standalone",
     "background_color": "#ffffff",
