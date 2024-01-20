@@ -31,8 +31,8 @@
 .animationElement {
     position : relative;
     left: -20px;
-    width: 480px;
-    height: 480px;
+    width: 450px;
+    height: 450px;
     /* スクロールアニメーションの設定 */
     animation: reveal-image linear both; /* アニメーションを指定。イージングはlinear。animation-fill-modeはboth */
     animation-timeline: view();
