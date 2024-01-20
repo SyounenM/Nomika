@@ -68,3 +68,7 @@
 .footer{
     width: 116.9%;
 }
+.footer-comment{
+    position: relative;
+    left: -120px;
+}
