@@ -10,12 +10,12 @@ window.addEventListener('scroll', function() {
     }
 });
 
-changeFooter();
+// changeFooter();
 
-function changeFooter(){
-    const footer = document.getElementById("footer");
-    console.log("footer", footer.offsetWidth);
-    var viewportWidth = window.innerWidth;
-    footer.style.width = viewportWidth + 10 + "px";
-    console.log("footer", footer.offsetWidth);
-}
+// function changeFooter(){
+//     const footer = document.getElementById("footer");
+//     console.log("footer", footer.offsetWidth);
+//     var viewportWidth = window.innerWidth;
+//     footer.style.width = viewportWidth + 10 + "px";
+//     console.log("footer", footer.offsetWidth);
+// }

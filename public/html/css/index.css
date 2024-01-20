@@ -6,10 +6,10 @@
     position: relative;
     top: 0px;
     width: 100%;
-    height: 4000px;
+    height: 5000px;
     text-align: center;
     min-width: 600px;
-    min-height: 4800px; 
+    min-height: 5000px; 
 }
 
 .btn-begin{
@@ -63,4 +63,8 @@
 
 .start{
     color: rgb(90, 59, 0);
+}
+
+.footer{
+    width: 116.9%;
 }
