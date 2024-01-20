@@ -802,14 +802,31 @@ get_(groupRef)
         });
 
         // トグルによる表示・非表示の切り替え
-        document.getElementById('toggleButton').addEventListener('click', function() {
+        const toggleButton = document.getElementById('toggleButton')
+        toggleButton.addEventListener('click', function() {
             var content = document.getElementById('toggleContent');
             if (content.style.display === 'none') {
                 content.style.display = 'block';
+                toggleButton.textContent = "閉じる";
             } else {
                 content.style.display = 'none';
+                toggleButton.textContent = "端数の分け方";
             }
+            changeHeight();
         });
+        const toggleButton2 = document.getElementById('toggleButton2');
+        toggleButton2.addEventListener('click', function() {
+            var content = document.getElementById('toggleContent2');
+            if (content.style.display === 'none') {
+                content.style.display = 'block';
+                toggleButton2.textContent = "閉じる";
+            } else {
+                content.style.display = 'none';
+                toggleButton2.textContent = "メンバー";
+            }
+            changeHeight();
+        });
+
     })
     .catch((error) => {
         console.log("ID:" + groupId);

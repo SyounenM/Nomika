@@ -32,9 +32,12 @@
       <div class="home">
         <h2>一括で登録</h2>
         <br>
-        <div id="group" class="big"></div>
+        <h3 id="group"></h3>
         <div class="groupInfo big">
-          <div id="member" class="member"></div>
+          <button id="toggleButton2" type="button" class="big">メンバー</button>
+          <div id="toggleContent2" style="display: none;">
+              <div id="member" class="member"></div>
+          </div>
         </div>
         <br>
         <form id="transactionForm">
@@ -53,7 +56,7 @@
             <a class="big text-amount">円払った</a>
           </div>
           <br>
-          <button id="toggleButton" type="button"><a class="big">端数のわけかた</a></button>
+          <button id="toggleButton" type="button" class="big">端数のわけかた</button>
           <div id="toggleContent" style="display: none;">
               <select type="number" id="round" class="select number"></select>
               <a class="big">円単位</a>
@@ -134,7 +137,7 @@
         </div>
         <div>
           <div class="use">使い方</div>
-          <img class="use" src="../../../../image/HowToUse.png" width="450" height="900">
+          <img class="use-fig" src="../../../../image/HowToUse.png" width="450" height="900">
         </div>
         <!-- <div>
           <img src="../../../../image/icon0084.png" width="400" height="500">
