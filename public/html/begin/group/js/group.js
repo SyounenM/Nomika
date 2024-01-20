@@ -30,7 +30,7 @@ get_(ref_(database,'groups/' + groupId))
         console.log("ID:" + groupId);
         console.error("データの読み取りに失敗しました", error);
         // 別のURLにリダイレクト
-        window.location.href = `../../../404.html`;
+        window.location.href = `../../../500.html`;
 });
 
 
@@ -87,7 +87,7 @@ function getGroupInfo() {
                 console.error("グループ情報の読み取りに失敗しました", error);
                 reject(error); // エラーの場合はプロミスを拒否
                         // 別のURLにリダイレクト
-                window.location.href = `../../../404.html`;
+                window.location.href = `../../../500.html`;
             });
     });
 }
