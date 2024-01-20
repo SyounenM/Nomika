@@ -814,6 +814,8 @@ get_(groupRef)
     .catch((error) => {
         console.log("ID:" + groupId);
         console.error("データの読み取りに失敗しました", error);
+        // 別のURLにリダイレクト
+        window.location.href = `../../../../404.html`;
     });
 
     // // ページが完全に読み込まれた後に実行

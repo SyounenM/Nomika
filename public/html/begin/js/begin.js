@@ -145,7 +145,8 @@ function createGroup() {
             console.log("データが正常に書き込まれました");
             console.log(memberList);
             const groupURL = window.location.href + 'group.html?id=' + groupId;
-            alert('グループが作成されました。\nURL: ' + groupURL);
+            // alert('グループが作成されました。\nURL: ' + groupURL);
+            alert('グループが作成されました。' );
             // createButton.href = `./group/group.html?id=${newGroupRef.key}`;
             // 新しいURLに遷移する
             window.location.href = `./group/group.html?id=${newGroupRef.key}`;
