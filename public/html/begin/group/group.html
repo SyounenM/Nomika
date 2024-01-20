@@ -31,13 +31,16 @@
             <div class="home">
                 <h2 id="groupH3" class="group-name">グループ名 : group.</h2>
                 <div class="groupInfo big">
-                    <div id="member" class="member"></div>
+                    <button id="toggleButton2" type="button" class="big">メンバー</button>
+                    <div id="toggleContent2" style="display: none;">
+                        <div id="member" class="member"></div>
+                    </div>
                 </div>
                 <div id="result-group" class="result-group">
                     <h3 id="result-text" class="result-text">精算 : </h3>
                     <div id="result"></div>
                 </div>
-                <button id="toggleButton" type="button"><a class="big">共有する</a></button>
+                <button id="toggleButton" type="button" class="big">共有する</button>
                 <div id="toggleContent" style="display: none;">
                     <button class="copy" type="button" id="copy-page"><span id="cAction">URLをコピー</span></button>
                     <button class="paypay" type="button" id="PayPay"><img src="../../../image/icon0084.png" width="100" height="100"></button>
