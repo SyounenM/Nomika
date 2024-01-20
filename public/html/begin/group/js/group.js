@@ -29,6 +29,8 @@ get_(ref_(database,'groups/' + groupId))
     .catch((error) => {
         console.log("ID:" + groupId);
         console.error("データの読み取りに失敗しました", error);
+        // 別のURLにリダイレクト
+        window.location.href = `../../../404.html`;
 });
 
 
@@ -84,6 +86,8 @@ function getGroupInfo() {
                 console.log("ID:" + groupId);
                 console.error("グループ情報の読み取りに失敗しました", error);
                 reject(error); // エラーの場合はプロミスを拒否
+                        // 別のURLにリダイレクト
+                window.location.href = `../../../404.html`;
             });
     });
 }
@@ -106,6 +110,8 @@ function getHistory() {
                 console.error("履歴の読み取りに失敗しました", error);
                 dispScope.style.display = "none";
                 reject(error);
+                // 別のURLにリダイレクト
+                // window.location.href = `../../../404.html`;
             });
     });
 }

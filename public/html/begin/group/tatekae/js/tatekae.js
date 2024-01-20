@@ -214,6 +214,8 @@ function getGroupInfo() {
         .catch((error) => {
             console.log("ID:" + groupId);
             console.error("データの読み取りに失敗しました", error);
+                    // 別のURLにリダイレクト
+            window.location.href = `../../../../404.html`;
     });
 }
 
@@ -364,6 +366,8 @@ function getHistory() {
             .catch((error) => {
                 console.error("データの読み取りに失敗しました", error);
                 reject(error);
+                        // 別のURLにリダイレクト
+                window.location.href = `../../../../404.html`;
             });
     });
 }
