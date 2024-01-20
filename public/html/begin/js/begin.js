@@ -106,6 +106,8 @@ addButton.addEventListener("click", function() {
                 memberDiv.appendChild(memberSpan); 
             }
 
+            const member_div = document.getElementById('memberDiv');
+            member_div.style.display = '';
             changeHeight();
 
         } else {
