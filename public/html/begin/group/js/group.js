@@ -189,6 +189,7 @@ function showResult() {
     var res = document.getElementById("result");
     console.log("height: " + dispHeight);
     res.innerHTML = ""; // 以前の結果をクリア
+    res.innerHTML += "<h3 class=result-text>精算結果</h3>"
     for (const obj of resultList) {
         // 各結果を表示
         res.innerHTML += `<div class="result">${obj.debtor} → ${obj.creditor} : ${obj.amount}円</div>`;
@@ -250,8 +251,6 @@ function editHistory(content, index, method, historyId) {
 
 // 高さの変更
 function changeHeight() {
-    const resText = document.getElementById("result-text");
-    resText.style.top = resTextHeight + "px";
     let bottom = document.getElementById("bottom");
     var offsetTop = bottom.offsetTop;
     background.style.height = offsetTop + 800 + "px";
