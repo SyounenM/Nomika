@@ -36,3 +36,14 @@
     top: -100px;
     left: 50px;
 }
+.memberDiv {
+    margin-right: auto;
+    margin-left: auto;
+    width: 420px;
+    background-color: rgb(253, 234, 214);
+    border: 2.5px solid rgb(0, 0, 0);
+    padding: 15px;
+    margin-top: 10px;
+    margin-bottom: 20px;
+    border-radius: 12px;
+}
