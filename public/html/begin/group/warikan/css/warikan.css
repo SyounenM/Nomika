@@ -270,7 +270,37 @@ input[type="number"] {
     border-radius: 12px;
 }
 #toggleButton {
+    background-color: rgb(255, 255, 162);
+    color: black;
+    padding: 10px 20px;
+    border: 2px solid black;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: 300ms; /* hoverまでの時間 */
+    &:hover {
+        color: rgb(255, 140, 0);
+    }
+    
+    &::-webkit-details-marker {
+        display: none;
+    }
+}
+
+#toggleContent2 {
+    display: none;
+    margin-right: auto;
+    margin-left: auto;
+    width: 420px;
     background-color: white;
+    border: 2.5px solid black;
+    padding: 15px;
+    margin-top: 10px;
+    margin-bottom: 20px;
+    border-radius: 12px;
+}
+#toggleButton2 {
+    margin: 20px;
+    background-color: rgb(255, 255, 162);
     color: black;
     padding: 10px 20px;
     border: 2px solid black;
@@ -287,12 +317,15 @@ input[type="number"] {
 }
 
 .marume{
-    width: 220px;
+    width: 210px;
     margin: 10px;
+    padding: 5px;
+    font-size: 27px;
 }
 .number{
-    width: 140px;
+    width: 110px;
     margin: 10px;
+    font-size: 27px;
 }
 .payer{
     position: relative;
@@ -324,4 +357,13 @@ input[type="number"] {
     margin: 20px;
     position: relative;
     top: 200px;
+}
+.use-fig{
+    color: rgb(90, 59, 0);
+    font-size: 48px;
+    margin: 20px;
+    position: relative;
+    top: 200px;
+    border: 5px solid rgb(135, 92, 52);
+    border-radius: 10px;
 }
