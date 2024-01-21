@@ -46,8 +46,6 @@ function changeFooter(){
 }
 
 // htmlとの連携
-let memberDiv = document.getElementById('member');
-let groupDiv = document.getElementById('group');
 const calcButton = document.getElementById("calculateButton");
 calcButton.onclick = calculate;
 const saveButton = document.getElementById("saveButton");
