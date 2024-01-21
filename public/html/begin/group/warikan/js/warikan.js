@@ -829,6 +829,7 @@ get_(groupRef)
     .catch((error) => {
         console.log("ID:" + groupId);
         console.error("データの読み取りに失敗しました", error);
+        window.location.href = `../../../../500.html`;
     });
 
     // // ページが完全に読み込まれた後に実行
