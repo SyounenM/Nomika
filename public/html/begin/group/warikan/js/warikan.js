@@ -81,18 +81,18 @@ let isSelecting = false;
 //関数/////////////////////////////////////////////////////////////////////////////////////////////
 //画面生成
 function viewBuilder() {
-    //グループ名表示
-    groupDiv.innerHTML = 'グループ名：' + groupName + "</br>";
-    //メンバー表示
-    for (let member of memberList) {
-        let memberSpan = document.createElement('span');
-        memberSpan.textContent = member;
-        memberSpan.id = member + 'Span';
-        memberSpan.style = 'background-color: white; margin-right:10px; border: solid 1px black; border-width: 2px; border-radius: 10px; padding: 3px;';
-        // memberSpan.style.border = 'solid'
-        memberDiv.appendChild(memberSpan);
-        // dispHeight += 20; //表示部分高さの変更
-    }
+    // //グループ名表示
+    // groupDiv.innerHTML = 'グループ名：' + groupName + "</br>";
+    // //メンバー表示
+    // for (let member of memberList) {
+    //     let memberSpan = document.createElement('span');
+    //     memberSpan.textContent = member;
+    //     memberSpan.id = member + 'Span';
+    //     memberSpan.style = 'background-color: white; margin-right:10px; border: solid 1px black; border-width: 2px; border-radius: 10px; padding: 3px;';
+    //     // memberSpan.style.border = 'solid'
+    //     memberDiv.appendChild(memberSpan);
+    //     // dispHeight += 20; //表示部分高さの変更
+    // }
     //支払い人
     let payerSelect = document.getElementById("payer");
     for(let member of memberList) {
@@ -814,18 +814,18 @@ get_(groupRef)
             }
             changeHeight();
         });
-        const toggleButton2 = document.getElementById('toggleButton2');
-        toggleButton2.addEventListener('click', function() {
-            var content = document.getElementById('toggleContent2');
-            if (content.style.display === 'none') {
-                content.style.display = 'block';
-                toggleButton2.textContent = "閉じる";
-            } else {
-                content.style.display = 'none';
-                toggleButton2.textContent = "メンバー";
-            }
-            changeHeight();
-        });
+        // const toggleButton2 = document.getElementById('toggleButton2');
+        // toggleButton2.addEventListener('click', function() {
+        //     var content = document.getElementById('toggleContent2');
+        //     if (content.style.display === 'none') {
+        //         content.style.display = 'block';
+        //         toggleButton2.textContent = "閉じる";
+        //     } else {
+        //         content.style.display = 'none';
+        //         toggleButton2.textContent = "メンバー";
+        //     }
+        //     changeHeight();
+        // });
 
     })
     .catch((error) => {
