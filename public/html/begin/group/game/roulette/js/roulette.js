@@ -63,7 +63,7 @@ document.addEventListener('DOMContentLoaded', function() {
     console.log("ID:" + groupId);
     console.error("データの読み取りに失敗しました", error);
             // 別のURLにリダイレクト
-    window.location.href = `../../../../500.html`;
+    window.location.href = `../../../../../500.html`;
     });
 });
 
