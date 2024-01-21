@@ -310,9 +310,9 @@ document.getElementById("copy-page").onclick = function() {
 function launchApp() {
     var IOS_SCHEME = 'paypay://';
     var IOS_STORE = 'https://apps.apple.com/jp/app/paypay-ペイペイ/id1435783608';
-    var ANDROID_SCHEME = 'AndroidのURLスキームをここに入れるべし！';
-    var ANDROID_PACKAGE = 'Androidのパッケージ名をここに入れるべし！';
-    var PC_SITE = '公式サイトのURLとかここに入れるべし！'
+    var ANDROID_SCHEME = 'paypay://';
+    var ANDROID_PACKAGE = 'jp.ne.paypay.android.app';
+    var PC_SITE = 'https://paypay.ne.jp'
 
     var userAgent = navigator.userAgent.toLowerCase();
     
@@ -332,7 +332,7 @@ function launchApp() {
     }
     // その他・不明・PCなどの場合はサイトを開く。
     else {
-        window.location.href = 'https://paypay.ne.jp';
+        window.location.href = PC_SITE;
     }
 }
 // ボタンをクリックしたときにlaunchApp関数を実行してPayPayを起動
