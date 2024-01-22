@@ -223,13 +223,11 @@ function showHistory() {
         console.log("historyList[", i, "]", historyList[i][0]);
         const obj = historyList[i][0]
         // 各結果を表示
-        historyGroup.innerHTML += `<button id="history-${obj.content}" class="history">${obj.content} : ${obj.amount}円</button><br>`;
-    }
-    for (var i = 0; i < historyList.length; i++) {
+        let his = document.createElement("button");
+        his.className = "history";
+        his.textContent = obj.content + " : " + obj.amount + "円";
         console.log("historyList[", i, "]", historyList[i][0]);
-        const obj = historyList[i][0]
         let method = obj.method
-        let his = document.getElementById("history-" + obj.content);
         console.log("his", his.id);
         let index = i;
         console.log(method);
@@ -238,6 +236,8 @@ function showHistory() {
             console.log(index);
             editHistory(obj.content, index, method, historyIdList[index]);
         }
+        historyGroup.appendChild(his);
+        historyGroup.appendChild(document.createElement("br"));
     }
 }
 
