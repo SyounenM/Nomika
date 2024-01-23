@@ -24,6 +24,7 @@ function showAlert() {
 topButton.onclick = showAlert;
 home.href = `../../group.html?id=${groupId}`;
 back.href = `../game.html?id=${groupId}`;
+changeFooter();
 
 var texts = [
   "初恋の話",
@@ -140,7 +141,6 @@ $('.add').click(function(){
   $('#table').append(add);
   texts.push('');
   changeHeight()
-  changeFooter();
 });
 
 // 削除ボタンをクリックしたときの処理
@@ -153,7 +153,6 @@ tableBody.addEventListener('click', function(event) {
       alert('最後の要素は削除できません');
     }
     changeHeight()
-    changeFooter();
   }
 });
 
@@ -189,12 +188,10 @@ document.getElementById('toggleButton').addEventListener('click', function() {
     content.style.display = 'block';
     document.getElementById("cAction").innerHTML = "閉じる";
     changeHeight();
-    changeFooter();
   } else {
     content.style.display = 'none';
     document.getElementById("cAction").innerHTML = "内容を編集";
     changeHeight();
-    changeFooter();
   }
 });
 

@@ -23,6 +23,7 @@ function showAlert() {
 topButton.onclick = showAlert;
 home.href = `../../group.html?id=${groupId}`;
 backButton.href = `../game.html?id=${groupId}`;
+changeFooter();
 
 // // 画面高さ
 var backgroundRoulette = document.getElementById("background-roulette");
@@ -218,7 +219,6 @@ window.dataFetch=()=>{
     }
     cssColorSet();
     changeHeight();
-    changeFooter();
 }
 
 window.validation=()=>{
